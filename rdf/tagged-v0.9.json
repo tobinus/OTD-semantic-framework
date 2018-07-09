@@ -1,0 +1,4412 @@
+[
+  {
+    "@id": "http://www.quaat.com/extended_skos#50908fdbe34749d0ba3383418ac1c513",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/b58d8633-0a0c-438c-b283-c4b0ae13cd77"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#0c79ec943722413c94f65bf467543462",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4c13d555-fdfe-48b1-bfe6-db3c96c05a69"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#fd63e971564c45d283c9f8d759893911",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Statistics"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/f2c97ee0-6cad-4833-92fb-4a21d8b68b74"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f0a4599e97534ef6b965b20ffd7c0890",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/42fb5664-7801-4787-9d93-7b0c87fad360"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6adf3e49c473425e949618789fccdd36",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/b58d8633-0a0c-438c-b283-c4b0ae13cd77"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f5dd7ea0dee140e6836fb609f0ffc037",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/6e24e79e-3bda-4a65-87fb-8123f5bb1cde"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#eacd114e52e14abab6e93ff1c82d5699",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/53a3c05b-973a-4f8d-9ec3-c2fddec576e0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#fc6afb05fd614908ae1a7d178b34dbbb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Statistics"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8feb944e-b50d-4536-a61a-cbdcf52861f1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#be8a0006b4c248e6965beab72f72d926",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Map"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/23fef01e-c729-43b2-8fb3-8e127f04b286"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e575434edeb642fda2749ae5f0cdc0e5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransferNode"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/482b30a8-1b35-4ed0-85ec-cc52381fa422"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5fb5cf064ddc4e41a4259bbdb8d6fd6e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/95797234-3d9b-415c-a7e2-c4660843ee20"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2621b549bd1d4471a62121a9fbae04d8",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3433bcbe-e8cc-465f-bee4-95265a29b57b"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6b3c768bb1f142fb9308beed4ba5855d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Bicycle"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a7276da5-6d23-4d60-930c-3ad692ca59b1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#0cc80474a8bd4beca472f9b9997ce4c7",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/29078456-a2e4-4659-bd37-b2c029182703"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#65cbbbc6403e48d481655aaf0c363b4a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/b143d042-cd64-4b0c-9614-17ea71b454a4"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#655f691e60f949f7b2b7d39cd89c998e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/2e78cdcc-897f-42d7-bd78-a09e6e070457"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#960cf20a4cff426ab0b0fa76a43273e8",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/650f6dc3-7d13-4472-a83a-3571a38db621"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#895453116f3742258e68d5f1bac6aa54",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/52546226-9fc9-4020-bd21-bd869c5ba8bd"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e3797a095ee64b96a5c8f753db4d077b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8966a9f8-c4aa-4c83-ae1c-b9de223a728d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#20f41f22d007462992e62bb2b89f4a4b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/bbd70a3e-8fe0-47e5-9624-880beeb19c59"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#0d23b44b56384fdabf9b0dadbb407f0b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0e4afab3-e679-4d3d-8052-0f793158cd7f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9d33bfc7d3ce4bbeb37a8ef4e78ff7ff",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a441154d-1c7b-44e9-9d37-2d06b6af6411"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#17dcee44a7854218b19a053a626dd2e3",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/48b50420-74c4-4c0c-9b60-20f203a41a06"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#bd3d6ebd591a460eb520a2e426820968",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/b6feae31-74cd-4ada-bc44-0a372f518380"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#70edf4f424dd456b85e7ee1142774ce5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetworkCondition"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1b85ba90-b675-4831-87fd-4d0de893df18"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#653c2f09fafe4cf38f72d883762360a5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/de82c50b-52c2-4266-9765-386a32c5302d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#22e7e8b9ba864c7fb86c13abb6f96d16",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/c1392a5e-675e-4e1a-9e79-ed4e0c17328a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#781b16f76c33499a8d0b8135f3aafb32",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#EnvironmentInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/ab60e637-ef33-44ea-b1d4-0bb0fea81799"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1a06327162ae4e6e865166f075d63011",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Bicycle"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/027b3371-5d84-4ac4-8dda-bba833189db7"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#c404d4a9a35b4a4cbd5c2746ca701356",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1335971d-58ad-4a95-9b60-a1221636c3e0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#3dc736e9bdda4c439d020311bd8afbbf",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Parking"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/36ceda99-bbc3-4909-bc52-b05a6d634b3f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2e1928cf9fa34b45bd655b8dd25282f4",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/f6475ec0-099f-4cc8-84f7-4f6b3aaae393"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#cfeb988b24e54057b0d5bde10608631c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d0b9c7e6-29e2-411c-9036-6f7d7e7a2c02"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7b18390b01b341cc8710b64862d10919",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Bicycle"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/52546226-9fc9-4020-bd21-bd869c5ba8bd"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#93002ddc9d8a47a59c690cdfaa7e758f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/96c508b9-607d-4ace-a0ba-cf5082ad6441"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9eb80eff927b4decb107529408ac088e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Parking"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/95797234-3d9b-415c-a7e2-c4660843ee20"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2de62eb6c9f04acb87b5ca5ca64f4713",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/2bfa7959-e9bc-4f4c-b1fa-46babdb08f42"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8e75d14713d043f9af0fb5b34618a6bb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/027b3371-5d84-4ac4-8dda-bba833189db7"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#98c3bde74eb14e4895a3edc1b88fb518",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportService"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3da97ae7-ae64-4d63-bc07-b7cf78d14b1f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#69e109bf53204c0fb5d5c0f9ff155204",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Bicycle"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0f0e037e-b5e8-453f-97ca-8ae9be7e523c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ac45e91468f94afeb23d05132e59be83",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/48b50420-74c4-4c0c-9b60-20f203a41a06"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#368a338417064e7ab9a51f7b6cd77877",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/6532c035-257d-4808-9883-38614e80fd04"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#a9705fa29c674b4c98084bf0700b9226",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportService"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3863c79d-1102-45dc-aecb-6d0c0d0a1696"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e0ba1543198a410b9e4b8eea324ac9d1",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Map"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0f0e037e-b5e8-453f-97ca-8ae9be7e523c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#4151b36b5bad49718a72a1a69e8704d4",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0827894d-5db2-443b-b8fb-e58e60cb6962"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6573697aa974460e937e1af57e69d824",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Train"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/fb3cd5ed-c920-4369-aa84-e4a0a802499e"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7d5a88ab6f4f4431bef82db0162b4cd0",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/99043ac8-9e0d-4cd6-bb1d-7e45adc22556"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#27e0c0e040d843a0b64cd8d79289781e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/e871da91-84ca-4703-ae14-2c79eed8aa5a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7de48234fb2d4b128f725b0926b89eda",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#MeteorologicalInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1510b486-ef6a-4c03-a858-b19a3a802f82"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#852424abf9614d92ac669853cfd5ca91",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d1a3a50b-0566-48c1-acc0-15049da971b3"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#bdd42db3b6a1486abad805f3a5e5402e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Timetable"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/e871da91-84ca-4703-ae14-2c79eed8aa5a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#3f56cc7bf0e6461c9b602a21733f396a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1a7f9e36-0e6f-41e6-9608-4f184e27c5ed"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#aaf2caac55344aba95e03112200b15fb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#RoutePlan"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1b85ba90-b675-4831-87fd-4d0de893df18"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e297568c0a504d4e8d8193f032138beb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/9e449b4a-a7c9-4d47-9d5e-94128d179995"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#772dcc53cade43619b5321c49cd7882d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1284a379-64f8-4066-bf2c-155a76c0a80f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#449e176065424b2eb13575642bbf71fc",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/5bb5d4d6-57db-4bb8-9c0b-e1e43bb15e4b"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8885f87df3074ef1bd0f82292668c70e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransferNode"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/e871da91-84ca-4703-ae14-2c79eed8aa5a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#88ff771eff454337a2bc7d8de237eecc",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/6532c035-257d-4808-9883-38614e80fd04"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#564ecaa1aad649fcb33d15d1b62c3305",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Road"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/9e449b4a-a7c9-4d47-9d5e-94128d179995"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#4a2823386d394533b61618b220f5958f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#BusStop"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/482b30a8-1b35-4ed0-85ec-cc52381fa422"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#c021b99dfae0480fbc199b9d00592d73",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Bicycle"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/90cef5d5-601e-4412-87e4-3e9e8dc59245"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ef5b859b0cf1495f8f22f06a2ab2a0a9",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Parking"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/52d0d63e-d26c-43b9-91e2-13b3b2a96c89"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8b390cca440a4aa0bbdd0282cf22d5d2",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/725a493d-2942-4585-b72f-df6d1b06bb45"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5bd2eb6d7ef64423bbfa4de3740ac3d5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Timetable"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0e3f86cf-2334-41f3-8762-935e5f83d638"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#952a43a79a98446bb9bc3bea69987759",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/2bfa7959-e9bc-4f4c-b1fa-46babdb08f42"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#cb173bfd752b40d3a1be6d88dc3f54be",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/29078456-a2e4-4659-bd37-b2c029182703"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e52a08ce56ab4a18aeb630d41070b1dc",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d0ed874c-14ca-4166-a87d-23844fbf114c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ac46ca62833644098fe83878b777630a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#APIDescription"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8feb944e-b50d-4536-a61a-cbdcf52861f1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#890db89a5fb5463bbcbcd16b33c95563",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/2adf0936-b181-4cd5-82f8-fff6802b2214"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#a2d89feb0633476cbffa9935fe3404d9",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/99043ac8-9e0d-4cd6-bb1d-7e45adc22556"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ca8fc913b30c4ba8aa1c2fdf702717fd",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0a4c57ac-386e-4a9b-ad09-c3d17c6a0725"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7ea62e1d958642fe85b4d042e24ee62e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/64a3f8ff-5ce8-40f7-bf9d-33e335d406ce"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#09f2afc4a8fd4eaab10d78abdaaed497",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/c1392a5e-675e-4e1a-9e79-ed4e0c17328a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b2c9ceab17344e1a9df2e34e08f31ed0",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/c028cc71-066c-42d6-8e66-31752b2d3a48"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#feb2d9bf8cf84e76a0ef3d123ef2087b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4ae81d47-ca9d-4dd8-a65c-47b5e63bf427"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7e737db44ebb4da38c66589ea1d2a56a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/49f3ebf9-40a8-4dd8-bd98-e7a0cee9a561"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1813ccf8806e44139c178693eef930c8",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/90cef5d5-601e-4412-87e4-3e9e8dc59245"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#65ecadb0317a41fd9385bad5eefdf33d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/42e225d3-4bf0-45ca-b579-500c62ad1340"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6aca28fce1234762aa166a13fae5086b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d105d776-596e-4801-976a-c2b465b04f87"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#815e9c3fafd34ba0ba03939e04af5e71",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/49f3ebf9-40a8-4dd8-bd98-e7a0cee9a561"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#64992632dc634a88b9fc72dca3bf8136",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a68c8302-5192-4a34-9134-98500dd44f74"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#a15e2c80bc2a4013b99a699c323039f8",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/6adb0d93-6cb3-4e4b-861f-489f3b9bd9b2"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8407c416509649868294a396f9fcc043",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/bf627d4a-f115-41a2-82b9-d19de3cd5414"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#cdd535dff3844024a7c7f22699774ba5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/51f6952b-069d-4af8-9a43-425ec054e41d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#da28d064362c40e5802c0f0f6faaee12",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/9c18dcad-313d-4bb0-bec7-358c40724cf0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1f7086afb4264c6ebf342d7c73a42604",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d93c1ea6-4c2d-4df4-acf4-1c57b15e5790"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#0e26762803da4c80923c1a9c51487167",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/08c25788-f90a-452c-bde0-1511cbbeddb8"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7250e70b3f0a4aaf99dda2fc56f73b6e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4a8324d4-f531-41bc-8964-2dc998c05121"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#3c28664c4ca14d50b6b775b50f9ee6bb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/584295a1-248c-4a35-b8d5-3fa2d71de880"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1f1a4425018944a6b29bac259f047d4f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/dfb9b81c-d9a2-4542-8f63-7584a3594e02"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f8ef9e063902484fa139fdbe9ebf8031",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4a8324d4-f531-41bc-8964-2dc998c05121"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#a1fec0933ffd431cb629026ff32e584a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/22a016c9-c87e-4c14-b955-0b8f813773d9"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7f7d130b0c2940ce9531888eb2b792d1",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a7e7242e-006f-445a-aee3-928ac6dbead4"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#fa1ed51f04e84fe58495b1ef5bbc291a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/12bf3448-ec94-4188-8a1f-c89255e6217c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b4e0d3f16e4041f396507095178b7029",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/265a373b-0f79-49d8-aba9-65526bc74ce1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#23b193823746476f9c497bd029add1ee",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelPlan"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/e871da91-84ca-4703-ae14-2c79eed8aa5a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1dc00d5dd6034c7493997c6343f8175f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/25a7128a-1daf-485a-967e-dc208d0fa757"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#16122be751b141af87cd17ccf04e181d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a487ff09-435a-44bf-8c35-36c60b1eb4ad"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#97d08ce0b0a3478c8f87c428fd13b71a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/78a0cc73-b4de-4c87-84b0-c5bb7ba079c2"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#51eb9b9c11c1490c813bf72558d636d7",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a487ff09-435a-44bf-8c35-36c60b1eb4ad"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#72a72a5e1d034edea0e0c482abed4589",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelPlan"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a7276da5-6d23-4d60-930c-3ad692ca59b1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#33c1bd0f05634c5eb5819f1c01f556c2",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a07a14eb-5b51-4484-ab0e-b8ec2bfdb2fa"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#fdad6e2443da43849ac23008c54d964f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/ecb58c29-3169-4eef-8873-1483d1c5e88c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#172872743a07413983070f9072f6d4b5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8f8ac030-0d03-46e2-8eb7-844ee11a6203"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#81a479b0f83a47d48a06f1b08051f75c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/51f6952b-069d-4af8-9a43-425ec054e41d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f8ac435b83c84393930eb24c2519fc8b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/92a9b284-6073-47e9-8eee-5f2195d0879a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9b919cfefd2343a49b6509906425b589",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#MeteorologicalInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8c920c9b-77ad-4f64-8253-085078634e01"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5df33dcc113a4bbc96075cf018cb40c1",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/fb3cd5ed-c920-4369-aa84-e4a0a802499e"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#d4d2fbdea8c54c7190c137ce14566763",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d0ed874c-14ca-4166-a87d-23844fbf114c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ec0c72b77270468391d9c212dfd7598b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/b143d042-cd64-4b0c-9614-17ea71b454a4"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5eb992a5d0cf4c0e946e1fa502d8b5ee",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d0b9c7e6-29e2-411c-9036-6f7d7e7a2c02"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#30d213a2cf5a483fa95c20ea5a590679",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/725a493d-2942-4585-b72f-df6d1b06bb45"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5ee2677794344f07a389c1e75026d851",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/650f6dc3-7d13-4472-a83a-3571a38db621"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#60992c8650084d39a51acec471e6a9b5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3da97ae7-ae64-4d63-bc07-b7cf78d14b1f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#3f69e8fb5e3044debd45b5744247ee18",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Statistics"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/e97fd128-4db5-4b0a-ab36-658c489b76eb"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#309f715115d244f19f2d08963493c1ad",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0a4c57ac-386e-4a9b-ad09-c3d17c6a0725"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#d361c450838f4623bcb3d5963a0a42ab",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/52d0d63e-d26c-43b9-91e2-13b3b2a96c89"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8b7def4d00a541c5bb363b6262e7d6a3",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/2e78cdcc-897f-42d7-bd78-a09e6e070457"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5208e10052b94bec872cb59e95a1e639",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/16d3afdb-bb20-4593-929a-9fbd3f52ef05"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ee320fc4f5064866926ce2d60b867b2b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/53a3c05b-973a-4f8d-9ec3-c2fddec576e0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#01f25ebfdc4d4641a986ecc8236743e3",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#HydrometeorologicalInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/9f6d9caa-df3a-4515-8ba3-025c076efaeb"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#36b72133edfc4b92bf70b5c86fd4309d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4fbaaeb9-b6bb-4862-b8cf-aee476725d1f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#960e4cf000314a2aaecfedfb57a37132",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetworkCondition"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8c920c9b-77ad-4f64-8253-085078634e01"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7136744165f64b1591012dab01dc1457",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1f64a769-9c10-4cc7-9db9-60ac74a7183e"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#fc7408fb6a4c4dd79b072a0b6fc027f9",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/ecb58c29-3169-4eef-8873-1483d1c5e88c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#47fb24643a12468db9b40a1a9a48666a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/5e5bab6c-0659-4f95-b65e-85fb454f88a4"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#33c4a90ad3764812985b5ce51039923c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Road"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/aad23951-b6eb-489e-8bfe-59949eed916a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#343ac4e6a5944285869f30f54e86421c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/14027ce4-09de-4a1c-b2bc-61f5ab61bfd0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9d3aeb3e158943d386bcfd8ce3a8fe10",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Accident"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8c920c9b-77ad-4f64-8253-085078634e01"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#bd92a0e3bba3465ea3ed49372c5ed107",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Timetable"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3da97ae7-ae64-4d63-bc07-b7cf78d14b1f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#92a052a04883413cab4dce872ccce8e1",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/89cf5416-caf8-46d7-9d2d-7bf57ea9d1ac"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7d85c2777a764a55bcc2a11d55a2bd0c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0f0e037e-b5e8-453f-97ca-8ae9be7e523c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#13f4cc46d807470c97c125dafc7c328f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0cd2de3b-e76f-49d8-b8cc-4c1013f59f85"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#cc6f35aa637e469b9877bef8b4412124",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1335971d-58ad-4a95-9b60-a1221636c3e0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1f0bc33174494b2181a9b13e78d09faa",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#ChargingStation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/caefad21-41cc-41e6-9f59-e050486686ea"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ffb6032d9d2e49be82550ed89edf0f51",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/14027ce4-09de-4a1c-b2bc-61f5ab61bfd0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#52083de1d43e48f2b1e41c69581c9308",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a85bd417-117e-4a63-bf95-65f3ba0852a3"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#43bf769901ae41f39c4c9affc6a43845",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/9bc820a1-aea6-4619-a5dd-d375f30c90e3"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#c1f83829ec9d4cc48f53fd53a40367df",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportService"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0e3f86cf-2334-41f3-8762-935e5f83d638"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#4dbf0602773449179f7d657424e1d4ba",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a07a14eb-5b51-4484-ab0e-b8ec2bfdb2fa"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2700943b88ac478ba59c9da4282821b7",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Timetable"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/265a373b-0f79-49d8-aba9-65526bc74ce1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#4ab0484822924f7ab081310be1b0b292",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportService"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/265a373b-0f79-49d8-aba9-65526bc74ce1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#d154e186a4a04a948dce129b924c65af",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#RealTime"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/e871da91-84ca-4703-ae14-2c79eed8aa5a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#918d2d24a98a47c38ac2bdc7eb4d7bd5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0612abbf-1b35-422c-971c-869c6f22214e"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#89f0ac80389c44fdbf1d2490686bcafa",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/22a016c9-c87e-4c14-b955-0b8f813773d9"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b072aa9f084041d7b2c61893e8a411bf",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d105d776-596e-4801-976a-c2b465b04f87"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#75f2aebff5a34011972aa3d1c024ebd5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#AirQuality"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d473bc01-8d6e-4771-a946-e19d3fff3691"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b1bd942e263a47f7ab5534f2d23eee3b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/25a7128a-1daf-485a-967e-dc208d0fa757"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#bbd76172e9834e1aaf866957baa3576a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Bicycle"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/42fb5664-7801-4787-9d93-7b0c87fad360"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e2652dea720d448385bc6b1ff8bec7e7",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a8cb46ae-7441-4a87-b52e-5351685a33d0"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#25b9c8c4030548eb83ab23892b672ece",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Statistics"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4698e844-2cc0-429a-958e-0853904e8652"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f056a5992dd14e78ae70399fba5c32c2",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/5e604a17-dab3-4e6a-977d-ff4964338296"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b8bd5bf52b164605a4cec7f31582cf24",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8c920c9b-77ad-4f64-8253-085078634e01"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b6ea4d16b78140bf8f3ae87dbd6cb246",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4cee70c8-2fdc-4d25-a8e7-3daa2d7a376d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#40c2d7673b0841dbb84bab50cffe185c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/5e5bab6c-0659-4f95-b65e-85fb454f88a4"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#041a93810f9a466f91270ca8ceed2dd5",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a441154d-1c7b-44e9-9d37-2d06b6af6411"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#389e4bca46e8406c8862d93d6108d081",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#MeteorologicalInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/bf374070-430b-4d30-8818-ff5ca756a3da"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#bc239565c61a4e9a86a1c1ba2c72b85a",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a5b546fc-b9b1-4766-bd72-866e0edb874d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#362650e7258d40a2a006e0953d995bb0",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/85cd5905-a6a0-422b-ae8c-776b9f84d205"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#c8a9bcf5b643490999271e5ca30cb191",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/c8ac90a3-6525-4653-88af-d897aab86704"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b95077da79f042699230ac940157c972",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/c8ac90a3-6525-4653-88af-d897aab86704"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f2be4bf6d8dc4a2fa6a9ebfc1c8effcb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4c13d555-fdfe-48b1-bfe6-db3c96c05a69"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#c9d90de3497449c5856661aa9c6a833b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4298b3a3-d06e-40bc-9097-4229e993988e"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#e4d28d3fdafd41688aa9e6c462e4ab7f",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a8669394-1dc6-4258-be23-09f671d7c513"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6e1d987e48ef4f968e5bc2c7a1c6fb10",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/94016332-2c3f-4c5d-9798-4582961ead79"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#fbee461b63e14e7aa8f2fe2c84643505",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/f5b758cf-9a21-419a-a311-e6eceeb7f29c"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#beba85d9e3784a2f964aa589a90c2932",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/f6475ec0-099f-4cc8-84f7-4f6b3aaae393"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#0537052865264fbcbb1bb7a8063e261e",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Statistics"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/ab60e637-ef33-44ea-b1d4-0bb0fea81799"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#896302f9c473469e9f6a248b692a7204",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1a3f7855-45f4-473c-89af-7fda8eede930"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#86893e6e581e4f31b1b762297f30b06d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/64938d2c-859b-4370-8f58-9dce554776ae"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#720e0696a4ab423a8707206dfb407021",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/42e225d3-4bf0-45ca-b579-500c62ad1340"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#02821b57f1864dc886f727a5e6940466",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/96c508b9-607d-4ace-a0ba-cf5082ad6441"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#32ca19aea73d4e329c8cda2538365a27",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/36ceda99-bbc3-4909-bc52-b05a6d634b3f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9abe7b7d950e49baaa9b3a249c171db3",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4cee70c8-2fdc-4d25-a8e7-3daa2d7a376d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6d5a447a98d24cd0a540e2e675dc3671",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TrafficInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/aad23951-b6eb-489e-8bfe-59949eed916a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5bf7a8ca5b8b45aaa7eb9aad2bf14105",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/bbd70a3e-8fe0-47e5-9624-880beeb19c59"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7057b7edc2814e23957f565643e4737b",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/584295a1-248c-4a35-b8d5-3fa2d71de880"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#4544a2c877f54f59b00e952514b489af",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/ad9335f3-a405-4811-86a2-e7cb34254e11"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8889156ba57f432383df65df2134b690",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#RealTime"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8c920c9b-77ad-4f64-8253-085078634e01"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#7e08cc644fc0490892c33fe3031f654d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#RealTime"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/265a373b-0f79-49d8-aba9-65526bc74ce1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9b6faf35fa824a8ab3ac12c9fddc05a7",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/64938d2c-859b-4370-8f58-9dce554776ae"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#a99de23682194bf69cbf19dc17075d61",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3e661b0d-d325-4ca4-b536-972b69615629"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#83a75c3606b8414ab61426ef363f6c14",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0e4afab3-e679-4d3d-8052-0f793158cd7f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#3183c721cd624046ae1c8001c28af4eb",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#AirQuality"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/88d19fa6-3c12-4838-b58e-38d28e860245"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#25d3ff5ceead4b0dac12dc8c0fbc4521",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/d93c1ea6-4c2d-4df4-acf4-1c57b15e5790"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#5a22fb206924426cbe7f8ff6afc6e506",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a85bd417-117e-4a63-bf95-65f3ba0852a3"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ac547d32493f42439c15c800157570e1",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3433bcbe-e8cc-465f-bee4-95265a29b57b"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#52524f53d2d649c1a3010cbd350d5047",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1a3f7855-45f4-473c-89af-7fda8eede930"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#bce3b6eb0cf94841b618b69c27d161f0",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a7e7242e-006f-445a-aee3-928ac6dbead4"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2a78fc04f5c649f093501235cc88368c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/5e604a17-dab3-4e6a-977d-ff4964338296"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#85f0822719fd470d99430189ff48a139",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/9bc820a1-aea6-4619-a5dd-d375f30c90e3"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#c90dc2a50ef74e7893c02f1121935f95",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/92a9b284-6073-47e9-8eee-5f2195d0879a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b2bb05c525554529b27808ea29baa832",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/5bb5d4d6-57db-4bb8-9c0b-e1e43bb15e4b"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2d7045bcd2de4ec58cbc0fa8d7b5f898",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Road"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8c920c9b-77ad-4f64-8253-085078634e01"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#112db313a3364262a8aa54d817a33864",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/221b490a-b9cc-4430-9bf1-ad59c4bbe06d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#f5b7bdf4e48e40d78c61eadb992ccc20",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Law"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/8f3b2912-a296-42f9-bd3c-afeea8c678ab"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#28157b31740d4e828ec73f35bd703363",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a5b546fc-b9b1-4766-bd72-866e0edb874d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#6a83dc7d954c4b159fc9d150771f5620",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#AirQuality"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/3863c79d-1102-45dc-aecb-6d0c0d0a1696"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#b92e2425900247a4b52ca1284b4985dc",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0e3f86cf-2334-41f3-8762-935e5f83d638"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#9f96242f8f22434f9e04ecc0e21b807c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/4ae81d47-ca9d-4dd8-a65c-47b5e63bf427"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#2ea1ca89bb1d43bf9e532a4410f16b18",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/08c25788-f90a-452c-bde0-1511cbbeddb8"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#ceeb4f32c075432ca10b81deba757e1d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/1284a379-64f8-4066-bf2c-155a76c0a80f"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#a6bf33bc73a942f8a2ebc70e6b047872",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/2adf0936-b181-4cd5-82f8-fff6802b2214"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#3382e646cafe4d74a4b3e42e2e059102",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/0cd2de3b-e76f-49d8-b8cc-4c1013f59f85"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#57e50571a64044f8bfc0683183a0d125",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TransportNetwork"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/221b490a-b9cc-4430-9bf1-ad59c4bbe06d"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#0ef8c34dfdfe4cc894ed65d8422e483c",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/055880c9-cb7e-4919-ab9f-e6d6ee096346"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#1defc8f3199949a1a09652b3e68258b0",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Trail"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/bf627d4a-f115-41a2-82b9-d19de3cd5414"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#8c392ced9ac847b5aa0084546a4caf0d",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#TravelInformation"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/a7276da5-6d23-4d60-930c-3ad692ca59b1"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#95536032961c4bac877eaadb4df392cc",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/ee2f48ab-5b04-4c80-ad3f-0c6cfb87cc27"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  },
+  {
+    "@id": "http://www.quaat.com/extended_skos#05e01eba55ab46c5846df2de8886eecf",
+    "@type": [
+      "http://www.quaat.com/ontologies#Similarity"
+    ],
+    "http://www.quaat.com/ontologies#concept": [
+      {
+        "@id": "http://www.quaat.com/ontologies#Location"
+      }
+    ],
+    "http://www.quaat.com/ontologies#dataset": [
+      {
+        "@id": "http://78.91.98.234/dataset/eca0854c-32dd-4692-8caa-dbdbd41fd95a"
+      }
+    ],
+    "http://www.quaat.com/ontologies#score": [
+      {
+        "@value": 1.0
+      }
+    ]
+  }
+]
