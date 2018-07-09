@@ -1,8 +1,6 @@
-Register a new dataset
+# Ontosearch
 
-curl -i -H "Content-Type: application/json" -X POST -d '{"uri":"http://78.91.98.234:5000/dataset/nasjonale-rutedata-for-norge.rdf"}' http://localhost:5000/dataset/register
+OntoSearch is an Ontology based Semantic Search Engine for Open Transport Data.
+The service currently hosted on heroku:
 
-curl -i -H "Content-Type: application/json" -X POST -d '{"uri":"http://78.91.98.234:5000/dataset/satellittdata-no.rdf"}' http://localhost:5000/dataset/register
-
-curl -H "Content-Type: application/json" -X POST http://localhost:5000/similarity/register -d @satellittdata.json
-
+https://ontosearch-heroku.herokuapp.com/
