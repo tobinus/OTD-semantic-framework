@@ -6,16 +6,22 @@ from os import path, environ
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config['DB_USERNAME'] = environ.get('DB_USERNAME')
-app.config['DB_PASSWD'] = environ.get('DB_PASSWD')
+app.config['DB_USERNAME'] = environ.get('DB_USERNAME', '')
+app.config['DB_PASSWD'] = environ.get('DB_PASSWD', '')
+app.config['DB_HOST'] = environ.get('DB_HOST', 'localhost')
+app.config['DB_NAME'] = environ.get('DB_NAME', 'ontodb')
 
 app.config['ONTOLOGY_UUID']   = '5b2ab51401d5412566cf4e94'
 app.config['DATASETS_UUID']   = '5b2968c501d5412566cf4e86'
 app.config['SIMILARITY_UUID'] = '5b2ada4d01d5412566cf4ea1'
 app.config['AUTOTAG_UUID']    = '5b2acdfe01d5412566cf4e99'
 
-uri = 'mongodb://{0}:{1}@ds119969.mlab.com:19969/ontodb'.format(app.config['DB_USERNAME'],
-                                                                app.config['DB_PASSWD'])
+uri = 'mongodb://{0}:{1}@{2}/{3}'.format(
+    app.config['DB_USERNAME'],
+    app.config['DB_PASSWD'],
+    app.config['DB_HOST'],
+    app.config['DB_NAME']
+)
 app_path = path.dirname(__file__)
 
 print ("Indexing...")

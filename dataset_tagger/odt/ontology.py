@@ -15,7 +15,17 @@ DCT = Namespace('http://purl.org/dc/terms/')
 ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 
-dburi = 'mongodb://{0}:{1}@ds119969.mlab.com:19969/ontodb'.format(app.config['DB_USERNAME'],app.config['DB_PASSWD'])
+app.config['DB_USERNAME'] = environ.get('DB_USERNAME', '')
+app.config['DB_PASSWD'] = environ.get('DB_PASSWD', '')
+app.config['DB_HOST'] = environ.get('DB_HOST', 'localhost')
+app.config['DB_NAME'] = environ.get('DB_NAME', 'ontodb')
+
+dburi = 'mongodb://{0}:{1}@{2}/{3}'.format(
+    app.config['DB_USERNAME'],
+    app.config['DB_PASSWD'],
+    app.config['DB_HOST'],
+    app.config['DB_NAME']
+)
 
 def first(xs):
     """
