@@ -1,4 +1,8 @@
-# Custom for this project
+### Custom for this project ###
+
+# OrdVev
+/ordvev/*
+!/ordvev/README.md
 
 # IntelliJ project folders
 .idea/
