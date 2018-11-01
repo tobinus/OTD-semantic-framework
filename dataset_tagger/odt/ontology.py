@@ -8,6 +8,20 @@ from rdflib import Graph, URIRef, BNode, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
 from rdflib.plugins.sparql import prepareQuery
 from dcat.dataset import Catalog, Distribution, Dataset, CatalogRecord
+from dotenv import load_dotenv, find_dotenv
+
+# Allow user to specify database credentials in a file, rather than only through
+# environment variables
+dotenv_file = find_dotenv()
+if dotenv_file:
+    print(f'Loading environment variables from "{dotenv_file}"')
+    load_dotenv(dotenv_file)
+else:
+    print(
+        'No .env file found in this or any parent directory, relying on '
+        'directly supplied environment variables only'
+    )
+
 
 ODT = Namespace('http://www.quaat.com/ontologies#')
 DCAT = Namespace('http://www.w3.org/ns/dcat#')
