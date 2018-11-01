@@ -5,6 +5,20 @@ from odt.opendatasemanticframework import OpenDataSemanticFramework
 from rdflib import URIRef
 from rdflib import Namespace
 from results.confusion import confusion_matrix_scores, precision, recall, true_negative_rate, accuracy, f1_score
+from dotenv import load_dotenv, find_dotenv
+from os import environ
+
+# Allow user to specify database credentials in a file, rather than only through
+# environment variables
+dotenv_file = find_dotenv()
+if dotenv_file:
+    print(f'Loading environment variables from "{dotenv_file}"')
+    load_dotenv(dotenv_file)
+else:
+    print(
+        'No .env file found in this or any parent directory, relying on '
+        'directly supplied environment variables only'
+    )
 
 OTD = Namespace('http://www.quaat.com/ontologies#')
 class SetMap():
@@ -17,7 +31,16 @@ class SetMap():
         self.config['SIMILARITY_UUID'] = '5b2ada4d01d5412566cf4ea1'
         self.config['AUTOTAG_UUID']    = '5b2acdfe01d5412566cf4e99'
 
-        self.uri = 'mongodb://{0}:{1}@ds119969.mlab.com:19969/ontodb'.format('nims','Da90hfw')
+        db_user = environ.get('DB_USERNAME', '')
+        db_passwd = environ.get('DB_PASSWD', '')
+        db_host = environ.get('DB_HOST', 'localhost')
+        db_name = environ.get('DB_NAME', 'ontodb')
+        self.uri = 'mongodb://{0}:{1}@{2}/{3}'.format(
+            db_user,
+            db_passwd,
+            db_host,
+            db_name
+        )
         print ("Indexing...")
         self.ontology_graph = load_ontology(self.uri, self.config['ONTOLOGY_UUID'])
         self.datasets_graph = load_dataset(self.uri, self.config['DATASETS_UUID'])
