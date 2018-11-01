@@ -3,6 +3,20 @@ from config import Config
 from odt.database import load_ontology, load_dataset, load_similarity, load_autotagged
 from odt.opendatasemanticframework import OpenDataSemanticFramework
 from os import path, environ
+from dotenv import load_dotenv, find_dotenv
+
+# Allow user to specify database credentials in a file, rather than only through
+# environment variables
+dotenv_file = find_dotenv()
+if dotenv_file:
+    print(f'Loading environment variables from "{dotenv_file}"')
+    load_dotenv(dotenv_file)
+else:
+    print(
+        'No .env file found in this or any parent directory, relying on '
+        'directly supplied environment variables only'
+    )
+
 
 app = Flask(__name__)
 app.config.from_object(Config)
