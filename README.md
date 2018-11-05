@@ -50,7 +50,15 @@ Below, you'll find instructions for running these processes.
 
 #### Upload ontology
 
-TODO
+1. Navigate to the `dataset-tagger/` folder
+2. Start the webserver by running `pipenv run gunicorn app:app`
+3. The ontology you wish to use should be placed in
+   `dataset-tagger/app/resources/skos-odt.owl`. By default, the ontology
+   developed for the transport domain is located here
+4. Visit http://localhost:8000/about in your web browser
+5. Follow the instructions for creating new ontology
+6. Note down the UID you receive back, you'll need to refer to this ID when
+   interacting with the ontology down the road
 
 
 #### Link concepts to terms
@@ -75,7 +83,8 @@ TODO
 1. Navigate to the `dataset-tagger/` folder
 2. Start the webserver by running `pipenv run gunicorn app:app`
 3. Visit http://localhost:8000/about in your web browser
-4. Follow the instructions for creating new ontology, and tagging datasets for this ontology
+4. Follow the instructions for tagging datasets, using the UID you wrote down
+   when you uploaded an ontology
 
 
 #### Perform automatic linking to concepts
