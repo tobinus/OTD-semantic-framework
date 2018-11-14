@@ -3,6 +3,7 @@
 # OrdVev
 /ordvev/*
 !/ordvev/README.md
+!/ordvev/ordvev.py
 
 # IntelliJ project folders
 .idea/
