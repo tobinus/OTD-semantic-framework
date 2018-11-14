@@ -14,8 +14,7 @@ using the requirements.txt files (though support for this may be dropped at a
 future point).
 
 1. Install Pipenv
-2. While in `dataset_tagger/`, run `pipenv install`
-3. While in `ontosearch/`, run `pipenv install`
+2. While in this directory, run `pipenv install`
 4. Follow the link in `ordvev/README.md` and extract the files into the `ordvev/` directory
 5. Configure (and install if you haven't) MongoDB so you have a user (with password) which can access it
 6. Create a file called `.env` in this directory, where you define the variables:
@@ -34,8 +33,7 @@ that must be run. Specifically:
 
 1. Pre-process ontology
    1. Upload ontology
-   2. Link concepts to terms
-   3. Compute similarities between concepts in ontology
+   2. Compute similarities between concepts in ontology
 2. Pre-process datasets
    1. Import (new) datasets
    2. Perform manual linking to concepts

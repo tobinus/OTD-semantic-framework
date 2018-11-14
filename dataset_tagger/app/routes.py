@@ -1,15 +1,8 @@
-import os
-
-from rdflib import Graph
-from os.path import splitext
 from flask import render_template, request, redirect, url_for
-from flask.json import jsonify
-from flask_restful import reqparse
 from app import app, app_path
 from odt.ontology import fetch, create_new_graph, get_concepts, tag_dataset
 from odt.ontology import tagged_datasets, get_graph, find_all_ids
 from app.forms import TagForm
-import json
 
 
 @app.route('/about')
