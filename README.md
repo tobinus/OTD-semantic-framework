@@ -42,20 +42,21 @@ that must be run. Specifically:
 3. Run search
 
 Below, you'll find instructions for running these processes.
+They all use the script `dataontosearch.py` to do different parts of the work;
+you can explore the options by passing `--help` as an argument.
 
 
 ### Pre-processing of ontology
 
 #### Upload ontology
 
-1. Navigate to the `dataset-tagger/` folder
-2. Start the webserver by running `pipenv run gunicorn app:app`
-3. The ontology you wish to use should be placed in
+1. Run `pipenv run python dataontosearch.py dataset_tagger`
+2. The ontology you wish to use should be placed in
    `dataset-tagger/app/resources/skos-odt.owl`. By default, the ontology
    developed for the transport domain is located here
-4. Visit http://localhost:8000/about in your web browser
-5. Follow the instructions for creating new ontology
-6. Note down the UID you receive back, you'll need to refer to this ID when
+3. Visit http://localhost:8000/about in your web browser
+4. Follow the instructions for creating new ontology
+5. Note down the UID you receive back, you'll need to refer to this ID when
    interacting with the ontology down the road
 
 
@@ -78,10 +79,9 @@ TODO
 
 #### Perform manual linking to concepts
 
-1. Navigate to the `dataset-tagger/` folder
-2. Start the webserver by running `pipenv run gunicorn app:app`
-3. Visit http://localhost:8000/about in your web browser
-4. Follow the instructions for tagging datasets, using the UID you wrote down
+1. Run `pipenv run python dataontosearch.py dataset_tagger`
+2. Visit http://localhost:8000/about in your web browser
+3. Follow the instructions for tagging datasets, using the UID you wrote down
    when you uploaded an ontology
 
 
@@ -98,7 +98,6 @@ TODO
 ### Run search
 
 1. Configure so the right dataset-to-ontology tags are used (TODO)
-2. Navigate to the `ontosearch/` folder
-3. Start the webserver by running `pipenv run gunicorn ontosearch:app`
-4. The webserver will perform some indexing. It will give you a signal when it's done
+2. Run `pipenv run python dataontosearch.py serve`
+3. The webserver will perform some indexing. It will give you a signal when it's done
 4. You may now search by visiting http://localhost:8000
