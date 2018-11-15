@@ -9,6 +9,8 @@ from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
 from rdflib.plugins.sparql import prepareQuery
 from dataset_tagger.dcat.dataset import Catalog, Distribution, Dataset, CatalogRecord
 from dotenv import load_dotenv, find_dotenv
+from utils.misc import first, second
+from utils.db import get_uri
 
 # Allow user to specify database credentials in a file, rather than only through
 # environment variables
@@ -29,34 +31,7 @@ DCT = Namespace('http://purl.org/dc/terms/')
 ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 
-app.config['DB_USERNAME'] = environ.get('DB_USERNAME', '')
-app.config['DB_PASSWD'] = environ.get('DB_PASSWD', '')
-app.config['DB_HOST'] = environ.get('DB_HOST', 'localhost')
-app.config['DB_NAME'] = environ.get('DB_NAME', 'ontodb')
-
-dburi = 'mongodb://{0}:{1}@{2}/{3}'.format(
-    app.config['DB_USERNAME'],
-    app.config['DB_PASSWD'],
-    app.config['DB_HOST'],
-    app.config['DB_NAME']
-)
-
-def first(xs):
-    """
-    Returns the first element of a list, or None if the list is empty
-    """
-    if not xs:
-        return None
-    return xs[0]
-
-
-def second(xs):
-    """
-    Returns the second element of a list, or None if the list is empty
-    """
-    if not xs:
-        return None
-    return xs[1]
+dburi = get_uri()
 
 
 def get_graph(uid):
