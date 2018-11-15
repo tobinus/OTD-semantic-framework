@@ -1,11 +1,14 @@
 import argparse
-import subprocess
 
 
 def make_subcommand_gunicorn(parser, cwd=None, module='app:app'):
     # Define the function that will start up Gunicorn with the parameters we
     # have received
     def run_gunicorn(args):
+        import subprocess
+        import signal
+        import sys
+
         gunicorn_args = args.gunicorn_args
 
         # Strip off any -- used at the beginning, they're not removed by
@@ -13,9 +16,24 @@ def make_subcommand_gunicorn(parser, cwd=None, module='app:app'):
         if gunicorn_args and gunicorn_args[0] == '--':
             gunicorn_args = gunicorn_args[1:]
 
+        # Combine our arguments with optional arguments from user
         arguments = ['gunicorn', module] + gunicorn_args
+
+        # Print preview of the command we'll run, so user can see how their
+        # arguments were understood.
         print(" ".join(arguments))
-        subprocess.run(arguments, cwd=cwd)
+
+        # We want only Gunicorn, not us, to react to CTRL+C or kill, so that we
+        # can propagate its return code. We do this by ignoring the signals in
+        # this program (Gunicorn overrides those signal handlers)
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
+
+        # Run Gunicorn!
+        result = subprocess.run(arguments, cwd=cwd)
+
+        # Propagate return code from Gunicorn
+        sys.exit(result.returncode)
 
     # Collect arguments for Gunicorn
     parser.add_argument(
