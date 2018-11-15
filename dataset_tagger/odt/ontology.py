@@ -2,12 +2,12 @@ import json
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from os import path, environ
-from app import app, app_path
+from dataset_tagger.app import app, app_path
 import uuid
 from rdflib import Graph, URIRef, BNode, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
 from rdflib.plugins.sparql import prepareQuery
-from dcat.dataset import Catalog, Distribution, Dataset, CatalogRecord
+from dataset_tagger.dcat.dataset import Catalog, Distribution, Dataset, CatalogRecord
 from dotenv import load_dotenv, find_dotenv
 
 # Allow user to specify database credentials in a file, rather than only through
