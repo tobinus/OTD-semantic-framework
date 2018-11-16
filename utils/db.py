@@ -1,5 +1,6 @@
 import urllib.parse
 import os
+import sys
 from dotenv import load_dotenv, find_dotenv
 
 
@@ -63,12 +64,16 @@ def _ensure_loaded_dotenv():
 
     dotenv_file = find_dotenv()
     if dotenv_file:
-        print(f'Loading environment variables from "{dotenv_file}"')
+        print(
+            f'Loading environment variables from "{dotenv_file}"',
+            file=sys.stderr
+        )
         load_dotenv(dotenv_file)
     else:
         print(
             'No .env file found in this or any parent directory, relying on '
-            'directly supplied environment variables only'
+            'directly supplied environment variables only',
+            file=sys.stderr
         )
 
     _has_loaded_dotenv = True
