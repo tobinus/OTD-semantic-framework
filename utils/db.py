@@ -2,6 +2,47 @@ import urllib.parse
 import os
 import sys
 from dotenv import load_dotenv, find_dotenv
+from pymongo import MongoClient
+
+
+class MongoDBConnection:
+    """
+    Context manager for establishing MongoDB connections and closing them.
+
+    Example:
+        >>> with MongoDBConnection() as client:
+        ...     db = client.ontodb
+        ...     print([str(i) for i in db.ontologies.distinct('_id')])
+        ...
+        ['5bdaeb6e09b63846c5a02a7e']
+    """
+
+    def __init__(self, uri=None):
+        """
+        Create new context manager, which can be used to establish connections
+        to a MongoDB instance.
+
+        When used in the with statement, the MongoClient instance is returned.
+
+        Args:
+            uri: The mongodb:// uri used to establish a connection. If not
+                given, it will be inferred from the environment variables using
+                get_uri().
+
+        See Also:
+            get_uri()
+        """
+        if uri is None:
+            uri = get_uri()
+        self.uri = uri
+        self.connection = None
+
+    def __enter__(self):
+        self.connection = MongoClient(self.uri)
+        return self.connection
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.connection.close()
 
 
 _cached_uri = None
