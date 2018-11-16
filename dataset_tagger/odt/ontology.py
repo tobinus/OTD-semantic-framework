@@ -11,24 +11,13 @@ from dotenv import load_dotenv, find_dotenv
 from utils.misc import first, second
 from utils.db import MongoDBConnection
 
-# Allow user to specify database credentials in a file, rather than only through
-# environment variables
-dotenv_file = find_dotenv()
-if dotenv_file:
-    print(f'Loading environment variables from "{dotenv_file}"')
-    load_dotenv(dotenv_file)
-else:
-    print(
-        'No .env file found in this or any parent directory, relying on '
-        'directly supplied environment variables only'
-    )
-
 
 ODT = Namespace('http://www.quaat.com/ontologies#')
 DCAT = Namespace('http://www.w3.org/ns/dcat#')
 DCT = Namespace('http://purl.org/dc/terms/')
 ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
+
 
 def get_graph(uid):
     """
@@ -47,10 +36,11 @@ def store_graph(graph, uid):
     """
     Store graph data in the database
     """
+    jld = graph.serialize(format='json-ld')
+    ont = {"ontology": jld}
+
     with MongoDBConnection() as client:
         db = client.ontodb
-        jld = graph.serialize(format='json-ld')
-        ont = {"ontology": jld}
         db.ontologies.replace_one({'_id':ObjectId(uid)}, ont, upsert=True)
     return True
 
@@ -72,23 +62,41 @@ def find_all_ids():
     return list(ids)
 
 
-def create_new_graph():
-    uid = uuid.uuid4().hex
-    rdf_storage = path.join(app_path, uid)
+def create_new_graph(filename=None, uid=None):
+    g = create_graph_from_file(filename)
+
+    if uid is None:
+        return store_new_graph(g)
+    else:
+        store_graph(g, uid)
+        return uid
+
+
+def create_graph_from_file(filename=None):
+    if filename is None:
+        filename = path.join(app_path, 'resources', 'skos-odt.owl')
+
     g = Graph()
     g.bind('odt', ODT)
     g.bind('odtx', ODTX)
     g.bind('dcat', DCAT)
     g.bind('dct', DCT)
     g.bind('qex', QEX)
-    o = path.join(app_path + '/resources', 'skos-odt.owl')
-    g.parse(o, format="xml")
+    g.parse(filename, format="xml")
+    return g
 
+
+def store_new_graph(graph):
+    # Prepare what we want to insert
+    jld = graph.serialize(format='json-ld')
+    ont = {"ontology": jld}
+
+    # Insert
     with MongoDBConnection() as client:
         db = client.ontodb
-        jld = g.serialize(format='json-ld')
-        ont = {"ontology": jld}
         ont_id = db.ontologies.insert_one(ont).inserted_id
+
+    # Return the ID of our newly created graph
     return str(ont_id)
 
 
