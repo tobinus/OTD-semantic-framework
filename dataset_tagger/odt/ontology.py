@@ -1,5 +1,4 @@
 import json
-from pymongo import MongoClient
 from bson.objectid import ObjectId
 from os import path, environ
 from dataset_tagger.app import app, app_path
@@ -10,7 +9,7 @@ from rdflib.plugins.sparql import prepareQuery
 from dataset_tagger.dcat.dataset import Catalog, Distribution, Dataset, CatalogRecord
 from dotenv import load_dotenv, find_dotenv
 from utils.misc import first, second
-from utils.db import get_uri
+from utils.db import MongoDBConnection
 
 # Allow user to specify database credentials in a file, rather than only through
 # environment variables
@@ -31,20 +30,16 @@ DCT = Namespace('http://purl.org/dc/terms/')
 ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 
-dburi = get_uri()
-
-
 def get_graph(uid):
     """
     Read ontology given by 'uid'
     """
-    client = MongoClient(dburi)
-    db = client.ontodb
-    doc = db.ontologies.find_one({'_id': ObjectId(uid)})
-    d = doc['ontology'].decode("utf-8")    
-    graph = Graph()
-    graph.parse(data=d, format='json-ld')
-    client.close()
+    with MongoDBConnection() as client:
+        db = client.ontodb
+        doc = db.ontologies.find_one({'_id': ObjectId(uid)})
+        d = doc['ontology'].decode("utf-8")
+        graph = Graph()
+        graph.parse(data=d, format='json-ld')
     return graph
 
 
@@ -52,12 +47,11 @@ def store_graph(graph, uid):
     """
     Store graph data in the database
     """
-    client = MongoClient(dburi)
-    db = client.ontodb
-    jld = graph.serialize(format='json-ld')
-    ont = {"ontology": jld}
-    db.ontologies.replace_one({'_id':ObjectId(uid)}, ont, upsert=True)
-    client.close()
+    with MongoDBConnection() as client:
+        db = client.ontodb
+        jld = graph.serialize(format='json-ld')
+        ont = {"ontology": jld}
+        db.ontologies.replace_one({'_id':ObjectId(uid)}, ont, upsert=True)
     return True
 
 
@@ -71,11 +65,10 @@ def get_concepts(uid):
 
 
 def find_all_ids():
-    client = MongoClient(dburi)
-    db = client.ontodb
-    collection = db.ontologies
-    ids = [str(i) for i in collection.distinct('_id')]
-    client.close()
+    with MongoDBConnection() as client:
+        db = client.ontodb
+        collection = db.ontologies
+        ids = [str(i) for i in collection.distinct('_id')]
     return list(ids)
 
 
@@ -91,12 +84,11 @@ def create_new_graph():
     o = path.join(app_path + '/resources', 'skos-odt.owl')
     g.parse(o, format="xml")
 
-    client = MongoClient(dburi)
-    db = client.ontodb
-    jld = g.serialize(format='json-ld')
-    ont = {"ontology": jld}
-    ont_id = db.ontologies.insert_one(ont).inserted_id
-    client.close()
+    with MongoDBConnection() as client:
+        db = client.ontodb
+        jld = g.serialize(format='json-ld')
+        ont = {"ontology": jld}
+        ont_id = db.ontologies.insert_one(ont).inserted_id
     return str(ont_id)
 
 
@@ -116,7 +108,7 @@ def tag_dataset(uid, dataset_uri, tag, score):
         node = concept_dict[tag]
         graph.add((ds, SKOS.relatedMatch, node))
         graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
-        store_graph(graph,uid)
+        store_graph(graph, uid)
         #output = path.join(app_path + '/db', uid+'.rdf')
         #graph.serialize(destination=output, format='xml')
         graph.close()
