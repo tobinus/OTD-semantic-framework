@@ -2,40 +2,18 @@ from flask import Flask
 from config import Config
 from odt.database import load_ontology, load_dataset, load_similarity, load_autotagged
 from odt.opendatasemanticframework import OpenDataSemanticFramework
-from os import path, environ
-from dotenv import load_dotenv, find_dotenv
-
-# Allow user to specify database credentials in a file, rather than only through
-# environment variables
-dotenv_file = find_dotenv()
-if dotenv_file:
-    print(f'Loading environment variables from "{dotenv_file}"')
-    load_dotenv(dotenv_file)
-else:
-    print(
-        'No .env file found in this or any parent directory, relying on '
-        'directly supplied environment variables only'
-    )
-
+from os import path
+from utils.db import get_uri
 
 app = Flask(__name__)
 app.config.from_object(Config)
-app.config['DB_USERNAME'] = environ.get('DB_USERNAME', '')
-app.config['DB_PASSWD'] = environ.get('DB_PASSWD', '')
-app.config['DB_HOST'] = environ.get('DB_HOST', 'localhost')
-app.config['DB_NAME'] = environ.get('DB_NAME', 'ontodb')
 
 app.config['ONTOLOGY_UUID']   = '5b2ab51401d5412566cf4e94'
 app.config['DATASETS_UUID']   = '5b2968c501d5412566cf4e86'
 app.config['SIMILARITY_UUID'] = '5b2ada4d01d5412566cf4ea1'
 app.config['AUTOTAG_UUID']    = '5b2acdfe01d5412566cf4e99'
 
-uri = 'mongodb://{0}:{1}@{2}/{3}'.format(
-    app.config['DB_USERNAME'],
-    app.config['DB_PASSWD'],
-    app.config['DB_HOST'],
-    app.config['DB_NAME']
-)
+uri = get_uri()
 app_path = path.dirname(__file__)
 
 print ("Indexing...")
