@@ -1,13 +1,7 @@
-import json
+import os
 from bson.objectid import ObjectId
-from os import path, environ
-from dataset_tagger.app import app, app_path
-import uuid
 from rdflib import Graph, URIRef, BNode, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
-from rdflib.plugins.sparql import prepareQuery
-from dataset_tagger.dcat.dataset import Catalog, Distribution, Dataset, CatalogRecord
-from dotenv import load_dotenv, find_dotenv
 from utils.misc import first, second
 from utils.db import MongoDBConnection
 
@@ -19,34 +13,62 @@ ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 
 
-def get_graph(uid):
+def get(uid, key='ontology', **kwargs):
     """
     Read ontology given by 'uid'
     """
-    with MongoDBConnection() as client:
-        db = client.ontodb
-        doc = db.ontologies.find_one({'_id': ObjectId(uid)})
-        d = doc['ontology'].decode("utf-8")
-        graph = Graph()
-        graph.parse(data=d, format='json-ld')
+    d = get_raw_json(uid, key, **kwargs)
+    graph = Graph()
+    graph.bind('odt', ODT)
+    graph.bind('dcat', DCAT)
+    graph.bind('dct', DCT)
+    graph.parse(data=d, format='json-ld')
     return graph
 
 
-def store_graph(graph, uid):
+def get_ontology(uid, **kwargs):
+    return get(uid, 'ontology', **kwargs)
+
+
+def get_dataset(uid, **kwargs):
+    return get(uid, 'dataset', **kwargs)
+
+
+def get_similarity(uid, **kwargs):
+    return get(uid, 'similarity', **kwargs)
+
+
+def get_autotag(uid, **kwargs):
+    return get(uid, 'autotag', **kwargs)
+
+
+def get_raw_json(uid, key='ontology', **kwargs):
+    assert is_recognized_key(key)
+
+    with MongoDBConnection(**kwargs) as client:
+        db = client.ontodb
+        doc = getattr(db, key).find_one({'_id': ObjectId(uid)})
+        d = doc['rdf'].decode("utf-8")
+        return d
+
+
+def update(graph, uid, key='ontology'):
     """
     Store graph data in the database
     """
+    assert is_recognized_key(key)
+
     jld = graph.serialize(format='json-ld')
-    ont = {"ontology": jld}
+    ont = {"rdf": jld}
 
     with MongoDBConnection() as client:
         db = client.ontodb
-        db.ontologies.replace_one({'_id':ObjectId(uid)}, ont, upsert=True)
+        getattr(db, key).replace_one({'_id': ObjectId(uid)}, ont, upsert=True)
     return True
 
 
 def get_concepts(uid):
-    g = get_graph(uid)
+    g = get(uid)
     concept_dict = {}
     for concept in g.subjects(RDF.type, SKOS.Concept):
         label = str(second(first(g.preferredLabel(concept, lang='en'))))
@@ -54,27 +76,35 @@ def get_concepts(uid):
     return concept_dict
 
 
-def find_all_ids():
+def find_all_ids(key='ontology'):
+    assert is_recognized_key(key)
+
     with MongoDBConnection() as client:
         db = client.ontodb
-        collection = db.ontologies
+        collection = getattr(db, key)
         ids = [str(i) for i in collection.distinct('_id')]
+
     return list(ids)
 
 
-def create_new_graph(filename=None, uid=None):
+def create_new(filename=None, uid=None, key='ontology'):
     g = create_graph_from_file(filename)
 
     if uid is None:
-        return store_new_graph(g)
+        return store(g, key)
     else:
-        store_graph(g, uid)
+        update(g, uid, key)
         return uid
 
 
 def create_graph_from_file(filename=None):
     if filename is None:
-        filename = path.join(app_path, 'resources', 'skos-odt.owl')
+        filename = os.path.join(
+            os.path.dirname(__file__),
+            '..',
+            'resources',
+            'skos-odt.owl'
+        )
 
     g = Graph()
     g.bind('odt', ODT)
@@ -86,37 +116,33 @@ def create_graph_from_file(filename=None):
     return g
 
 
-def store_new_graph(graph):
+def store(graph, key='ontology'):
+    assert is_recognized_key(key)
     # Prepare what we want to insert
     jld = graph.serialize(format='json-ld')
-    ont = {"ontology": jld}
+    ont = {"rdf": jld}
 
     # Insert
     with MongoDBConnection() as client:
         db = client.ontodb
-        ont_id = db.ontologies.insert_one(ont).inserted_id
+        ont_id = getattr(db, key).insert_one(ont).inserted_id
 
     # Return the ID of our newly created graph
     return str(ont_id)
-
-
-def fetch(uid):
-    g = get_graph(uid)
-    return g.serialize(format='json-ld')
 
 
 def tag_dataset(uid, dataset_uri, tag, score):
     dataset_graph = Graph()
     dataset_graph.parse(dataset_uri, format="xml")
     ds = next(dataset_graph.subjects(RDF.type, DCAT.Dataset))
-    graph = get_graph(uid)
+    graph = get(uid)
     graph.parse(dataset_uri, format="xml")
     concept_dict = get_concepts(uid)
     if tag in get_concepts(uid):
         node = concept_dict[tag]
         graph.add((ds, SKOS.relatedMatch, node))
         graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
-        store_graph(graph, uid)
+        store(graph, uid)
         #output = path.join(app_path + '/db', uid+'.rdf')
         #graph.serialize(destination=output, format='xml')
         graph.close()
@@ -124,9 +150,13 @@ def tag_dataset(uid, dataset_uri, tag, score):
     return False
 
 
-def tagged_datasets(uid):
-    graph = get_graph(uid)
+def get_tagged_datasets(uid):
+    graph = get(uid)
     datasets = []
     for s, p, o in graph.triples( (None, SKOS.relatedMatch, None) ):
-       datasets.append((s, o))
-    return datasets    
+        datasets.append((s, o))
+    return datasets
+
+
+def is_recognized_key(key):
+    return key in ('ontology', 'autotag', 'dataset', 'similarity')
