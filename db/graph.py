@@ -52,7 +52,7 @@ def get_raw_json(uid, key='ontology', **kwargs):
         return d
 
 
-def update(graph, uid, key='ontology'):
+def update(graph, uid, key='ontology', **kwargs):
     """
     Store graph data in the database
     """
@@ -61,14 +61,14 @@ def update(graph, uid, key='ontology'):
     jld = graph.serialize(format='json-ld')
     ont = {"rdf": jld}
 
-    with MongoDBConnection() as client:
+    with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
         getattr(db, key).replace_one({'_id': ObjectId(uid)}, ont, upsert=True)
     return True
 
 
-def get_concepts(uid):
-    g = get(uid)
+def get_concepts(uid, **kwargs):
+    g = get(uid, **kwargs)
     concept_dict = {}
     for concept in g.subjects(RDF.type, SKOS.Concept):
         label = str(second(first(g.preferredLabel(concept, lang='en'))))
@@ -76,10 +76,10 @@ def get_concepts(uid):
     return concept_dict
 
 
-def find_all_ids(key='ontology'):
+def find_all_ids(key='ontology', **kwargs):
     assert is_recognized_key(key)
 
-    with MongoDBConnection() as client:
+    with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
         collection = getattr(db, key)
         ids = [str(i) for i in collection.distinct('_id')]
@@ -87,13 +87,13 @@ def find_all_ids(key='ontology'):
     return list(ids)
 
 
-def create_new(filename=None, uid=None, key='ontology'):
+def create_new(filename=None, uid=None, key='ontology', **kwargs):
     g = create_graph_from_file(filename)
 
     if uid is None:
-        return store(g, key)
+        return store(g, key, **kwargs)
     else:
-        update(g, uid, key)
+        update(g, uid, key, **kwargs)
         return uid
 
 
@@ -116,14 +116,14 @@ def create_graph_from_file(filename=None):
     return g
 
 
-def store(graph, key='ontology'):
+def store(graph, key='ontology', **kwargs):
     assert is_recognized_key(key)
     # Prepare what we want to insert
     jld = graph.serialize(format='json-ld')
     ont = {"rdf": jld}
 
     # Insert
-    with MongoDBConnection() as client:
+    with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
         ont_id = getattr(db, key).insert_one(ont).inserted_id
 
@@ -131,18 +131,18 @@ def store(graph, key='ontology'):
     return str(ont_id)
 
 
-def tag_dataset(uid, dataset_uri, tag, score):
+def tag_dataset(uid, dataset_uri, tag, score, **kwargs):
     dataset_graph = Graph()
     dataset_graph.parse(dataset_uri, format="xml")
     ds = next(dataset_graph.subjects(RDF.type, DCAT.Dataset))
-    graph = get(uid)
+    graph = get(uid, **kwargs)
     graph.parse(dataset_uri, format="xml")
     concept_dict = get_concepts(uid)
     if tag in get_concepts(uid):
         node = concept_dict[tag]
         graph.add((ds, SKOS.relatedMatch, node))
         graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
-        store(graph, uid)
+        store(graph, uid, **kwargs)
         #output = path.join(app_path + '/db', uid+'.rdf')
         #graph.serialize(destination=output, format='xml')
         graph.close()
@@ -150,8 +150,8 @@ def tag_dataset(uid, dataset_uri, tag, score):
     return False
 
 
-def get_tagged_datasets(uid):
-    graph = get(uid)
+def get_tagged_datasets(uid, **kwargs):
+    graph = get(uid, **kwargs)
     datasets = []
     for s, p, o in graph.triples( (None, SKOS.relatedMatch, None) ):
         datasets.append((s, o))

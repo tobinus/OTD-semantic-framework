@@ -5,7 +5,7 @@ from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
 from odt.skosnavigate import SKOSNavigate
 from odt.queryextractor import QueryExtractor
 from odt.semscore import SemScore
-from odt.database import load_dataframe
+import db.dataframe
 from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import cosine_similarity
 from math import isnan
@@ -75,11 +75,11 @@ class OpenDataSemanticFramework:
     def get_ccs(self):
         return self.ccs
     
-    def load_ccs(self, uri, uid):
-        self.ccs = load_dataframe(uri, uid)
+    def load_ccs(self, uid, **kwargs):
+        self.ccs = db.dataframe.get(uid, **kwargs)
 
-    def load_similarity_graph(self, name, uri, uid):
-        self.cds[name] = load_dataframe(uri, uid)
+    def load_similarity_graph(self, name, uid, **kwargs):
+        self.cds[name] = db.dataframe.get(uid, **kwargs)
 
     def compute_cds(self, sgraph):
         cds = pd.DataFrame(None, columns=self.concepts)

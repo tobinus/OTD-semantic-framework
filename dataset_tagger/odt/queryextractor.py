@@ -7,7 +7,7 @@ class QueryExtractor:
         self.graph = graph
 
 
-    def filter_question(question):
+    def filter_question(self, question):
         switcher = {
             "where": "location",
             "when": "event",

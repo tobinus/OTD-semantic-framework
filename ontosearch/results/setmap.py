@@ -1,6 +1,6 @@
 # Automatic search-through
 import numpy as np
-from odt.database import load_ontology, load_dataset, load_similarity, load_autotagged
+from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
 from odt.opendatasemanticframework import OpenDataSemanticFramework
 from rdflib import URIRef
 from rdflib import Namespace
@@ -31,28 +31,18 @@ class SetMap():
         self.config['SIMILARITY_UUID'] = '5b2ada4d01d5412566cf4ea1'
         self.config['AUTOTAG_UUID']    = '5b2acdfe01d5412566cf4e99'
 
-        db_user = environ.get('DB_USERNAME', '')
-        db_passwd = environ.get('DB_PASSWD', '')
-        db_host = environ.get('DB_HOST', 'localhost')
-        db_name = environ.get('DB_NAME', 'ontodb')
-        self.uri = 'mongodb://{0}:{1}@{2}/{3}'.format(
-            db_user,
-            db_passwd,
-            db_host,
-            db_name
-        )
         print ("Indexing...")
-        self.ontology_graph = load_ontology(self.uri, self.config['ONTOLOGY_UUID'])
-        self.datasets_graph = load_dataset(self.uri, self.config['DATASETS_UUID'])
+        self.ontology_graph = get_ontology(self.config['ONTOLOGY_UUID'])
+        self.datasets_graph = get_dataset(self.config['DATASETS_UUID'])
 
         CcsId    = "5b2adb9e01d5414513ea9802"
         AutoID   = "5b2adb9c01d5414513ea9800"
         ManualID = "5b2adb3401d5414513ea97fe"
         
         self.ontology = OpenDataSemanticFramework(self.ontology_graph, self.datasets_graph, compute_ccs=False)
-        self.ontology.load_ccs(self.uri, CcsId)
-        self.ontology.load_similarity_graph("tagged", self.uri, ManualID)
-        self.ontology.load_similarity_graph("auto", self.uri, AutoID)
+        self.ontology.load_ccs(CcsId)
+        self.ontology.load_similarity_graph("tagged", ManualID)
+        self.ontology.load_similarity_graph("auto", AutoID)
         self.set_map = {}
         self.all_datasets = set()
         print ("Ready")

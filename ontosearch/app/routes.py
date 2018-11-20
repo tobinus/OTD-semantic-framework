@@ -2,8 +2,7 @@ from flask import render_template, redirect, url_for
 from flask import request, flash, abort, json
 from flask import Response
 from flask.json import jsonify
-from odt.database import save_log
-from app import app, uri
+from app import app
 from app import ontology
 from app import ontology_graph
 from app.forms import SearchForm
@@ -11,6 +10,7 @@ from time import time
 from rdflib import Namespace
 from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS, OWL
 from datetime import datetime
+import db.log
 
 ODT = Namespace('http://www.quaat.com/ontologies#')
 DCT = Namespace('http://purl.org/dc/terms/')
@@ -34,7 +34,7 @@ def index():
         xs, sv = ontology.search_query(form.query.data, cds_name=form.simtype.data)
         timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
         log = {'ip':request.remote_addr, 'time':timestamp, 'query':form.query.data, 'type':form.simtype.data, 'res':[x[1][2] for x in xs]}
-        save_log(uri, log)
+        db.log.store(log)
     return render_template("search.html", form=form, results=xs, scorevec=sv)
 
 @app.route('/dataset/register', methods=['POST'])

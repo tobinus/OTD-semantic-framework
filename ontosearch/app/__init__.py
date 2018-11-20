@@ -1,6 +1,6 @@
 from flask import Flask
 from config import Config
-from odt.database import load_ontology, load_dataset, load_similarity, load_autotagged
+from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
 from odt.opendatasemanticframework import OpenDataSemanticFramework
 from os import path
 from utils.db import get_uri
@@ -13,23 +13,22 @@ app.config['DATASETS_UUID']   = '5b2968c501d5412566cf4e86'
 app.config['SIMILARITY_UUID'] = '5b2ada4d01d5412566cf4ea1'
 app.config['AUTOTAG_UUID']    = '5b2acdfe01d5412566cf4e99'
 
-uri = get_uri()
 app_path = path.dirname(__file__)
 
 print ("Indexing...")
-ontology_graph = load_ontology(uri, app.config['ONTOLOGY_UUID'])
-datasets_graph = load_dataset(uri, app.config['DATASETS_UUID'])
-similarity_graph = load_similarity(uri, app.config['SIMILARITY_UUID'])
-autotag_graph = load_autotagged(uri, app.config['AUTOTAG_UUID'])
+ontology_graph = get_ontology(app.config['ONTOLOGY_UUID'])
+datasets_graph = get_dataset(app.config['DATASETS_UUID'])
+similarity_graph = get_similarity(app.config['SIMILARITY_UUID'])
+autotag_graph = get_autotag(app.config['AUTOTAG_UUID'])
 
 CcsId    = "5b2adb9e01d5414513ea9802"
 AutoID   = "5b2adb9c01d5414513ea9800"
 ManualID = "5b2adb3401d5414513ea97fe"
 
 ontology = OpenDataSemanticFramework(ontology_graph, datasets_graph, compute_ccs=False)
-ontology.load_ccs(uri, CcsId)
-ontology.load_similarity_graph("tagged", uri, ManualID)
-ontology.load_similarity_graph("auto", uri, AutoID)
+ontology.load_ccs(CcsId)
+ontology.load_similarity_graph("tagged", ManualID)
+ontology.load_similarity_graph("auto", AutoID)
 
 print ("ready")
 

@@ -5,15 +5,15 @@ import pandas as pd
 from utils.db import MongoDBConnection
 
 
-def store(uri, df):
-    with MongoDBConnection(uri) as client:
+def store(df, **kwargs):
+    with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
         j = df.to_json(orient='split')
         return db.dataframe.insert_one({'df': j}).inserted_id
 
 
-def get(uri, uid):
-    with MongoDBConnection(uri) as client:
+def get(uid, **kwargs):
+    with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
         doc = db.dataframe.find_one({'_id': ObjectId(uid)})
         js = json.loads(doc['df'])
