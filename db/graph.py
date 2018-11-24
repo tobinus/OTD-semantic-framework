@@ -34,7 +34,7 @@ def get(uid, key='ontology', **kwargs):
     return graph
 
 
-def _get_for_collection(key, uid=None, **kwargs):
+def _get_for_collection(key, uid=None, raise_on_no_uid=True, **kwargs):
     func_name = 'get_{}'.format(key)
     envvar = '{}_UUID'.format(key.upper())
 
@@ -44,11 +44,14 @@ def _get_for_collection(key, uid=None, **kwargs):
         uid = os.environ.get(envvar)
 
         if uid is None:
-            # No UUID given by environment variables
-            raise ValueError(
-                'No UUID specified as argument to {} or in environment '
-                'variable {}'.format(func_name, envvar)
-            )
+            if raise_on_no_uid:
+                # No UUID given by environment variables
+                raise ValueError(
+                    'No UUID specified as argument to {} or in environment '
+                    'variable {}'.format(func_name, envvar)
+                )
+            else:
+                uid = DEFAULT_UID
 
     return get(uid, key, **kwargs)
 
@@ -60,6 +63,10 @@ def get_ontology(*args, **kwargs):
     Args:
         uid: The UUID of the document to fetch. If not given, the
             environment variable ONTOLOGY_UUID will be used.
+        raise_on_no_uid: By default, an exception is raised when None is given
+            as uid, and no environment variable value is found. However, by
+            setting this to False, you can instead simply let MongoDB decide
+            what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
             constructor.
 
@@ -80,6 +87,10 @@ def get_dataset(*args, **kwargs):
     Args:
         uid: The UUID of the document to fetch. If not given, the
             environment variable DATASET_UUID will be used.
+        raise_on_no_uid: By default, an exception is raised when None is given
+            as uid, and no environment variable value is found. However, by
+            setting this to False, you can instead simply let MongoDB decide
+            what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
             constructor.
 
@@ -100,6 +111,10 @@ def get_similarity(*args, **kwargs):
     Args:
         uid: The UUID of the document to fetch. If not given, the
             environment variable SIMILARITY_UUID will be used.
+        raise_on_no_uid: By default, an exception is raised when None is given
+            as uid, and no environment variable value is found. However, by
+            setting this to False, you can instead simply let MongoDB decide
+            what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
             constructor.
 
@@ -120,6 +135,10 @@ def get_autotag(*args, **kwargs):
     Args:
         uid: The UUID of the document to fetch. If not given, the
             environment variable AUTOTAG_UUID will be used.
+        raise_on_no_uid: By default, an exception is raised when None is given
+            as uid, and no environment variable value is found. However, by
+            setting this to False, you can instead simply let MongoDB decide
+            what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
             constructor.
 
