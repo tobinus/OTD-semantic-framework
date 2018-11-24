@@ -10,7 +10,7 @@ def about():
 
 @app.route('/viz', methods=['GET'])
 def viz():
-    uid = request.args.get('uid', default=None, type=None)
+    uuid = request.args.get('uuid', default=None, type=None)
 
 
 @app.route('/')
@@ -18,8 +18,8 @@ def viz():
 def index():
     form=TagForm()
     foo = ''
-    uid = request.args.get('uid', default=None, type=None)
-    if not uid:
+    uuid = request.args.get('uuid', default=None, type=None)
+    if not uuid:
         return redirect(url_for('about'))        
     
     if request.method == 'POST':
@@ -27,14 +27,13 @@ def index():
             dataset = request.form.get('dcatDataset')
             tag = request.form.get('tag')
             score = 1.0
-            foo = str(db.graph.tag_dataset(uid, dataset, tag, score))
+            foo = str(db.graph.tag_dataset(uuid, dataset, tag, score))
             
         except Exception as e:
             foo = str(e)
             pass
 
-    
-    g = db.graph.get(uid)
+    g = db.graph.get(uuid)
     edges = []
     nodes = []
     for s, _, o in g.triples( (None, None, None)):
@@ -58,33 +57,33 @@ def index():
     es = ",".join(["{"+ "from:'{}',to:'{}'".format(a,b) +"}" for (a,b) in edges])
     
         
-    leketag = db.graph.get_tagged_datasets(uid)
+    leketag = db.graph.get_tagged_datasets(uuid)
     return render_template(
         'index.html',
         form=form,
-        concepts=db.graph.get_concepts(uid),
+        concepts=db.graph.get_concepts(uuid),
         tagged=leketag,
-        uid=uid,
+        uuid=uuid,
         foo=foo,
         edges=es,
         nodes=",".join(ns)
     )
    
 
-@app.route('/ontology/fetch/<string:uid>')
-def ontology_fetch(uid):
-    return db.graph.get_raw_json(uid)
+@app.route('/ontology/fetch/<string:uuid>')
+def ontology_fetch(uuid):
+    return db.graph.get_raw_json(uuid)
 
 
-@app.route('/ontology/delete/<string:uid>', methods=['GET'])
-def ontology_delete(uid):
+@app.route('/ontology/delete/<string:uuid>', methods=['GET'])
+def ontology_delete(uuid):
     pass
 
 
 @app.route('/ontology/create', methods=['GET'])
 def ontology_create():
-    uid = db.graph.create_new()
-    return str({'uid': uid})
+    uuid = db.graph.create_new()
+    return str({'uuid': uuid})
 
 
 

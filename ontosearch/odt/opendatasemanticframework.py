@@ -75,11 +75,11 @@ class OpenDataSemanticFramework:
     def get_ccs(self):
         return self.ccs
     
-    def load_ccs(self, uid, **kwargs):
-        self.ccs = db.dataframe.get(uid, **kwargs)
+    def load_ccs(self, uuid, **kwargs):
+        self.ccs = db.dataframe.get(uuid, **kwargs)
 
-    def load_similarity_graph(self, name, uid, **kwargs):
-        self.cds[name] = db.dataframe.get(uid, **kwargs)
+    def load_similarity_graph(self, name, uuid, **kwargs):
+        self.cds[name] = db.dataframe.get(uuid, **kwargs)
 
     def compute_cds(self, sgraph):
         cds = pd.DataFrame(None, columns=self.concepts)

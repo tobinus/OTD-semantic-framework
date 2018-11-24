@@ -12,10 +12,10 @@ def store(df, **kwargs):
         return db.dataframe.insert_one({'df': j}).inserted_id
 
 
-def get(uid, **kwargs):
+def get(uuid, **kwargs):
     with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
-        doc = db.dataframe.find_one({'_id': ObjectId(uid)})
+        doc = db.dataframe.find_one({'_id': ObjectId(uuid)})
         js = json.loads(doc['df'])
     js['columns'] = list(map(lambda x: URIRef(x), js['columns']))
     js['index'] = list(map(lambda x: URIRef(x), js['index']))

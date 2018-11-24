@@ -13,7 +13,7 @@ DCT = Namespace('http://purl.org/dc/terms/')
 ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 
-DEFAULT_UID = 'default'
+DEFAULT_UUID = 'default'
 """
 Special value which can be given as the UUID to any get function, in order to
 not search using UUID but rather accept the first document retrieved by MongoDB
@@ -21,11 +21,11 @@ by default.
 """
 
 
-def get(uid, key='ontology', **kwargs):
+def get(uuid, key='ontology', **kwargs):
     """
-    Read ontology given by 'uid'
+    Read ontology given by 'uuid'
     """
-    d = get_raw_json(uid, key, **kwargs)
+    d = get_raw_json(uuid, key, **kwargs)
     graph = Graph()
     graph.bind('odt', ODT)
     graph.bind('dcat', DCAT)
@@ -34,26 +34,51 @@ def get(uid, key='ontology', **kwargs):
     return graph
 
 
-def _get_for_collection(key, uid=None, raise_on_no_uid=True, **kwargs):
+def _get_for_collection(key, uuid=None, raise_on_no_uuid=True, **kwargs):
+    """
+    Fetch one graph from the named collection, matching the given UUID.
+
+    This differs from the simple get() because it handles the case where a
+    UUID is not given, by looking at environment variables.
+
+    Args:
+        key: Name of the collection to fetch a graph from.
+        uuid: The UUID of the document to fetch. If not given, the
+            environment variable <KEY>_UUID will be used, where <KEY> is the
+            key argument put into uppercase.
+        raise_on_no_uuid: By default, an exception is raised when None is given
+            as uuid, and no environment variable value is found. However, by
+            setting this to False, you can instead simply let MongoDB decide
+            what to fetch in cases where no UUID is specified.
+        **kwargs: Extra arguments to be given to MongoDBConnection
+            constructor.
+
+    Returns:
+        The parsed graph from the named collection with the given UUID.
+
+    Raises:
+        ValueError: If UUID was neither given as an argument nor as the
+            environment variable.
+    """
     func_name = 'get_{}'.format(key)
     envvar = '{}_UUID'.format(key.upper())
 
-    # No uid given? Were we given one by environment variables?
-    if uid is None:
+    # No uuid given? Were we given one by environment variables?
+    if uuid is None:
         ensure_loaded_dotenv()
-        uid = os.environ.get(envvar)
+        uuid = os.environ.get(envvar)
 
-        if uid is None:
-            if raise_on_no_uid:
+        if uuid is None:
+            if raise_on_no_uuid:
                 # No UUID given by environment variables
                 raise ValueError(
                     'No UUID specified as argument to {} or in environment '
                     'variable {}'.format(func_name, envvar)
                 )
             else:
-                uid = DEFAULT_UID
+                uuid = DEFAULT_UUID
 
-    return get(uid, key, **kwargs)
+    return get(uuid, key, **kwargs)
 
 
 def get_ontology(*args, **kwargs):
@@ -61,10 +86,10 @@ def get_ontology(*args, **kwargs):
     Fetch one graph from the ontology collection, matching the given UUID.
 
     Args:
-        uid: The UUID of the document to fetch. If not given, the
+        uuid: The UUID of the document to fetch. If not given, the
             environment variable ONTOLOGY_UUID will be used.
-        raise_on_no_uid: By default, an exception is raised when None is given
-            as uid, and no environment variable value is found. However, by
+        raise_on_no_uuid: By default, an exception is raised when None is given
+            as uuid, and no environment variable value is found. However, by
             setting this to False, you can instead simply let MongoDB decide
             what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
@@ -85,10 +110,10 @@ def get_dataset(*args, **kwargs):
     Fetch one graph from the dataset collection, matching the given UUID.
 
     Args:
-        uid: The UUID of the document to fetch. If not given, the
+        uuid: The UUID of the document to fetch. If not given, the
             environment variable DATASET_UUID will be used.
-        raise_on_no_uid: By default, an exception is raised when None is given
-            as uid, and no environment variable value is found. However, by
+        raise_on_no_uuid: By default, an exception is raised when None is given
+            as uuid, and no environment variable value is found. However, by
             setting this to False, you can instead simply let MongoDB decide
             what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
@@ -109,10 +134,10 @@ def get_similarity(*args, **kwargs):
     Fetch one graph from the similarity collection, matching the given UUID.
 
     Args:
-        uid: The UUID of the document to fetch. If not given, the
+        uuid: The UUID of the document to fetch. If not given, the
             environment variable SIMILARITY_UUID will be used.
-        raise_on_no_uid: By default, an exception is raised when None is given
-            as uid, and no environment variable value is found. However, by
+        raise_on_no_uuid: By default, an exception is raised when None is given
+            as uuid, and no environment variable value is found. However, by
             setting this to False, you can instead simply let MongoDB decide
             what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
@@ -133,10 +158,10 @@ def get_autotag(*args, **kwargs):
     Fetch one graph from the autotag collection, matching the given UUID.
 
     Args:
-        uid: The UUID of the document to fetch. If not given, the
+        uuid: The UUID of the document to fetch. If not given, the
             environment variable AUTOTAG_UUID will be used.
-        raise_on_no_uid: By default, an exception is raised when None is given
-            as uid, and no environment variable value is found. However, by
+        raise_on_no_uuid: By default, an exception is raised when None is given
+            as uuid, and no environment variable value is found. However, by
             setting this to False, you can instead simply let MongoDB decide
             what to fetch in cases where no UUID is specified.
         **kwargs: Extra arguments to be given to MongoDBConnection
@@ -152,24 +177,24 @@ def get_autotag(*args, **kwargs):
     return _get_for_collection('autotag', *args, **kwargs)
 
 
-def get_raw_json(uid, key='ontology', **kwargs):
+def get_raw_json(uuid, key='ontology', **kwargs):
     assert is_recognized_key(key)
 
     with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
         collection = getattr(db, key)
 
-        if uid == DEFAULT_UID:
+        if uuid == DEFAULT_UUID:
             criteria = None
         else:
-            criteria = {'_id': ObjectId(uid)}
+            criteria = {'_id': ObjectId(uuid)}
 
         doc = collection.find_one(criteria)
         d = doc['rdf'].decode("utf-8")
         return d
 
 
-def update(graph, uid, key='ontology', **kwargs):
+def update(graph, uuid, key='ontology', **kwargs):
     """
     Store graph data in the database
     """
@@ -180,12 +205,12 @@ def update(graph, uid, key='ontology', **kwargs):
 
     with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
-        getattr(db, key).replace_one({'_id': ObjectId(uid)}, ont, upsert=True)
+        getattr(db, key).replace_one({'_id': ObjectId(uuid)}, ont, upsert=True)
     return True
 
 
-def get_concepts(uid, **kwargs):
-    g = get(uid, **kwargs)
+def get_concepts(uuid, **kwargs):
+    g = get(uuid, **kwargs)
     concept_dict = {}
     for concept in g.subjects(RDF.type, SKOS.Concept):
         label = str(second(first(g.preferredLabel(concept, lang='en'))))
@@ -204,14 +229,14 @@ def find_all_ids(key='ontology', **kwargs):
     return list(ids)
 
 
-def create_new(filename=None, uid=None, key='ontology', **kwargs):
+def create_new(filename=None, uuid=None, key='ontology', **kwargs):
     g = create_graph_from_file(filename)
 
-    if uid is None:
+    if uuid is None:
         return store(g, key, **kwargs)
     else:
-        update(g, uid, key, **kwargs)
-        return uid
+        update(g, uuid, key, **kwargs)
+        return uuid
 
 
 def create_graph_from_file(filename=None):
@@ -248,27 +273,27 @@ def store(graph, key='ontology', **kwargs):
     return str(ont_id)
 
 
-def tag_dataset(uid, dataset_uri, tag, score, **kwargs):
+def tag_dataset(uuid, dataset_uri, tag, score, **kwargs):
     dataset_graph = Graph()
     dataset_graph.parse(dataset_uri, format="xml")
     ds = next(dataset_graph.subjects(RDF.type, DCAT.Dataset))
-    graph = get(uid, **kwargs)
+    graph = get(uuid, **kwargs)
     graph.parse(dataset_uri, format="xml")
-    concept_dict = get_concepts(uid)
-    if tag in get_concepts(uid):
+    concept_dict = get_concepts(uuid)
+    if tag in get_concepts(uuid):
         node = concept_dict[tag]
         graph.add((ds, SKOS.relatedMatch, node))
         graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
-        store(graph, uid, **kwargs)
-        #output = path.join(app_path + '/db', uid+'.rdf')
+        store(graph, uuid, **kwargs)
+        #output = path.join(app_path + '/db', uuid+'.rdf')
         #graph.serialize(destination=output, format='xml')
         graph.close()
         return True
     return False
 
 
-def get_tagged_datasets(uid, **kwargs):
-    graph = get(uid, **kwargs)
+def get_tagged_datasets(uuid, **kwargs):
+    graph = get(uuid, **kwargs)
     datasets = []
     for s, p, o in graph.triples( (None, SKOS.relatedMatch, None) ):
         datasets.append((s, o))
