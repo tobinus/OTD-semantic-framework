@@ -1,7 +1,9 @@
-from flask import render_template, request, redirect, url_for
+from bson.errors import InvalidId
+from flask import render_template, request, redirect, url_for, abort
 from dataset_tagger.app import app, app_path
 from dataset_tagger.app.forms import TagForm
 import db.graph
+from db.graph import NoSuchGraph
 
 
 @app.route('/about')
@@ -33,7 +35,11 @@ def index():
             foo = str(e)
             pass
 
-    g = db.graph.get(uuid)
+    try:
+        g = db.graph.get(uuid)
+    except (NoSuchGraph, InvalidId):
+        abort(404)
+
     edges = []
     nodes = []
     for s, _, o in g.triples( (None, None, None)):
@@ -72,7 +78,10 @@ def index():
 
 @app.route('/ontology/fetch/<string:uuid>')
 def ontology_fetch(uuid):
-    return db.graph.get_raw_json(uuid)
+    try:
+        return db.graph.get_raw_json(uuid)
+    except (NoSuchGraph, InvalidId):
+        abort(404)
 
 
 @app.route('/ontology/delete/<string:uuid>', methods=['GET'])
@@ -84,7 +93,6 @@ def ontology_delete(uuid):
 def ontology_create():
     uuid = db.graph.create_new()
     return str({'uuid': uuid})
-
 
 
 @app.route('/ontology/list', methods=['GET'])
