@@ -4,6 +4,7 @@ from rdflib import Graph, URIRef, BNode, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
 from utils.misc import first, second
 from utils.db import MongoDBConnection
+from utils.dotenv import ensure_loaded_dotenv
 
 
 ODT = Namespace('http://www.quaat.com/ontologies#')
@@ -26,20 +27,103 @@ def get(uid, key='ontology', **kwargs):
     return graph
 
 
-def get_ontology(uid, **kwargs):
-    return get(uid, 'ontology', **kwargs)
+def _get_for_collection(key, uid=None, **kwargs):
+    func_name = 'get_{}'.format(key)
+    envvar = '{}_UUID'.format(key.upper())
+
+    # No uid given? Were we given one by environment variables?
+    if uid is None:
+        ensure_loaded_dotenv()
+        uid = os.environ.get(envvar)
+
+        if uid is None:
+            # No UUID given by environment variables
+            raise ValueError(
+                'No UUID specified as argument to {} or in environment '
+                'variable {}'.format(func_name, envvar)
+            )
+
+    return get(uid, key, **kwargs)
 
 
-def get_dataset(uid, **kwargs):
-    return get(uid, 'dataset', **kwargs)
+def get_ontology(*args, **kwargs):
+    """
+    Fetch one graph from the ontology collection, matching the given UUID.
+
+    Args:
+        uid: The UUID of the document to fetch. If not given, the
+            environment variable ONTOLOGY_UUID will be used.
+        **kwargs: Extra arguments to be given to MongoDBConnection
+            constructor.
+
+    Returns:
+        The parsed graph from the ontology collection with the given UUID.
+
+    Raises:
+        ValueError: If UUID was neither given as an argument nor as the
+            environment variable ONTOLOGY_UUID.
+    """
+    return _get_for_collection('ontology', *args, **kwargs)
 
 
-def get_similarity(uid, **kwargs):
-    return get(uid, 'similarity', **kwargs)
+def get_dataset(*args, **kwargs):
+    """
+    Fetch one graph from the dataset collection, matching the given UUID.
+
+    Args:
+        uid: The UUID of the document to fetch. If not given, the
+            environment variable DATASET_UUID will be used.
+        **kwargs: Extra arguments to be given to MongoDBConnection
+            constructor.
+
+    Returns:
+        The parsed graph from the dataset collection with the given UUID.
+
+    Raises:
+        ValueError: If UUID was neither given as an argument nor as the
+            environment variable DATASET_UUID.
+    """
+    return _get_for_collection('dataset', *args, **kwargs)
 
 
-def get_autotag(uid, **kwargs):
-    return get(uid, 'autotag', **kwargs)
+def get_similarity(*args, **kwargs):
+    """
+    Fetch one graph from the similarity collection, matching the given UUID.
+
+    Args:
+        uid: The UUID of the document to fetch. If not given, the
+            environment variable SIMILARITY_UUID will be used.
+        **kwargs: Extra arguments to be given to MongoDBConnection
+            constructor.
+
+    Returns:
+        The parsed graph from the similarity collection with the given UUID.
+
+    Raises:
+        ValueError: If UUID was neither given as an argument nor as the
+            environment variable SIMILARITY_UUID.
+    """
+    return _get_for_collection('similarity', *args, **kwargs)
+
+
+def get_autotag(*args, **kwargs):
+    """
+    Fetch one graph from the autotag collection, matching the given UUID.
+
+    Args:
+        uid: The UUID of the document to fetch. If not given, the
+            environment variable AUTOTAG_UUID will be used.
+        **kwargs: Extra arguments to be given to MongoDBConnection
+            constructor.
+
+    Returns:
+        The parsed graph from the autotag collection with the given UUID.
+
+    Raises:
+        ValueError: If UUID was neither given as an argument nor as the
+            environment variable AUTOTAG_UUID.
+    """
+    return _get_for_collection('autotag', *args, **kwargs)
 
 
 def get_raw_json(uid, key='ontology', **kwargs):
