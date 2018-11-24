@@ -1,7 +1,6 @@
 import urllib.parse
 import os
-import sys
-from dotenv import load_dotenv, find_dotenv
+from utils.dotenv import ensure_loaded_dotenv
 from pymongo import MongoClient
 
 
@@ -46,7 +45,6 @@ class MongoDBConnection:
 
 
 _cached_uri = None
-_has_loaded_dotenv = False
 
 
 def get_uri():
@@ -84,7 +82,7 @@ def _create_uri_from_env():
         URI to be used with MongoClient's constructor, to connect to the
         database configured by the user.
     """
-    _ensure_loaded_dotenv()
+    ensure_loaded_dotenv()
 
     username = os.environ.get('DB_USERNAME', '')
     passwd = os.environ.get('DB_PASSWD', '')
@@ -92,32 +90,6 @@ def _create_uri_from_env():
     name = os.environ.get('DB_NAME', 'ontodb')
 
     return create_uri(username, passwd, host, name)
-
-
-def _ensure_loaded_dotenv():
-    """
-    Ensure that any .env files have been loaded.
-    """
-    global _has_loaded_dotenv
-
-    if _has_loaded_dotenv:
-        return
-
-    dotenv_file = find_dotenv()
-    if dotenv_file:
-        print(
-            f'Loading environment variables from "{dotenv_file}"',
-            file=sys.stderr
-        )
-        load_dotenv(dotenv_file)
-    else:
-        print(
-            'No .env file found in this or any parent directory, relying on '
-            'directly supplied environment variables only',
-            file=sys.stderr
-        )
-
-    _has_loaded_dotenv = True
 
 
 def create_uri(username, passwd, host, name):
