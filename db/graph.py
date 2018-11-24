@@ -13,6 +13,13 @@ DCT = Namespace('http://purl.org/dc/terms/')
 ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 
+DEFAULT_UID = 'default'
+"""
+Special value which can be given as the UUID to any get function, in order to
+not search using UUID but rather accept the first document retrieved by MongoDB
+by default.
+"""
+
 
 def get(uid, key='ontology', **kwargs):
     """
@@ -131,7 +138,14 @@ def get_raw_json(uid, key='ontology', **kwargs):
 
     with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
-        doc = getattr(db, key).find_one({'_id': ObjectId(uid)})
+        collection = getattr(db, key)
+
+        if uid == DEFAULT_UID:
+            criteria = None
+        else:
+            criteria = {'_id': ObjectId(uid)}
+
+        doc = collection.find_one(criteria)
         d = doc['rdf'].decode("utf-8")
         return d
 
