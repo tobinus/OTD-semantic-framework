@@ -190,6 +190,13 @@ def get_raw_json(uuid, key='ontology', **kwargs):
             criteria = {'_id': ObjectId(uuid)}
 
         doc = collection.find_one(criteria)
+
+        if doc is None:
+            raise NoSuchGraph(
+                'No graph found in collection "{}" with UUID "{}"'
+                .format(key, uuid)
+            )
+
         d = doc['rdf'].decode("utf-8")
         return d
 
@@ -302,3 +309,7 @@ def get_tagged_datasets(uuid, **kwargs):
 
 def is_recognized_key(key):
     return key in ('ontology', 'autotag', 'dataset', 'similarity')
+
+
+class NoSuchGraph(Exception):
+    pass
