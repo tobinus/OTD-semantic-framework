@@ -53,7 +53,13 @@ def main():
     else:
         # Yes, run the function associated with this command, and give it the
         # parsed arguments
-        args.func(args)
+        result = args.func(args)
+
+        try:
+            exit_code = int(result)
+            parser.exit(exit_code)
+        except ValueError:
+            pass  # Normal shutdown
 
 
 def create_parser():

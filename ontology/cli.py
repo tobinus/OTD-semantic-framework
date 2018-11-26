@@ -1,4 +1,7 @@
 import argparse
+
+from bson.errors import InvalidId
+
 from ontology import SKOS_RDF_LOCATION
 
 
@@ -14,6 +17,7 @@ def register_subcommand(add_parser):
     )
     register_generate(subcommands.add_parser)
     register_create(subcommands.add_parser)
+    register_remove(subcommands.add_parser)
 
 
 def register_generate(add_parser):
@@ -123,3 +127,38 @@ def do_create(args):
     )
     print(uuid)
 
+
+def register_remove(add_parser):
+    help_text = (
+        "Remove the ontology with the specified UUID(s), no questions asked."
+    )
+    parser = add_parser(
+        'remove',
+        help=help_text,
+        description=help_text,
+    )
+    parser.add_argument(
+        'uuid',
+        help="UUID of ontology document(s) to remove",
+        nargs="+"
+    )
+    parser.set_defaults(
+        func=do_remove
+    )
+
+
+def do_remove(args):
+    from db import graph
+
+    success = True
+    for uuid in args.uuid:
+        try:
+            result = graph.remove(uuid, 'ontology')
+            if not result:
+                success = False
+                print('No document with UUID', uuid, 'found')
+        except InvalidId:
+            success = False
+            print('The UUID', uuid, 'is invalid')
+
+    return 0 if success else 1

@@ -245,6 +245,17 @@ def store(graph, key='ontology', **kwargs):
     return str(ont_id)
 
 
+def remove(uuid, key='ontology', **kwargs):
+    assert is_recognized_key(key)
+
+    with MongoDBConnection(**kwargs) as client:
+        db = client.ontodb
+        collection = getattr(db, key)
+        r = collection.delete_one({'_id': ObjectId(uuid)})
+        num_deleted = r.deleted_count
+    return num_deleted > 0
+
+
 def tag_dataset(uuid, dataset_uri, tag, score, **kwargs):
     dataset_graph = create_bound_graph()
     dataset_graph.parse(dataset_uri, format="xml")
