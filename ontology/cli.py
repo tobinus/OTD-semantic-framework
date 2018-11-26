@@ -5,6 +5,18 @@ from bson.errors import InvalidId
 from ontology import SKOS_RDF_LOCATION
 
 
+available_rdflib_formats = (
+    'n3',
+    'nquads',
+    'nt',
+    'pretty-xml',
+    'trig',
+    'trix',
+    'turtle',
+    'xml',
+    'json-ld',
+)
+
 def register_subcommand(add_parser):
     parser = add_parser(
         'ontology',
@@ -19,6 +31,7 @@ def register_subcommand(add_parser):
     register_create(subcommands.add_parser)
     register_remove(subcommands.add_parser)
     register_list(subcommands.add_parser)
+    register_show(subcommands.add_parser)
 
 
 def register_generate(add_parser):
@@ -38,17 +51,7 @@ def register_generate(add_parser):
         help="Format to use when serializing the graph. See "
              "https://rdflib.readthedocs.io/en/stable/plugin_serializers.html "
              "for available options, plus json-ld. (Default: %(default)s)",
-        choices=(
-            'n3',
-            'nquads',
-            'nt',
-            'pretty-xml',
-            'trig',
-            'trix',
-            'turtle',
-            'xml',
-            'json-ld',
-        ),
+        choices=available_rdflib_formats,
         default='xml'
     )
     parser.add_argument(
@@ -184,3 +187,40 @@ def do_list(args):
     ontologies = graph.find_all_ids('ontology')
     for ontology in ontologies:
         print(ontology)
+
+
+def register_show(add_parser):
+    help_text = (
+        "Display the contents of an ontology in the database."
+    )
+    parser = add_parser(
+        'show',
+        help=help_text,
+        description=help_text,
+    )
+    parser.add_argument(
+        'uuid',
+        help='The UUID of the ontology to show. If not given, then the UUID '
+             'named in the ONTOLOGY_UUID environment variable is used. If no '
+             'such variable is found, whatever MongoDB returns first is shown.',
+        nargs='?',
+        default=None
+    )
+    parser.add_argument(
+        '--format',
+        '-f',
+        help='Format to use for rendering the RDF graph. (Default: '
+             '%(default)s)',
+        choices=available_rdflib_formats,
+        default='xml',
+    )
+    parser.set_defaults(
+        func=do_show
+    )
+
+
+def do_show(args):
+    from db import graph
+    g = graph.get_ontology(args.uuid, False)
+    result = g.serialize(format=args.format)
+    print(result.decode('utf8'), end='')
