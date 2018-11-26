@@ -58,7 +58,7 @@ def main():
         try:
             exit_code = int(result)
             parser.exit(exit_code)
-        except ValueError:
+        except (ValueError, TypeError):
             pass  # Normal shutdown
 
 

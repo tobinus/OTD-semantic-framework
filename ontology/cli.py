@@ -18,6 +18,7 @@ def register_subcommand(add_parser):
     register_generate(subcommands.add_parser)
     register_create(subcommands.add_parser)
     register_remove(subcommands.add_parser)
+    register_list(subcommands.add_parser)
 
 
 def register_generate(add_parser):
@@ -162,3 +163,24 @@ def do_remove(args):
             print('The UUID', uuid, 'is invalid')
 
     return 0 if success else 1
+
+
+def register_list(add_parser):
+    help_text = (
+        "List all ontologies in the database."
+    )
+    parser = add_parser(
+        'list',
+        help=help_text,
+        description=help_text,
+    )
+    parser.set_defaults(
+        func=do_list
+    )
+
+
+def do_list(args):
+    from db import graph
+    ontologies = graph.find_all_ids('ontology')
+    for ontology in ontologies:
+        print(ontology)
