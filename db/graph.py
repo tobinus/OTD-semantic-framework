@@ -1,17 +1,10 @@
 import os
 from bson.objectid import ObjectId
-from rdflib import Graph, URIRef, BNode, Literal, Namespace
-from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
+from rdflib import URIRef, BNode, Literal, Namespace
 from utils.misc import first, second
 from utils.db import MongoDBConnection
 from utils.dotenv import ensure_loaded_dotenv
-
-
-ODT = Namespace('http://www.quaat.com/ontologies#')
-DCAT = Namespace('http://www.w3.org/ns/dcat#')
-DCT = Namespace('http://purl.org/dc/terms/')
-ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
-QEX = Namespace('http://www.quaat.com/extended_skos#')
+from utils.graph import create_bound_graph, RDF, XSD, SKOS, DCAT, QEX
 
 DEFAULT_UUID = 'default'
 """
@@ -26,10 +19,7 @@ def get(uuid, key='ontology', **kwargs):
     Read ontology given by 'uuid'
     """
     d = get_raw_json(uuid, key, **kwargs)
-    graph = Graph()
-    graph.bind('odt', ODT)
-    graph.bind('dcat', DCAT)
-    graph.bind('dct', DCT)
+    graph = create_bound_graph()
     graph.parse(data=d, format='json-ld')
     return graph
 
@@ -255,12 +245,7 @@ def create_graph_from_file(filename=None):
             'skos-odt.owl'
         )
 
-    g = Graph()
-    g.bind('odt', ODT)
-    g.bind('odtx', ODTX)
-    g.bind('dcat', DCAT)
-    g.bind('dct', DCT)
-    g.bind('qex', QEX)
+    g = create_bound_graph()
     g.parse(filename, format="xml")
     return g
 
@@ -281,7 +266,7 @@ def store(graph, key='ontology', **kwargs):
 
 
 def tag_dataset(uuid, dataset_uri, tag, score, **kwargs):
-    dataset_graph = Graph()
+    dataset_graph = create_bound_graph()
     dataset_graph.parse(dataset_uri, format="xml")
     ds = next(dataset_graph.subjects(RDF.type, DCAT.Dataset))
     graph = get(uuid, **kwargs)

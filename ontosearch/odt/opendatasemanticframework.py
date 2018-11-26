@@ -1,7 +1,4 @@
-from rdflib import Graph
-from rdflib import URIRef, Graph, BNode, Literal
-from rdflib import Namespace
-from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
+from utils.graph import RDF, ODT, DCAT, DCT
 from odt.skosnavigate import SKOSNavigate
 from odt.queryextractor import QueryExtractor
 from odt.semscore import SemScore
@@ -14,22 +11,8 @@ import pandas as pd
 import numpy as np 
 from os.path import isfile
 
-ODT = Namespace('http://www.quaat.com/ontologies#')
-DCAT = Namespace('http://www.w3.org/ns/dcat#')
-DCT = Namespace('http://purl.org/dc/terms/')
-ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
-QEX = Namespace('http://www.quaat.com/extended_skos#')
-VCARD = Namespace('http://www.w3.org/2006/vcard/ns#')
-WN20SCHEMA = Namespace('http://www.w3.org/2006/03/wn/wn20/schema/')
-DN = Namespace('http://www.wordnet.dk/owl/instance/2009/03/instances/')
-DN_SCHEMA = Namespace('http://www.wordnet.dk/owl/instance/2009/03/schema/')
 
 class OpenDataSemanticFramework:
-    global ODT
-    global DCAT
-    global DCT
-    global QEX
-    
     def __init__(self, ontology, dataset_graph, compute_ccs=True):
         """
         The RDF library allows a set of rdf-files to be parsed into

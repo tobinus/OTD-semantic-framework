@@ -1,6 +1,7 @@
 # Automatic search-through
 import numpy as np
 from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
+from utils.graph import ODT as OTD  # Open Transport Data makes more sense..?
 from odt.opendatasemanticframework import OpenDataSemanticFramework
 from rdflib import URIRef
 from rdflib import Namespace
@@ -8,23 +9,9 @@ from results.confusion import confusion_matrix_scores, precision, recall, true_n
 from dotenv import load_dotenv, find_dotenv
 from os import environ
 
-# Allow user to specify database credentials in a file, rather than only through
-# environment variables
-dotenv_file = find_dotenv()
-if dotenv_file:
-    print(f'Loading environment variables from "{dotenv_file}"')
-    load_dotenv(dotenv_file)
-else:
-    print(
-        'No .env file found in this or any parent directory, relying on '
-        'directly supplied environment variables only'
-    )
 
-OTD = Namespace('http://www.quaat.com/ontologies#')
 class SetMap():
-    global OTD
-
-    def __init__(self):        
+    def __init__(self):
         self.config = {}
         self.config['ONTOLOGY_UUID']   = '5b2ab51401d5412566cf4e94'
         self.config['DATASETS_UUID']   = '5b2968c501d5412566cf4e86'

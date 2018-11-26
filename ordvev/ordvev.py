@@ -1,22 +1,11 @@
 import requests
-from rdflib import Namespace
 from rdflib import URIRef
 from rdflib import plugin, Graph, Literal, URIRef
-from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
 from rdflib.store import Store
+from utils.graph import DN_SCHEMA, WN20SCHEMA, RDFS
 
-ODT = Namespace('http://www.quaat.com/ontologies#')
-DCAT = Namespace('http://www.w3.org/ns/dcat#')
-DCT = Namespace('http://purl.org/dc/terms/')
-ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
-QEX = Namespace('http://www.quaat.com/extended_skos#')
-WN20SCHEMA = Namespace('http://www.w3.org/2006/03/wn/wn20/schema/')
-DN = Namespace('http://www.wordnet.dk/owl/instance/2009/03/instances/')
-DN_SCHEMA = Namespace('http://www.wordnet.dk/owl/instance/2009/03/schema/')
 
 class OrdVev:
-    global DN_SCHEMA
-    
     def __init__(self):
         self.graph = Graph()
         self.wordgraph = Graph()

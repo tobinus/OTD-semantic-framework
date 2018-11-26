@@ -1,10 +1,6 @@
 from rdflib import Graph, URIRef, BNode, Literal, Namespace
-from rdflib.namespace import RDFS, OWL, DC, XSD, RDF
+from utils.graph import RDFS
 
-DCAT = Namespace('http://www.w3.org/ns/dcat#')
-DCT = Namespace('http://purl.org/dc/terms/')
-DCTYPE = Namespace('http://purl.org/dc/dcmitype/')
-ODT = Namespace('http://www.example.org/ODT#')
 
 class GraphNavigate:
     def __init__(self, graph):        

@@ -7,22 +7,9 @@ from app import ontology
 from app import ontology_graph
 from app.forms import SearchForm
 from time import time
-from rdflib import Namespace
-from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS, OWL
 from datetime import datetime
 import db.log
 
-ODT = Namespace('http://www.quaat.com/ontologies#')
-DCT = Namespace('http://purl.org/dc/terms/')
-
-ontology_graph.bind('dct', DCT)
-ontology_graph.bind('owl', OWL)
-ontology_graph.bind('rdf', RDF)
-ontology_graph.bind('rdfs', RDFS)
-ontology_graph.bind('foaf', FOAF)
-ontology_graph.bind('dc', DC)
-ontology_graph.bind('odt', ODT)
-ontology_graph.bind('skos', SKOS)
 
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'] )

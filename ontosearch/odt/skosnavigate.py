@@ -1,31 +1,6 @@
 from rdflib import Graph, URIRef, BNode, Literal
-from rdflib import Namespace
-from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
-
-
-ODT = Namespace('http://www.quaat.com/ontologies#')
-DCAT = Namespace('http://www.w3.org/ns/dcat#')
-DCT = Namespace('http://purl.org/dc/terms/')
-ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
-QEX = Namespace('http://www.quaat.com/extended_skos#')
-VCARD = Namespace('http://www.w3.org/2006/vcard/ns#')
-
-def first(xs):
-    """
-        Returns the first element of a list, or None if the list is empty
-    """
-    if not xs:
-        return None
-    return xs[0]
-
-
-def second(xs):
-    """
-        Returns the second element of a list, or None if the list is empty
-    """
-    if not xs:
-        return None
-    return xs[1]
+from utils.misc import first, second
+from utils.graph import SKOS, DCAT, RDF
 
 
 class SKOSNavigate:
