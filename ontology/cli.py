@@ -46,7 +46,9 @@ def register_generate(add_parser):
     parser.add_argument(
         '--skos',
         '-s',
-        help="Embed triples defining SKOS in the serialization. You can optionally provide a URL or location for file with RDF XML for SKOS. (Default: %(const)s)",
+        help="Embed triples defining SKOS in the serialization. You can "
+             "optionally provide a URL or location for file with RDF XML for "
+             "SKOS. (Default: %(const)s)",
         nargs='?',
         const='https://www.w3.org/2009/08/skos-reference/skos.rdf',
         default=False
