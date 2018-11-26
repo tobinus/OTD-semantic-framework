@@ -50,15 +50,15 @@ you can explore the options by passing `--help` as an argument.
 
 #### Upload ontology
 
-1. Run `pipenv run python dataontosearch.py dataset_tagger`
-2. The ontology you wish to use should be placed in
-   `dataset-tagger/app/resources/skos-odt.owl`. By default, the ontology
-   developed for the transport domain is located here
-3. Visit http://localhost:8000/about in your web browser
-4. Follow the instructions for creating new ontology
-5. Note down the UID you receive back, you'll need to refer to this ID when
-   interacting with the ontology down the road
+1. Run `pipenv run python dataontosearch.py ontology create`
+2. Note down the UUID you receive back
+3. Add the following line in your `.env` file, replacing `<UUID>` with the UUID you got:
+   
+   ```
+   ONTOLOGY_UUID=<UUID>
+   ```
 
+There are other commands you can use to manipulate and display ontologies, run `pipenv run python dataontosearch.py ontology --help` for a full list.
 
 #### Link concepts to terms
 
