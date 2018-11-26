@@ -51,6 +51,11 @@ def _get_for_collection(key, uuid=None, raise_on_no_uuid=True, **kwargs):
             environment variable.
     """
     func_name = 'get_{}'.format(key)
+    uuid = get_uuid_for_collection(key, uuid, raise_on_no_uuid, func_name)
+    return get(uuid, key, **kwargs)
+
+
+def get_uuid_for_collection(key, uuid, raise_on_no_uuid, func_name):
     envvar = '{}_UUID'.format(key.upper())
 
     # No uuid given? Were we given one by environment variables?
@@ -67,8 +72,7 @@ def _get_for_collection(key, uuid=None, raise_on_no_uuid=True, **kwargs):
                 )
             else:
                 uuid = DEFAULT_UUID
-
-    return get(uuid, key, **kwargs)
+    return uuid
 
 
 def get_ontology(*args, **kwargs):

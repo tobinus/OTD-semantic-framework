@@ -1,4 +1,8 @@
 import argparse
+from io import BytesIO
+
+
+_skos_default_location = 'https://www.w3.org/2009/08/skos-reference/skos.rdf'
 
 
 def register_subcommand(add_parser):
@@ -12,12 +16,14 @@ def register_subcommand(add_parser):
         dest="action"
     )
     register_generate(subcommands.add_parser)
+    register_create(subcommands.add_parser)
 
 
 def register_generate(add_parser):
     parser = add_parser(
         'generate',
-        help="Create a serialization of the Open Transport Ontology."
+        help="Create a serialization of the Open Transport Ontology.",
+        description="Create a serialization of the Open Transport Ontology."
     )
     parser.add_argument(
         'outfile',
@@ -50,7 +56,7 @@ def register_generate(add_parser):
              "optionally provide a URL or location for file with RDF XML for "
              "SKOS. (Default: %(const)s)",
         nargs='?',
-        const='https://www.w3.org/2009/08/skos-reference/skos.rdf',
+        const=_skos_default_location,
         default=False
     )
     parser.set_defaults(
@@ -62,3 +68,64 @@ def do_generate(args):
     from ontology.generate import create_graph
     g = create_graph(args.skos)
     g.serialize(destination=args.outfile, format=args.format)
+
+
+def register_create(add_parser):
+    parser = add_parser(
+        'create',
+        help="Create new ontology in the database, using an ontology as the "
+             "basis. The UUID of the new ontology entry is printed.",
+        description="Create new ontology in the database, using an ontology as "
+                    "the basis. The UUID of the new ontology entry is printed."
+    )
+    parser.add_argument(
+        '--ontology',
+        '-o',
+        help="Location and format of ontology to load into the database. By "
+             "default, the authoritative version of the OTD ontology will be "
+             "used.",
+        nargs=2,
+        metavar=('LOCATION', 'FORMAT')
+    )
+    parser.add_argument(
+        '--uuid',
+        '-i',
+        help="Force the UUID for the new ontology, potentially overwriting an "
+             "existing ontology with the same UUID. If you do not provide a "
+             "UUID, it will be read from the ONTOLOGY_UUID environment "
+             "variable. When this flag is not given, a new UUID is generated "
+             "and printed.",
+        nargs='?',
+        const=None,
+        default=False
+    )
+    parser.add_argument(
+        '--skos',
+        '-s',
+        help="Location where SKOS RDF XML can be found. (Default: %(default)s)",
+        default=_skos_default_location
+    )
+    parser.set_defaults(
+        func=do_create
+    )
+
+
+def do_create(args):
+    from ontology.create import insert_new_graph, insert_graph
+
+    if args.ontology:
+        ontology, ont_format = args.ontology
+    else:
+        from ontology.generate import create_graph
+        g = create_graph(False)
+        serialized = g.serialize(format='xml')
+        ontology = BytesIO(serialized)
+        ont_format = 'xml'
+
+    uuid = args.uuid
+    if uuid is not False:
+        uuid = insert_graph(uuid, ontology, ont_format, args.skos)
+        print(uuid)
+    else:
+        uuid = insert_new_graph(ontology, ont_format, args.skos)
+        print(uuid)
