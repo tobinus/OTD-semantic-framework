@@ -1,8 +1,5 @@
 import argparse
-from io import BytesIO
-
-
-_skos_default_location = 'https://www.w3.org/2009/08/skos-reference/skos.rdf'
+from ontology import SKOS_RDF_LOCATION
 
 
 def register_subcommand(add_parser):
@@ -56,7 +53,7 @@ def register_generate(add_parser):
              "optionally provide a URL or location for file with RDF XML for "
              "SKOS. (Default: %(const)s)",
         nargs='?',
-        const=_skos_default_location,
+        const=SKOS_RDF_LOCATION,
         default=False
     )
     parser.set_defaults(
@@ -103,7 +100,7 @@ def register_create(add_parser):
         '--skos',
         '-s',
         help="Location where SKOS RDF XML can be found. (Default: %(default)s)",
-        default=_skos_default_location
+        default=SKOS_RDF_LOCATION
     )
     parser.set_defaults(
         func=do_create
@@ -111,21 +108,18 @@ def register_create(add_parser):
 
 
 def do_create(args):
-    from ontology.create import insert_new_graph, insert_graph
+    from ontology.create import insert_potentially_new_graph
 
     if args.ontology:
         ontology, ont_format = args.ontology
     else:
-        from ontology.generate import create_graph
-        g = create_graph(False)
-        serialized = g.serialize(format='xml')
-        ontology = BytesIO(serialized)
-        ont_format = 'xml'
+        ontology, ont_format = None, None
 
-    uuid = args.uuid
-    if uuid is not False:
-        uuid = insert_graph(uuid, ontology, ont_format, args.skos)
-        print(uuid)
-    else:
-        uuid = insert_new_graph(ontology, ont_format, args.skos)
-        print(uuid)
+    uuid = insert_potentially_new_graph(
+        args.uuid,
+        ontology,
+        ont_format,
+        args.skos
+    )
+    print(uuid)
+

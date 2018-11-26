@@ -4,6 +4,7 @@ from dataset_tagger.app import app, app_path
 from dataset_tagger.app.forms import TagForm
 import db.graph
 from db.graph import NoSuchGraph
+from ontology.create import insert_new_graph
 
 
 @app.route('/about')
@@ -91,7 +92,7 @@ def ontology_delete(uuid):
 
 @app.route('/ontology/create', methods=['GET'])
 def ontology_create():
-    uuid = db.graph.create_new()
+    uuid = insert_new_graph()
     return str({'uuid': uuid})
 
 

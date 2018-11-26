@@ -4,6 +4,10 @@ from rdflib.plugins.sparql import prepareQuery
 from utils.graph import create_bound_graph, RDF, DC, FOAF, ODT as OTD, DCAT, SKOS
 
 
+def get_authoritative_ontology(skos_location):
+    return create_graph(skos_location)
+
+
 def create_graph(skos_location):
     g = create_bound_graph()
     g.bind('otd', OTD, override=True)  # Using OTD here..?

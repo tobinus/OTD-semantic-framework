@@ -230,30 +230,6 @@ def find_all_ids(key='ontology', **kwargs):
     return list(ids)
 
 
-def create_new(filename=None, uuid=None, key='ontology', **kwargs):
-    g = create_graph_from_file(filename)
-
-    if uuid is None:
-        return store(g, key, **kwargs)
-    else:
-        update(g, uuid, key, **kwargs)
-        return uuid
-
-
-def create_graph_from_file(filename=None):
-    if filename is None:
-        filename = os.path.join(
-            os.path.dirname(__file__),
-            '..',
-            'resources',
-            'skos-odt.owl'
-        )
-
-    g = create_bound_graph()
-    g.parse(filename, format="xml")
-    return g
-
-
 def store(graph, key='ontology', **kwargs):
     assert is_recognized_key(key)
     # Prepare what we want to insert
