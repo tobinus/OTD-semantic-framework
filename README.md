@@ -60,11 +60,6 @@ you can explore the options by passing `--help` as an argument.
 
 There are other commands you can use to manipulate and display ontologies, run `pipenv run python dataontosearch.py ontology --help` for a full list.
 
-#### Link concepts to terms
-
-TODO
-
-
 #### Compute similarities between concepts in ontology
 
 TODO

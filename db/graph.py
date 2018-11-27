@@ -267,7 +267,7 @@ def tag_dataset(uuid, dataset_uri, tag, score, **kwargs):
         node = concept_dict[tag]
         graph.add((ds, SKOS.relatedMatch, node))
         graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
-        store(graph, uuid, **kwargs)
+        update(graph, uuid, **kwargs)
         #output = path.join(app_path + '/db', uuid+'.rdf')
         #graph.serialize(destination=output, format='xml')
         graph.close()
