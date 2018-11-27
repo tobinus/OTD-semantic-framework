@@ -1,7 +1,7 @@
 from flask import Flask
 from config import Config
 from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
-from odt.opendatasemanticframework import OpenDataSemanticFramework
+from otd.opendatasemanticframework import OpenDataSemanticFramework
 from os import path
 from utils.db import get_uri
 

@@ -1,7 +1,7 @@
 from rdflib import Graph, URIRef, BNode, Literal, Namespace
 from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD
 from rdflib.plugins.sparql import prepareQuery
-from utils.graph import create_bound_graph, RDF, DC, FOAF, ODT as OTD, DCAT, SKOS
+from utils.graph import create_bound_graph, RDF, DC, FOAF, OTD, DCAT, SKOS
 
 
 def get_authoritative_ontology(skos_location):

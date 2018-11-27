@@ -8,10 +8,9 @@ from rdflib.namespace import RDF, XSD, SKOS, OWL, RDFS, FOAF, DC
 
 
 # Custom namespaces for our purposes
-ODT = Namespace('http://www.quaat.com/ontologies#')
+OTD = Namespace('http://www.quaat.com/ontologies#')
 DCAT = Namespace('http://www.w3.org/ns/dcat#')
 DCT = Namespace('http://purl.org/dc/terms/')
-ODTX = Namespace('http://www.quaat.com/ontology/ODTX#')
 QEX = Namespace('http://www.quaat.com/extended_skos#')
 VCARD = Namespace('http://www.w3.org/2006/vcard/ns#')
 WN20SCHEMA = Namespace('http://www.w3.org/2006/03/wn/wn20/schema/')
@@ -20,10 +19,9 @@ DN_SCHEMA = Namespace('http://www.wordnet.dk/owl/instance/2009/03/schema/')
 
 
 bindings = {
-    'odt': ODT,
+    'otd': OTD,
     'dcat': DCAT,
     'dct': DCT,
-    'odtx': ODTX,
     'qex': QEX,
     'owl': OWL,
     'rdf': RDF,

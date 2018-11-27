@@ -1,8 +1,8 @@
 # Automatic search-through
 import numpy as np
 from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
-from utils.graph import ODT as OTD  # Open Transport Data makes more sense..?
-from odt.opendatasemanticframework import OpenDataSemanticFramework
+from utils.graph import OTD
+from otd.opendatasemanticframework import OpenDataSemanticFramework
 from rdflib import URIRef
 from rdflib import Namespace
 from results.confusion import confusion_matrix_scores, precision, recall, true_negative_rate, accuracy, f1_score

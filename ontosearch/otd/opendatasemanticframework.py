@@ -1,7 +1,7 @@
-from utils.graph import RDF, ODT, DCAT, DCT
-from odt.skosnavigate import SKOSNavigate
-from odt.queryextractor import QueryExtractor
-from odt.semscore import SemScore
+from utils.graph import RDF, OTD, DCAT, DCT
+from otd.skosnavigate import SKOSNavigate
+from otd.queryextractor import QueryExtractor
+from otd.semscore import SemScore
 import db.dataframe
 from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import cosine_similarity
@@ -72,10 +72,10 @@ class OpenDataSemanticFramework:
             cds.loc[dataset] = np.nan
 
         # Set similarity values in the cds
-        for similarity in sgraph.subjects(RDF.type, ODT.Similarity):
-            dataset = next(sgraph.objects(similarity, ODT.dataset), None)
-            concept = next(sgraph.objects(similarity, ODT.concept), None)
-            score = (float)(next(sgraph.objects(similarity, ODT.score), np.nan))
+        for similarity in sgraph.subjects(RDF.type, OTD.Similarity):
+            dataset = next(sgraph.objects(similarity, OTD.dataset), None)
+            concept = next(sgraph.objects(similarity, OTD.concept), None)
+            score = (float)(next(sgraph.objects(similarity, OTD.score), np.nan))
             for cs in self.concepts:                
                 simscore = (float)(self.ccs[cs][concept])*score
                 cds.loc[dataset][cs] = np.nanmax([simscore, cds.loc[dataset][cs]])
@@ -91,10 +91,10 @@ class OpenDataSemanticFramework:
 
     def similarities(self):
         ss = []
-        for similarity in self.similarity_graph.subjects(RDF.type, ODT.Similarity):
-            dataset = next(self.similarity_graph.objects(similarity, ODT.dataset), None)
-            concept = next(self.similarity_graph.objects(similarity, ODT.concept), None)
-            score = (float)(next(self.similarity_graph.objects(similarity, ODT.score), "0.0"))
+        for similarity in self.similarity_graph.subjects(RDF.type, OTD.Similarity):
+            dataset = next(self.similarity_graph.objects(similarity, OTD.dataset), None)
+            concept = next(self.similarity_graph.objects(similarity, OTD.concept), None)
+            score = (float)(next(self.similarity_graph.objects(similarity, OTD.score), "0.0"))
             ss.append('{} {} : {}'.format(dataset, concept, score))
         return ss
         
