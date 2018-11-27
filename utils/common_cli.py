@@ -1,4 +1,5 @@
 import argparse
+import functools
 
 
 def make_subcommand_gunicorn(parser, cwd=None, module='app:app'):
@@ -49,4 +50,47 @@ def make_subcommand_gunicorn(parser, cwd=None, module='app:app'):
     # Register so we run gunicorn when this subcommand is invoked
     parser.set_defaults(func=run_gunicorn)
 
+
+available_rdflib_formats = (
+    'n3',
+    'nquads',
+    'nt',
+    'pretty-xml',
+    'trig',
+    'trix',
+    'turtle',
+    'xml',
+    'json-ld',
+)
+
+
+def register_arguments_for_rdf_output(parser):
+    parser.add_argument(
+        '--out',
+        '-o',
+        help='Where to save the serialized graph. By default, it is printed to '
+             'stdout.',
+        default='-',
+    )
+    parser.add_argument(
+        '--format',
+        '-f',
+        help='Format to use for rendering the RDF graph. See '
+             'https://rdflib.readthedocs.io/en/stable/plugin_serializers.html '
+             'for available options, plus json-ld. (Default: %(default)s)',
+        choices=available_rdflib_formats,
+        default='xml',
+    )
+
+
+def with_rdf_output(func):
+    @functools.wraps(func)
+    def wrapped_function(args):
+        graph = func(args)
+        if args.out == '-':
+            serialized_graph = graph.serialize(format=args.format)
+            print(serialized_graph.decode('utf8'), end='')
+        else:
+            graph.serialize(args.out, format=args.format)
+    return wrapped_function
 

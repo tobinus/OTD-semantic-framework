@@ -3,19 +3,8 @@ import argparse
 from bson.errors import InvalidId
 
 from ontology import SKOS_RDF_LOCATION
+from utils.common_cli import register_arguments_for_rdf_output, with_rdf_output
 
-
-available_rdflib_formats = (
-    'n3',
-    'nquads',
-    'nt',
-    'pretty-xml',
-    'trig',
-    'trix',
-    'turtle',
-    'xml',
-    'json-ld',
-)
 
 def register_subcommand(add_parser):
     parser = add_parser(
@@ -40,20 +29,7 @@ def register_generate(add_parser):
         help="Create a serialization of the Open Transport Ontology.",
         description="Create a serialization of the Open Transport Ontology."
     )
-    parser.add_argument(
-        'outfile',
-        help="Where to save the serialized ontology graph",
-        type=argparse.FileType('wb')
-    )
-    parser.add_argument(
-        '--format',
-        '-f',
-        help="Format to use when serializing the graph. See "
-             "https://rdflib.readthedocs.io/en/stable/plugin_serializers.html "
-             "for available options, plus json-ld. (Default: %(default)s)",
-        choices=available_rdflib_formats,
-        default='xml'
-    )
+    register_arguments_for_rdf_output(parser)
     parser.add_argument(
         '--skos',
         '-s',
@@ -69,10 +45,10 @@ def register_generate(add_parser):
     )
 
 
+@with_rdf_output
 def do_generate(args):
     from ontology.generate import create_graph
-    g = create_graph(args.skos)
-    g.serialize(destination=args.outfile, format=args.format)
+    return create_graph(args.skos)
 
 
 def register_create(add_parser):
@@ -198,6 +174,7 @@ def register_show(add_parser):
         help=help_text,
         description=help_text,
     )
+    register_arguments_for_rdf_output(parser)
     parser.add_argument(
         'uuid',
         help='The UUID of the ontology to show. If not given, then the UUID '
@@ -206,21 +183,12 @@ def register_show(add_parser):
         nargs='?',
         default=None
     )
-    parser.add_argument(
-        '--format',
-        '-f',
-        help='Format to use for rendering the RDF graph. (Default: '
-             '%(default)s)',
-        choices=available_rdflib_formats,
-        default='xml',
-    )
     parser.set_defaults(
         func=do_show
     )
 
 
+@with_rdf_output
 def do_show(args):
     from db import graph
-    g = graph.get_ontology(args.uuid, False)
-    result = g.serialize(format=args.format)
-    print(result.decode('utf8'), end='')
+    return graph.get_ontology(args.uuid, False)

@@ -28,6 +28,7 @@ PACKAGES_WITH_CLI = (
 # Name of modules that should also be used to create subcommands, but which
 # aren't called cli
 CLI_MODULES = (
+    'misc.manual_tag_cli',
 )
 
 
