@@ -24,6 +24,7 @@ PACKAGES_WITH_CLI = (
     'ontosearch',
     'dataset_tagger',
     'ontology',
+    'dataset',
 )
 # Name of modules that should also be used to create subcommands, but which
 # aren't called cli
