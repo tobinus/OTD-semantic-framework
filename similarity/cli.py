@@ -16,5 +16,5 @@ def register_subcommand(add_parser):
 
 @with_rdf_output
 def do_subcommand(args):
-    from misc.manual_tag import create_manual_tag_graph
+    from similarity.generate import create_manual_tag_graph
     return create_manual_tag_graph()
