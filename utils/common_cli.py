@@ -96,6 +96,7 @@ def with_rdf_output(func):
 
 
 class GraphSubcommand:
+    # TODO: Create clear public/private API for GraphSubcommand
     SKOS_RDF_LOCATION = 'https://www.w3.org/2009/08/skos-reference/skos.rdf'
 
     def __init__(self, key, plural, adjust_loaded_graph=None, adjust_parsers=None, graph_generate_func=None):
