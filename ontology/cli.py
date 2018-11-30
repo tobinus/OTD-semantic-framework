@@ -5,7 +5,7 @@ from utils.common_cli import GraphSubcommand
 def adjust_loaded_graph(self, g, args):
     skos = args.skos
     # Using SKOS.prefLabel as a substitute for checking for all SKOS subjects
-    has_skos = (self.utils_graph.SKOS.prefLabel, None, None) in g
+    has_skos = (self._utils_graph.SKOS.prefLabel, None, None) in g
     if skos and not has_skos:
         g.parse(skos)
     elif not has_skos:

@@ -96,7 +96,6 @@ def with_rdf_output(func):
 
 
 class GraphSubcommand:
-    # TODO: Create clear public/private API for GraphSubcommand
     SKOS_RDF_LOCATION = 'https://www.w3.org/2009/08/skos-reference/skos.rdf'
 
     def __init__(self, key, plural, adjust_loaded_graph=None, adjust_parsers=None, graph_generate_func=None):
@@ -109,14 +108,14 @@ class GraphSubcommand:
         self.__utils_graph = None
 
     @property
-    def db_graph(self):
+    def _db_graph(self):
         if self.__db_graph is None:
             from db import graph
             self.__db_graph = graph
         return self.__db_graph
 
     @property
-    def utils_graph(self):
+    def _utils_graph(self):
         if self.__utils_graph is None:
             from utils import graph
             self.__utils_graph = graph
@@ -124,25 +123,25 @@ class GraphSubcommand:
 
     def insert_potentially_new_graph(self, uuid=False, location=None, format=None, args=None):
         if uuid is not False:
-            return self.insert_graph(uuid, location, format, args)
+            return self._insert_graph(uuid, location, format, args)
         else:
-            return self.insert_new_graph(location, format, args)
+            return self._insert_new_graph(location, format, args)
 
-    def insert_graph(self, uuid, location=None, format=None, args=None):
-        g = self.parse_graph_or_use_authoritative(location, format, args)
-        uuid = self.db_graph.get_uuid_for_collection(
+    def _insert_graph(self, uuid, location=None, format=None, args=None):
+        g = self._parse_graph_or_use_authoritative(location, format, args)
+        uuid = self._db_graph.get_uuid_for_collection(
             self.key, uuid, True, 'insert_graph()'
         )
-        self.db_graph.update(g, uuid, self.key)
+        self._db_graph.update(g, uuid, self.key)
         return uuid
 
-    def insert_new_graph(self, location=None, format=None, args=None):
-        g = self.parse_graph_or_use_authoritative(location, format, args)
-        return self.db_graph.store(g, self.key)
+    def _insert_new_graph(self, location=None, format=None, args=None):
+        g = self._parse_graph_or_use_authoritative(location, format, args)
+        return self._db_graph.store(g, self.key)
 
-    def parse_graph_or_use_authoritative(self, location=None, format=None, args=None):
+    def _parse_graph_or_use_authoritative(self, location=None, format=None, args=None):
         if location and format:
-            return self.parse_graph(location, format, args)
+            return self._parse_graph(location, format, args)
         else:
             if self.graph_generate_func:
                 return self.graph_generate_func(args)
@@ -152,8 +151,8 @@ class GraphSubcommand:
                                    'function for generating graph or a graph '
                                    'to load.')
 
-    def parse_graph(self, location, format, args):
-        g = self.utils_graph.create_bound_graph()
+    def _parse_graph(self, location, format, args):
+        g = self._utils_graph.create_bound_graph()
         g.parse(location, format=format)
 
         if self.adjust_loaded_graph:
@@ -173,16 +172,16 @@ class GraphSubcommand:
         )
         subparsers = dict()
         if self.graph_generate_func:
-            subparsers['generate'] = self.register_generate(subcommands.add_parser)
-        subparsers['create'] = self.register_create(subcommands.add_parser)
-        subparsers['remove'] = self.register_remove(subcommands.add_parser)
-        subparsers['list'] = self.register_list(subcommands.add_parser)
-        subparsers['show'] = self.register_show(subcommands.add_parser)
+            subparsers['generate'] = self._register_generate(subcommands.add_parser)
+        subparsers['create'] = self._register_create(subcommands.add_parser)
+        subparsers['remove'] = self._register_remove(subcommands.add_parser)
+        subparsers['list'] = self._register_list(subcommands.add_parser)
+        subparsers['show'] = self._register_show(subcommands.add_parser)
 
         if self.adjust_parsers:
             self.adjust_parsers(subparsers)
 
-    def register_generate(self, add_parser):
+    def _register_generate(self, add_parser):
         parser = add_parser(
             'generate',
             help="Create a serialization of the Open Transport Ontology.",
@@ -190,14 +189,14 @@ class GraphSubcommand:
         )
         register_arguments_for_rdf_output(parser)
         parser.set_defaults(
-            func=self.do_generate
+            func=self._do_generate
         )
         return parser
 
-    def do_generate(self, args):
+    def _do_generate(self, args):
         return with_rdf_output(self.graph_generate_func)(args)
 
-    def register_create(self, add_parser):
+    def _register_create(self, add_parser):
         help_text = (
             f"Create a new {self.key} graph in the database. The UUID of the new {self.key} entry is printed."
         )
@@ -236,11 +235,11 @@ class GraphSubcommand:
             default=False
         )
         parser.set_defaults(
-            func=self.do_create
+            func=self._do_create
         )
         return parser
 
-    def do_create(self, args):
+    def _do_create(self, args):
         if args.read:
             location, rdf_format = args.read
         else:
@@ -254,7 +253,7 @@ class GraphSubcommand:
         )
         print(uuid)
 
-    def register_remove(self, add_parser):
+    def _register_remove(self, add_parser):
         help_text = (
             f"Remove the {self.key} with the specified UUID(s), no questions asked."
         )
@@ -269,16 +268,16 @@ class GraphSubcommand:
             nargs="+"
         )
         parser.set_defaults(
-            func=self.do_remove
+            func=self._do_remove
         )
         return parser
 
-    def do_remove(self, args):
+    def _do_remove(self, args):
         from bson.errors import InvalidId
         success = True
         for uuid in args.uuid:
             try:
-                result = self.db_graph.remove(uuid, self.key)
+                result = self._db_graph.remove(uuid, self.key)
                 if not result:
                     success = False
                     print('No document with UUID', uuid, 'found')
@@ -288,7 +287,7 @@ class GraphSubcommand:
 
         return 0 if success else 1
 
-    def register_list(self, add_parser):
+    def _register_list(self, add_parser):
         help_text = (
             f"List all {self.plural} in the database."
         )
@@ -298,16 +297,16 @@ class GraphSubcommand:
             description=help_text,
         )
         parser.set_defaults(
-            func=self.do_list
+            func=self._do_list
         )
         return parser
 
-    def do_list(self, args):
-        documents = self.db_graph.find_all_ids(self.key)
+    def _do_list(self, args):
+        documents = self._db_graph.find_all_ids(self.key)
         for doc in documents:
             print(doc)
 
-    def register_show(self, add_parser):
+    def _register_show(self, add_parser):
         help_text = (
             f"Display the contents of one row of {self.key} in the database."
         )
@@ -326,13 +325,13 @@ class GraphSubcommand:
             default=None
         )
         parser.set_defaults(
-            func=self.do_show
+            func=self._do_show
         )
         return parser
 
-    def do_show(self, args):
+    def _do_show(self, args):
         # Work around with_rdf_output not made for methods
-        get_func = getattr(self.db_graph, f'get_{self.key}')
+        get_func = getattr(self._db_graph, f'get_{self.key}')
 
         def call_get_func(args):
             return get_func(args.uuid, False)
