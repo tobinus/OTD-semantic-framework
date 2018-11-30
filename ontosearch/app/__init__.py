@@ -3,7 +3,6 @@ from config import Config
 from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
 from otd.opendatasemanticframework import OpenDataSemanticFramework
 from os import path
-from utils.db import get_uri
 
 app = Flask(__name__)
 app.config.from_object(Config)

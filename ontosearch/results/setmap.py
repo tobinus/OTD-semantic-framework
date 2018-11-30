@@ -1,13 +1,9 @@
 # Automatic search-through
-import numpy as np
-from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
+from db.graph import get_ontology, get_dataset
 from utils.graph import OTD
 from otd.opendatasemanticframework import OpenDataSemanticFramework
-from rdflib import URIRef
-from rdflib import Namespace
-from results.confusion import confusion_matrix_scores, precision, recall, true_negative_rate, accuracy, f1_score
-from dotenv import load_dotenv, find_dotenv
-from os import environ
+from results.confusion import confusion_matrix_scores, precision, recall, \
+    accuracy, f1_score
 
 
 class SetMap():
