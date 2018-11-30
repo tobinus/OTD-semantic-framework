@@ -2,7 +2,7 @@
 from db.graph import get_ontology, get_dataset
 from utils.graph import OTD
 from otd.opendatasemanticframework import OpenDataSemanticFramework
-from results.confusion import confusion_matrix_scores, precision, recall, \
+from ontosearch.results.confusion import confusion_matrix_scores, precision, recall, \
     accuracy, f1_score
 
 

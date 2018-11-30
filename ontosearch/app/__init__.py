@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config
+from ontosearch.config import Config
 from db.graph import get_ontology, get_dataset, get_similarity, get_autotag
 from otd.opendatasemanticframework import OpenDataSemanticFramework
 from os import path
@@ -31,4 +31,4 @@ ontology.load_similarity_graph("auto", AutoID)
 
 print ("ready")
 
-from app import routes
+from ontosearch.app import routes

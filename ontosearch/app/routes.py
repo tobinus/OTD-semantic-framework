@@ -2,10 +2,10 @@ from flask import render_template, redirect, url_for
 from flask import request, flash, abort, json
 from flask import Response
 from flask.json import jsonify
-from app import app
-from app import ontology
-from app import ontology_graph
-from app.forms import SearchForm
+from ontosearch.app import app
+from ontosearch.app import ontology
+from ontosearch.app import ontology_graph
+from ontosearch.app.forms import SearchForm
 from time import time
 from datetime import datetime
 import db.log

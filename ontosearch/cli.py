@@ -7,4 +7,4 @@ def register_subcommand(add_parser):
         'serve',
         help='Start the webserver for searching ontologies.',
     )
-    make_subcommand_gunicorn(parser, dirname(dirname(__file__)))
+    make_subcommand_gunicorn(parser, dirname(dirname(__file__)), 'ontosearch.app:app')
