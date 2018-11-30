@@ -98,7 +98,14 @@ def with_rdf_output(func):
 class GraphSubcommand:
     SKOS_RDF_LOCATION = 'https://www.w3.org/2009/08/skos-reference/skos.rdf'
 
-    def __init__(self, key, plural, adjust_loaded_graph=None, adjust_parsers=None, graph_generate_func=None):
+    def __init__(
+            self,
+            key,
+            plural,
+            adjust_loaded_graph=None,
+            adjust_parsers=None,
+            graph_generate_func=None
+    ):
         self.key = key
         self.plural = plural
         self.adjust_loaded_graph = adjust_loaded_graph
@@ -121,7 +128,13 @@ class GraphSubcommand:
             self.__utils_graph = graph
         return self.__utils_graph
 
-    def insert_potentially_new_graph(self, uuid=False, location=None, format=None, args=None):
+    def insert_potentially_new_graph(
+            self,
+            uuid=False,
+            location=None,
+            format=None,
+            args=None
+    ):
         if uuid is not False:
             return self._insert_graph(uuid, location, format, args)
         else:
@@ -139,7 +152,12 @@ class GraphSubcommand:
         g = self._parse_graph_or_use_authoritative(location, format, args)
         return self._db_graph.store(g, self.key)
 
-    def _parse_graph_or_use_authoritative(self, location=None, format=None, args=None):
+    def _parse_graph_or_use_authoritative(
+            self,
+            location=None,
+            format=None,
+            args=None
+    ):
         if location and format:
             return self._parse_graph(location, format, args)
         else:
@@ -163,29 +181,39 @@ class GraphSubcommand:
     def register_subcommand(self, add_parser):
         parser = add_parser(
             self.key,
-            help=f"Collection of helper commands for dealing with {self.plural}."
+            help=f"Collection of helper commands for dealing with {self.key} "
+            f"graphs."
         )
         subcommands = parser.add_subparsers(
             title="actions",
-            description=f"These actions are available to manipulate {self.plural}.",
+            description=f"These actions are available to manipulate {self.key} "
+            f"graphs.",
             dest="action"
         )
+        self.register_crud_commands(subcommands)
+
+    def register_crud_commands(self, subparser):
         subparsers = dict()
         if self.graph_generate_func:
-            subparsers['generate'] = self._register_generate(subcommands.add_parser)
-        subparsers['create'] = self._register_create(subcommands.add_parser)
-        subparsers['remove'] = self._register_remove(subcommands.add_parser)
-        subparsers['list'] = self._register_list(subcommands.add_parser)
-        subparsers['show'] = self._register_show(subcommands.add_parser)
+            subparsers['generate'] = self._register_generate(
+                subparser.add_parser
+            )
+        subparsers['create'] = self._register_create(subparser.add_parser)
+        subparsers['remove'] = self._register_remove(subparser.add_parser)
+        subparsers['list'] = self._register_list(subparser.add_parser)
+        subparsers['show'] = self._register_show(subparser.add_parser)
 
         if self.adjust_parsers:
             self.adjust_parsers(subparsers)
 
     def _register_generate(self, add_parser):
+        help_text = (
+            f"Generate the authoritative, canonical {self.key} graph."
+        )
         parser = add_parser(
             'generate',
-            help="Create a serialization of the Open Transport Ontology.",
-            description="Create a serialization of the Open Transport Ontology."
+            help=help_text,
+            description=help_text,
         )
         register_arguments_for_rdf_output(parser)
         parser.set_defaults(
@@ -198,7 +226,8 @@ class GraphSubcommand:
 
     def _register_create(self, add_parser):
         help_text = (
-            f"Create a new {self.key} graph in the database. The UUID of the new {self.key} entry is printed."
+            f"Create a new {self.key} graph in the database. The UUID of the "
+            f"new {self.key} entry is printed."
         )
         parser = add_parser(
             'create',
@@ -209,27 +238,28 @@ class GraphSubcommand:
             parser.add_argument(
                 '--read',
                 '-r',
-                help=f"Location and format of the {self.key} graph to load into the database. By "
-                     f"default, an authoritative version will be "
-                     f"generated and used.",
+                help=f"Location and format of the {self.key} graph to load "
+                f"into the database. By default, the authoritative version "
+                f"will be generated and used.",
                 nargs=2,
                 metavar=('LOCATION', 'FORMAT'),
             )
         else:
             parser.add_argument(
                 'read',
-                help=f"Location and format of the {self.key} graph to load into the database.",
+                help=f"Location and format of the {self.key} graph to load "
+                f"into the database.",
                 nargs=2,
                 metavar=('LOCATION', 'FORMAT'),
             )
         parser.add_argument(
             '--uuid',
             '-i',
-            help=f"Force the UUID for the new {self.key} graph, potentially overwriting an "
-                 f"existing {self.key} graph with the same UUID. If you do not provide a "
-                 f"UUID, it will be read from the {self.key.upper()}_UUID environment "
-                 f"variable. When this flag is not given, a new UUID is generated "
-                 f"and printed.",
+            help=f"Force the UUID for the new {self.key} graph, potentially "
+            f"overwriting an existing {self.key} graph with the same UUID. If "
+            f"you do not provide a UUID, it will be read from the"
+            f" {self.key.upper()}_UUID environment variable. When this flag is "
+            f"not given, a new UUID is generated and printed.",
             nargs='?',
             const=None,
             default=False
@@ -255,7 +285,8 @@ class GraphSubcommand:
 
     def _register_remove(self, add_parser):
         help_text = (
-            f"Remove the {self.key} with the specified UUID(s), no questions asked."
+            f"Remove the {self.key} with the specified UUID(s), no questions "
+            f"asked."
         )
         parser = add_parser(
             'remove',
@@ -318,9 +349,10 @@ class GraphSubcommand:
         register_arguments_for_rdf_output(parser)
         parser.add_argument(
             'uuid',
-            help=f'The UUID of the {self.key} graph to show. If not given, then the UUID '
-                 f'named in the {self.key.upper()}_UUID environment variable is used. If no '
-                 f'such variable is found, whatever MongoDB returns first is shown.',
+            help=f'The UUID of the {self.key} graph to show. If not given, '
+            f'then the UUID named in the {self.key.upper()}_UUID environment '
+            f'variable is used. If no such variable is found, whatever MongoDB '
+            f'returns first is shown.',
             nargs='?',
             default=None
         )
