@@ -29,7 +29,10 @@ subcommand = GraphSubcommand(
     'datasets',
     None,
     adjust_parsers,
-    do_generate
+    do_generate,
+    'Each dataset graph represents one collection of datasets, and is used to '
+    'avoid querying the CKAN instance more than once. DCAT is used to describe '
+    'them.'
 )
 
 

@@ -46,7 +46,10 @@ subcommand = GraphSubcommand(
     'ontologies',
     adjust_loaded_graph,
     adjust_parsers,
-    do_generate
+    do_generate,
+    "Each ontology graph represents one ontology, with concepts and their "
+    "labels and connections to one another. The SKOS vocabulary is used to "
+    "describe them."
 )
 
 

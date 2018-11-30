@@ -104,13 +104,15 @@ class GraphSubcommand:
             plural,
             adjust_loaded_graph=None,
             adjust_parsers=None,
-            graph_generate_func=None
+            graph_generate_func=None,
+            description=''
     ):
         self.key = key
         self.plural = plural
         self.adjust_loaded_graph = adjust_loaded_graph
         self.adjust_parsers = adjust_parsers
         self.graph_generate_func = graph_generate_func
+        self.description = description
         self.__db_graph = None
         self.__utils_graph = None
 
@@ -182,7 +184,9 @@ class GraphSubcommand:
         parser = add_parser(
             self.key,
             help=f"Collection of helper commands for dealing with {self.key} "
-            f"graphs."
+            f"graphs.",
+            description=f"Command for dealing with {self.key} graphs."
+            f" {self.description}"
         )
         subcommands = parser.add_subparsers(
             title="actions",

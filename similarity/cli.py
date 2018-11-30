@@ -11,7 +11,10 @@ subcommand = GraphSubcommand(
     'similarities',
     None,
     None,
-    do_generate
+    do_generate,
+    'Similarity and autotag graphs both represent a set of connections between '
+    'concepts and datasets. Similarity graphs represent the manually curated '
+    'connections, enriching the dataset metadata.'
 )
 
 
