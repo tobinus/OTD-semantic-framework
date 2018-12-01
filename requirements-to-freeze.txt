@@ -11,3 +11,6 @@ pandas
 nltk
 pymongo
 requests
+clint
+beautifulsoup4
+html5lib

@@ -22,8 +22,10 @@ future point).
    * `DB_PASSWD`: Password to use when logging in to MongoDB
    * `DB_HOST`: Name of server where MongoDB runs. Defaults to localhost
    * `DB_NAME`: Name of database to use in MongoDB
-
+   
    These can also be set as environment variables.
+7. Download the `punkt` data for [nltk](https://www.nltk.org/data.html), used for word tokenizing. You can do this by running `pipenv run python dataontosearch.py punkt` (or run `pipenv shell` and then run commands without prefixing them with `pipenv run` every time).
+
 
 
 ## Usage

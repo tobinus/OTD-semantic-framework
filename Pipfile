@@ -17,6 +17,9 @@ pymongo = "*"
 requests = "*"
 Flask = "*"
 Flask-WTF = "*"
+clint = "*"
+beautifulsoup4 = "*"
+html5lib = "*"
 
 [dev-packages]
 

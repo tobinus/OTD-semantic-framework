@@ -6,13 +6,17 @@ Flask-WTF==0.14.2
 gunicorn==19.9.0
 numpy==1.15.4
 scipy==1.1.0
-scikit-learn==0.20.0
+scikit-learn==0.20.1
 pandas==0.23.4
-nltk==3.3
+nltk==3.4
 pymongo==3.7.2
 requests==2.20.1
+clint==0.5.1
+beautifulsoup4==4.6.3
+html5lib==1.0.1
 ## The following requirements were added by pip freeze:
-certifi==2018.10.15
+args==0.1.0
+certifi==2018.11.29
 chardet==3.0.4
 Click==7.0
 idna==2.7
@@ -23,7 +27,9 @@ MarkupSafe==1.1.0
 pyparsing==2.3.0
 python-dateutil==2.7.5
 pytz==2018.7
+singledispatch==3.4.0.3
 six==1.11.0
 urllib3==1.24.1
+webencodings==0.5.1
 Werkzeug==0.14.1
 WTForms==2.2.1
