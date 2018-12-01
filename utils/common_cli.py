@@ -2,10 +2,12 @@ import argparse
 import functools
 
 
-def make_subcommand_gunicorn(parser, cwd=None, module='app:app'):
+def make_subcommand_gunicorn(parser, cwd=None, module='app:app', pre_hook=None):
     # Define the function that will start up Gunicorn with the parameters we
     # have received
     def run_gunicorn(args):
+        if pre_hook is not None:
+            pre_hook(args)
         import subprocess
         import signal
         import sys
@@ -176,7 +178,7 @@ class GraphSubcommand:
         g.parse(location, format=format)
 
         if self.adjust_loaded_graph:
-            g = self.adjust_loaded_graph(self, g, args)
+            self.adjust_loaded_graph(self, g, args)
 
         return g
 

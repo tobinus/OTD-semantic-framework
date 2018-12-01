@@ -1,4 +1,6 @@
 import os
+from collections import namedtuple
+import datetime
 from bson.objectid import ObjectId
 from rdflib import URIRef, BNode, Literal, Namespace
 from utils.misc import first, second
@@ -12,6 +14,11 @@ Special value which can be given as the UUID to any get function, in order to
 not search using UUID but rather accept the first document retrieved by MongoDB
 by default.
 """
+
+
+DataFrameId = namedtuple(
+    'DataFrameId', ('graph_type', 'graph_uuid', 'last_modified')
+)
 
 
 def get(uuid, key='ontology', **kwargs):
@@ -172,6 +179,12 @@ def get_autotag(*args, **kwargs):
 
 
 def get_raw_json(uuid, key='ontology', **kwargs):
+    doc = get_document(uuid, key, **kwargs)
+    d = doc['rdf'].decode("utf-8")
+    return d
+
+
+def get_document(uuid, key='ontology', **kwargs):
     assert is_recognized_key(key)
 
     with MongoDBConnection(**kwargs) as client:
@@ -188,11 +201,9 @@ def get_raw_json(uuid, key='ontology', **kwargs):
         if doc is None:
             raise NoSuchGraph(
                 'No graph found in collection "{}" with UUID "{}"'
-                .format(key, uuid)
+                    .format(key, uuid)
             )
-
-        d = doc['rdf'].decode("utf-8")
-        return d
+        return doc
 
 
 def update(graph, uuid, key='ontology', **kwargs):
@@ -202,7 +213,10 @@ def update(graph, uuid, key='ontology', **kwargs):
     assert is_recognized_key(key)
 
     jld = graph.serialize(format='json-ld')
-    ont = {"rdf": jld}
+    ont = {
+        "rdf": jld,
+        "lastModified": datetime.datetime.utcnow(),
+    }
 
     with MongoDBConnection(**kwargs) as client:
         db = client.ontodb
@@ -234,7 +248,10 @@ def store(graph, key='ontology', **kwargs):
     assert is_recognized_key(key)
     # Prepare what we want to insert
     jld = graph.serialize(format='json-ld')
-    ont = {"rdf": jld}
+    ont = {
+        "rdf": jld,
+        "lastModified": datetime.datetime.utcnow(),
+    }
 
     # Insert
     with MongoDBConnection(**kwargs) as client:
@@ -285,6 +302,20 @@ def get_tagged_datasets(uuid, **kwargs):
 
 def is_recognized_key(key):
     return key in ('ontology', 'autotag', 'dataset', 'similarity')
+
+
+def get_dataframe_id(key, uuid, raise_on_no_uuid, **kwargs):
+    assert is_recognized_key(key)
+    uuid = get_uuid_for_collection(
+        key,
+        uuid,
+        raise_on_no_uuid,
+        'get_dataframe_id'
+    )
+
+    doc = get_document(uuid, key, **kwargs)
+    last_modified = doc['lastModified']
+    return DataFrameId(key, uuid, last_modified)
 
 
 class NoSuchGraph(Exception):
