@@ -1,3 +1,4 @@
+import os
 from utils.graph import RDF, OTD, DCAT, DCT
 from otd.skosnavigate import SKOSNavigate
 from otd.queryextractor import QueryExtractor
@@ -41,9 +42,6 @@ class OpenDataSemanticFramework:
             raise_on_no_uuid=False
         )
 
-        self.load_ccs(ontology_uuid)
-
-
     @property
     def graph(self):
         return self.__graph
@@ -76,7 +74,7 @@ class OpenDataSemanticFramework:
         return ccs
 
     def add_similarity_graph(self, name, graph):
-        self.cds[name] = self.compute_cds(graph)
+        self.cds[name] = self.compute_cds(graph, name)
         if 'all' in self.cds:
             self.cds['all'] = self.cds['all'].append(self.cds[name])
         else:
