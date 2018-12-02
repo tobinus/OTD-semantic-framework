@@ -4,7 +4,6 @@ from flask import Response
 from flask.json import jsonify
 from ontosearch.app import app
 from ontosearch.app import ontology
-from ontosearch.app import ontology_graph
 from ontosearch.app.forms import SearchForm
 from time import time
 from datetime import datetime
@@ -50,4 +49,4 @@ def status():
 @app.route('/ontology/fetch')
 def fetch_ontology():
     
-    return Response(ontology_graph.serialize(format='xml'), mimetype='text/xml')
+    return Response(ontology.graph.serialize(format='xml'), mimetype='text/xml')
