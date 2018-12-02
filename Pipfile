@@ -20,6 +20,7 @@ Flask-WTF = "*"
 clint = "*"
 beautifulsoup4 = "*"
 html5lib = "*"
+tabulate = "*"
 
 [dev-packages]
 

@@ -8,11 +8,15 @@ import db.graph
 from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import cosine_similarity
 from math import isnan
+from collections import namedtuple
 
 import pandas as pd
 import numpy as np 
 from os.path import isfile
 import clint.textui.progress
+
+
+DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri'))
 
 
 class OpenDataSemanticFramework:
@@ -179,7 +183,7 @@ class OpenDataSemanticFramework:
     def get_dataset_info(self, dataset):
         title = next(self.dataset_graph.objects(dataset, DCT.title), None)
         description = next(self.dataset_graph.objects(dataset, DCT.description), None)
-        return (str(title), str(description), str(dataset))
+        return DatasetInfo(str(title), str(description), str(dataset))
 
     def query_score_vec(self, query):
         return self.get_scorevec(query)
