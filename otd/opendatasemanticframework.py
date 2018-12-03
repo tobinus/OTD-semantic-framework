@@ -15,6 +15,7 @@ import clint.textui.progress
 
 DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri'))
 SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
+ConceptSimilarity = namedtuple('ConceptSimilarity', ('concept', 'similarity'))
 
 
 class OpenDataSemanticFramework:
@@ -199,12 +200,16 @@ class OpenDataSemanticFramework:
         most_similar_concepts = \
             sorted(
                 list(
-                    zip(
+                    map(
+                        lambda concept, similarity: ConceptSimilarity(
+                            concept,
+                            similarity
+                        ),
                         list(query_concept_sim.columns),
                         query_concept_sim.values[0]
                     )
                 ),
-                key=lambda x: x[1],
+                key=lambda x: x.similarity,
                 reverse=True
             )[:5]
         entry_concept_sim = query_concept_sim.append(
@@ -224,14 +229,18 @@ class OpenDataSemanticFramework:
         dataset_concepts = []
         for dataset in dataset_query_sim.index:
             concepts_for_dataset = list(
-                zip(
+                map(
+                    lambda concept, similarity: ConceptSimilarity(
+                        concept,
+                        similarity
+                    ),
                     self.cds[cds_name].loc[dataset].index,
                     self.cds[cds_name].loc[dataset].values
                 )
             )
             closest_concepts_for_dataset = sorted(
                 concepts_for_dataset,
-                key=lambda x: x[1],
+                key=lambda x: x.similarity,
                 reverse=True
             )[:5]
             dataset_concepts.append(closest_concepts_for_dataset)

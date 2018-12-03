@@ -92,7 +92,7 @@ def do_search(args):
     if args.simple:
         # Simply print URIs (for processing by other script)
         for result in results:
-            print(result[1].uri)
+            print(result.info.uri)
 
     elif args.details:
         # Print all the information we have
@@ -108,9 +108,9 @@ def do_search(args):
 
         formatted_results = []
         for result in results:
-            score = result[0]
-            dataset_info = result[1]
-            matched_concepts = result[2]
+            score = result.score
+            dataset_info = result.info
+            matched_concepts = result.concepts
 
             formatted_concepts = tabulate(
                 matched_concepts,
@@ -141,8 +141,8 @@ def do_search(args):
 
         formatted_results = []
         for result in results:
-            score = result[0]
-            dataset_info = result[1]
+            score = result.score
+            dataset_info = result.info
 
             formatted_results.append((
                 dataset_info.title,

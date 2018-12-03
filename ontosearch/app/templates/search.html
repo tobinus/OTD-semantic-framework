@@ -77,8 +77,8 @@
 	    <table id="scorevec">
 		{% for score in scorevec %}
 		<tr>		    
-		    <td> {{ score[0] }} </td>
-		    <td> {{ score[1] }} </td>		
+		    <td> {{ score.concept }} </td>
+		    <td> {{ score.similarity }} </td>
 		</tr>
 		{% endfor %}
 	    </table>
@@ -88,16 +88,16 @@
 	    {% for result in results %}
 	    <tr>
 		<td>
-		    <h3><a href='{{ result[1][2]|safe }}'>{{ result[1][0]|safe }}</a></h3><br/>
-		    {{ result[1][1]|safe }}<br/>
-		    <a href='{{ result[1][2]|safe }}'>{{ result[1][2]|safe }}</a><br/>
-		    Score: {{ result[0]|safe }}
+		    <h3><a href='{{ result.info.uri|safe }}'>{{ result.info.title|safe }}</a></h3><br/>
+		    {{ result.info.description|safe }}<br/>
+		    <a href='{{ result.info.uri|safe }}'>{{ result.info.uri|safe }}</a><br/>
+		    Score: {{ result.score|safe }}
 
 		    <table id="vecres">
-			{% for vecres in result[2] %}
+			{% for similarity in result.concepts %}
 			<tr>
-			    <td>{{ vecres[0] }}</td>
-			    <td>{{ vecres[1] }}</td>
+			    <td>{{ similarity.concept }}</td>
+			    <td>{{ similarity.similarity }}</td>
 			</tr>
 			{% endfor %}
 		    </table>
