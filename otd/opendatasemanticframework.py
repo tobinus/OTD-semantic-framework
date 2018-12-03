@@ -202,7 +202,7 @@ class OpenDataSemanticFramework:
         df = sv.append(self.cds[cds_name])
         data = cosine_similarity(df)
         df1 = pd.DataFrame(data, columns=df.index, index=df.index)
-        f =  df1.loc[query].sort_values(ascending=False)[1:]
+        f =  df1.loc[query].sort_values(ascending=False).drop(query)
         relvec = []
         for x in f.index:
             data = (list(zip(self.cds[cds_name].loc[x].index, self.cds[cds_name].loc[x].as_matrix())))
