@@ -1,22 +1,20 @@
-import os
+import itertools
 from utils.graph import RDF, OTD, DCAT, DCT
 from otd.skosnavigate import SKOSNavigate
 from otd.queryextractor import QueryExtractor
 from otd.semscore import SemScore
 import db.dataframe
 import db.graph
-from scipy.spatial.distance import cosine
 from sklearn.metrics.pairwise import cosine_similarity
-from math import isnan
 from collections import namedtuple
 
 import pandas as pd
 import numpy as np 
-from os.path import isfile
 import clint.textui.progress
 
 
 DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri'))
+SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
 
 
 class OpenDataSemanticFramework:
@@ -197,16 +195,56 @@ class OpenDataSemanticFramework:
         return res
 
     def search_query(self, query, cds_name="all"):
-        sv = self.get_scorevec(query)
-        significant = sorted(list(zip(list(sv.columns),sv.as_matrix()[0])), key=lambda x : x[1], reverse=True)[:5]
-        df = sv.append(self.cds[cds_name])
-        data = cosine_similarity(df)
-        df1 = pd.DataFrame(data, columns=df.index, index=df.index)
-        f =  df1.loc[query].sort_values(ascending=False).drop(query)
-        relvec = []
-        for x in f.index:
-            data = (list(zip(self.cds[cds_name].loc[x].index, self.cds[cds_name].loc[x].as_matrix())))
-            data = sorted(data, key=lambda x:x[1], reverse=True)[:5]
-            relvec.append(data)
-        xs = zip(f.tolist(), map(self.get_dataset_info, list(f.index)), relvec)
-        return ([x for x in xs if x[0] > 0.75], significant)
+        query_concept_sim = self.get_scorevec(query)
+        most_similar_concepts = \
+            sorted(
+                list(
+                    zip(
+                        list(query_concept_sim.columns),
+                        query_concept_sim.values[0]
+                    )
+                ),
+                key=lambda x: x[1],
+                reverse=True
+            )[:5]
+        entry_concept_sim = query_concept_sim.append(
+            self.cds[cds_name],
+            sort=True
+        )
+        sim_data = cosine_similarity(entry_concept_sim)
+        entry_entry_sim = pd.DataFrame(
+            sim_data,
+            columns=entry_concept_sim.index,
+            index=entry_concept_sim.index
+        )
+        dataset_query_sim = entry_entry_sim\
+            .loc[query]\
+            .sort_values(ascending=False)\
+            .drop(query)
+        dataset_concepts = []
+        for dataset in dataset_query_sim.index:
+            concepts_for_dataset = list(
+                zip(
+                    self.cds[cds_name].loc[dataset].index,
+                    self.cds[cds_name].loc[dataset].values
+                )
+            )
+            closest_concepts_for_dataset = sorted(
+                concepts_for_dataset,
+                key=lambda x: x[1],
+                reverse=True
+            )[:5]
+            dataset_concepts.append(closest_concepts_for_dataset)
+        results = zip(
+            dataset_query_sim.tolist(),
+            map(self.get_dataset_info, list(dataset_query_sim.index)),
+            dataset_concepts
+        )
+        results = map(
+            lambda result_tuple: SearchResult(*result_tuple),
+            results
+        )
+        return (
+            list(filter(lambda result: result.score > 0.75, results)),
+            most_similar_concepts
+        )
