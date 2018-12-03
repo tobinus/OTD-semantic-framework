@@ -73,9 +73,20 @@ def register_search(add_parser):
 
 
 def do_search(args):
-    # TODO: Split up into more re-usable functions
+    results, query_concept_similarities = make_search(args.query, args.simtype)
+
+    if args.simple:
+        print_func = print_results_simple
+    elif args.details:
+        print_func = print_results_detailed
+    else:
+        print_func = print_results_normally
+
+    print_func(results, query_concept_similarities, args.query)
+
+
+def make_search(query, simtype):
     from otd.opendatasemanticframework import OpenDataSemanticFramework
-    from tabulate import tabulate
     from sys import stderr
 
     print('Loading indices and matrices…', file=stderr)
@@ -85,77 +96,79 @@ def do_search(args):
     ontology.load_similarity_graph("auto", 'autotag', None)
 
     print('Performing query…', file=stderr)
-    # TODO: Find proper names for xs and sv variables
-    results, sv = ontology.search_query(args.query, cds_name=args.simtype)
-    del ontology
+    return ontology.search_query(query, cds_name=simtype)
 
-    if args.simple:
-        # Simply print URIs (for processing by other script)
-        for result in results:
-            print(result.info.uri)
 
-    elif args.details:
-        # Print all the information we have
-        print(f'Your query for "{args.query}" matched the following concepts:')
-        print(tabulate(
-            sv,
-            headers=('Concept', 'Similarity score'),
-            tablefmt='psql'
+def print_results_simple(results, _1, _2):
+    # Simply print URIs (for processing by other script)
+    for result in results:
+        print(result.info.uri)
+
+
+def print_results_detailed(results, query_concept_similarities, query):
+    # Print all the information we have
+    from tabulate import tabulate
+    print(f'Your query for "{query}" matched the following concepts:')
+    print(tabulate(
+        query_concept_similarities,
+        headers=('Concept', 'Similarity score'),
+        tablefmt='psql'
+    ))
+    print()
+
+    print(f'Your query for "{query}" matched the following datasets:')
+
+    formatted_results = []
+    for result in results:
+        score = result.score
+        dataset_info = result.info
+        matched_concepts = result.concepts
+
+        formatted_concepts = tabulate(
+            matched_concepts,
+            tablefmt='plain',
+        )
+        formatted_results.append((
+            dataset_info.uri,
+            score,
+            dataset_info.title,
+            dataset_info.description,
+            formatted_concepts,
         ))
-        print()
+    print(tabulate(
+        formatted_results,
+        headers=(
+            'URI',
+            'Score',
+            'Title',
+            'Description',
+            'Matching concepts+score',
+        ),
+        tablefmt='grid',
+    ))
 
-        print(f'Your query for "{args.query}" matched the following datasets:')
 
-        formatted_results = []
-        for result in results:
-            score = result.score
-            dataset_info = result.info
-            matched_concepts = result.concepts
+def print_results_normally(results, _, query):
+    # Print information probably sought by the average user(?)
+    from tabulate import tabulate
+    print(f'The following datasets matched your query for {query}:')
 
-            formatted_concepts = tabulate(
-                matched_concepts,
-                tablefmt='plain',
-            )
-            formatted_results.append((
-                dataset_info.uri,
-                score,
-                dataset_info.title,
-                dataset_info.description,
-                formatted_concepts,
-            ))
-        print(tabulate(
-            formatted_results,
-            headers=(
-                'URI',
-                'Score',
-                'Title',
-                'Description',
-                'Matching concepts+score',
-            ),
-            tablefmt='grid',
+    formatted_results = []
+    for result in results:
+        score = result.score
+        dataset_info = result.info
+
+        formatted_results.append((
+            dataset_info.title,
+            score,
+            dataset_info.description,
         ))
-
-    else:
-        # Print information probably sought by the average user(?)
-        print(f'The following datasets matched your query for {args.query}:')
-
-        formatted_results = []
-        for result in results:
-            score = result.score
-            dataset_info = result.info
-
-            formatted_results.append((
-                dataset_info.title,
-                score,
-                dataset_info.description,
-            ))
-        print(tabulate(
-            formatted_results,
-            headers=(
-                'Title',
-                'Score',
-                'Description',
-            ),
-            tablefmt='psql',
-        ))
-
+    print(tabulate(
+        formatted_results,
+        headers=(
+            'Title',
+            'Score',
+            'Description',
+        ),
+        tablefmt='psql',
+    ))
