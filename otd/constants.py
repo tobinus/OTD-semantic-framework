@@ -1,0 +1,9 @@
+SIMTYPE_AUTOTAG = 'auto'
+SIMTYPE_SIMILARITY = 'tagged'
+SIMTYPE_ALL = 'all'
+
+simtypes = (
+    SIMTYPE_SIMILARITY,
+    SIMTYPE_AUTOTAG,
+    SIMTYPE_ALL
+)

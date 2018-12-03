@@ -134,6 +134,14 @@ class OpenDataSemanticFramework:
 
         self.cds[name] = result
 
+        self.add_to_all_cdsm(result)
+
+    def add_to_all_cdsm(self, cdsm):
+        if 'all' in self.cds:
+            self.cds['all'] = self.cds['all'].append(cdsm)
+        else:
+            self.cds['all'] = cdsm
+
     def compute_cds(self, sgraph, name):
         cds = pd.DataFrame(None, columns=self.concepts)
 

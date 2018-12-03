@@ -1,5 +1,6 @@
 from os.path import dirname
 from utils.common_cli import make_subcommand_gunicorn
+from otd.constants import SIMTYPE_ALL, SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, simtypes
 
 
 def register_subcommand(add_parser):
@@ -57,10 +58,11 @@ def register_search(add_parser):
 
     parser.add_argument(
         'simtype',
-        choices=('all', 'tagged', 'auto'),
-        help='The set of dataset-concept links to use. "tagged" is the '
-             'manually tagged similarity graph, "auto" is the automatically '
-             'generated autotag graph, while "all" uses both.'
+        choices=simtypes,
+        help=f'The set of dataset-concept links to use. "{SIMTYPE_SIMILARITY}" '
+        f'is the manually tagged similarity graph, "{SIMTYPE_AUTOTAG}" is the '
+        f'automatically generated autotag graph, while "{SIMTYPE_ALL}" uses '
+        f'both.'
     )
     parser.add_argument(
         'query',
@@ -91,9 +93,8 @@ def make_search(query, simtype):
 
     print('Loading indices and matrices…', file=stderr)
     ontology = OpenDataSemanticFramework(None, None, True)
-    # TODO: Use constants to refer to the different CDS matrices
-    ontology.load_similarity_graph("tagged", 'similarity', None)
-    ontology.load_similarity_graph("auto", 'autotag', None)
+    ontology.load_similarity_graph(SIMTYPE_SIMILARITY, 'similarity', None)
+    ontology.load_similarity_graph(SIMTYPE_AUTOTAG, 'autotag', None)
 
     print('Performing query…', file=stderr)
     return ontology.search_query(query, cds_name=simtype)
