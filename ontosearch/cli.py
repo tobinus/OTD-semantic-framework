@@ -89,7 +89,6 @@ def do_search(args):
     results, sv = ontology.search_query(args.query, cds_name=args.simtype)
     del ontology
 
-    print('Formatting output…', file=stderr)
     if args.simple:
         # Simply print URIs (for processing by other script)
         for result in results:
@@ -97,7 +96,7 @@ def do_search(args):
 
     elif args.details:
         # Print all the information we have
-        print('Your query matched the following concepts:')
+        print(f'Your query for "{args.query}" matched the following concepts:')
         print(tabulate(
             sv,
             headers=('Concept', 'Similarity score'),
@@ -105,7 +104,7 @@ def do_search(args):
         ))
         print()
 
-        print('Your query matched the following datasets:')
+        print(f'Your query for "{args.query}" matched the following datasets:')
 
         formatted_results = []
         for result in results:
@@ -133,12 +132,12 @@ def do_search(args):
                 'Description',
                 'Matching concepts+score',
             ),
-            tablefmt='psql',
+            tablefmt='grid',
         ))
 
     else:
         # Print information probably sought by the average user(?)
-        print('The following datasets matched your query:')
+        print(f'The following datasets matched your query for {args.query}:')
 
         formatted_results = []
         for result in results:
