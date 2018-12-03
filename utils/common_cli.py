@@ -1,5 +1,39 @@
 import argparse
+import sys
+import os
 import functools
+
+
+class BrokenPipeHandling:
+    """
+    Handle broken pipes, which occur when piping to another program which ends
+    before reading everything.
+
+    This will stop the program if a broken pipe occurs, and suppress any
+    exception that would normally have occurred, had you not handled broken
+    pipes.
+
+    Based on https://docs.python.org/3/library/signal.html#note-on-sigpipe
+    """
+    def __enter__(self):
+        return None
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        if exc_type is None:
+            # There might be a broken pipe incoming, so try to make it happen
+            try:
+                sys.stdout.flush()
+                sys.stderr.flush()
+            except BrokenPipeError:
+                exc_type = BrokenPipeError
+
+        if exc_type is BrokenPipeError:
+            # Whatever read our output closed on us, prepare for final flush
+            devnull = os.open(os.devnull, os.O_WRONLY)
+            os.dup2(devnull, sys.stdout.fileno())
+            os.dup2(devnull, sys.stderr.fileno())
+            # Python flushes when exiting. We exit with error
+            sys.exit(1)
 
 
 def make_subcommand_gunicorn(parser, cwd=None, module='app:app', pre_hook=None):

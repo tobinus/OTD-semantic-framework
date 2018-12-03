@@ -8,6 +8,8 @@ import importlib
 import sys
 import traceback
 
+from utils.common_cli import BrokenPipeHandling
+
 
 """
 Instead of defining all subcommands and their argparse options here, while the
@@ -57,7 +59,8 @@ def main():
     else:
         # Yes, run the function associated with this command, and give it the
         # parsed arguments
-        result = args.func(args)
+        with BrokenPipeHandling():
+            result = args.func(args)
 
         try:
             exit_code = int(result)
