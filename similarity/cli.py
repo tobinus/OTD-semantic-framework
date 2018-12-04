@@ -25,6 +25,7 @@ subcommand = GraphSubcommand(
 def register_subcommand(add_parser):
     parser, subcommands = subcommand.register_subcommand(add_parser)
     register_parse_command(subcommands.add_parser)
+    register_csv_prepare_command(subcommands.add_parser)
 
 
 def register_parse_command(add_parser):
@@ -62,3 +63,36 @@ def do_parse_command(args):
     from similarity.parse import csv2rdf
     with open(args.csv_file, 'r', newline='') as csv_fn:
         return csv2rdf(csv_fn, args.dialect)
+
+
+def register_csv_prepare_command(add_parser):
+    help_text = (
+        'Prepare CSV file which can be filled out and imported as a new '
+        'similarity graph.'
+    )
+    parser = add_parser(
+        'csv_prepare',
+        help=help_text,
+        description=help_text
+    )
+    parser.add_argument(
+        '--dialect',
+        '-d',
+        help='The dialect to use when writing the CSV file. '
+             '(Default: %(default)s)',
+        choices=csv.list_dialects(),
+        default='excel',
+    )
+    parser.add_argument(
+        'csv_file',
+        help='Path to the CSV file to create.',
+    )
+    parser.set_defaults(
+        func=do_csv_prepare_command
+    )
+
+
+def do_csv_prepare_command(args):
+    from similarity.csv_prepare import prepare_csv
+    with open(args.csv_file, 'w', newline='') as csv_fn:
+        prepare_csv(csv_fn, args.dialect)
