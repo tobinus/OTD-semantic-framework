@@ -225,7 +225,7 @@ def update(graph, uuid, key='ontology', **kwargs):
 
 
 def get_concepts(uuid, **kwargs):
-    g = get(uuid, **kwargs)
+    g = get_ontology(uuid, raise_on_no_uuid=False, **kwargs)
     concept_dict = {}
     for concept in g.subjects(RDF.type, SKOS.Concept):
         label = str(second(first(g.preferredLabel(concept, lang='en'))))

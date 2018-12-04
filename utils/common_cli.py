@@ -231,6 +231,7 @@ class GraphSubcommand:
             dest="action"
         )
         self.register_crud_commands(subcommands)
+        return parser, subcommands
 
     def register_crud_commands(self, subparser):
         subparsers = dict()
