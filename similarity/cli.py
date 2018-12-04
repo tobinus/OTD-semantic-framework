@@ -1,10 +1,12 @@
 import csv
-from utils.common_cli import GraphSubcommand, register_arguments_for_rdf_output, \
+from utils.common_cli import GraphSubcommand, \
+    register_arguments_for_rdf_output, \
     with_rdf_output
 
 
-def do_generate(args):
+def do_generate(_):
     from similarity.generate import create_manual_tag_graph
+
     return create_manual_tag_graph()
 
 
@@ -22,10 +24,10 @@ subcommand = GraphSubcommand(
 
 def register_subcommand(add_parser):
     parser, subcommands = subcommand.register_subcommand(add_parser)
-    register_import_command(subcommands.add_parser)
+    register_parse_command(subcommands.add_parser)
 
 
-def register_import_command(add_parser):
+def register_parse_command(add_parser):
     parser = add_parser(
         'parse',
         help='Create RDF graph out of manual tagging done as CSV.',
@@ -51,13 +53,12 @@ def register_import_command(add_parser):
     )
     register_arguments_for_rdf_output(parser)
     parser.set_defaults(
-        func=do_import_command
+        func=do_parse_command
     )
 
 
 @with_rdf_output
-def do_import_command(args):
+def do_parse_command(args):
     from similarity.parse import csv2rdf
     with open(args.csv_file, 'r', newline='') as csv_fn:
         return csv2rdf(csv_fn, args.dialect)
-
