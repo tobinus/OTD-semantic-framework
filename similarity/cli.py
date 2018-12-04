@@ -24,13 +24,13 @@ subcommand = GraphSubcommand(
 
 def register_subcommand(add_parser):
     parser, subcommands = subcommand.register_subcommand(add_parser)
-    register_parse_command(subcommands.add_parser)
+    register_csv_parse_command(subcommands.add_parser)
     register_csv_prepare_command(subcommands.add_parser)
 
 
-def register_parse_command(add_parser):
+def register_csv_parse_command(add_parser):
     parser = add_parser(
-        'parse',
+        'csv_parse',
         help='Create RDF graph out of manual tagging done as CSV.',
         description='Create RDF graph out of manual tagging done as CSV. '
                     'The first row should be column labels, with "Dataset" '
@@ -38,7 +38,8 @@ def register_parse_command(add_parser):
                     '"Concepts" has a comma-separated list of concepts (either '
                     'full or just the identifying part of the concept URI), or '
                     'each concept has its own column, where any non-empty cells'
-                    ' indicate an association.',
+                    ' indicate an association. If you use the csv_prepare '
+                    'command, you get a properly formatted CSV to fill in.',
     )
     parser.add_argument(
         '--dialect',
@@ -54,13 +55,13 @@ def register_parse_command(add_parser):
     )
     register_arguments_for_rdf_output(parser)
     parser.set_defaults(
-        func=do_parse_command
+        func=do_csv_parse_command
     )
 
 
 @with_rdf_output
-def do_parse_command(args):
-    from similarity.parse import csv2rdf
+def do_csv_parse_command(args):
+    from similarity.csv_parse import csv2rdf
     with open(args.csv_file, 'r', newline='') as csv_fn:
         return csv2rdf(csv_fn, args.dialect)
 

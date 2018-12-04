@@ -1,7 +1,7 @@
 import csv
 from db import graph
 from utils.graph import RDF, DCAT, DCT, SKOS
-from similarity.parse import get_fragment
+from similarity.csv_parse import get_fragment
 
 
 def prepare_csv(csv_fn, dialect):
