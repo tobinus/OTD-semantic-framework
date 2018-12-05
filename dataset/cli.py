@@ -37,4 +37,23 @@ subcommand = GraphSubcommand(
 
 
 def register_subcommand(add_parser):
-    return subcommand.register_subcommand(add_parser)
+    parser, subcommand_parser = subcommand.register_subcommand(add_parser)
+    register_append(subcommand_parser.add_parser)
+
+
+def register_append(add_parser):
+    parser = add_parser(
+        'append',
+        help='Add more datasets to an existing dataset graph.',
+        description='Add one or more datasets to an existing dataset graph.'
+    )
+    parser.add_argument(
+        '--package-list',
+        help='Import all datasets matching a certain search in a CKAN API. '
+             'The URL you use here should be '
+    )
+    parser.add_argument(
+        'dataset',
+        help=''
+    )
+
