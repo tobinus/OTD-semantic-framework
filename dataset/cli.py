@@ -6,22 +6,24 @@ def adjust_parsers(subparsers):
     create_parser = subparsers['create']
 
     generate_parser.add_argument(
-        'ckan_instance',
-        help='URL of CKAN instance to import datasets from.',
+        'ckan',
+        help='URL of CKAN instance to import datasets from, or URL to API call '
+             'using package_search, for limiting datasets to import.',
     )
     create_parser.add_argument(
         '--ckan',
-        help='URL of CKAN instance to import datasets from. Mandatory if not '
-             'importing from file.',
-        dest='ckan_instance',
+        help='URL of CKAN instance to import datasets from, or URL to API call '
+             'using package_search, for limiting datasets to import. Mandatory '
+             'if not importing from file.',
+        dest='ckan',
     )
 
 
 def do_generate(args):
-    if not args.ckan_instance:
+    if not args.ckan:
         raise ValueError('Please provide a CKAN instance when generating!')
     from dataset.generate import generate_dataset
-    return generate_dataset(args.ckan_instance)
+    return generate_dataset(args.ckan)
 
 
 subcommand = GraphSubcommand(
