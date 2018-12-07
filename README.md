@@ -1,8 +1,8 @@
 # OTD-semantic-framework
-Ontology Based Semantic Framework for Open Transport Data 
+Ontology Based Semantic Search for Open Transport Data 
 
 This repository contains source-code and stubs of code used in the development
-of the prototype OTD-semantic-framework. Its purpose is to help developers find
+of the prototype **DataOntoSearch**. Its purpose is to help developers find
 the datasets they want to use, by not requiring them to use the exact same words
 in their search queries as those used by the dataset publishers.
 
@@ -13,18 +13,33 @@ This guide assumes you use Pipenv, but you may also use virtualenv/pip directly
 using the requirements.txt files (though support for this may be dropped at a
 future point).
 
-1. Install Pipenv
-2. While in this directory, run `pipenv install`
+**Reading this guide**: Any Python commands in the instructions assume you
+already have the virtual environment loaded. With _Pipenv_, you do this by
+running `pipenv shell`, or you can prepend `pipenv run` to whatever you want to
+run inside the virtual environment. With Pip and Virtualenv, you do this by
+sourcing the `activate` inside the virtual environment folder. For example, if
+the virtual environment folder is called `venv`, you run `. venv/bin/activate`.
+
+1. (Fork and) clone this repository, so you have a copy locally
+1. Install Pipenv (if so desired)
+2. While in this directory, run `pipenv install`. Pip+Virtualenv users should
+   set up the virtual environment and install from `requirements.txt` now
 4. Follow the link in `ordvev/README.md` and extract the files into the `ordvev/` directory
-5. Configure (and install if you haven't) MongoDB so you have a user (with password) which can access it
+5. Configure (and install if you haven't) MongoDB so you have a user (with password) which can access it. You will also need to enable authentication. See for example the [official guide from MongoDB](https://docs.mongodb.com/manual/tutorial/enable-authentication/).
 6. Create a file called `.env` in this directory, where you define the variables:
    * `DB_USERNAME`: Username to use when logging in to MongoDB
    * `DB_PASSWD`: Password to use when logging in to MongoDB
    * `DB_HOST`: Name of server where MongoDB runs. Defaults to localhost
-   * `DB_NAME`: Name of database to use in MongoDB
+   * `DB_NAME`: Name of database to use in MongoDB. Defaults to ontodb
    
-   These can also be set as environment variables.
-7. Download the different data for [nltk](https://www.nltk.org/data.html), used for word tokenizing, removing stop words and the like. You can do this by running `pipenv run python dataontosearch.py nltk_data` (or run `pipenv shell` and then run commands without prefixing them with `pipenv run` every time).
+   To define for example `DB_USERNAME` to be `john`, you would write:
+   
+   ```bash
+   DB_USERNAME=john
+   ```
+   
+   These can also be set as [environment variables](https://en.wikipedia.org/wiki/Environment_variable).
+7. Download the different data for [nltk](https://www.nltk.org/data.html), used for word tokenizing, removing stop words and the like. You can do this by running `python dataontosearch.py nltk_data`.
 
 
 
@@ -105,15 +120,15 @@ Suggested approaches:
 
 #### Upload ontology
 
-1. Run `pipenv run python dataontosearch.py ontology create`
+1. Run `python dataontosearch.py ontology create`
 
-There are other commands you can use to manipulate and display ontologies, run `pipenv run python dataontosearch.py ontology --help` for a full list.
+There are other commands you can use to manipulate and display ontologies, run `python dataontosearch.py ontology --help` for a full list.
 
 ### Pre-processing of datasets
 
 #### Import (new) datasets
 
-1. Run `pipenv run python dataontosearch.py dataset create --ckan <CKAN-URL>`
+1. Run `python dataontosearch.py dataset create --ckan <CKAN-URL>`
    where you replace `<CKAN-URL>` with the base URL to your CKAN instance. The
    instance must also expose RDF information about each dataset.
 
@@ -125,12 +140,12 @@ You may also create your own graph, and load it into the database. Use the
 
 You may use the existing tags. Simply run:
 
-`pipenv run python dataontosearch.py similarity create`
+`python dataontosearch.py similarity create`
 
 Alternatively, you can do custom tagging, though this has not been tested at
 this point.
 
-1. Run `pipenv run python dataontosearch.py dataset_tagger`
+1. Run `python dataontosearch.py dataset_tagger`
 2. Visit http://localhost:8000/about in your web browser
 3. Follow the instructions for tagging datasets, using the UID you wrote down
    when you uploaded an ontology
@@ -140,11 +155,15 @@ this point.
 
 Run the following:
 
-`pipenv run python dataontosearch.py autotag create`
+`python dataontosearch.py autotag create`
 
 Again, append `--help` to see available options.
 
-This script can take a long time to run, like 45 minutes or even an hour.
+**WARNING 1**: The autotag script requires around 2 GB of RAM(!) for the Python process, meaning
+that it may get killed on systems with not enough memory. You may choose to run
+the autotag process on a different system, instead of on the server intended for serving the search.
+
+**WARNING 2**: This script can take a long time to run, like 45 minutes or even an hour.
 It is not able to continue where it left out, so you might want to run this in
 `tmux`, `screen` or something similar when running on a server over SSH (so the
 process survives a disconnect).
@@ -152,9 +171,9 @@ process survives a disconnect).
 
 ### Run search
 
-1. Run `pipenv run python dataontosearch.py serve`
+1. Run `python dataontosearch.py serve`
 2. The webserver will perform some indexing, creating necessary matrices. It will give you a signal when it's done
 3. You may now search by visiting http://localhost:8000
 
 Alternatively, you may search using the command line interface directly.
-Run `pipenv run python dataontosearch.py search --help` for more information.
+Run `python dataontosearch.py search --help` for more information.
