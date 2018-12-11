@@ -1,9 +1,10 @@
 # Fetch information about datasets and store it
 from sys import stderr
 from urllib.parse import urlparse
+import requests
+import clint.textui
 from utils.graph import create_bound_graph
 from utils import paginated_api
-import requests
 
 
 def generate_dataset(ckan_url):
@@ -19,12 +20,15 @@ def generate_dataset(ckan_url):
 
     # Using this list, download DCAT RDF for each dataset
     graph = create_bound_graph()
-    for res in packages:
+    for res in clint.textui.progress.bar(
+            packages,
+            'Processing datasets… ',
+            expected_size=count
+    ):
         dataset = f'{ckan_url}/dataset/{res}.rdf'
         data = requests.get(dataset)
         data.raise_for_status()
         graph.parse(data=data.text)
-
     return graph
 
 
@@ -40,7 +44,7 @@ def get_ckan_base_from_api_url(api_url):
     return api_url[:pos]
 
 
-def get_datasets_from_package_search(api_url, page_size=100):
+def get_datasets_from_package_search(api_url, page_size=50):
     def get_results(response):
         from_json = response.json()
         return from_json.get('result', dict()).get('results', tuple())
@@ -62,6 +66,8 @@ def get_datasets_from_package_search(api_url, page_size=100):
 
 
 def get_datasets_from_package_list(ckan_url):
+    package_search_url = f'{ckan_url}/api/3/action/package_search'
+
     # Strip off any trailing slash, since we add slash ourselves
     if ckan_url[-1] == '/':
         ckan_url = ckan_url[:-1]
@@ -71,28 +77,27 @@ def get_datasets_from_package_list(ckan_url):
 
     def get_count(_):
         unrelated_generator, count = get_datasets_from_package_search(
-            f'{ckan_url}/api/3/action/package_search',
+            package_search_url,
             1
         )
         return count
 
-    def check_has_stayed(response):
-        # Were we redirected to package search? (Done by catalog.data.gov)
-        if is_package_search_url(response.url):
-            return get_datasets_from_package_search(response.url)
+    try:
+        return paginated_api.fetch(
+            requests.session(),
+            f'{ckan_url}/api/3/action/package_list',
+            200,
+            'offset',
+            'limit',
+            get_results,
+            get_count,
+            False,
+        )
+    except paginated_api.RedirectOccurred as e:
+        if is_package_search_url(e.new_url):
+            return get_datasets_from_package_search(package_search_url)
         else:
-            return True
-
-    return paginated_api.fetch(
-        requests.session(),
-        f'{ckan_url}/api/3/action/package_list',
-        200,
-        'offset',
-        'limit',
-        get_results,
-        get_count,
-        check_has_stayed
-    )
+            raise e
 
 
 def user_confirms_action(count):

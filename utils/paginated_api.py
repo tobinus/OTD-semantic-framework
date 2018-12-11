@@ -6,7 +6,7 @@ def fetch(
         limit_param_name,
         result_getter,
         count_getter,
-        response_validator=None
+        allow_redirects=True,
 ):
     """
     Fetch records and number of records from a paginated API endpoint.
@@ -29,10 +29,9 @@ def fetch(
             a time. If no records could be found, it should return empty tuple.
         count_getter: Function which accepts a requests.Response, and returns
             the number of records that can be fetched from the given url.
-        response_validator: Function which accepts a requests.Response, and
-            does extra validity checks. If this returns anything but True, it
-            will be made into a ValidationFailedError (with anything returned
-            used as message). You may also raise an exception yourselves.
+        allow_redirects: Set this to False to not follow any redirects, instead
+            raising a RedirectOccurred exception. The redirects will be followed
+            to find what the final URL is, though.
 
     Returns:
         Tuple of two items. The first item is a generator which yields records
@@ -54,19 +53,20 @@ def fetch(
         # Make request
         this_response = requests_session.get(
             url,
-            params=params
+            params=params,
+            allow_redirects=allow_redirects
         )
 
         # Check response validity, first by looking at status code
         this_response.raise_for_status()
-        # Then use custom hook, if provided
-        if response_validator:
-            valid_response = response_validator(this_response)
-            if valid_response is not True:
-                if valid_response is False:
-                    raise ValidationFailedError()
-                else:
-                    raise ValidationFailedError(valid_response)
+        # Then check if it's a redirect, in case we don't allow that
+        if (not allow_redirects) and this_response.is_redirect:
+            final_response = tuple(requests_session.resolve_redirects(
+                this_response,
+                this_response.request
+            ))[-1]
+            final_url = final_response.url
+            raise RedirectOccurred(url, final_url)
 
         return this_response
 
@@ -84,6 +84,7 @@ def fetch(
             if num_fetched != 0:
                 current_response = _do_request(offset=num_fetched)
 
+            num_fetched_at_start = num_fetched
             # Go through the records from this page
             for record in result_getter(current_response):
                 yield record
@@ -91,7 +92,7 @@ def fetch(
             # Catch situations where count is wrong, avoiding endless loop.
             # This could occur if for example one record is removed while we
             # loop over the pages.
-            else:
+            if num_fetched_at_start == num_fetched:
                 # Zero rows fetched by last request, abort
                 raise RuntimeError(
                     f'Expected there to be {count} records, but list of '
@@ -101,5 +102,11 @@ def fetch(
     return result_generator(response), count
 
 
-class ValidationFailedError(Exception):
-    pass
+class RedirectOccurred(Exception):
+    def __init__(self, original, new):
+        self.original_url = original
+        self.new_url = new
+        self.message = f'A redirect occurred from "{original}" to "{new}"'
+
+    def __str__(self):
+        return self.message
