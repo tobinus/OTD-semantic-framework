@@ -5,6 +5,8 @@ import requests
 import clint.textui
 from utils.graph import create_bound_graph
 from utils import paginated_api
+import traceback
+import rdflib.exceptions
 
 
 def generate_dataset(ckan_url):
@@ -26,9 +28,28 @@ def generate_dataset(ckan_url):
             expected_size=count
     ):
         dataset = f'{ckan_url}/dataset/{res}.rdf'
-        data = requests.get(dataset)
-        data.raise_for_status()
-        graph.parse(data=data.text)
+        # Guard against errors occurring, so they don't ruin an entire run
+        try:
+            data = requests.get(dataset)
+            data.raise_for_status()
+        except requests.RequestException:
+            traceback.print_exc(limit=10)
+            print(
+                f'An error occurred while downloading {dataset}. Skipping…',
+                file=stderr,
+            )
+            continue
+
+        # Guard against errors occurring during parsing as well, but don't
+        # catch other errors because they might leave the graph in a poor state
+        try:
+            graph.parse(data=data.text)
+        except rdflib.exceptions.ParserError:
+            traceback.print_exc(limit=10)
+            print(
+                f'An error occurred while parsing RDF for {dataset}. Skipping…',
+                file=stderr,
+            )
     return graph
 
 
