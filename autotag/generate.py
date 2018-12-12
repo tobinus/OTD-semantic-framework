@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from nltk.tokenize import word_tokenize
 from rdflib import URIRef, Literal, XSD
 import db.graph
-from ordvev.ordvev import OrdVev
+from utils import word_similarity
 from utils.graph import RDF, DCAT, DCT, SKOS, QEX, OTD, create_bound_graph
 from utils.nlp import normalize, remove_stopwords_nb
 
@@ -14,15 +14,21 @@ def generate_autotag(
         dataset_uuid,
         ontology_uuid,
         quiet,
+        language,
         semantic_threshold,
         min_concepts
 ):
     corpus = get_dataset_texts(dataset_uuid, quiet=quiet)
-    concept_labels = get_concept_labels(ontology_uuid, quiet=quiet)
+    concept_labels = get_concept_labels(
+        ontology_uuid,
+        quiet=quiet,
+        language=language
+    )
     similarity_graph = create_autotag_graph(
         corpus,
         concept_labels,
         quiet,
+        language,
         semantic_threshold,
         min_concepts,
     )
@@ -59,7 +65,7 @@ def get_dataset_texts(dataset_uuid, quiet):
     return corpus
 
 
-def get_concept_labels(ontology_uuid, quiet):
+def get_concept_labels(ontology_uuid, quiet, language):
     progress_print(quiet, 'Loading ontology from database…')
     ontology = db.graph.get_ontology(ontology_uuid, False)
 
@@ -70,12 +76,12 @@ def get_concept_labels(ontology_uuid, quiet):
         pref = [
             o.value
             for o in ontology.objects(concept, SKOS.prefLabel)
-            if o.language == 'nb'
+            if o.language == language
         ]
         alt = [
             o.value
             for o in ontology.objects(concept, SKOS.altLabel)
-            if o.language == 'nb'
+            if o.language == language
         ]
         concept_labels[concept] = pref+alt
 
@@ -86,12 +92,14 @@ def create_autotag_graph(
         corpus,
         concept_labels,
         quiet,
+        language,
         semantic_threshold,
         min_concepts,
 ):
     progress_print(quiet, 'Loading dictionary used to find similar words.')
     progress_print(quiet, 'This is known to take 7 minutes or more, hang on…')
-    ordvev = OrdVev()
+    comparator = word_similarity.get_comparator(language)
+    comparator.ensure_loaded_corpus()
     progress_print(quiet, 'Done loading dictionary.')
 
     similarity_graph = create_bound_graph()
@@ -109,7 +117,7 @@ def create_autotag_graph(
         scorelist = []
         for concept, labels in concept_labels.items():
             scores = tuple(map(
-                lambda token: compute_score(token, labels, ordvev),
+                lambda token: compute_score(token, labels, comparator),
                 tokens
             ))
             score = max(scores, default=0.0)
@@ -126,8 +134,8 @@ def create_autotag_graph(
     return similarity_graph
 
 
-def compute_score(word, concept_labels, ordvev):
-    scores = map(lambda label: ordvev.sim_wup(word, label), concept_labels)
+def compute_score(word, concept_labels, comparator):
+    scores = map(lambda label: comparator.compare(word, label), concept_labels)
     return max(scores, default=0.0)
 
 

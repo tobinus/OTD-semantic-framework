@@ -9,7 +9,7 @@ def adjust_parsers(subparsers):
     for parser in relevant_parsers:
         parser.add_argument(
             '--ontology',
-            '-l',
+            '-n',
             help='UUID of ontology graph with the concepts you want to connect '
                  'datasets to (when generating anew). By default, the '
                  'ONTOLOGY_UUID environment variable will be used, falling '
@@ -24,6 +24,14 @@ def adjust_parsers(subparsers):
                  'DATASET_UUID environment variable will be used, falling back '
                  'to the first dataset graph returned by MongoDB.',
             default=None
+        )
+        parser.add_argument(
+            '--language',
+            '-l',
+            help='Language to use to select concept labels and compute word '
+                 'similarity. Must match the language of the dataset metadata.',
+            choices=('nb', 'en'),
+            default='nb'
         )
         parser.add_argument(
             '--min-sim',
@@ -59,6 +67,7 @@ def do_generate(args):
         args.dataset,
         args.ontology,
         args.quiet,
+        args.language,
         args.min_sim,
         args.min_concepts
     )

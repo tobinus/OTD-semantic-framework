@@ -2,8 +2,8 @@ class WordComparator:
     def __init__(self):
         self.__corpus_instance = None
 
-    def load_corpus(self):
-        _ = self._corpus_instance
+    def ensure_loaded_corpus(self):
+        _ = self.compare('helicopter', 'bird')
 
     @property
     def _corpus_instance(self):
@@ -48,23 +48,28 @@ class EnglishWordComparator(WordComparator):
         one_synonyms = corpus_instance.synsets(one)
         another_synonyms = corpus_instance.synsets(another)
 
-        all_pairs = itertools.product(one_synonyms, another_synonyms)
+        valid_one_synonyms = filter(None, one_synonyms)
+        valid_another_synonyms = filter(None, another_synonyms)
+        all_pairs = itertools.product(
+            valid_one_synonyms,
+            valid_another_synonyms
+        )
         similarities = map(
             lambda words: words[0].wup_similarity(words[1]),
             all_pairs
         )
-        return max(similarities, default=0.0)
+        valid_similarities = itertools.filterfalse(
+            lambda s: s is None,
+            similarities
+        )
+        return max(valid_similarities, default=0.0)
 
 
 LANGUAGES = {
-    'no': NorwegianWordComparator,
+    'nb': NorwegianWordComparator,
     'en': EnglishWordComparator,
 }
 
 
 def get_comparator(language):
     return LANGUAGES[language]()
-
-
-def get_available_languages():
-    return tuple(LANGUAGES.keys())
