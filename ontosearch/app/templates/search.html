@@ -60,7 +60,7 @@
 		    {{ form.query(size=42, list='search_suggestions') }}
             <datalist id="search_suggestions">
                 {% for label in concept_labels %}
-                <option label="{{ label }}">
+                <option>{{ label }}</option>
                 {% endfor %}
             </datalist>
 		    {{ form.simtype() }}

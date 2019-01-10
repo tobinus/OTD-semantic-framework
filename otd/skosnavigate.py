@@ -42,6 +42,10 @@ class SKOSNavigate:
         alt  = [l for l in self.graph.objects(concept, SKOS.altLabel) if l.language == 'en']
         return pref+alt
 
+    def all_concept_labels(self):
+        for concept in self.concepts():
+            yield from self.pref_and_alt_labels(concept)
+
     def find_parents(self, node):
         return self.graph.objects(node, SKOS.broader)
 

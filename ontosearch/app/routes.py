@@ -26,8 +26,13 @@ def index():
         form=form,
         results=xs,
         scorevec=sv,
-        concept_labels=['Example suggestion', 'Another example suggestion']
+        concept_labels=get_concept_labels(),
     )
+
+
+def get_concept_labels():
+    return list(ontology.navigator.all_concept_labels())
+
 
 @app.route('/dataset/register', methods=['POST'])
 def dataset_register():
