@@ -36,6 +36,12 @@ class BrokenPipeHandling:
             sys.exit(1)
 
 
+def show_usage_when_no_action(parser):
+    parser.set_defaults(
+        func=lambda _: parser.error('Please specify an action')
+    )
+
+
 def make_subcommand_gunicorn(parser, cwd=None, module='app:app', pre_hook=None):
     # Define the function that will start up Gunicorn with the parameters we
     # have received
@@ -224,6 +230,7 @@ class GraphSubcommand:
             description=f"Command for dealing with {self.key} graphs."
             f" {self.description}"
         )
+        show_usage_when_no_action(parser)
         subcommands = parser.add_subparsers(
             title="actions",
             description=f"These actions are available to manipulate {self.key} "
