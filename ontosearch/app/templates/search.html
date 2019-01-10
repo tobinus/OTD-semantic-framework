@@ -57,7 +57,12 @@
 	    {{ form.hidden_tag() }}
 	    <p>
 		<center>		
-		    {{ form.query(size=42) }}
+		    {{ form.query(size=42, list='search_suggestions') }}
+            <datalist id="search_suggestions">
+                {% for label in concept_labels %}
+                <option label="{{ label }}">
+                {% endfor %}
+            </datalist>
 		    {{ form.simtype() }}
 		    {{ form.submit() }}
 		</center>
