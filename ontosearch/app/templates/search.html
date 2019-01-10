@@ -1,86 +1,84 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            {% if form.is_submitted() %}
-                Results for {{ form.query.data }} – DataOntoSearch
-            {% else %}
-                DataOntoSearch
-            {% endif %}
-        </title>
-        <meta charset="UTF-8">
-        <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="{{ url_for('static', filename='search.css') }}" rel="stylesheet">
-        <script src="/static/css/jquery-latest.js"></script>
-        <script src="/static/js/bootstrap.min.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-    <h1>
-        DataOntoSearch
-    </h1>
-    <p>
-        Using synonyms and near-by concepts to fetch (hopefully) relevant datasets.
-    </p>
-	<form id="searchform" method="post" action={{ url_for('index') }}>
-	    {{ form.hidden_tag() }}
-	    <p>
+<html lang="en">
+<head>
+    <title>
+        {% if form.is_submitted() %}
+            Results for {{ form.query.data }} – DataOntoSearch
+        {% else %}
+            DataOntoSearch
+        {% endif %}
+    </title>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='search.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>
+    DataOntoSearch
+</h1>
+<p>
+    Using synonyms and near-by concepts to fetch (hopefully) relevant datasets.
+</p>
+<section>
+    <form id="searchform" method="post" action={{ url_for('index') }}>
+        {{ form.hidden_tag() }}
+        <p>
             {{ form.query.label() }}
-		    {{ form.query(size=42, list='search_suggestions') }}
+            {{ form.query(size=42, list='search_suggestions') }}
             <datalist id="search_suggestions">
                 {% for label in concept_labels %}
-                <option>{{ label }}</option>
+                    <option>{{ label }}</option>
                 {% endfor %}
             </datalist>
-		    {{ form.simtype() }}
-		    {{ form.submit() }}
-	    </p>
-	</form>
-	{% with messages = get_flashed_messages() %}
-	{% if messages %}
-	{% for message in messages %}
-	<div class="alert alert-info">
-	    <button type="button" class="close" data-dismiss="alert">&times;</button>
-	    {{ message|safe }}
-	</div>
-	{% endfor %}
-	{% endif %}
-	{% endwith %}
-	<p>
-	    <table id="scorevec">
-		{% for score in scorevec %}
-		<tr>		    
-		    <td> {{ score.concept }} </td>
-		    <td> {{ score.similarity }} </td>
-		</tr>
-		{% endfor %}
-	    </table>
-	</p>
-	<p>
-	    <table id="searchres">
-	    {% for result in results %}
-	    <tr>
-		<td>
-		    <h3><a href='{{ result.info.uri|safe }}'>{{ result.info.title|safe }}</a></h3><br/>
-		    {{ result.info.description|safe }}<br/>
-		    <a href='{{ result.info.uri|safe }}'>{{ result.info.uri|safe }}</a><br/>
-		    Score: {{ result.score|safe }}
+            {{ form.simtype() }}
+            {{ form.submit() }}
+        </p>
+    </form>
 
-		    <table id="vecres">
-			{% for similarity in result.concepts %}
-			<tr>
-			    <td>{{ similarity.concept }}</td>
-			    <td>{{ similarity.similarity }}</td>
-			</tr>
-			{% endfor %}
-		    </table>
-		    <!--   		    Vec: {{ result[2]|safe }}  -->
-		</td>
-		
-	    </tr>
-	    {% endfor %}
-	    </table>
-	</p>
-    </body>
+    {% if form.is_submitted() %}
+        <h2>Concepts derived from query</h2>
+        <table class="scorevec">
+            {% for score in scorevec %}
+                <tr>
+                    <td> {{ score.concept }} </td>
+                    <td> {{ score.similarity }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{ message|safe }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</section>
+{% if form.is_submitted() %}
+    <section>
+        <h2>Matching datasets</h2>
+        {% for result in results %}
+            <h3><a href='{{ result.info.uri|safe }}'>{{ result.info.title|safe }}</a></h3>
+            <p>{{ result.info.description|safe }}</p>
+            <p>Score: {{ result.score|safe }}</p>
+
+            <table class="vecres">
+                {% for similarity in result.concepts %}
+                    <tr>
+                        <td>{{ similarity.concept }}</td>
+                        <td>{{ similarity.similarity }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <!--   		    Vec: {{ result[2]|safe }}  -->
+        {% else %}
+            <p>No relevant datasets found.</p>
+        {% endfor %}
+    </section>
+{% endif %}
+</body>
 </html>

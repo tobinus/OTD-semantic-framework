@@ -1,3 +1,17 @@
+html {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h3 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
 img {
     display: block;
     margin-left: auto;
@@ -12,31 +26,18 @@ img {
     color: white;
     text-align: right;
 }
-#searchres {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
 
-#scorevec td, #scorevec th {
+.scorevec td, .scorevec th {
     border: 1px solid #888;
     padding: 8px;
 }
 
-#searchres td, #searchres th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-#vecres td, #vecres th {
+.vecres td, .vecres th {
     border: 1px solid #111;
     padding: 8px;
 }
 
-#searchres th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
