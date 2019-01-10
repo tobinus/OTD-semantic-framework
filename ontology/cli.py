@@ -41,6 +41,33 @@ def do_generate(args):
     return create_graph(args.skos)
 
 
+def do_show_hier(args):
+    from ontology.show_hier import get_concept_list
+    print(get_concept_list(args.uuid))
+
+
+def register_show_hier(add_parser):
+    help_text = (
+        'Print HTML for a hierarchical list of concepts.'
+    )
+    parser = add_parser(
+        'show_hier',
+        help=help_text,
+        description=help_text,
+    )
+    parser.add_argument(
+        'uuid',
+        nargs='?',
+        default=None,
+        help='UUID of the ontology graph to use. When not given, the '
+             'environment variable ONTOLOGY_UUID will be used, or the first '
+             'graph returned by MongoDB.',
+    )
+    parser.set_defaults(
+        func=do_show_hier
+    )
+
+
 subcommand = GraphSubcommand(
     'ontology',
     'ontologies',
@@ -54,4 +81,5 @@ subcommand = GraphSubcommand(
 
 
 def register_subcommand(add_parser):
-    return subcommand.register_subcommand(add_parser)
+    _, subcommands = subcommand.register_subcommand(add_parser)
+    register_show_hier(subcommands.add_parser)
