@@ -11,7 +11,7 @@ import db.log
 
 
 @app.route('/')
-@app.route('/index', methods=['GET', 'POST'] )
+@app.route('/index', methods=['GET', 'POST'])
 def index():
     form = SearchForm()
     xs = []
@@ -21,7 +21,6 @@ def index():
         timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
         log = {'ip':request.remote_addr, 'time':timestamp, 'query':form.query.data, 'type':form.simtype.data, 'res':[x[1][2] for x in xs]}
         db.log.store(log)
-        flash(f'You have done a search. Congratulations.')
     return render_template(
         "search.html",
         form=form,
@@ -29,6 +28,12 @@ def index():
         scorevec=sv,
         concept_labels=get_concept_labels(),
     )
+
+
+@app.route('/message')
+def message():
+    flash('This is an example message.')
+    return redirect('/')
 
 
 def get_concept_labels():

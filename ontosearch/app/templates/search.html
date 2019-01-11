@@ -1,3 +1,4 @@
+{% set precision = 3 %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,16 @@
 <p>
     Using synonyms and near-by concepts to fetch (hopefully) relevant datasets.
 </p>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="message message--{{ category }}">
+                <button type="button" class="message__close" onclick="this.parentNode.remove()">&times;</button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
 <section>
     <form id="searchform" method="post" action={{ url_for('index') }}>
         {{ form.hidden_tag() }}
@@ -41,36 +52,25 @@
             {% for score in scorevec %}
                 <tr>
                     <td> {{ score.concept }} </td>
-                    <td> {{ score.similarity }} </td>
+                    <td> {{ score.similarity|round(precision) }} </td>
                 </tr>
             {% endfor %}
         </table>
     {% endif %}
-
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-info">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-                    {{ message|safe }}
-                </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
 </section>
 {% if form.is_submitted() %}
     <section>
         <h2>Matching datasets</h2>
         {% for result in results %}
-            <h3><a href='{{ result.info.uri|safe }}'>{{ result.info.title|safe }}</a></h3>
-            <p>{{ result.info.description|safe }}</p>
-            <p>Score: {{ result.score|safe }}</p>
+            <h3><a href='{{ result.info.uri }}'>{{ result.info.title }}</a></h3>
+            <p>{{ result.info.description }}</p>
+            <p>Score: {{ result.score|round(precision) }}</p>
 
             <table class="vecres">
                 {% for similarity in result.concepts %}
                     <tr>
                         <td>{{ similarity.concept }}</td>
-                        <td>{{ similarity.similarity }}</td>
+                        <td>{{ similarity.similarity|round(precision) }}</td>
                     </tr>
                 {% endfor %}
             </table>
