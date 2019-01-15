@@ -79,7 +79,7 @@ class OpenDataSemanticFramework:
     def add_similarity_graph(self, name, graph):
         self.cds[name] = self.compute_cds(graph, name)
         if 'all' in self.cds:
-            self.cds['all'] = self.cds['all'].append(self.cds[name])
+            self.cds['all'] = self.cds['all'].append(self.cds[name], sort=True)
         else:
             self.cds['all'] = self.cds[name]
 
@@ -138,7 +138,7 @@ class OpenDataSemanticFramework:
 
     def add_to_all_cdsm(self, cdsm):
         if 'all' in self.cds:
-            self.cds['all'] = self.cds['all'].append(cdsm)
+            self.cds['all'] = self.cds['all'].append(cdsm, sort=True)
         else:
             self.cds['all'] = cdsm
 
