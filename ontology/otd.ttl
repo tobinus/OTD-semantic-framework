@@ -335,10 +335,10 @@ otd:Timetable a skos:Concept ;
     skos:prefLabel "timetable"@en,
         "rutetabell"@nb .
 
-otd:Toolbooth a skos:Concept ;
+otd:Tollbooth a skos:Concept ;
     skos:broader otd:Booth ;
     skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "tool booth"@en,
+    skos:prefLabel "toll booth"@en,
         "bomstasjon"@nb .
 
 otd:TrackingInformation a skos:Concept ;
