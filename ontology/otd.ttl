@@ -279,8 +279,7 @@ otd:Route a skos:Concept ;
 
 otd:RoutePlan a skos:Concept ;
     skos:altLabel "stoppested"@nb ;
-    skos:broader otd:Plan,
-        otd:TravelInformation ;
+    skos:broader otd:TravelInformation ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "route plan"@en,
         "ruteplan"@nb .
@@ -489,23 +488,11 @@ otd:Phenomenon a skos:Concept ;
     skos:prefLabel "phenomenon"@en,
         "fenomen"@nb .
 
-otd:Plan a skos:Concept ;
-    skos:broader otd:Representation ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "plan"@en,
-        "plan"@nb .
-
 otd:Prognosis a skos:Concept ;
     skos:broader otd:Communication ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "prognosis"@en,
         "prognose"@nb .
-
-otd:Representation a skos:Concept ;
-    skos:broader otd:Artifact ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "representation"@en,
-        "representasjon"@nb .
 
 otd:Schedule a skos:Concept ;
     skos:broader otd:TravelInformation ;
