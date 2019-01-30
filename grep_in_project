@@ -1,0 +1,1 @@
+grep --color=always -r --exclude-dir=venv --exclude="*.rdf" --exclude="README*" --exclude="*.tab" --exclude="*.conll" --exclude="*.owl" "$@" . | less -RS
