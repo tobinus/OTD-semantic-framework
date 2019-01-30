@@ -16,7 +16,7 @@ def get_concept_list(uuid=None):
         this_inner_indent = indent * depth
 
         lines.append(f'{this_inner_indent}{get_fragment(str(node))}')
-        children = tuple(navigator.find_children(node))
+        children = tuple(sorted(navigator.find_children(node)))
 
         if node not in visited_nodes and len(children):
             lines.append(f'{this_inner_indent}<ul>')

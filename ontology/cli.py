@@ -68,6 +68,41 @@ def register_show_hier(add_parser):
     )
 
 
+def register_sort_turtle(add_parser):
+    help_text = (
+        'Sort a SKOS turtle file in order of hierarchy.'
+    )
+    parser = add_parser(
+        'sort_turtle',
+        help=help_text,
+        description=help_text,
+    )
+    parser.add_argument(
+        '--prefix',
+        '-p',
+        help='Prefix used before each concept name in turtle file. '
+             '(Default: %(default)s)',
+        default='otd:',
+    )
+    parser.add_argument(
+        'source',
+        help='Path to turtle file to sort.',
+    )
+    parser.add_argument(
+        'destination',
+        help='Where to save the sorted turtle file.',
+    )
+    parser.set_defaults(
+        func=do_sort_turtle
+    )
+
+
+def do_sort_turtle(args):
+    from ontology.sort_turtle import sort_turtle, get_concepts_sorted
+    identifiers = get_concepts_sorted(args.source)
+    sort_turtle(args.prefix, identifiers, args.source, args.destination)
+
+
 subcommand = GraphSubcommand(
     'ontology',
     'ontologies',
@@ -83,3 +118,4 @@ subcommand = GraphSubcommand(
 def register_subcommand(add_parser):
     _, subcommands = subcommand.register_subcommand(add_parser)
     register_show_hier(subcommands.add_parser)
+    register_sort_turtle(subcommands.add_parser)
