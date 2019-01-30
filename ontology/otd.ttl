@@ -149,8 +149,8 @@ otd:Travel a skos:Concept ;
     skos:broader otd:Activity ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "travel"@en,
-        "journey"@en,
-        "trip"@en,
+        "journey"@en ;
+    skos:altLabel "trip"@en,
         "reise"@nb,
         "tur"@nb .
 
@@ -172,11 +172,11 @@ otd:AirQuality a skos:Concept ;
     skos:prefLabel "air quality"@en,
         "luftkvalitet"@nb .
 
-otd:Airport a skos:Concept ;
-    skos:broader otd:Facility ;
+otd:Equipment a skos:Concept ;
+    skos:broader otd:Artifact ;
     skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "airport"@en,
-        "flyplass"@nb .
+    skos:prefLabel "equipment"@en,
+        "verktøy"@nb .
 
 otd:Bicycle a skos:Concept ;
     skos:altLabel "cycling"@en,
@@ -193,10 +193,28 @@ otd:Waterway a skos:Concept ;
         "vannvei"@nb .
 
 otd:Boat a skos:Concept ;
-    skos:broader otd:PublicTransport ;
+    skos:broader otd:Vehicle ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "boat"@en,
         "båt"@nb .
+
+otd:ServiceVehicle a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "service vehicle"@en,
+        "tjenestefartøy"@nb .
+
+otd:ElectricVehicle a skos:Concept;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "electric vehicle"@en,
+        "elektrisk fartøy"@nb .
+
+otd:Car a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "car"@en,
+        "bil"@nb .
 
 otd:Bridge a skos:Concept ;
     skos:broader otd:Structure ;
@@ -221,7 +239,20 @@ otd:BusTerminal a skos:Concept ;
         "busstasjon"@nb ;
     skos:broader otd:Terminal ;
     skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "bus terminal"@en .
+    skos:prefLabel "bus terminal"@en,
+        "bussterminal"@nb .
+
+otd:FerryTerminal a skos:Concept ;
+    skos:broader otd:Terminal ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "ferry terminal"@en,
+        "ferjeterminal"@nb .
+
+otd:FreightTerminal a skos:Concept ;
+    skos:broader otd:Terminal ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "freight terminal"@en,
+        "godsterminal"@nb .
 
 otd:Cable a skos:Concept ;
     skos:broader otd:TransportMode ;
@@ -241,6 +272,30 @@ otd:BikeSharing a skos:Concept ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "bike sharing"@en,
         "sykkeldeling"@nb .
+
+otd:Ticketing a skos:Concept ;
+    skos:broader otd:TransportService ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "ticketing"@en,
+        "billettsalg"@nb .
+
+otd:PupilTransport a skos:Concept ;
+    skos:broader otd:TransportService ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "pupil transport"@en,
+        "skoletransport"@nb .
+
+otd:Charter a skos:Concept ;
+    skos:broader otd:TransportService ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "charter"@en,
+        "charter"@nb .
+
+otd:FreightTransport a skos:Concept ;
+    skos:broader otd:TransportService ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "freight transport"@en,
+        "varetransport"@nb .
 
 otd:ChargingStation a skos:Concept ;
     skos:altLabel "charging"@en,
@@ -319,7 +374,7 @@ otd:Happening a skos:Concept ;
 
 otd:Highway a skos:Concept ;
     skos:altLabel "motorvei"@nb ;
-    skos:broader otd:Road ;
+    skos:broader otd:Way ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "highway"@en,
         "hovedvei"@nb .
@@ -361,18 +416,32 @@ otd:MeteorologicalInformation a skos:Concept ;
     skos:prefLabel "meteorological information"@en,
         "meteorologisk informasjon"@nb .
 
-otd:Organism a skos:Concept ;
-    skos:broader otd:Object ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "organism"@en,
-        "organisme"@nb .
-
 otd:POI a skos:Concept ;
     skos:altLabel "poi"@en ;
     skos:broader otd:Object ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "point of interest"@en,
         "interessepunkt"@nb .
+
+otd:PointOfSale a skos:Concept ;
+    skos:broader otd:POI ;
+    skos:inScheme otd:OTDScheme ;
+    skos:editorialNote "Might be best to rename, since POS usually refers to cash register etc"@en ;
+    skos:prefLabel "point of sale"@en,
+        "salgssted"@nb .
+
+otd:ServiceArea a skos:Concept ;
+    skos:broader otd:POI ;
+    skos:inScheme otd:OTDScheme ;
+    skos:editorialNote "No proper Norwegian translation exists"@en ;
+    skos:prefLabel "service area"@en,
+        "bensinstasjon"@nb .
+
+otd:RestArea a skos:Concept ;
+    skos:broader otd:POI ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "rest area"@en,
+        "rasteplass"@nb .
 
 otd:Park_and_Ride a skos:Concept ;
     skos:altLabel "coaching inn"@en ;
@@ -382,10 +451,18 @@ otd:Park_and_Ride a skos:Concept ;
         "skysstasjon"@nb .
 
 otd:Parking a skos:Concept ;
-    skos:broader otd:TransferNode ;
+    skos:broader otd:POI ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "parking"@en,
         "parkering"@nb .
+
+otd:Dock a skos:Concept ;
+    skos:broader otd:TransferNode ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "dock"@en,
+        "kai"@nb ;
+    skos:altLabel "marina"@en,
+        "marine"@nb .
 
 otd:RailRoad a skos:Concept ;
     skos:broader otd:TransportMode ;
@@ -463,7 +540,7 @@ otd:Release a skos:Concept ;
         "frigjøre"@nb .
 
 otd:Roadway a skos:Concept ;
-    skos:broader otd:Road ;
+    skos:broader otd:Way ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "roadway"@en,
         "landevei"@nb .
@@ -502,8 +579,6 @@ otd:TravelTime a skos:Concept ;
     skos:prefLabel "travel time"@en,
         "reisetid"@nb .
 
-
-
 otd:Sea a skos:Concept ;
     skos:broader otd:TransportMode ;
     skos:inScheme otd:OTDScheme ;
@@ -511,16 +586,10 @@ otd:Sea a skos:Concept ;
         "hav"@nb .
 
 otd:ServiceArea a skos:Concept ;
-    skos:broader otd:TopographicPoint ;
+    skos:broader otd:POI ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "service area"@en,
         "serviceområde"@nb .
-
-otd:Speedway a skos:Concept ;
-    skos:broader otd:Road ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "speedway"@en,
-        "speedway"@nb .
 
 otd:Statistics a skos:Concept ;
     skos:broader otd:Abstraction ;
@@ -580,10 +649,11 @@ otd:Timetable a skos:Concept ;
         "rutetabell"@nb .
 
 otd:Tollbooth a skos:Concept ;
-    skos:broader otd:Booth ;
+    skos:broader otd:Structure ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "toll booth"@en,
-        "bomstasjon"@nb .
+        "bomstasjon"@nb ;
+    skos:altLabel "toll gate"@en .
 
 otd:TrackingInformation a skos:Concept ;
     skos:altLabel "tracking"@en ;
@@ -639,7 +709,44 @@ otd:Trail a skos:Concept ;
     skos:broader otd:Way ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "trail"@en,
-        "sti"@nb .
+        "sti"@nb ;
+    skos:altLabel "path"@en .
+
+otd:Fairway a skos:Concept ;
+    skos:broader otd:Way ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "fairway"@en,
+        "farvann"@nb .
+
+otd:Canal a skos:Concept;
+    skos:broader otd:Way ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "canal"@en,
+        "kanal"@nb .
+
+otd:River a skos:Concept ;
+    skos:broader otd:Way ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "river"@en,
+        "elv"@nb .
+
+otd:Railway a skos:Concept ;
+    skos:broader otd:Way ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "railway"@en,
+        "togskinner"@nb .
+
+otd:Pavement a skos:Concept;
+    skos:broader otd:Way ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "pavement"@en,
+        "fortau"@nb .
+
+otd:Street a skos:Concept ;
+    skos:broader otd:Way ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "street"@en,
+        "gate"@nb .
 
 otd:Train a skos:Concept ;
     skos:broader otd:RailRoad ;
@@ -666,7 +773,7 @@ otd:TravelPlan a skos:Concept ;
         "reiseplan"@nb .
 
 otd:Tunnel a skos:Concept ;
-    skos:broader otd:Way ;
+    skos:broader otd:Structure ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "tunnel"@en,
         "tunnel"@nb .
@@ -720,12 +827,6 @@ otd:GeographicalInformation a skos:Concept ;
     skos:prefLabel "geographical information"@en,
         "geografisk informasjon"@nb .
 
-otd:Line a skos:Concept ;
-    skos:broader otd:Location ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "line"@en,
-        "linje"@nb .
-
 otd:Organization a skos:Concept ;
     skos:broader otd:Abstraction ;
     skos:inScheme otd:OTDScheme ;
@@ -734,10 +835,10 @@ otd:Organization a skos:Concept ;
 
 otd:PersonalTransport a skos:Concept ;
     skos:altLabel "skyss"@nb ;
-    skos:broader otd:Vehicle ;
+    skos:broader otd:TransportService ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "personal transport"@en,
-        "persolig transport"@nb .
+        "personlig transport"@nb .
 
 otd:Phenomenon a skos:Concept ;
     skos:broader otd:Process ;
@@ -779,7 +880,9 @@ otd:Vehicle a skos:Concept ;
     skos:broader otd:Artifact ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "vehicle"@en,
-        "kjøretøy"@nb .
+        "kjøretøy"@nb ;
+    skos:altLabel "vessel"@en,
+        "fartøy"@nb .
 
 otd:Entity skos:prefLabel "entity"@en,
         "entitet"@nb ;
@@ -807,10 +910,23 @@ otd:Location a skos:Concept ;
 
 otd:PublicTransport a skos:Concept ;
     skos:altLabel "transport"@nb ;
-    skos:broader otd:Vehicle ;
+    skos:broader otd:TransportService ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "public transport"@en,
-        "offentlig transport"@nb .
+        "kollektivtrafikk"@nb .
+
+otd:Rental a skos:Concept ;
+    skos:broader otd:TransportService ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "rental"@en,
+        "utleie"@nb .
+
+otd:Ridesharing a skos:Concept ;
+    skos:broader otd:TransportService ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "ridesharing"@en,
+        "samkjøring"@nb ;
+    skos:altLabel "carpooling"@en .
 
 otd:TransportService a skos:Concept ;
     skos:broader otd:Process ;
@@ -843,7 +959,7 @@ otd:Process a skos:Concept ;
         "prosess"@nb .
 
 otd:Road a skos:Concept ;
-    skos:broader otd:Way ;
+    skos:broader otd:TransportMode ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "road"@en,
         "vei"@nb .
@@ -870,7 +986,7 @@ otd:Pedestrian a skos:Concept ;
     skos:broader otd:TransportMode ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "pedestrian"@en,
-        "fotgjenger"@nb ;
+        "fotgjenger"@nb .
 
 otd:TravelInformation a skos:Concept ;
     skos:broader otd:Information ;
@@ -889,6 +1005,19 @@ otd:Artifact a skos:Concept ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "artifact"@en,
         "gjenstand"@nb .
+
+otd:Airport a skos:Concept ;
+    skos:broader otd:TransferNode ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "airport"@en,
+        "lufthavn"@nb .
+
+otd:Port a skos:Concept ;
+    skos:broader otd:TransferNode ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "port"@en,
+        "havn"@nb ;
+    skos:altLabel "harbor"@en .
 
 otd:Communication a skos:Concept ;
     skos:broader otd:Abstraction ;
