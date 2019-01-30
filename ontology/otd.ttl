@@ -353,6 +353,21 @@ otd:Company a skos:Concept ;
     skos:prefLabel "company"@en,
         "selskap"@nb .
 
+otd:Retailer a skos:Concept ;
+    skos:altLabel "seller"@en,
+        "selger"@nb,
+        "forretning"@nb ;
+    skos:broader otd:Company ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "retailer"@en,
+        "butikk"@nb .
+
+otd:ServiceProvider a skos:Concept ;
+    skos:broader otd:Company ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "service provider"@en,
+        "tjenesteyter"@nb .
+
 otd:Payment a skos:Concept ;
     skos:broader otd:Abstraction ;
     skos:inScheme otd:OTDScheme ;
@@ -969,7 +984,8 @@ otd:BikeSharing a skos:Concept ;
         "sykkeldeling"@nb .
 
 otd:CarSharing a skos:Concept ;
-    skos:altLabel "car pooling"@en ;
+    skos:altLabel "car pooling"@en,
+        "samkjøring"@nb ;
     skos:broader otd:TransportService ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "carsharing"@en,
@@ -1019,12 +1035,12 @@ otd:Rental a skos:Concept ;
     skos:prefLabel "rental"@en,
         "utleie"@nb .
 
-otd:Ridesharing a skos:Concept ;
-    skos:altLabel "carpooling"@en ;
+otd:SharedRide a skos:Concept ;
     skos:broader otd:TransportService ;
+    skos:definition "Multiple stop 'door to door' service by authorized providers. Typically services that let people travel close to an airport entrance." ;
     skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "ridesharing"@en,
-        "samkjøring"@nb .
+    skos:prefLabel "shared ride"@en,
+        "delt taxi"@nb .
 
 otd:Taxi a skos:Concept ;
     skos:altLabel "drosje"@en ;
