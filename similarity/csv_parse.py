@@ -1,8 +1,6 @@
 import csv
 import functools
-
 from rdflib import URIRef
-
 from db.graph import get_concepts, get_dataset
 from utils.graph import create_bound_graph, RDF, DCAT
 from similarity.generate import add_similarity_link
@@ -163,9 +161,51 @@ class CsvSingleColumnAnalyzer:
         Returns:
             Concepts (URIRef) that should be linked to the given dataset.
         """
-        cell = row[self.concepts_index]
-        concept_refs = cell.split(',')
+        concept_refs = self.get_user_concepts_for(row)
         return map(self.concepts_recognizer.get_concept_from, concept_refs)
+
+    def get_user_concepts_for(self, row):
+        """
+        Find the concepts that user wrote for the corresponding row.
+
+        These concepts do not need to exist, this is simply what the user wrote.
+
+        Args:
+            row: One row, representing one dataset.
+
+        Returns:
+            Concepts the user wants to connect with this dataset.
+        """
+        cell = row[self.concepts_index]
+        concept_refs = filter(None, map(lambda s: s.strip(), cell.split(',')))
+        return concept_refs
+
+
+def check_csv_for_unknown_concepts(fn, dialect):
+    csv_reader = csv.reader(fn, dialect=dialect)
+    concept_uris = set(get_concepts(None).values())
+    first_row = next(csv_reader)
+
+    analyzer = CsvSingleColumnAnalyzer(first_row, concept_uris)
+
+    concept_column = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[analyzer.concepts_index]
+
+    errors = dict()
+
+    # Check for each row
+    for i, row in enumerate(csv_reader, start=2):
+        # What concepts did the user write?
+        user_concepts = analyzer.get_user_concepts_for(row)
+        for concept in user_concepts:
+            try:
+                analyzer.concepts_recognizer.get_concept_from(concept)
+            except ValueError:
+                errors.setdefault(concept, []).append(i)
+
+    for unrecognized_concept, rows in errors.items():
+        cells = map(lambda r: concept_column + str(r), rows)
+        print(unrecognized_concept + ":", ", ".join(cells))
+    return errors
 
 
 class CsvMultipleColumnAnalyzer:

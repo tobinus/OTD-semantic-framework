@@ -1,4 +1,7 @@
 import csv
+
+import sys
+
 from utils.common_cli import GraphSubcommand, \
     register_arguments_for_rdf_output, \
     with_rdf_output
@@ -42,6 +45,12 @@ def register_csv_parse_command(add_parser):
                     'command, you get a properly formatted CSV to fill in.',
     )
     parser.add_argument(
+        '--check',
+        help='Check the CSV for unrecognized concepts, then exit. This way, '
+             'all unrecognized concepts are reported at once.',
+        action='store_true',
+    )
+    parser.add_argument(
         '--dialect',
         '-d',
         help='The dialect to use when parsing the CSV file. '
@@ -61,9 +70,16 @@ def register_csv_parse_command(add_parser):
 
 @with_rdf_output
 def do_csv_parse_command(args):
-    from similarity.csv_parse import csv2rdf
+    from similarity.csv_parse import csv2rdf, check_csv_for_unknown_concepts
     with open(args.csv_file, 'r', newline='') as csv_fn:
-        return csv2rdf(csv_fn, args.dialect)
+        if args.check:
+            errors = check_csv_for_unknown_concepts(csv_fn, args.dialect)
+            if errors:
+                sys.exit(1)
+            else:
+                sys.exit(0)
+        else:
+            return csv2rdf(csv_fn, args.dialect)
 
 
 def register_csv_prepare_command(add_parser):
