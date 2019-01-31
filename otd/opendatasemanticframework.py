@@ -181,7 +181,7 @@ class OpenDataSemanticFramework:
             ss.append('{} {} : {}'.format(dataset, concept, score))
         return ss
         
-    def get_scorevec(self, query):
+    def calculate_query_sim_to_concepts(self, query):
         qe = QueryExtractor()
         sscore = SemScore(qe, self.navigator)
         scorevec = sscore.score_vector(query)        
@@ -193,10 +193,10 @@ class OpenDataSemanticFramework:
         return DatasetInfo(str(title), str(description), str(dataset))
 
     def query_score_vec(self, query):
-        return self.get_scorevec(query)
+        return self.calculate_query_sim_to_concepts(query)
 
     def cos_sim(self, query):
-        sv = self.get_scorevec(query)
+        sv = self.calculate_query_sim_to_concepts(query)
         cds = self.cds[cds_name]
         cs = cosine_similarity(cds.append(sv))
         cols = ['query'] + list(cds.index)
@@ -204,64 +204,103 @@ class OpenDataSemanticFramework:
         return res
 
     def search_query(self, query, cds_name="all"):
-        query_concept_sim = self.get_scorevec(query)
-        most_similar_concepts = \
-            sorted(
-                list(
-                    map(
-                        lambda concept, similarity: ConceptSimilarity(
-                            concept,
-                            similarity
-                        ),
-                        list(query_concept_sim.columns),
-                        query_concept_sim.values[0]
-                    )
+        # Calculate the query's similarity to our concepts
+        query_concept_sim = self.calculate_query_sim_to_concepts(query)
+
+        # What were the most similar concepts?
+        most_similar_concepts = self.sort_concept_similarities(
+            self.get_concept_similarities_for_query(
+                query_concept_sim
+            )
+        )[:5]
+
+        # How similar are the datasets' similarity to the query's similarity?
+        dataset_query_sim = self.calculate_dataset_query_sim(
+            query_concept_sim,
+            cds_name,
+            query,
+        )
+
+        # Put together information for the search results page
+        results = list()
+        for dataset, similarity in dataset_query_sim.items():
+            # Only consider the most relevant datasets
+            if similarity <= 0.75:
+                continue
+            results.append(SearchResult(
+                score=similarity,
+                info=self.get_dataset_info(dataset),
+                concepts=self.get_most_similar_concepts_for_dataset(
+                    cds_name,
+                    dataset
                 ),
-                key=lambda x: x.similarity,
-                reverse=True
-            )[:5]
+            ))
+        return results, most_similar_concepts
+
+    @staticmethod
+    def get_concept_similarities_for_query(query_concept_similarity):
+        return list(
+            map(
+                lambda concept, similarity: ConceptSimilarity(
+                    concept,
+                    similarity
+                ),
+                list(query_concept_similarity.columns),
+                query_concept_similarity.values[0]
+            )
+        )
+
+    def calculate_dataset_query_sim(self, query_concept_sim, cds_name, query):
+        # Add in the datasets' similarity to the concepts
         entry_concept_sim = query_concept_sim.append(
             self.cds[cds_name],
             sort=True
         )
+
+        # Do the similarity calculation
         sim_data = cosine_similarity(entry_concept_sim)
+
+        # Convert into format used by the rest of the application
         entry_entry_sim = pd.DataFrame(
             sim_data,
             columns=entry_concept_sim.index,
             index=entry_concept_sim.index
         )
-        dataset_query_sim = entry_entry_sim\
-            .loc[query]\
-            .sort_values(ascending=False)\
+
+        # Extract the datasets' similarity to the query, sort most similar
+        # datasets first, then remove the query's similarity to itself
+        dataset_query_sim = entry_entry_sim \
+            .loc[query] \
+            .sort_values(ascending=False) \
             .drop(query)
-        dataset_concepts = []
-        for dataset in dataset_query_sim.index:
-            concepts_for_dataset = list(
-                map(
-                    lambda concept, similarity: ConceptSimilarity(
-                        concept,
-                        similarity
-                    ),
-                    self.cds[cds_name].loc[dataset].index,
-                    self.cds[cds_name].loc[dataset].values
-                )
+        return dataset_query_sim
+
+    def get_most_similar_concepts_for_dataset(self, cds_name, dataset):
+        concepts_for_dataset = self.get_concepts_for_dataset(
+            cds_name,
+            dataset
+        )
+        closest_concepts_for_dataset = self.sort_concept_similarities(
+            concepts_for_dataset
+        )[:5]
+        return closest_concepts_for_dataset
+
+    def get_concepts_for_dataset(self, cds_name, dataset):
+        return list(
+            map(
+                lambda concept, similarity: ConceptSimilarity(
+                    concept,
+                    similarity
+                ),
+                self.cds[cds_name].loc[dataset].index,
+                self.cds[cds_name].loc[dataset].values
             )
-            closest_concepts_for_dataset = sorted(
-                concepts_for_dataset,
-                key=lambda x: x.similarity,
-                reverse=True
-            )[:5]
-            dataset_concepts.append(closest_concepts_for_dataset)
-        results = zip(
-            dataset_query_sim.tolist(),
-            map(self.get_dataset_info, list(dataset_query_sim.index)),
-            dataset_concepts
         )
-        results = map(
-            lambda result_tuple: SearchResult(*result_tuple),
-            results
-        )
-        return (
-            list(filter(lambda result: result.score > 0.75, results)),
-            most_similar_concepts
+
+    @staticmethod
+    def sort_concept_similarities(similarities):
+        return sorted(
+            similarities,
+            key=lambda x: x.similarity,
+            reverse=True
         )
