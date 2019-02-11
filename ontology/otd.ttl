@@ -463,12 +463,6 @@ otd:Bicycle a skos:Concept ;
     skos:prefLabel "bicycle"@en,
         "sykkel"@nb .
 
-otd:Bus a skos:Concept ;
-    skos:broader otd:TransportMode ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "bus"@en,
-        "buss"@nb .
-
 otd:Cable a skos:Concept ;
     skos:broader otd:TransportMode ;
     skos:inScheme otd:OTDScheme ;
@@ -489,28 +483,6 @@ otd:RailRoad a skos:Concept ;
     skos:prefLabel "railroad"@en,
         "skinner"@nb .
 
-otd:Train a skos:Concept ;
-    skos:broader otd:RailRoad ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "train"@en,
-        "tog"@nb .
-
-otd:Tram a skos:Concept ;
-    skos:broader otd:RailRoad ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "tram"@en,
-        "trikk"@nb .
-
-otd:Underground a skos:Concept ;
-    skos:altLabel "metro"@en,
-        "subway"@en,
-        "T-bane"@nb,
-        "metro"@nb ;
-    skos:broader otd:RailRoad ;
-    skos:inScheme otd:OTDScheme ;
-    skos:prefLabel "underground railroad"@en,
-        "undergrunnsbane"@nb .
-
 otd:Road a skos:Concept ;
     skos:broader otd:TransportMode ;
     skos:inScheme otd:OTDScheme ;
@@ -522,6 +494,16 @@ otd:Sea a skos:Concept ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "sea"@en,
         "hav"@nb .
+
+otd:Underground a skos:Concept ;
+    skos:altLabel "metro"@en,
+        "subway"@en,
+        "T-bane"@nb,
+        "metro"@nb ;
+    skos:broader otd:TransportMode ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "underground railroad"@en,
+        "undergrunnsbane"@nb .
 
 otd:Waterway a skos:Concept ;
     skos:broader otd:TransportMode ;
@@ -552,6 +534,15 @@ otd:Facility a skos:Concept ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "facility"@en,
         "anlegg"@nb .
+
+otd:Installation a skos:Concept ;
+    skos:altLabel "traffic calming measure"@en,
+        "fartsdempende tiltak"@nb ;
+    skos:broader otd:Artifact ;
+    skos:example "turn-left traffic calming measure"@en ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "installation"@en,
+        "installasjon"@nb .
 
 otd:Structure a skos:Concept ;
     skos:broader otd:Artifact ;
@@ -616,11 +607,23 @@ otd:Boat a skos:Concept ;
     skos:prefLabel "boat"@en,
         "båt"@nb .
 
+otd:Bus a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "bus"@en,
+        "buss"@nb .
+
 otd:Car a skos:Concept ;
     skos:broader otd:Vehicle ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "car"@en,
         "bil"@nb .
+
+otd:Ferry a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "ferry"@en,
+        "ferje"@nb .
 
 otd:ElectricVehicle a skos:Concept ;
     skos:broader otd:Vehicle ;
@@ -628,11 +631,29 @@ otd:ElectricVehicle a skos:Concept ;
     skos:prefLabel "electric vehicle"@en,
         "elektrisk fartøy"@nb .
 
+otd:Motorcycle a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "motorcycle"@en,
+        "motorsykkel"@nb .
+
 otd:ServiceVehicle a skos:Concept ;
     skos:broader otd:Vehicle ;
     skos:inScheme otd:OTDScheme ;
     skos:prefLabel "service vehicle"@en,
         "tjenestefartøy"@nb .
+
+otd:Train a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "train"@en,
+        "tog"@nb .
+
+otd:Tram a skos:Concept ;
+    skos:broader otd:Vehicle ;
+    skos:inScheme otd:OTDScheme ;
+    skos:prefLabel "tram"@en,
+        "trikk"@nb .
 
 otd:Way a skos:Concept ;
     skos:broader otd:Artifact ;
