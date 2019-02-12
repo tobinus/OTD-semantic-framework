@@ -4,7 +4,7 @@ from flask import Response
 from flask.json import jsonify
 from ontosearch.app import app
 from ontosearch.app import ontology
-from ontosearch.app.forms import SearchForm
+from ontosearch.app.forms import SearchForm, ScoreForm
 from time import time
 from datetime import datetime
 import db.log
@@ -26,6 +26,30 @@ def index():
         form=form,
         results=xs,
         scorevec=sv,
+        concept_labels=get_concept_labels(),
+    )
+
+
+@app.route('/scores', methods=['GET', 'POST'])
+def scores():
+    form = ScoreForm()
+
+    most_similar_concepts = []
+
+    if form.validate_on_submit():
+        query_concept_sim = ontology.calculate_query_sim_to_concepts(form.query.data)
+
+        # What were the most similar concepts?
+        most_similar_concepts = ontology.sort_concept_similarities(
+            ontology.get_concept_similarities_for_query(
+                query_concept_sim
+            )
+        )
+
+    return render_template(
+        "scores.html",
+        form=form,
+        scorevec=most_similar_concepts,
         concept_labels=get_concept_labels(),
     )
 

@@ -1,0 +1,58 @@
+{% set precision = 3 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        {% if form.is_submitted() %}
+            Concepts relevant to {{ form.query.data }} – DataOntoSearch
+        {% else %}
+            Concept relevance in DataOntoSearch
+        {% endif %}
+    </title>
+    <meta charset="UTF-8">
+    <link href="{{ url_for('static', filename='search.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<h1>
+    Concept relevance in DataOntoSearch
+</h1>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="message message--{{ category }}">
+                <button type="button" class="message__close" onclick="this.parentNode.remove()">&times;</button>
+                {{ message|safe }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<section>
+    <form id="searchform" method="post" action={{ url_for('scores') }}>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.query.label() }}
+            {{ form.query(size=42, list='search_suggestions') }}
+            <datalist id="search_suggestions">
+                {% for label in concept_labels %}
+                    <option>{{ label }}</option>
+                {% endfor %}
+            </datalist>
+            {{ form.submit() }}
+        </p>
+    </form>
+
+    {% if form.is_submitted() %}
+        <h2>Concepts derived from query</h2>
+        <table class="scorevec">
+            {% for score in scorevec %}
+                <tr>
+                    <td> {{ score.concept }} </td>
+                    <td> {{ score.similarity|round(precision) }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</section>
+</body>
+</html>
