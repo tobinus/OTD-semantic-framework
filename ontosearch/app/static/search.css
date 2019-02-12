@@ -70,3 +70,11 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+.details {
+    display: none;
+}
+
+.with_details .details {
+    display: block;
+}

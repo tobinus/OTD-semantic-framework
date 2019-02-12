@@ -12,8 +12,33 @@
     <meta charset="UTF-8">
     <link href="{{ url_for('static', filename='search.css') }}" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function update_show_details(e) {
+            const new_checked = e.target.checked;
+            if (new_checked) {
+                document.body.classList.add('with_details');
+            } else {
+                document.body.classList.remove('with_details');
+            }
+        }
+
+        function register_event_handlers() {
+            document.getElementById(
+                'show_details'
+            ).addEventListener('change', update_show_details);
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener(
+                'DOMContentLoaded',
+                register_event_handlers
+            );
+        } else {
+            register_event_handlers();
+        }
+    </script>
 </head>
-<body>
+<body class="{% if form.show_details.data %}with_details{% endif %}">
 <h1>
     DataOntoSearch
 </h1>
@@ -44,11 +69,15 @@
             {{ form.simtype() }}
             {{ form.submit() }}
         </p>
+        <p>
+            {{ form.show_details.label() }}
+            {{ form.show_details() }}
+        </p>
     </form>
 
     {% if form.is_submitted() %}
-        <h2>Concepts derived from query</h2>
-        <table class="scorevec">
+        <h2 class="details">Concepts derived from query</h2>
+        <table class="scorevec details">
             {% for score in scorevec %}
                 <tr>
                     <td> {{ score.concept }} </td>
@@ -66,7 +95,7 @@
             <p>{{ result.info.description }}</p>
             <p>Score: {{ result.score|round(precision) }}</p>
 
-            <table class="vecres">
+            <table class="vecres details">
                 {% for similarity in result.concepts %}
                     <tr>
                         <td>{{ similarity.concept }}</td>
