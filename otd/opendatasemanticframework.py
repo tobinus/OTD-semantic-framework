@@ -1,4 +1,6 @@
 import itertools
+
+from similarity.csv_parse import get_fragment
 from utils.graph import RDF, OTD, DCAT, DCT
 from otd.skosnavigate import SKOSNavigate
 from otd.queryextractor import QueryExtractor
@@ -245,7 +247,12 @@ class OpenDataSemanticFramework:
                     concept,
                     similarity
                 ),
-                list(query_concept_similarity.columns),
+                list(
+                    map(
+                        get_fragment,
+                        query_concept_similarity.columns
+                    )
+                ),
                 query_concept_similarity.values[0]
             )
         )
