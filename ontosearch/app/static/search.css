@@ -3,6 +3,14 @@ html {
     color: rgba(0, 0, 0, 0.9);
 }
 
+a {
+    color: rgb(0, 0, 238);
+}
+
+a:hover {
+    color: rgb(91, 98, 246);
+}
+
 h2 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
