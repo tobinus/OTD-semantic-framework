@@ -90,7 +90,7 @@
     <section>
         <h2>Matching datasets</h2>
         {% for result in results %}
-            <h3><a href='{{ result.info.uri }}'>{{ result.info.title }}</a></h3>
+            <h3><a href='{{ result.info.href }}'>{{ result.info.title }}</a></h3>
             <p>{{ result.info.description }}</p>
             <p>Score: {{ result.score|round(precision) }}</p>
 
