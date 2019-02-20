@@ -17,9 +17,9 @@ def index():
     xs = []
     sv = []
     if form.validate_on_submit():
-        xs, sv = ontology.search_query(form.query.data, cds_name=form.simtype.data)
+        xs, sv = ontology.search_query(form.query.data, cds_name='tagged')
         timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
-        log = {'ip':request.remote_addr, 'time':timestamp, 'query':form.query.data, 'type':form.simtype.data, 'res':[x[1][2] for x in xs]}
+        log = {'ip':request.remote_addr, 'time':timestamp, 'query':form.query.data, 'type':'tagged', 'res':[x[1][2] for x in xs]}
         db.log.store(log)
     return render_template(
         "search.html",

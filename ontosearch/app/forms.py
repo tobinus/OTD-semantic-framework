@@ -9,9 +9,6 @@ from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, SIMTYPE_ALL
 class SearchForm(FlaskForm):
     query = SearchField('Query', validators=[DataRequired()])
     submit = SubmitField('Search')
-    simtype = SelectField('Options', choices=[(SIMTYPE_SIMILARITY, 'Tagged'),
-                                              (SIMTYPE_AUTOTAG, 'Auto'),
-                                              (SIMTYPE_ALL, 'All')])
     show_details = BooleanField('Show matching concepts')
 
 
