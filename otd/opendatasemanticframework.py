@@ -299,7 +299,10 @@ class OpenDataSemanticFramework:
                     concept,
                     similarity
                 ),
-                self.cds[cds_name].loc[dataset].index,
+                map(
+                    get_fragment,
+                    self.cds[cds_name].loc[dataset].index
+                ),
                 self.cds[cds_name].loc[dataset].values
             )
         )
