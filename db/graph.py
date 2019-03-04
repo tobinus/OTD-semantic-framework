@@ -1,8 +1,11 @@
 import os
 from collections import namedtuple
 import datetime
+import warnings
 from bson.objectid import ObjectId
 from rdflib import URIRef, BNode, Literal, Namespace
+
+from similarity.generate import add_similarity_link
 from utils.misc import first, second
 from utils.db import MongoDBConnection
 from utils.dotenv import ensure_loaded_dotenv
@@ -19,6 +22,121 @@ by default.
 DataFrameId = namedtuple(
     'DataFrameId', ('graph_type', 'graph_uuid', 'last_modified')
 )
+
+
+class MissingUuidWarning(Warning):
+    pass
+
+
+class Configuration:
+    def __init__(
+            self,
+            uuid=None,
+            similarity=None,
+            autotag=None,
+            dataset=None,
+            ontology=None
+    ):
+        self.uuid = uuid
+        self.similarity_uuid = similarity
+        self.autotag_uuid = autotag
+        self.dataset_uuid = dataset
+        self.ontology_uuid = ontology
+
+    @classmethod
+    def from_uuid(cls, uuid=None, **kwargs):
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = db.configuration
+
+            if uuid is None:
+                ensure_loaded_dotenv()
+                uuid = os.environ.get('CONFIGURATION_UUID')
+
+            if uuid is None:
+                warnings.warn(
+                    'No UUID specified when fetching configuration. Using '
+                    'whatever MongoDB returns first',
+                    MissingUuidWarning
+                )
+
+            criteria = None
+            if uuid is not None:
+                criteria = {'_id': ObjectId(uuid)}
+
+            document = collection.find_one(criteria)
+
+            if document is None:
+                raise ValueError(
+                    'No configuration found with the UUID "{}"'
+                    .format(uuid)
+                )
+
+            return cls(
+                document['_id'],
+                document['similarity'],
+                document['autotag'],
+                document['dataset'],
+                document['ontology']
+            )
+
+    def get_similarity(self):
+        return get_similarity(self.similarity_uuid)
+
+    def get_autotag(self):
+        return get_autotag(self.autotag_uuid)
+
+    def get_dataset(self):
+        return get_dataset(self.dataset_uuid)
+
+    def get_ontology(self):
+        return get_ontology(self.ontology_uuid)
+
+    def save(self):
+        self.prepare()
+        # TODO: Actually save this object
+
+    def prepare(self):
+        if self.similarity_uuid is None:
+            raise RuntimeError(
+                'A configuration must be linked to a similarity graph'
+            )
+
+        if self.autotag_uuid is None:
+            raise RuntimeError(
+                'A configuration must be linked to an autotag graph'
+            )
+
+        similarity = self.get_similarity()
+        sim_dataset = similarity.dataset_uuid
+        sim_ontology = similarity.ontology_uuid
+
+        autotag = self.get_autotag()
+        auto_dataset = autotag.dataset_uuid
+        auto_ontology = autotag.ontology_uuid
+
+        # Test whether the datasets are consistent (or not defined)
+        if self.dataset_uuid not in (None, sim_dataset) or \
+                sim_dataset != auto_dataset:
+            raise RuntimeError(
+                'Inconsistency detected in what dataset graph is used by the '
+                'configuration, similarity graph and autotag graph'
+            )
+
+        # Do the same test for the linked ontology
+        if self.ontology_uuid not in (None, sim_ontology) or \
+                sim_ontology != auto_ontology:
+            raise RuntimeError(
+                'Inconsistency detected in what ontology graph is used by the '
+                'configuration, similarity graph and autotag graph'
+            )
+
+        # If those are not defined for the configuration, fill in from the
+        # similarity graph
+        if self.dataset_uuid is None:
+            self.dataset_uuid = sim_dataset
+        if self.ontology_uuid is None:
+            self.ontology_uuid = sim_ontology
 
 
 def get(uuid, key='ontology', **kwargs):
@@ -280,16 +398,18 @@ def tag_dataset(uuid, dataset_uri, tag, score, **kwargs):
     graph = get(uuid, **kwargs)
     graph.parse(dataset_uri, format="xml")
     concept_dict = get_concepts(uuid)
-    if tag in get_concepts(uuid):
-        node = concept_dict[tag]
-        graph.add((ds, SKOS.relatedMatch, node))
-        graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
-        update(graph, uuid, **kwargs)
-        #output = path.join(app_path + '/db', uuid+'.rdf')
-        #graph.serialize(destination=output, format='xml')
-        graph.close()
-        return True
-    return False
+    if tag not in concept_dict:
+        return False
+
+    add_similarity_link()
+    node = concept_dict[tag]
+    graph.add((ds, SKOS.relatedMatch, node))
+    graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
+    update(graph, uuid, **kwargs)
+    #output = path.join(app_path + '/db', uuid+'.rdf')
+    #graph.serialize(destination=output, format='xml')
+    graph.close()
+    return True
 
 
 def get_tagged_datasets(uuid, **kwargs):
