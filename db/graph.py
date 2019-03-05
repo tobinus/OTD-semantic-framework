@@ -55,7 +55,7 @@ class DbCollection(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def _get_key():
+    def get_key():
         """
         Get the name of the collection associated with this class.
 
@@ -91,7 +91,7 @@ class DbCollection(metaclass=ABCMeta):
             ValueError: If no document with the specified UUID can be found, or
                 if no document exists when not specifying the UUID.
         """
-        key = cls._get_key()
+        key = cls.get_key()
         assert is_recognized_key(key)
         uuid = cls.find_uuid(uuid)
 
@@ -142,7 +142,7 @@ class DbCollection(metaclass=ABCMeta):
             The UUID to use, or None if the first result from MongoDB should be
             used.
         """
-        key = cls._get_key()
+        key = cls.get_key()
         return cls._get_uuid_for(key, uuid)
 
     @staticmethod
@@ -251,7 +251,7 @@ class DbCollection(metaclass=ABCMeta):
         document = self._get_as_document()
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, self._get_key())
+            collection = getattr(db, self.get_key())
             assigned_id = collection.insert_one(document).inserted_id
         return str(assigned_id)
 
@@ -262,13 +262,68 @@ class DbCollection(metaclass=ABCMeta):
         document = self._get_as_document()
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, self._get_key())
+            collection = getattr(db, self.get_key())
             collection.replace_one(
                 {'_id': ObjectId(uuid)},
                 document,
                 upsert=True,
             )
         return uuid
+
+    def remove(self, **kwargs):
+        """
+        Remove this object from the database.
+
+        Args:
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            True if an object was removed, False if not.
+
+        Raises:
+            RuntimeError: when this object has not been given a UUID.
+        """
+        if self.uuid is None:
+            raise RuntimeError('Cannot remove document that has not been put '
+                               'into the database (UUID is missing)')
+
+        return self.remove_by_uuid(self.uuid, **kwargs)
+
+    @classmethod
+    def remove_by_uuid(cls, uuid, **kwargs):
+        """
+        Remove the document with the given UUID from the database collection.
+
+        Args:
+            uuid: The UUID of the document to remove from the database.
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            True if a document was actually removed, False if not.
+        """
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = getattr(db, cls.get_key())
+            r = collection.delete_one({'_id': ObjectId(uuid)})
+            num_deleted = r.deleted_count
+        return num_deleted > 0
+
+    @classmethod
+    def find_all_ids(cls, **kwargs):
+        """
+        Return the UUIDs of all documents in the database collection.
+
+        Args:
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            List of UUIDs, one for each document in the database collection.
+        """
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = getattr(db, cls.get_key())
+            ids = [str(i) for i in collection.distinct('_id')]
+        return ids
 
     @abstractmethod
     def _get_as_document(self):
@@ -336,7 +391,7 @@ class Configuration(DbCollection):
         )
 
     @staticmethod
-    def _get_key():
+    def get_key():
         return 'configuration'
 
     def get_similarity(self):
@@ -498,7 +553,7 @@ class Ontology(Graph):
     """
 
     @staticmethod
-    def _get_key():
+    def get_key():
         return 'ontology'
 
 
@@ -507,7 +562,7 @@ class Dataset(Graph):
     An RDF graph detailing the datasets that can be searched for.
     """
     @staticmethod
-    def _get_key():
+    def get_key():
         return 'dataset'
 
 
@@ -610,7 +665,7 @@ class Similarity(DatasetTagging):
     concepts.
     """
     @staticmethod
-    def _get_key():
+    def get_key():
         return 'similarity'
 
 
@@ -620,7 +675,7 @@ class Autotag(DatasetTagging):
     concepts.
     """
     @staticmethod
-    def _get_key():
+    def get_key():
         return 'autotag'
 
 
@@ -906,7 +961,7 @@ def get_tagged_datasets(uuid, **kwargs):
 
 
 def is_recognized_key(key):
-    return key in ('ontology', 'autotag', 'dataset', 'similarity')
+    return key in ('configuration', 'ontology', 'autotag', 'dataset', 'similarity')
 
 
 def get_dataframe_id(key, uuid, raise_on_no_uuid, **kwargs):
