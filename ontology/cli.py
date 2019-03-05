@@ -104,7 +104,7 @@ def do_sort_turtle(args):
 
 
 subcommand = GraphSubcommand(
-    'ontology',
+    'Ontology',
     'ontologies',
     adjust_loaded_graph,
     adjust_parsers,

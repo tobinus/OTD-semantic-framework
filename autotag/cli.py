@@ -74,7 +74,7 @@ def do_generate(args):
 
 
 subcommand = GraphSubcommand(
-    'autotag',
+    'Autotag',
     'autotags',
     None,
     adjust_parsers,

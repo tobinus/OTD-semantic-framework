@@ -142,21 +142,31 @@ class GraphSubcommand:
 
     def __init__(
             self,
-            graph_class,
+            graph_class_name,
             plural,
             adjust_loaded_graph=None,
             adjust_parsers=None,
             graph_generate_func=None,
             description=''
     ):
-        self.graph_class = graph_class
-        self.key = graph_class.get_key()
+        self.graph_class_name = graph_class_name
+        self.key = graph_class_name.lower()
         self.plural = plural
         self.adjust_loaded_graph = adjust_loaded_graph
         self.adjust_parsers = adjust_parsers
         self.graph_generate_func = graph_generate_func
         self.description = description
+        self.__graph_class = None
         self.__utils_graph = None
+
+    @property
+    def graph_class(self):
+        # Avoid loading db.graph (and thereby MongoDb libs) unless needed
+        if self.__graph_class is None:
+            # Get the class from the db.graph module
+            from db import graph
+            self.__graph_class = getattr(graph, self.graph_class_name)
+        return self.__graph_class
 
     @property
     def _utils_graph(self):
@@ -174,6 +184,14 @@ class GraphSubcommand:
             args=None
     ):
         rdf_graph = self._parse_graph_or_use_authoritative(location, format, args)
+
+        if uuid is None:
+            # The user provided the --uuid flag without specifying the ID, so
+            # use the one provided in the environment variable
+            uuid = self.graph_class.find_uuid()
+        elif uuid is False:
+            # The user did not specify to use a specific UUID, so generate a new
+            uuid = None
         graph = self.graph_class(uuid, rdf_graph)
         return graph.save()
 

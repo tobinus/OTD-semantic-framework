@@ -178,6 +178,28 @@ class DbCollection(metaclass=ABCMeta):
         return uuid
 
     @classmethod
+    def force_find_uuid(cls, uuid=None, **kwargs):
+        """
+        Do a look-up to find the UUID which would have been found when fetching
+        an instance of this class using the given UUID.
+
+        This goes one step further than find_uuid, since it will query the
+        database to find the UUID. This is not necessary when simply wanting to
+        fetch one entry.
+
+        Args:
+            uuid: Potentially a UUID, in which case it will be used as-is and
+                not checked for validity.
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            The UUID of the document that would have been returned when calling
+            from_uuid on this class.
+        """
+        return cls._force_get_uuid_for(cls.get_key(), uuid, **kwargs)
+
+
+    @classmethod
     def _force_get_uuid_for(cls, key, uuid=None, **kwargs):
         """
         Do a look-up to find the UUID which would have been found when fetching

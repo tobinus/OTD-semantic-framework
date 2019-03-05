@@ -14,7 +14,7 @@ def do_generate(_):
 
 
 subcommand = GraphSubcommand(
-    'similarity',
+    'Similarity',
     'similarities',
     None,
     None,

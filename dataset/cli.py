@@ -27,7 +27,7 @@ def do_generate(args):
 
 
 subcommand = GraphSubcommand(
-    'dataset',
+    'Dataset',
     'datasets',
     None,
     adjust_parsers,

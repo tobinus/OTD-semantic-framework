@@ -29,6 +29,7 @@ PACKAGES_WITH_CLI = (
     'dataset',
     'similarity',
     'autotag',
+    'configuration',
 )
 # Name of modules that should also be used to create subcommands, but which
 # aren't called cli
