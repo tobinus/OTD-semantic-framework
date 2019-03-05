@@ -142,31 +142,25 @@ class GraphSubcommand:
 
     def __init__(
             self,
-            key,
+            graph_class,
             plural,
             adjust_loaded_graph=None,
             adjust_parsers=None,
             graph_generate_func=None,
             description=''
     ):
-        self.key = key
+        self.graph_class = graph_class
+        self.key = graph_class.get_key()
         self.plural = plural
         self.adjust_loaded_graph = adjust_loaded_graph
         self.adjust_parsers = adjust_parsers
         self.graph_generate_func = graph_generate_func
         self.description = description
-        self.__db_graph = None
         self.__utils_graph = None
 
     @property
-    def _db_graph(self):
-        if self.__db_graph is None:
-            from db import graph
-            self.__db_graph = graph
-        return self.__db_graph
-
-    @property
     def _utils_graph(self):
+        # Avoid loading utils.graph (and thereby RDFlib) unless we need it
         if self.__utils_graph is None:
             from utils import graph
             self.__utils_graph = graph
@@ -174,27 +168,14 @@ class GraphSubcommand:
 
     def insert_potentially_new_graph(
             self,
-            uuid=False,
+            uuid=None,
             location=None,
             format=None,
             args=None
     ):
-        if uuid is not False:
-            return self._insert_graph(uuid, location, format, args)
-        else:
-            return self._insert_new_graph(location, format, args)
-
-    def _insert_graph(self, uuid, location=None, format=None, args=None):
-        g = self._parse_graph_or_use_authoritative(location, format, args)
-        uuid = self._db_graph.get_uuid_for_collection(
-            self.key, uuid, True, 'insert_graph()'
-        )
-        self._db_graph.update(g, uuid, self.key)
-        return uuid
-
-    def _insert_new_graph(self, location=None, format=None, args=None):
-        g = self._parse_graph_or_use_authoritative(location, format, args)
-        return self._db_graph.store(g, self.key)
+        rdf_graph = self._parse_graph_or_use_authoritative(location, format, args)
+        graph = self.graph_class(uuid, rdf_graph)
+        return graph.save()
 
     def _parse_graph_or_use_authoritative(
             self,
@@ -356,7 +337,7 @@ class GraphSubcommand:
         success = True
         for uuid in args.uuid:
             try:
-                result = self._db_graph.remove(uuid, self.key)
+                result = self.graph_class.remove_by_uuid(uuid)
                 if not result:
                     success = False
                     print('No document with UUID', uuid, 'found')
@@ -381,7 +362,7 @@ class GraphSubcommand:
         return parser
 
     def _do_list(self, args):
-        documents = self._db_graph.find_all_ids(self.key)
+        documents = self.graph_class.find_all_ids()
         for doc in documents:
             print(doc)
 
@@ -411,9 +392,7 @@ class GraphSubcommand:
 
     def _do_show(self, args):
         # Work around with_rdf_output not made for methods
-        get_func = getattr(self._db_graph, f'get_{self.key}')
+        def retrieve_graph(args):
+            return self.graph_class.from_uuid(args.uuid).graph
 
-        def call_get_func(args):
-            return get_func(args.uuid, False)
-
-        return with_rdf_output(call_get_func)(args)
+        return with_rdf_output(retrieve_graph)(args)
