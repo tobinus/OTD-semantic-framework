@@ -19,7 +19,7 @@ def create(args):
         if config.uuid is None:
             print('A new UUID would be generated for the new configuration')
         else:
-            print('Configuration UUID:', config.uuid)
+            print('CONFIGURATION_UUID=' + config.uuid)
     else:
         config.save()
         print(config.uuid)
@@ -53,7 +53,7 @@ def show(args):
 
 
 def print_config(config):
-    print('Ontology graph:', config.ontology_uuid)
-    print('Dataset graph:', config.dataset_uuid)
-    print('Similarity graph:', config.similarity_uuid)
-    print('Autotag graph:', config.autotag_uuid)
+    print('ONTOLOGY_UUID=' + config.ontology_uuid)
+    print('DATASET_UUID=' + config.dataset_uuid)
+    print('SIMILARITY_UUID=' + config.similarity_uuid)
+    print('AUTOTAG_UUID=' + config.autotag_uuid)
