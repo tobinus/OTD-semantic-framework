@@ -26,21 +26,72 @@ DataFrameId = namedtuple(
 
 
 class MissingUuidWarning(Warning):
+    """
+    No UUID has been specified by the user.
+
+    This is not an error, since the first result returned by MongoDB will be
+    used as a fallback/shortcut.
+
+    This can be fine in some cases, but you'll usually want to specify UUIDs
+    explicitly through environment variables or the use of a configuration, to
+    avoid problems with unpredictable results once more than one entry exists.
+    """
     pass
 
 
 class DbCollection(metaclass=ABCMeta):
+    """
+    Generic class for any MongoDB collection in DataOntoSearch.
+    """
     def __init__(self, uuid=None):
+        """
+        Create new instance of a class for any MongoDB collection.
+
+        Args:
+            uuid: UUID associated with this document.
+        """
         self.uuid = uuid
+        """The UUID associated with this document."""
 
     @staticmethod
     @abstractmethod
     def _get_key():
+        """
+        Get the name of the collection associated with this class.
+
+        This is used to find out which collection to fetch and store documents
+        in when interacting with this class.
+
+        Returns:
+            The name of the collection associated with this class.
+        """
         return ''
 
     @classmethod
     def from_uuid(cls, uuid=None, **kwargs):
-        key = cls._key
+        """
+        Fetch an instance of this class from the database.
+
+        Args:
+            uuid: UUID of the instance to fetch. If not given, an environment
+                variable named <COLLECTION_NAME>_UUID will be used. If that one
+                does not exist, a MissingUuidWarning will be emitted and the
+                first instance returned from the database is used.
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            An instance of this class, filled with information from the
+            database.
+
+        Warnings:
+            MissingUuidWarning: If no UUID is given as an argument or an
+                environment variable.
+
+        Raises:
+            ValueError: If no document with the specified UUID can be found, or
+                if no document exists when not specifying the UUID.
+        """
+        key = cls._get_key()
         assert is_recognized_key(key)
         uuid = cls.find_uuid(uuid)
 
@@ -64,15 +115,52 @@ class DbCollection(metaclass=ABCMeta):
     @classmethod
     @abstractmethod
     def from_document(cls, document):
+        """
+        Create a new instance of this class, using the retrieved document.
+
+        Args:
+            document: Document retrieved from this class' collection in the DB.
+
+        Returns:
+            An instance of this class, filled with details from the document.
+        """
         return cls(document['_id'])
 
     @classmethod
     def find_uuid(cls, uuid=None):
+        """
+        Find the UUID to look up, using the collection associated with this
+        class.
+
+        If the UUID has not been specified, it will be retrieved from an
+        environment variable named <COLLECTION_NAME>_UUID.
+
+        Args:
+            uuid: Potentially a UUID, in which case it will be used as-is.
+
+        Returns:
+            The UUID to use, or None if the first result from MongoDB should be
+            used.
+        """
         key = cls._get_key()
         return cls._get_uuid_for(key, uuid)
 
     @staticmethod
     def _get_uuid_for(key, uuid=None):
+        """
+        Find the UUID to look up, using the given collection.
+
+        If the UUID has not been specified, it will be retrieved from an
+        environment variable named <COLLECTION_NAME>_UUID.
+
+        Args:
+            key: Name of the MongoDB collection to find a UUID for.
+            uuid: Potentially a UUID, in which case it will be used as-is.
+
+        Returns:
+            The UUID to use, or None if the first result from MongoDB should be
+            used.
+        """
         envvar = '{}_UUID'.format(key.upper())
 
         # No UUID given? Were we given one by environment variables?
@@ -91,6 +179,24 @@ class DbCollection(metaclass=ABCMeta):
 
     @classmethod
     def _force_get_uuid_for(cls, key, uuid=None, **kwargs):
+        """
+        Do a look-up to find the UUID which would have been found when fetching
+        a document for the given collection and UUID.
+
+        This goes one step further than _get_uuid_for, since it will query the
+        database to find the UUID. This is not necessary when simply wanting to
+        fetch one entry.
+
+        Args:
+            key: Name of the MongoDB collection to find a UUID for.
+            uuid: Potentially a UUID, in which case it will be used as-is and
+                not checked for validity.
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            The UUID of the document that would have been returned when fetching
+            one document for the given collection and UUID.
+        """
         uuid = cls._get_uuid_for(key, uuid)
         if uuid is not None:
             return uuid
@@ -105,9 +211,30 @@ class DbCollection(metaclass=ABCMeta):
             return str(first_document['_id'])
 
     def prepare(self):
+        """
+        Validate this object and set any automatically derived properties.
+
+        This is called in preparation of saving the object.
+        """
         pass
 
     def save(self, **kwargs):
+        """
+        Save this object to the database.
+
+        If a UUID is associated with this object, any document in the database
+        collection with the same UUID will be replaced.
+
+        If no UUID is associated with this object, it will be inserted as a new
+        document in the database collection. Its new UUID, assigned by MongoDB,
+        will be associated with this object and returned.
+
+        Args:
+            **kwargs: Extra keyword arguments to give to MongoDBConnection.
+
+        Returns:
+            The UUID of the saved object.
+        """
         self.prepare()
 
         if self.uuid is None:
@@ -118,6 +245,9 @@ class DbCollection(metaclass=ABCMeta):
             return self._save_with_uuid(self.uuid, **kwargs)
 
     def _save_as_new(self, **kwargs):
+        """
+        Save this object to the database collection as a new document.
+        """
         document = self._get_as_document()
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
@@ -126,6 +256,9 @@ class DbCollection(metaclass=ABCMeta):
         return str(assigned_id)
 
     def _save_with_uuid(self, uuid, **kwargs):
+        """
+        Save this object to the database collection using the given UUID.
+        """
         document = self._get_as_document()
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
@@ -139,10 +272,19 @@ class DbCollection(metaclass=ABCMeta):
 
     @abstractmethod
     def _get_as_document(self):
+        """
+        Create a document out of this object that can be saved to the database.
+
+        Returns:
+            A dictionary with the data that will be saved to the database.
+        """
         return dict()
 
 
 class Configuration(DbCollection):
+    """
+    A set of associated similarity, autotag, ontology and dataset graphs.
+    """
     def __init__(
             self,
             uuid=None,
@@ -151,11 +293,37 @@ class Configuration(DbCollection):
             dataset=None,
             ontology=None
     ):
+        """
+        Create a new set of associated graphs that go together.
+
+        Args:
+            uuid: UUID of this configuration.
+            similarity: UUID of the associated similarity graph.
+            autotag: UUID of the associated autotag graph.
+            dataset: UUID of the associated dataset graph.
+            ontology: UUID of the associated ontology graph.
+        """
         super().__init__(uuid)
+
         self.similarity_uuid = similarity
+        """
+        UUID of the associated similarity graph.
+        """
+
         self.autotag_uuid = autotag
+        """
+        UUID of the associated autotag graph.
+        """
+
         self.dataset_uuid = dataset
+        """
+        UUID of the associated dataset graph.
+        """
+
         self.ontology_uuid = ontology
+        """
+        UUID of the associated ontology graph.
+        """
 
     @classmethod
     def from_document(cls, document):
@@ -172,15 +340,39 @@ class Configuration(DbCollection):
         return 'configuration'
 
     def get_similarity(self):
+        """
+        Get the Similarity instance linked by this configuration.
+
+        Returns:
+            Instance of the Similarity graph associated with this configuration.
+        """
         return Similarity.from_uuid(self.similarity_uuid)
 
     def get_autotag(self):
+        """
+        Get the Autotag instance linked by this configuration.
+
+        Returns:
+            Instance of the Autotag graph associated with this configuration.
+        """
         return Autotag.from_uuid(self.autotag_uuid)
 
     def get_dataset(self):
+        """
+        Get the Dataset instance linked by this configuration.
+
+        Returns:
+            Instance of the Dataset graph associated with this configuration.
+        """
         return Dataset.from_uuid(self.dataset_uuid)
 
     def get_ontology(self):
+        """
+        Get the Ontology instance linked by this configuration.
+
+        Returns:
+            Instance of the Ontology graph associated with this configuration.
+        """
         return Ontology.from_uuid(self.ontology_uuid)
 
     def prepare(self):
@@ -237,10 +429,24 @@ class Configuration(DbCollection):
 
 
 class Graph(DbCollection):
+    """A class representing a generic RDF graph."""
+
     def __init__(self, uuid=None, graph=None, last_modified=None):
+        """
+        Create a new instance of an RDF graph from the database.
+
+        Args:
+            uuid: UUID of this RDF graph.
+            graph: The instantiated RDF graph.
+            last_modified: Date of when this graph was last modified.
+        """
         super().__init__(uuid)
+
         self.graph = graph
+        """The instantiated RDF graph."""
+
         self.last_modified = last_modified
+        """The time when this graph was last modified."""
 
     @classmethod
     def from_document(cls, document):
@@ -254,6 +460,15 @@ class Graph(DbCollection):
 
     @classmethod
     def _create_graph_from_document(cls, document):
+        """
+        Helper method for parsing and instantiating a graph from a DB document.
+
+        Args:
+            document: A document retrieved from the database collection.
+
+        Returns:
+            An RDF-lib graph with its contents taken from the given document.
+        """
         raw_graph = document['rdf'].decode('utf-8')
         graph = create_bound_graph()
         graph.parse(data=raw_graph, format='json-ld')
@@ -278,18 +493,29 @@ class Graph(DbCollection):
 
 
 class Ontology(Graph):
+    """
+    An RDF graph detailing the concepts and their hierarchy.
+    """
+
     @staticmethod
     def _get_key():
         return 'ontology'
 
 
 class Dataset(Graph):
+    """
+    An RDF graph detailing the datasets that can be searched for.
+    """
     @staticmethod
     def _get_key():
         return 'dataset'
 
 
 class DatasetTagging(Graph):
+    """
+    Any RDF graph whose purpose is to associate datasets with concepts in the
+    ontology.
+    """
     def __init__(
             self,
             uuid=None,
@@ -298,14 +524,41 @@ class DatasetTagging(Graph):
             dataset=None,
             ontology=None
     ):
+        """
+        Create a new instance of any RDF graph used to tag datasets with
+        concepts.
+
+        Args:
+            uuid: UUID of this RDF graph.
+            graph: The instantiated RDF graph.
+            last_modified: Date of when this graph was last modified.
+            dataset: UUID of the associated dataset graph.
+            ontology: UUID of the associated ontology graph.
+        """
         super().__init__(uuid, graph, last_modified)
+
         self.dataset_uuid = dataset
+        """UUID of the associated dataset graph."""
+
         self.ontology_uuid = ontology
+        """UUID of the associated ontology graph."""
 
     def get_dataset(self):
+        """
+        Get the Dataset instance linked by this configuration.
+
+        Returns:
+            Instance of the Dataset graph associated with this configuration.
+        """
         return Dataset.from_uuid(self.dataset_uuid)
 
     def get_ontology(self):
+        """
+        Get the Ontology instance linked by this configuration.
+
+        Returns:
+            Instance of the Ontology graph associated with this configuration.
+        """
         return Ontology.from_uuid(self.ontology_uuid)
 
     @classmethod
@@ -352,12 +605,20 @@ class DatasetTagging(Graph):
 
 
 class Similarity(DatasetTagging):
+    """
+    RDF graph with manually created links between datasets and relevant
+    concepts.
+    """
     @staticmethod
     def _get_key():
         return 'similarity'
 
 
 class Autotag(DatasetTagging):
+    """
+    RDF graph with automatically created links between datasets and relevant
+    concepts.
+    """
     @staticmethod
     def _get_key():
         return 'autotag'
