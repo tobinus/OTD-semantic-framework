@@ -8,24 +8,6 @@ def adjust_parsers(subparsers):
 
     for parser in relevant_parsers:
         parser.add_argument(
-            '--ontology',
-            '-n',
-            help='UUID of ontology graph with the concepts you want to connect '
-                 'datasets to (when generating anew). By default, the '
-                 'ONTOLOGY_UUID environment variable will be used, falling '
-                 'back to the first ontology graph returned by MongoDB.',
-            default=None
-        )
-        parser.add_argument(
-            '--dataset',
-            '-d',
-            help='UUID of dataset graph with the datasets you want to connect '
-                 'to concepts (when generating anew). By default, the '
-                 'DATASET_UUID environment variable will be used, falling back '
-                 'to the first dataset graph returned by MongoDB.',
-            default=None
-        )
-        parser.add_argument(
             '--language',
             '-l',
             help='Language to use to select concept labels and compute word '
@@ -64,8 +46,6 @@ def adjust_parsers(subparsers):
 def do_generate(args):
     from autotag.generate import generate_autotag
     return generate_autotag(
-        args.dataset,
-        args.ontology,
         args.quiet,
         args.language,
         args.min_sim,

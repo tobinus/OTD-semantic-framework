@@ -11,16 +11,13 @@ from utils.nlp import normalize, remove_stopwords_nb
 
 
 def generate_autotag(
-        dataset_uuid,
-        ontology_uuid,
         quiet,
         language,
         semantic_threshold,
         min_concepts
 ):
-    corpus = get_dataset_texts(dataset_uuid, quiet=quiet)
+    corpus = get_dataset_texts(quiet=quiet)
     concept_labels = get_concept_labels(
-        ontology_uuid,
         quiet=quiet,
         language=language
     )
@@ -35,9 +32,9 @@ def generate_autotag(
     return similarity_graph
 
 
-def get_dataset_texts(dataset_uuid, quiet):
+def get_dataset_texts(quiet):
     progress_print(quiet, 'Loading datasets from database…')
-    dataset = db.graph.get_dataset(dataset_uuid, False)
+    dataset = db.graph.Dataset.from_uuid().graph
 
     progress_print(quiet, 'Checking how many datasets to process…')
     num_datasets = len(tuple(dataset.subjects(RDF.type, DCAT.Dataset)))
@@ -65,9 +62,9 @@ def get_dataset_texts(dataset_uuid, quiet):
     return corpus
 
 
-def get_concept_labels(ontology_uuid, quiet, language):
+def get_concept_labels(quiet, language):
     progress_print(quiet, 'Loading ontology from database…')
-    ontology = db.graph.get_ontology(ontology_uuid, False)
+    ontology = db.graph.Ontology.from_uuid().graph
 
     progress_print(quiet, 'Extracting ontology labels from graph…')
 
