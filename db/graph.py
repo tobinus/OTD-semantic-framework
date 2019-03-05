@@ -1,4 +1,5 @@
 import os
+from abc import ABCMeta, abstractmethod
 from collections import namedtuple
 import datetime
 import warnings
@@ -28,7 +29,120 @@ class MissingUuidWarning(Warning):
     pass
 
 
-class Configuration:
+class DbCollection(metaclass=ABCMeta):
+    def __init__(self, uuid=None):
+        self.uuid = uuid
+
+    @staticmethod
+    @abstractmethod
+    def _get_key():
+        return ''
+
+    @classmethod
+    def from_uuid(cls, uuid=None, **kwargs):
+        key = cls._key
+        assert is_recognized_key(key)
+        uuid = cls.find_uuid(uuid)
+
+        criteria = None
+        if uuid is not None:
+            criteria = {'_id': ObjectId(uuid)}
+
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = getattr(db, key)
+
+            document = collection.find_one(criteria)
+
+            if document is None:
+                raise ValueError(
+                    'No {} found with the UUID "{}"'
+                        .format(key, uuid)
+                )
+        return cls.from_document(document)
+
+    @classmethod
+    @abstractmethod
+    def from_document(cls, document):
+        return cls(document['_id'])
+
+    @classmethod
+    def find_uuid(cls, uuid=None):
+        key = cls._get_key()
+        return cls._get_uuid_for(key, uuid)
+
+    @staticmethod
+    def _get_uuid_for(key, uuid=None):
+        envvar = '{}_UUID'.format(key.upper())
+
+        # No UUID given? Were we given one by environment variables?
+        if uuid is None:
+            ensure_loaded_dotenv()
+            uuid = os.environ.get(envvar)
+
+        if uuid is None:
+            warnings.warn(
+                'No UUID specified when fetching {}. Using '
+                'whatever MongoDB returns first'.format(key),
+                MissingUuidWarning,
+                2
+            )
+        return uuid
+
+    @classmethod
+    def _force_get_uuid_for(cls, key, uuid=None, **kwargs):
+        uuid = cls._get_uuid_for(key, uuid)
+        if uuid is not None:
+            return uuid
+
+        # We're using whatever MongoDB returns first, so find that
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = getattr(db, key)
+            first_document = collection.fetch_one({})
+            if first_document is None:
+                return None
+            return str(first_document['_id'])
+
+    def prepare(self):
+        pass
+
+    def save(self, **kwargs):
+        self.prepare()
+
+        if self.uuid is None:
+            uuid = self._save_as_new(**kwargs)
+            self.uuid = uuid
+            return uuid
+        else:
+            return self._save_with_uuid(self.uuid, **kwargs)
+
+    def _save_as_new(self, **kwargs):
+        document = self._get_as_document()
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = getattr(db, self._get_key())
+            assigned_id = collection.insert_one(document).inserted_id
+        return str(assigned_id)
+
+    def _save_with_uuid(self, uuid, **kwargs):
+        document = self._get_as_document()
+        with MongoDBConnection(**kwargs) as client:
+            db = client.ontodb
+            collection = getattr(db, self._get_key())
+            collection.replace_one(
+                {'_id': ObjectId(uuid)},
+                document,
+                upsert=True,
+            )
+        return uuid
+
+    @abstractmethod
+    def _get_as_document(self):
+        return dict()
+
+
+class Configuration(DbCollection):
     def __init__(
             self,
             uuid=None,
@@ -37,66 +151,40 @@ class Configuration:
             dataset=None,
             ontology=None
     ):
-        self.uuid = uuid
+        super().__init__(uuid)
         self.similarity_uuid = similarity
         self.autotag_uuid = autotag
         self.dataset_uuid = dataset
         self.ontology_uuid = ontology
 
     @classmethod
-    def from_uuid(cls, uuid=None, **kwargs):
-        with MongoDBConnection(**kwargs) as client:
-            db = client.ontodb
-            collection = db.configuration
+    def from_document(cls, document):
+        return cls(
+            document['_id'],
+            document['similarity'],
+            document['autotag'],
+            document['dataset'],
+            document['ontology']
+        )
 
-            if uuid is None:
-                ensure_loaded_dotenv()
-                uuid = os.environ.get('CONFIGURATION_UUID')
-
-            if uuid is None:
-                warnings.warn(
-                    'No UUID specified when fetching configuration. Using '
-                    'whatever MongoDB returns first',
-                    MissingUuidWarning
-                )
-
-            criteria = None
-            if uuid is not None:
-                criteria = {'_id': ObjectId(uuid)}
-
-            document = collection.find_one(criteria)
-
-            if document is None:
-                raise ValueError(
-                    'No configuration found with the UUID "{}"'
-                    .format(uuid)
-                )
-
-            return cls(
-                document['_id'],
-                document['similarity'],
-                document['autotag'],
-                document['dataset'],
-                document['ontology']
-            )
+    @staticmethod
+    def _get_key():
+        return 'configuration'
 
     def get_similarity(self):
-        return get_similarity(self.similarity_uuid)
+        return Similarity.from_uuid(self.similarity_uuid)
 
     def get_autotag(self):
-        return get_autotag(self.autotag_uuid)
+        return Autotag.from_uuid(self.autotag_uuid)
 
     def get_dataset(self):
-        return get_dataset(self.dataset_uuid)
+        return Dataset.from_uuid(self.dataset_uuid)
 
     def get_ontology(self):
-        return get_ontology(self.ontology_uuid)
-
-    def save(self):
-        self.prepare()
-        # TODO: Actually save this object
+        return Ontology.from_uuid(self.ontology_uuid)
 
     def prepare(self):
+        # Ensure all mandatory fields are present
         if self.similarity_uuid is None:
             raise RuntimeError(
                 'A configuration must be linked to a similarity graph'
@@ -107,6 +195,7 @@ class Configuration:
                 'A configuration must be linked to an autotag graph'
             )
 
+        # Examine the consistency of linked dataset and ontology graphs
         similarity = self.get_similarity()
         sim_dataset = similarity.dataset_uuid
         sim_ontology = similarity.ontology_uuid
@@ -131,12 +220,147 @@ class Configuration:
                 'configuration, similarity graph and autotag graph'
             )
 
-        # If those are not defined for the configuration, fill in from the
-        # similarity graph
+        # If those are not defined for the configuration, fill in from any graph
         if self.dataset_uuid is None:
             self.dataset_uuid = sim_dataset
         if self.ontology_uuid is None:
             self.ontology_uuid = sim_ontology
+
+    def _get_as_document(self):
+        document = {
+            'similarity': self.similarity_uuid,
+            'autotag': self.autotag_uuid,
+            'dataset': self.dataset_uuid,
+            'ontology': self.ontology_uuid,
+        }
+        return document
+
+
+class Graph(DbCollection):
+    def __init__(self, uuid=None, graph=None, last_modified=None):
+        super().__init__(uuid)
+        self.graph = graph
+        self.last_modified = last_modified
+
+    @classmethod
+    def from_document(cls, document):
+        graph = cls._create_graph_from_document(document)
+
+        return cls(
+            document['_id'],
+            graph,
+            document['lastModified']
+        )
+
+    @classmethod
+    def _create_graph_from_document(cls, document):
+        raw_graph = document['rdf'].decode('utf-8')
+        graph = create_bound_graph()
+        graph.parse(data=raw_graph, format='json-ld')
+        return graph
+
+    def prepare(self):
+        super().prepare()
+
+        # Ensure all mandatory fields are present
+        if self.graph is None:
+            raise RuntimeError('The graph itself is missing')
+
+        # Update when this was last modified
+        self.last_modified = datetime.datetime.utcnow()
+
+    def _get_as_document(self):
+        serialized_graph = self.graph.serialize(format='json-ld')
+        return {
+            'rdf': serialized_graph,
+            'lastModified': self.last_modified,
+        }
+
+
+class Ontology(Graph):
+    @staticmethod
+    def _get_key():
+        return 'ontology'
+
+
+class Dataset(Graph):
+    @staticmethod
+    def _get_key():
+        return 'dataset'
+
+
+class DatasetTagging(Graph):
+    def __init__(
+            self,
+            uuid=None,
+            graph=None,
+            last_modified=None,
+            dataset=None,
+            ontology=None
+    ):
+        super().__init__(uuid, graph, last_modified)
+        self.dataset_uuid = dataset
+        self.ontology_uuid = ontology
+
+    def get_dataset(self):
+        return Dataset.from_uuid(self.dataset_uuid)
+
+    def get_ontology(self):
+        return Ontology.from_uuid(self.ontology_uuid)
+
+    @classmethod
+    def from_document(cls, document):
+        graph = cls._create_graph_from_document(document)
+
+        return cls(
+            document['_id'],
+            graph,
+            document['lastModified'],
+            document['dataset'],
+            document['ontology'],
+        )
+
+    def prepare(self):
+        super().prepare()
+
+        # Check validity
+        dataset_uuid = self._force_get_uuid_for('dataset', self.dataset_uuid)
+        if dataset_uuid is None:
+            raise RuntimeError(
+                'A dataset tagging graph must be associated with a dataset '
+                'graph'
+            )
+
+        ontology_uuid = self._force_get_uuid_for('ontology', self.ontology_uuid)
+        if ontology_uuid is None:
+            raise RuntimeError(
+                'A dataset tagging graph must be associated with an ontology '
+                'graph'
+            )
+
+        # Now we can update with any inferred dataset or ontology UUIDs
+        self.dataset_uuid = dataset_uuid
+        self.ontology_uuid = ontology_uuid
+
+    def _get_as_document(self):
+        document = super()._get_as_document()
+        document.update({
+            'dataset': self.dataset_uuid,
+            'ontology': self.ontology_uuid,
+        })
+        return document
+
+
+class Similarity(DatasetTagging):
+    @staticmethod
+    def _get_key():
+        return 'similarity'
+
+
+class Autotag(DatasetTagging):
+    @staticmethod
+    def _get_key():
+        return 'autotag'
 
 
 def get(uuid, key='ontology', **kwargs):
