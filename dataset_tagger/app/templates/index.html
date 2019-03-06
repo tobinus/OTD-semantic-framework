@@ -1,106 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
-	<style type="text/css">
-
-	 table {
-	     font-family: arial, sans-serif;
-	     border-collapse: collapse;
-	     width: 100%;
-	 }
-
-	 td, th {
-	     border: 1px solid #dddddd;
-	     text-align: left;
-	     padding: 8px;
-	 }
-
-	 tr:nth-child(even) {
-	     background-color: #dddddd;
-	 }
-
-        #mynetwork {
-        width: 100%;
-        height: 900px;
-        border: 1px solid lightgray;
-        }
-	</style>
-
-	<script type="text/javascript">
-	 // create an array with nodes
-	 var nodes = new vis.DataSet([
-	     {{ nodes|safe }}
-	 ]);
-
-	 // create an array with edges
-	 var edges = new vis.DataSet([
-	     {{ edges|safe }}
-	 ]);
-
-	 // create a network
-	 var container = document.getElementById('mynetwork');
-
-	 // provide the data in the vis format
-	 var data = {
-	     nodes: nodes,
-	     edges: edges
-	 };
-	 var options = {
-	     autoResize: true,
-	     height: '100%',
-	     width: '100%',
-	     edges:{
-		 arrows: {
-		     to: {enabled: true, scaleFactor:1, type:'arrow'},
-		     middle: {enabled: false, scaleFactor:1, type:'arrow'},
-		     from: {enabled: false, scaleFactor:1, type:'arrow'},
-		 }
-	     }
-	 };
-
-	 // initialize your network!
-	 var network = new vis.Network(container, data, options);
-	</script>
+        <title>Dataset tagger for DataOntoSearch</title>
     </head>
-    
-    <body>
-	<h1>Instructions</h1>
-	For instructions please see the <a href="/about"> about </a> page.
-	<h1>Tagger</h1>
 
-	<form id="tagform" autocomplete="on" method="post" action="/index?uuid={{ uuid }}">
-	    <table>
-		<tr>
-		    <td>{{ form.dcatDataset.label }}</td>
-		    <td>{{ form.dcatDataset(size=81) }}</td>
-		</tr>
-		<tr>
-		    <td>Tag</td>
-		    <td><input id="tag" name="tag" type="text" list="concepts"/>
-			<datalist id="concepts">
-			    {% for concept in concepts %}
-			    <option value="{{ concept }}"/>
-			    {% endfor %}
-			</datalist><br/></td>
-		</tr>
-		<td>{{ form.submit() }}</td>
-	    </table>
-	</form>
-	<br/>
-	{{ foo }}
-	<p>
-	    <h1>Tagged data</h1>
-	    <table>		
-		{% for s, p in tagged %}
-		<tr>
-		    <td>{{ s }}</td>
-		    <td>{{ p }}</td>
-		</tr>
-		{% endfor %}
-	    </table>
-	</p>
-	<div id="mynetwork" ></div>
+    <body>
+        <h1>Dataset tagger</h1>
+
+        <form method="GET" action="/">
+            Please enter the ID of the manual tagging you would like to work on<br/>
+            <input type="text" name="similarity_uuid" size="30">
+            <input type="submit" name="submit_button" value="Go">
+        </form>
     </body>
 </html>

@@ -2,103 +2,81 @@ from bson.errors import InvalidId
 from flask import render_template, request, redirect, url_for, abort
 from dataset_tagger.app import app, app_path
 from dataset_tagger.app.forms import TagForm
+from time import sleep
+
 import db.graph
-from db.graph import NoSuchGraph
-from ontology.create import insert_new_graph
-
-
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/viz', methods=['GET'])
-def viz():
-    uuid = request.args.get('uuid', default=None, type=None)
+from similarity.generate import add_similarity_link
+from utils.graph import create_bound_graph, RDF, DCAT, URIRef
 
 
 @app.route('/')
-@app.route('/index', methods=['GET', 'POST'])
 def index():
-    form=TagForm()
-    foo = ''
-    uuid = request.args.get('uuid', default=None, type=None)
-    if not uuid:
-        return redirect(url_for('about'))        
-    
+    if request.args.get('submit_button'):
+        uuid = request.args.get('similarity_uuid')
+        return redirect(
+            url_for('edit', uuid=uuid)
+        )
+
+    return render_template(
+        'index.html'
+    )
+
+@app.route('/edit/<uuid>', methods=['GET', 'POST'])
+def edit(uuid):
+    form = TagForm()
+    result = ''
+
+    try:
+        similarity = db.graph.Similarity.from_uuid(uuid)
+    except ValueError:
+        # Is it perhaps a Configuration?
+        try:
+            configuration = db.graph.Configuration.from_uuid(uuid)
+            similarity = configuration.get_similarity()
+        except ValueError:
+            sleep(1)
+            return abort(404)
+    except InvalidId:
+        return abort(404)
+
+    ontology = similarity.get_ontology()
+    concepts = ontology.get_concepts()
+    dataset = similarity.get_dataset()
+
     if request.method == 'POST':
         try:
-            dataset = request.form.get('dcatDataset')
-            tag = request.form.get('tag')
-            score = 1.0
-            foo = str(db.graph.tag_dataset(uuid, dataset, tag, score))
-            
+            linked_dataset_url = request.form.get('dcatDataset')
+
+            # Fetch information about this dataset
+            linked_dataset_graph = create_bound_graph()
+            linked_dataset_graph.parse(linked_dataset_url, format='xml')
+            dataset_uri = next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset))
+
+            # Do we already have this in our dataset graph?
+            if (dataset_uri, RDF.type, DCAT.Dataset) not in dataset.graph:
+                # Nope, add it
+                dataset.graph.parse(linked_dataset_url)
+                dataset.save()
+
+            # Create the link
+            concept_label = request.form.get('tag')
+            concept_uri = concepts[concept_label]
+            link_score = 1.0
+
+            link_id = add_similarity_link(
+                similarity,
+                dataset_uri,
+                URIRef(concept_uri),
+                link_score
+            )
+            result = link_id
         except Exception as e:
-            foo = str(e)
+            result = str(e)
             pass
 
-    try:
-        g = db.graph.get(uuid)
-    except (NoSuchGraph, InvalidId):
-        abort(404)
-
-    edges = []
-    nodes = []
-    for s, _, o in g.triples( (None, None, None)):
-        if (s.find('#') >= 0):
-            x = s[s.index('#')+1:]
-        else:
-            x = s
-        if (o.find('#') >= 0):
-            y = o[o.index('#')+1:]
-        else:
-            y = o
-        nodes.append(x)
-        nodes.append(y)
-        edges.append((x, y))
-
-    nodeset = set(nodes)
-    ns = []
-    for n in nodeset:
-        if n != 'Class':
-            ns.append("{"+ "id :'{}',label:'{}'".format(n,n)+ "}")
-    es = ",".join(["{"+ "from:'{}',to:'{}'".format(a,b) +"}" for (a,b) in edges])
-    
-        
-    leketag = db.graph.get_tagged_datasets(uuid)
     return render_template(
-        'index.html',
+        'edit.html',
         form=form,
-        concepts=db.graph.get_concepts(uuid),
-        tagged=leketag,
-        uuid=uuid,
-        foo=foo,
-        edges=es,
-        nodes=",".join(ns)
+        concepts=ontology.get_concepts(),
+        result=result,
     )
-   
-
-@app.route('/ontology/fetch/<string:uuid>')
-def ontology_fetch(uuid):
-    try:
-        return db.graph.get_raw_json(uuid)
-    except (NoSuchGraph, InvalidId):
-        abort(404)
-
-
-@app.route('/ontology/delete/<string:uuid>', methods=['GET'])
-def ontology_delete(uuid):
-    pass
-
-
-@app.route('/ontology/create', methods=['GET'])
-def ontology_create():
-    uuid = insert_new_graph()
-    return str({'uuid': uuid})
-
-
-@app.route('/ontology/list', methods=['GET'])
-def ontology_list():
-    return str({'ontologies': db.graph.find_all_ids()})
-#    path = os.path.join(app_path, 'db')
-#    ontologies = [splitext(f)[0] for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
-#    return str({'ontologies':ontologies})

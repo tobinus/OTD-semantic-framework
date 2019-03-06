@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style type="text/css">
+	 table {
+	     font-family: arial, sans-serif;
+	     border-collapse: collapse;
+	     width: 100%;
+	 }
+
+	 td, th {
+	     border: 1px solid #dddddd;
+	     text-align: left;
+	     padding: 8px;
+	 }
+
+	 tr:nth-child(even) {
+	     background-color: #dddddd;
+	 }
+	</style>
+
+    </head>
+    
+    <body>
+	<h1>Tagger</h1>
+
+	<form id="tagform" autocomplete="on" method="post" action="">
+	    <table>
+		<tr>
+		    <td>{{ form.dcatDataset.label }}</td>
+		    <td>{{ form.dcatDataset(size=81) }}</td>
+		</tr>
+		<tr>
+		    <td>Tag</td>
+		    <td><input id="tag" name="tag" type="text" list="concepts"/>
+			<datalist id="concepts">
+			    {% for concept in concepts %}
+			    <option value="{{ concept }}"/>
+			    {% endfor %}
+			</datalist><br/></td>
+		</tr>
+		<td>{{ form.submit() }}</td>
+	    </table>
+	</form>
+	<br/>
+	{{ result }}
+    </body>
+</html>

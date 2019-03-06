@@ -578,6 +578,16 @@ class Ontology(Graph):
     def get_key():
         return 'ontology'
 
+    def get_concepts(self):
+        concepts = dict()
+
+        for concept_uri in self.graph.subjects(RDF.type, SKOS.Concept):
+            label = str(second(first(
+                self.graph.preferredLabel(concept_uri, lang='en')
+            )))
+            concepts[label] = concept_uri
+        return concepts
+
 
 class Dataset(Graph):
     """
@@ -968,8 +978,6 @@ def tag_dataset(uuid, dataset_uri, tag, score, **kwargs):
     graph.add((ds, SKOS.relatedMatch, node))
     graph.add((ds, QEX.score, Literal(str(score), datatype=XSD.double)))
     update(graph, uuid, **kwargs)
-    #output = path.join(app_path + '/db', uuid+'.rdf')
-    #graph.serialize(destination=output, format='xml')
     graph.close()
     return True
 
