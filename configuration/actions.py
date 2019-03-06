@@ -9,6 +9,7 @@ def create(args):
     else:
         config.uuid = Configuration.find_uuid(args.uuid)
 
+    config.label = args.label
     config.similarity_uuid = Similarity.force_find_uuid(args.similarity)
     config.autotag_uuid = Autotag.force_find_uuid(args.autotag)
 
@@ -44,7 +45,8 @@ def remove(args):
 def list_all():
     documents = Configuration.find_all_ids()
     for doc in documents:
-        print(doc)
+        config = Configuration.from_uuid(doc)
+        print(doc, config.label)
 
 
 def show(args):
@@ -53,6 +55,7 @@ def show(args):
 
 
 def print_config(config):
+    print('#', config.label)
     print('ONTOLOGY_UUID=' + config.ontology_uuid)
     print('DATASET_UUID=' + config.dataset_uuid)
     print('SIMILARITY_UUID=' + config.similarity_uuid)

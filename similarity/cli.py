@@ -29,6 +29,7 @@ def register_subcommand(add_parser):
     parser, subcommands = subcommand.register_subcommand(add_parser)
     register_csv_parse_command(subcommands.add_parser)
     register_csv_prepare_command(subcommands.add_parser)
+    register_create_empty_command(subcommands.add_parser)
 
 
 def register_csv_parse_command(add_parser):
@@ -113,3 +114,34 @@ def do_csv_prepare_command(args):
     from similarity.csv_prepare import prepare_csv
     with open(args.csv_file, 'w', newline='') as csv_fn:
         prepare_csv(csv_fn, args.dialect)
+
+
+def register_create_empty_command(add_parser):
+    help_text = (
+        'Create an empty similarity graph in the database, which can then be '
+        'used with the online dataset tagger.'
+    )
+    parser = add_parser(
+        'create_empty',
+        help=help_text,
+        description=help_text + ' The DATASET_UUID and '
+        'ONTOLOGY_UUID environment variables are used to set which dataset '
+        'and ontology graphs the similarity graph is connected to.'
+    )
+    parser.add_argument(
+        '--uuid',
+        '-i',
+        help='Force the UUID for the empty similarity graph, potentially '
+             'truncating an existing similarity graph with the same UUID.'
+    )
+    parser.set_defaults(
+        func=do_create_empty_command
+    )
+
+
+def do_create_empty_command(args):
+    from db.graph import Similarity
+    from utils.graph import create_bound_graph
+    similarity = Similarity(args.uuid, create_bound_graph())
+    new_uuid = similarity.save()
+    print(new_uuid)

@@ -32,6 +32,10 @@ def register_create(add_parser):
         description='Create a new configuration',
     )
     parser.add_argument(
+        'label',
+        help='Name to use for this configuration.'
+    )
+    parser.add_argument(
         '--similarity',
         '-s',
         help='UUID of the similarity graph to use. By default, the '

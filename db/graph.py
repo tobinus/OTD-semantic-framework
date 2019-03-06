@@ -227,7 +227,7 @@ class DbCollection(metaclass=ABCMeta):
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
             collection = getattr(db, key)
-            first_document = collection.fetch_one({})
+            first_document = collection.find_one({})
             if first_document is None:
                 return None
             return str(first_document['_id'])
@@ -365,6 +365,7 @@ class Configuration(DbCollection):
     def __init__(
             self,
             uuid=None,
+            label=None,
             similarity=None,
             autotag=None,
             dataset=None,
@@ -375,12 +376,18 @@ class Configuration(DbCollection):
 
         Args:
             uuid: UUID of this configuration.
+            label: Human-readable label for this configuration.
             similarity: UUID of the associated similarity graph.
             autotag: UUID of the associated autotag graph.
             dataset: UUID of the associated dataset graph.
             ontology: UUID of the associated ontology graph.
         """
         super().__init__(uuid)
+
+        self.label = label
+        """
+        Human-readable label for this configuration.
+        """
 
         self.similarity_uuid = similarity
         """
@@ -406,6 +413,7 @@ class Configuration(DbCollection):
     def from_document(cls, document):
         return cls(
             document['_id'],
+            document.get('label'),
             document['similarity'],
             document['autotag'],
             document['dataset'],
@@ -497,6 +505,7 @@ class Configuration(DbCollection):
 
     def _get_as_document(self):
         document = {
+            'label': self.label,
             'similarity': self.similarity_uuid,
             'autotag': self.autotag_uuid,
             'dataset': self.dataset_uuid,

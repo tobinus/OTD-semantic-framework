@@ -6,7 +6,8 @@ from time import sleep
 
 import db.graph
 from similarity.generate import add_similarity_link
-from utils.graph import create_bound_graph, RDF, DCAT, URIRef
+from utils.graph import create_bound_graph, RDF, DCAT
+from rdflib import URIRef
 
 
 @app.route('/')
@@ -27,16 +28,10 @@ def edit(uuid):
     result = ''
 
     try:
-        similarity = db.graph.Similarity.from_uuid(uuid)
-    except ValueError:
-        # Is it perhaps a Configuration?
-        try:
-            configuration = db.graph.Configuration.from_uuid(uuid)
-            similarity = configuration.get_similarity()
-        except ValueError:
-            sleep(1)
-            return abort(404)
-    except InvalidId:
+        configuration = db.graph.Configuration.from_uuid(uuid)
+        similarity = configuration.get_similarity()
+    except (ValueError, InvalidId):
+        sleep(1)
         return abort(404)
 
     ontology = similarity.get_ontology()
@@ -64,7 +59,7 @@ def edit(uuid):
             link_score = 1.0
 
             link_id = add_similarity_link(
-                similarity,
+                similarity.graph,
                 dataset_uri,
                 URIRef(concept_uri),
                 link_score
@@ -79,4 +74,5 @@ def edit(uuid):
         form=form,
         concepts=ontology.get_concepts(),
         result=result,
+        configuration=configuration,
     )
