@@ -64,6 +64,7 @@ def edit(uuid):
                 URIRef(concept_uri),
                 link_score
             )
+            similarity.save()
             result = link_id
         except Exception as e:
             result = str(e)
