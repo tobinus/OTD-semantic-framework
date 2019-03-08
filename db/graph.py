@@ -513,6 +513,37 @@ class Configuration(DbCollection):
         }
         return document
 
+    def __eq__(self, other):
+        return (
+            isinstance(other, Configuration) and
+            # Are the UUIDs the same?
+            self.similarity_uuid == other.similarity_uuid and
+            self.autotag_uuid == other.autotag_uuid and
+            self.dataset_uuid == other.dataset_uuid and
+            self.ontology_uuid == other.ontology_uuid
+        )
+
+    def has_available_update(self, last_modified):
+        """
+        Check whether there have been any changes to any of the graphs after the
+        given last_modified time.
+
+        Args:
+            last_modified: Check if any graph has been changed since this date.
+
+        Returns:
+            True if there have been updates, False if not.
+        """
+        return
+
+    def get_latest_modified_date(self):
+        return max([
+            self.get_similarity().last_modified,
+            self.get_autotag().last_modified,
+            self.get_dataset().last_modified,
+            self.get_ontology().last_modified,
+        ])
+
 
 class Graph(DbCollection):
     """A class representing a generic RDF graph."""
@@ -595,6 +626,7 @@ class Graph(DbCollection):
         serialized_graph = self.graph.serialize(format='json-ld')
         return {
             'rdf': serialized_graph,
+            # TODO: Parse last_modified in a way, so it is native Python datetime
             'lastModified': self.last_modified,
         }
 

@@ -360,7 +360,7 @@ class ODSFLoader(Mapping):
             # Are we up to date?
             our_c = self.__configurations[k]
             newest_c = self._get_config_for(k)
-            update_available = newest_c.last_modified > our_c.last_modified
+            update_available = our_c == newest_c
         else:
             update_available = False
 
