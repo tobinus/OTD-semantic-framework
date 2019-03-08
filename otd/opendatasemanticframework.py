@@ -1,5 +1,7 @@
-import itertools
-
+from collections.abc import Mapping
+from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
+from bson.errors import InvalidId
+import warnings
 from similarity.csv_parse import get_fragment
 from utils.graph import RDF, OTD, DCAT, DCT
 from otd.skosnavigate import SKOSNavigate
@@ -18,6 +20,16 @@ import clint.textui.progress
 DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri'))
 SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
 ConceptSimilarity = namedtuple('ConceptSimilarity', ('concept', 'similarity'))
+
+
+class MissingMatrixError(RuntimeError):
+    """
+    Error indicating that a matrix/DataFrame was expected, but was not found.
+    This will only happen when matrices are set to not be generated, and
+    indicate that the ontology or similarity tagging graph cannot be used before
+    the matrices are (re)generated.
+    """
+    pass
 
 
 class OpenDataSemanticFramework:
@@ -102,7 +114,7 @@ class OpenDataSemanticFramework:
                 result = self.compute_ccs()
                 db.dataframe.store(result, graph_id)
             else:
-                raise RuntimeError(
+                raise MissingMatrixError(
                     f'No (up-to-date) existing concept-concept similarity '
                     f'matrix could be found for the ontology graph with UUID '
                     f'{uuid}, and not set to auto-create it.'
@@ -128,7 +140,7 @@ class OpenDataSemanticFramework:
                 # Store for next time
                 db.dataframe.store(result, graph_id)
             else:
-                raise RuntimeError(
+                raise MissingMatrixError(
                     f'No (up-to-date) existing concept-dataset similarity '
                     f'matrix could be found for the {key} graph with '
                     f'UUID {uuid}, and not set to auto-create it.'
@@ -311,3 +323,124 @@ class OpenDataSemanticFramework:
             key=lambda x: x.similarity,
             reverse=True
         )
+
+
+class ODSFLoader(Mapping):
+    """
+    Dictionary where keys are Configuration UUID, while values are instances of
+    OpenDataSemanticFramework loaded with the graphs specified by the
+    Configuration.
+
+    The OpenDataSemanticFramework instances are lazy loaded, meaning they are
+    loaded the first time you access them. Subsequent accesses will re-use the
+    existing instance.
+    """
+    DEFAULT_KEY = 'default'
+
+    def __init__(self, compute_matrices=False):
+        self.compute_matrices = compute_matrices
+        self.__instances = dict()
+        self.__configurations = dict()
+
+    def __getitem__(self, k):
+        if k is None:
+            raise KeyError(k)
+
+        if k == self.DEFAULT_KEY:
+            k = db.graph.Configuration.force_find_uuid(None)
+
+        if k in self.__configurations:
+            # Are we up to date?
+            our_c = self.__configurations[k]
+            newest_c = self._get_config_for(k)
+            update_available = newest_c.last_modified > our_c.last_modified
+        else:
+            update_available = False
+
+        if k not in self.__instances or update_available:
+            try:
+                configuration = self._get_config_for(k)
+                self.__instances[k] = self._create_from_configuration(
+                    configuration
+                )
+                self.__configurations[k] = configuration
+            except (db.graph.NoSuchGraph, InvalidId):
+                raise KeyError(k)
+            except MissingMatrixError:
+                if update_available:
+                    # De-escalate to warning, since we have the old version
+                    warnings.warn(
+                        'New Configuration instance for {} is missing one or '
+                        'more matrices. Falling back to previously loaded '
+                        'version.'.format(k)
+                    )
+                else:
+                    raise
+
+        return self.__instances[k]
+
+    def __len__(self) -> int:
+        return len(db.graph.Configuration.find_all_ids())
+
+    def __iter__(self):
+        return iter(db.graph.Configuration.find_all_ids())
+
+    def _get_config_for(self, key):
+        return db.graph.Configuration.from_uuid(key)
+
+    def _create_from_configuration(self, c):
+        odsf = OpenDataSemanticFramework(
+            c.ontology_uuid,
+            c.dataset_uuid,
+            self.compute_matrices
+        )
+        odsf.load_similarity_graph(
+            SIMTYPE_SIMILARITY,
+            'similarity',
+            c.similarity_uuid
+        )
+        odsf.load_similarity_graph(
+            SIMTYPE_AUTOTAG,
+            'autotag',
+            c.autotag_uuid
+        )
+        return odsf
+
+    def get_default(self) -> OpenDataSemanticFramework:
+        """
+        Get the ODSF using the configuration named in the CONFIGURATION_UUID
+        environment variable (referred to as the default configuration).
+
+        Returns:
+            The ODSF instance loaded using the default configuration.
+        """
+        return self[self.DEFAULT_KEY]
+
+    def ensure_default_is_loaded(self):
+        """
+        Ensure the ODSF with the default configuration is loaded.
+
+        Returns:
+            Nothing.
+        """
+        _ = self.get_default()
+
+    def ensure_all_loaded(self):
+        """
+        Ensure all available configurations are loaded.
+
+        This is useful when generating matrices, since it will ensure all
+        matrices are generated.
+
+        Otherwise, note that new configurations may be added between this being
+        called and that configuration being put into use, thus they may be
+        dynamically loaded at that time.
+
+        Only call this when strictly necessary.
+
+        Returns:
+            Nothing.
+        """
+        for uuid, odsf in self.items():
+            # We just wanted to load the odsf instance, so do nothing
+            pass

@@ -3,12 +3,13 @@ from flask import request, flash, abort, json
 from flask import Response
 from flask.json import jsonify
 from ontosearch.app import app
-from ontosearch.app import ontology
+from ontosearch.app import odsf_loader
 from ontosearch.app.forms import SearchForm, ScoreForm
 from time import time
 from datetime import datetime
 import db.log
 from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
+from otd.opendatasemanticframework import ODSFLoader, MissingMatrixError
 
 
 @app.route('/')
@@ -18,7 +19,7 @@ def index():
     xs = []
     sv = []
     if form.validate_on_submit():
-        xs, sv = ontology.search_query(form.query.data, cds_name=form.simtype.data)
+        xs, sv = odsf_loader.get_default().search_query(form.query.data, cds_name=form.simtype.data)
         timestamp = datetime.fromtimestamp(time()).strftime('%Y-%m-%d %H:%M:%S')
         log = {'ip':request.remote_addr, 'time':timestamp, 'query':form.query.data, 'type':form.simtype.data, 'res':[x[1][2] for x in xs]}
         db.log.store(log)
@@ -36,6 +37,8 @@ def scores():
     form = ScoreForm()
 
     most_similar_concepts = []
+
+    ontology = odsf_loader.get_default()
 
     if form.validate_on_submit():
         query_concept_sim = ontology.calculate_query_sim_to_concepts(form.query.data)
@@ -62,8 +65,18 @@ def api_search():
 
     query = request.args.get('q')
     autotag = request.args.get('a') == '1'
+    configuration_uuid = request.args.get('c', ODSFLoader.DEFAULT_KEY)
 
-    results, concept_similarities = ontology.search_query(
+    try:
+        odsf = odsf_loader[configuration_uuid]
+    except KeyError:
+        return jsonify({'errors': ['Unrecognized configuration UUID']}), 404
+    except MissingMatrixError:
+        return jsonify({
+            'errors': ['Chosen configuration does not have generated matrices']
+        }), 500
+
+    results, concept_similarities = odsf.search_query(
         query,
         SIMTYPE_AUTOTAG if autotag else SIMTYPE_SIMILARITY,
     )
@@ -104,32 +117,4 @@ def message():
 
 
 def get_concept_labels():
-    return list(ontology.navigator.all_concept_labels())
-
-
-@app.route('/dataset/register', methods=['POST'])
-def dataset_register():
-    if not request.json or not 'uri' in request.json:
-        abort(400)
-    ontology.register_dataset(request.json['uri'])
-    return jsonify({'status':'ok'}), 201
-
-@app.route('/similarity/register', methods=['POST'])
-def similarity_register():    
-    if request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
-        ontology.register_similarity(data)
-        return jsonify({'status':'ok'}), 201    
-    abort(400)
-
-@app.route('/status')
-def status():
-    datasets = ontology.datasets()
-    similarities = ontology.similarities()
-    if (datasets):
-        flash('<p>'.join(datasets) + '<br/>' + '<p>'.join(similarities))
-    return redirect(url_for('index'))
-
-@app.route('/ontology/fetch')
-def fetch_ontology():
-    return Response(ontology.graph.serialize(format='xml'), mimetype='text/xml')
+    return list(odsf_loader.get_default().navigator.all_concept_labels())
