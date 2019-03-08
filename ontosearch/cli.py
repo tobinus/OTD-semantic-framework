@@ -6,6 +6,7 @@ from otd.constants import SIMTYPE_ALL, SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, simt
 def register_subcommand(add_parser):
     register_serve(add_parser)
     register_search(add_parser)
+    register_matrix(add_parser)
 
 
 def register_serve(add_parser):
@@ -87,17 +88,35 @@ def do_search(args):
     print_func(results, query_concept_similarities, args.query)
 
 
+def register_matrix(add_parser):
+    help_text = 'Generate all CDS and CCS matrices for all configurations.'
+    parser = add_parser(
+        'matrix',
+        help=help_text,
+        description=help_text,
+    )
+    parser.set_defaults(
+        func=do_matrix
+    )
+
+
+def do_matrix(_):
+    from otd.opendatasemanticframework import ODSFLoader
+
+    odsf_loader = ODSFLoader(True)
+    odsf_loader.ensure_all_loaded()
+
+
 def make_search(query, simtype):
-    from otd.opendatasemanticframework import OpenDataSemanticFramework
+    from otd.opendatasemanticframework import ODSFLoader
     from sys import stderr
 
     print('Loading indices and matrices…', file=stderr)
-    ontology = OpenDataSemanticFramework(None, None, True)
-    ontology.load_similarity_graph(SIMTYPE_SIMILARITY, 'similarity', None)
-    ontology.load_similarity_graph(SIMTYPE_AUTOTAG, 'autotag', None)
+    odsf_loader = ODSFLoader(True)
+    odsf = odsf_loader.get_default()
 
     print('Performing query…', file=stderr)
-    return ontology.search_query(query, cds_name=simtype)
+    return odsf.search_query(query, cds_name=simtype)
 
 
 def print_results_simple(results, _1, _2):

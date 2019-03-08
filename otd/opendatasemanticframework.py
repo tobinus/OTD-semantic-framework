@@ -334,6 +334,13 @@ class ODSFLoader(Mapping):
     The OpenDataSemanticFramework instances are lazy loaded, meaning they are
     loaded the first time you access them. Subsequent accesses will re-use the
     existing instance.
+
+    Updates to Configuration will also be picked up, since they will be loaded
+    again when their last-modified field changes. This process means you may
+    need to run the matrix command periodically to re-generate the matrices.
+
+    Note that updates to the similarity and autotag sets are not currently
+    picked up automatically.
     """
     DEFAULT_KEY = 'default'
 
