@@ -517,7 +517,7 @@ class Configuration(DbCollection):
 class Graph(DbCollection):
     """A class representing a generic RDF graph."""
 
-    def __init__(self, uuid=None, graph=None, last_modified=None):
+    def __init__(self, uuid=None, graph=None, last_modified=None, raw_graph=None):
         """
         Create a new instance of an RDF graph from the database.
 
@@ -525,37 +525,58 @@ class Graph(DbCollection):
             uuid: UUID of this RDF graph.
             graph: The instantiated RDF graph.
             last_modified: Date of when this graph was last modified.
+            raw_graph: Raw JSON-ld graph returned by MongoDB. Used to lazy load
+                the graph later and not at instantiation time.
         """
         super().__init__(uuid)
 
-        self.graph = graph
+        self.__graph = graph
         """The instantiated RDF graph."""
 
         self.last_modified = last_modified
         """The time when this graph was last modified."""
 
+        self.__raw_graph = raw_graph
+
+    @property
+    def graph(self):
+        """The instantiated RDF graph. Is lazy loaded upon access."""
+        # Return the lazily loaded graph if it is loaded, or load it now
+        if self.__graph is None:
+            # Is there even any graph to load?
+            if self.__raw_graph is None:
+                # Nope
+                return None
+            # Load the graph lazily
+            self.__graph = self._create_graph(self.__raw_graph)
+            # Don't keep the raw graph in memory
+            self.__raw_graph = None
+        return self.__graph
+
+    @graph.setter
+    def graph(self, value):
+        self.__graph = value
+
     @classmethod
     def from_document(cls, document):
-        graph = cls._create_graph_from_document(document)
-
         return cls(
             document['_id'],
-            graph,
-            document['lastModified']
+            last_modified=document['lastModified'],
+            raw_graph=document['rdf'],
         )
 
     @classmethod
-    def _create_graph_from_document(cls, document):
+    def _create_graph(cls, raw_graph):
         """
-        Helper method for parsing and instantiating a graph from a DB document.
+        Helper method for parsing and instantiating a graph from RDF JSON-ld.
 
         Args:
-            document: A document retrieved from the database collection.
+            raw_graph: Raw JSON-ld graph returned by MongoDB.
 
         Returns:
-            An RDF-lib graph with its contents taken from the given document.
+            An RDF-lib graph with its contents taken from the given RDF JSON-ld.
         """
-        raw_graph = document['rdf'].decode('utf-8')
+        raw_graph = raw_graph.decode('utf-8')
         graph = create_bound_graph()
         graph.parse(data=raw_graph, format='json-ld')
         return graph
@@ -617,6 +638,7 @@ class DatasetTagging(Graph):
             uuid=None,
             graph=None,
             last_modified=None,
+            raw_graph=None,
             dataset=None,
             ontology=None
     ):
@@ -628,10 +650,12 @@ class DatasetTagging(Graph):
             uuid: UUID of this RDF graph.
             graph: The instantiated RDF graph.
             last_modified: Date of when this graph was last modified.
+            raw_graph: Raw JSON-ld graph returned by MongoDB. Used to lazy load
+                the graph later and not at instantiation time.
             dataset: UUID of the associated dataset graph.
             ontology: UUID of the associated ontology graph.
         """
-        super().__init__(uuid, graph, last_modified)
+        super().__init__(uuid, graph, last_modified, raw_graph)
 
         self.dataset_uuid = dataset
         """UUID of the associated dataset graph."""
@@ -659,12 +683,11 @@ class DatasetTagging(Graph):
 
     @classmethod
     def from_document(cls, document):
-        graph = cls._create_graph_from_document(document)
-
         return cls(
             document['_id'],
-            graph,
+            None,
             document['lastModified'],
+            document['rdf'],
             document['dataset'],
             document['ontology'],
         )
