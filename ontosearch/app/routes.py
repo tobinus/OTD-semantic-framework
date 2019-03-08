@@ -8,6 +8,7 @@ from ontosearch.app.forms import SearchForm, ScoreForm
 from time import time
 from datetime import datetime
 import db.log
+from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
 
 
 @app.route('/')
@@ -54,6 +55,48 @@ def scores():
     )
 
 
+@app.route('/api/v1/search')
+def api_search():
+    if 'q' not in request.args:
+        abort(400)
+
+    query = request.args.get('q')
+    autotag = request.args.get('a') == '1'
+
+    results, concept_similarities = ontology.search_query(
+        query,
+        SIMTYPE_AUTOTAG if autotag else SIMTYPE_SIMILARITY,
+    )
+
+    # namedtuples are treated as tuples, so we must create a comprehensible
+    # structure ourself
+    return jsonify({
+        'concepts': [
+            {
+                'concept': c.concept,
+                'similarity': c.similarity
+            }
+            for c in concept_similarities
+        ],
+        'results': [
+            {
+                'score': d.score,
+                'title': d.info.title,
+                'description': d.info.description,
+                'uri': d.info.uri,
+                'concepts': [
+                    {
+                        'concept': c.concept,
+                        'similarity': c.similarity,
+                    }
+                    for c in d.concepts
+                ]
+            }
+            for d in results
+        ],
+    })
+
+
 @app.route('/message')
 def message():
     flash('This is an example message.')
@@ -89,5 +132,4 @@ def status():
 
 @app.route('/ontology/fetch')
 def fetch_ontology():
-    
     return Response(ontology.graph.serialize(format='xml'), mimetype='text/xml')
