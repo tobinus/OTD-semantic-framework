@@ -21,7 +21,12 @@ by default.
 
 
 DataFrameId = namedtuple(
-    'DataFrameId', ('graph_type', 'graph_uuid', 'last_modified')
+    'DataFrameId', (
+        'graph_type',
+        'graph_uuid',
+        'last_modified',
+        'other_parameters'
+    )
 )
 
 
@@ -358,6 +363,8 @@ class DbCollection(metaclass=ABCMeta):
         return dict()
 
 
+# TODO: Make it predictable when Configuration is used, versus ind. env vars
+# TODO: Update README.md to reflect introduction of Configuration, etc
 class Configuration(DbCollection):
     """
     A set of associated similarity, autotag, ontology and dataset graphs.
@@ -775,6 +782,7 @@ class Autotag(DatasetTagging):
         return 'autotag'
 
 
+# TODO: Replace all usages of functions below with DAO above, remove funcs below
 def get(uuid, key='ontology', **kwargs):
     """
     Read ontology given by 'uuid'
@@ -1058,7 +1066,8 @@ def is_recognized_key(key):
     return key in ('configuration', 'ontology', 'autotag', 'dataset', 'similarity')
 
 
-def get_dataframe_id(key, uuid, raise_on_no_uuid, **kwargs):
+# TODO: Integrate dataframe fetching into DAO
+def get_dataframe_id(key, uuid, raise_on_no_uuid, other_parameters, **kwargs):
     assert is_recognized_key(key)
     uuid = get_uuid_for_collection(
         key,
@@ -1069,7 +1078,7 @@ def get_dataframe_id(key, uuid, raise_on_no_uuid, **kwargs):
 
     doc = get_document(uuid, key, **kwargs)
     last_modified = doc['lastModified']
-    return DataFrameId(key, uuid, last_modified)
+    return DataFrameId(key, uuid, last_modified, tuple(other_parameters))
 
 
 class NoSuchGraph(Exception):

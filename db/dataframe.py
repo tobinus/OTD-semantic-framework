@@ -13,6 +13,7 @@ def store(df, graph_identifier, **kwargs):
             'graphType': graph_identifier.graph_type,
             'graphUuid': graph_identifier.graph_uuid,
             'lastModified': graph_identifier.last_modified,
+            'otherParameters': graph_identifier.other_parameters,
         }
         existing_id = _get_uuid_for_outdated(graph_identifier, **kwargs)
         is_update = existing_id is not None
@@ -33,6 +34,7 @@ def get(graph_identifier, **kwargs):
             'graphType': graph_identifier.graph_type,
             'graphUuid': graph_identifier.graph_uuid,
             'lastModified': graph_identifier.last_modified,
+            'otherParameters': graph_identifier.other_parameters,
         })
         if doc is None:
             return None
@@ -49,6 +51,7 @@ def _get_uuid_for_outdated(graph_identifier, **kwargs):
         doc = db.dataframe.find_one({
             'graphType': graph_identifier.graph_type,
             'graphUuid': graph_identifier.graph_uuid,
+            'otherParameters': graph_identifier.other_parameters,
         })
         if doc is None:
             return None
