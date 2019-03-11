@@ -242,7 +242,23 @@ class OpenDataSemanticFramework:
         res = pd.DataFrame(cs, columns=cols, index=cols)
         return res
 
-    def search_query(self, query, cds_name="all"):
+    def search_query(self, query, cds_name="all", similarity_threshold=0.75):
+        """
+        Perform a search query.
+
+        Args:
+            query: Search query to use.
+            cds_name: Name of concept-dataset tagging to use when retrieving
+                datasets.
+            similarity_threshold: Lower threshold for how similar a dataset must
+                be to the query to be included in the result. This effectively
+                decides how far down the results go.
+
+        Returns:
+            A tuple. The first item is a list of SearchResult that matched,
+            sorted with the most similar results first. The second item is a
+            list of the top five concepts that were matched with the query.
+        """
         # Calculate the query's similarity to our concepts
         query_concept_sim = self.calculate_query_sim_to_concepts(query)
 
@@ -264,7 +280,7 @@ class OpenDataSemanticFramework:
         results = list()
         for dataset, similarity in dataset_query_sim.items():
             # Only consider the most relevant datasets
-            if similarity <= 0.75:
+            if similarity < float(similarity_threshold):
                 continue
             results.append(SearchResult(
                 score=similarity,
