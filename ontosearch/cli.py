@@ -1,3 +1,4 @@
+import argparse
 from os.path import dirname
 from utils.common_cli import make_subcommand_gunicorn
 from otd.constants import SIMTYPE_ALL, SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, simtypes
@@ -41,6 +42,42 @@ def register_search(add_parser):
         description=help_text,
     )
 
+    parser.add_argument(
+        '--search-result-threshold',
+        '-t',
+        help='Adjust the lower threshold for how similar a dataset vector must '
+             'be to the query vector in order to be included in the results '
+             '(Ts). (Default: %(default)s, Type: float between 0.0 and 1.0)',
+        type=float_between_0_and_1,
+        default=0.75,
+        dest='t_s',
+        metavar='THRESHOLD',
+    )
+
+    parser.add_argument(
+        '--concept-relevance-threshold',
+        '-c',
+        help='Adjust the lower threshold of similarity between a dataset and '
+             'concepts, used to decide which concepts are relevant (Tc). ' 
+             '(Default: %(default)s, Type: float between 0.0 and 1.0)',
+        type=float_between_0_and_1,
+        default=0.0,
+        dest='t_c',
+        metavar='THRESHOLD',
+    )
+
+    parser.add_argument(
+        '--query-concept-threshold',
+        '-q',
+        help='Adjust the lower threshold for how similar a concept must be to '
+             'the search query in order to be picked to represent it. '
+             '(Default: %(default)s, Type: float between 0.0 and 1.0)',
+        type=float_between_0_and_1,
+        default=0.0,
+        dest='t_q',
+        metavar='THRESHOLD',
+    )
+
     format_option = parser.add_mutually_exclusive_group()
     format_option.add_argument(
         '--details',
@@ -75,8 +112,28 @@ def register_search(add_parser):
     )
 
 
+def float_between_0_and_1(s):
+    try:
+        value = float(s)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f'{s} is not a float')
+
+    if not 0.0 <= value <= 1.0:
+        raise argparse.ArgumentTypeError(
+            f'{s} is not between 0.0 and 1.0 inclusive'
+        )
+
+    return value
+
+
 def do_search(args):
-    results, query_concept_similarities = make_search(args.query, args.simtype)
+    results, query_concept_similarities = make_search(
+        args.query,
+        args.simtype,
+        args.t_s,
+        args.t_c,
+        args.t_q,
+    )
 
     if args.simple:
         print_func = print_results_simple
@@ -107,16 +164,21 @@ def do_matrix(_):
     odsf_loader.ensure_all_loaded()
 
 
-def make_search(query, simtype):
+def make_search(query, simtype, t_s, t_c, t_q):
     from otd.opendatasemanticframework import ODSFLoader
     from sys import stderr
 
     print('Loading indices and matrices…', file=stderr)
-    odsf_loader = ODSFLoader(True)
+    odsf_loader = ODSFLoader(True, t_c)
     odsf = odsf_loader.get_default()
 
     print('Performing query…', file=stderr)
-    return odsf.search_query(query, cds_name=simtype)
+    return odsf.search_query(
+        query,
+        cds_name=simtype,
+        qc_sim_threshold=t_q,
+        score_threshold=t_s,
+    )
 
 
 def print_results_simple(results, _1, _2):
