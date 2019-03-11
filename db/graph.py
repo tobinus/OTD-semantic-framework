@@ -7,6 +7,7 @@ from bson.objectid import ObjectId
 from rdflib import URIRef, BNode, Literal, Namespace
 
 from similarity.generate import add_similarity_link
+import db.dataframe
 from utils.misc import first, second
 from utils.db import MongoDBConnection
 from utils.dotenv import ensure_loaded_dotenv
@@ -657,6 +658,22 @@ class Ontology(Graph):
             concepts[label] = concept_uri
         return concepts
 
+    def get_dataframe(self, **kwargs):
+        identifier = self._get_df_id()
+        return db.dataframe.get(identifier, **kwargs)
+
+    def save_dataframe(self, df, **kwargs):
+        identifier = self._get_df_id()
+        return db.dataframe.store(df, identifier, **kwargs)
+
+    def _get_df_id(self):
+        return DataFrameId(
+            self.get_key(),
+            self.uuid,
+            self.last_modified,
+            tuple(),
+        )
+
 
 class Dataset(Graph):
     """
@@ -760,6 +777,24 @@ class DatasetTagging(Graph):
             'ontology': self.ontology_uuid,
         })
         return document
+
+    def get_dataframe(self, concept_similarity, **kwargs):
+        identifier = self._get_df_id(concept_similarity)
+        print(identifier)
+        return db.dataframe.get(identifier, **kwargs)
+
+    def save_dataframe(self, df, concept_similarity, **kwargs):
+        identifier = self._get_df_id(concept_similarity)
+        print(identifier)
+        return db.dataframe.store(df, identifier, **kwargs)
+
+    def _get_df_id(self, concept_similarity):
+        return DataFrameId(
+            self.get_key(),
+            self.uuid,
+            self.last_modified,
+            (concept_similarity, )
+        )
 
 
 class Similarity(DatasetTagging):

@@ -49,6 +49,8 @@ class OpenDataSemanticFramework:
         self.__graph = None
         self.navigator = None
         self.concepts = []
+        self.ontology = None
+        self.dataset = None
 
         # Then set graph
         self.load_new_graph(ontology_uuid)
@@ -72,9 +74,10 @@ class OpenDataSemanticFramework:
         self.concepts = list(self.navigator.concepts())
 
     def load_new_graph(self, uuid):
-        graph = db.graph.get_ontology(uuid, raise_on_no_uuid=False)
+        self.ontology = db.graph.Ontology.from_uuid(uuid)
+        graph = self.ontology.graph
         self.graph = graph
-        self.load_ccs(uuid)
+        self.load_ccs(self.ontology)
 
     def compute_ccs(self):
         data = []
@@ -106,23 +109,17 @@ class OpenDataSemanticFramework:
 
     # TODO: Clarify what is public and what is private
     # TODO: Make call graph more obvious with method ordering
-    def load_ccs(self, uuid, **kwargs):
-        graph_id = db.graph.get_dataframe_id(
-            'ontology',
-            uuid, False,
-            tuple(),
-            **kwargs
-        )
-        result = db.dataframe.get(graph_id, **kwargs)
+    def load_ccs(self, ontology, **kwargs):
+        result = ontology.get_dataframe(**kwargs)
         if result is None:
             if self.auto_compute:
                 result = self.compute_ccs()
-                db.dataframe.store(result, graph_id)
+                ontology.save_dataframe(result)
             else:
                 raise MissingMatrixError(
                     f'No (up-to-date) existing concept-concept similarity '
                     f'matrix could be found for the ontology graph with UUID '
-                    f'{uuid}, and not set to auto-create it.'
+                    f'{ontology.uuid}, and not set to auto-create it.'
                 )
 
         self.ccs = result
@@ -130,40 +127,33 @@ class OpenDataSemanticFramework:
     def load_similarity_graph(
             self,
             name,
-            key,
-            uuid,
+            dataset_tagging: db.graph.DatasetTagging,
             similarity_threshold,
             **kwargs
     ):
         similarity_threshold = float(similarity_threshold)
-        graph_id = db.graph.get_dataframe_id(
-            key,
-            uuid,
-            False,
-            (similarity_threshold, ),
+        result = dataset_tagging.get_dataframe(
+            similarity_threshold,
             **kwargs
         )
-        result = db.dataframe.get(graph_id, **kwargs)
+
         if result is None:
             if self.auto_compute:
                 # Create matrix
-                # TODO: Find a cleaner solution to using get_uuid_for_collection everywhere
-                uuid = db.graph.get_uuid_for_collection(
-                    key,
-                    uuid,
-                    False,
-                    'load_similarity_graph'
-                )
-                sim_graph = db.graph.get(uuid, key)
+                sim_graph = dataset_tagging.graph
                 result = self.compute_cds(sim_graph, name, similarity_threshold)
                 # Store for next time
-                db.dataframe.store(result, graph_id)
+                dataset_tagging.save_dataframe(
+                    result,
+                    similarity_threshold,
+                    **kwargs
+                )
             else:
                 raise MissingMatrixError(
                     f'No (up-to-date) existing concept-dataset similarity '
                     f'matrix (Tc={similarity_threshold}) could be found for '
-                    f'the {key} graph with UUID {uuid}, and not set to '
-                    f'auto-create it.'
+                    f'the {dataset_tagging.get_key()} graph with UUID '
+                    f'{dataset_tagging.uuid}, and not set to auto-create it.'
                 )
 
         self.cds[name] = result
@@ -455,14 +445,12 @@ class ODSFLoader(Mapping):
         )
         odsf.load_similarity_graph(
             SIMTYPE_SIMILARITY,
-            'similarity',
-            c.similarity_uuid,
+            c.get_similarity(),
             self._concept_similarity,
         )
         odsf.load_similarity_graph(
             SIMTYPE_AUTOTAG,
-            'autotag',
-            c.autotag_uuid,
+            c.get_autotag(),
             self._concept_similarity,
         )
         return odsf
