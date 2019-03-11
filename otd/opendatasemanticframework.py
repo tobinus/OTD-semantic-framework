@@ -220,10 +220,10 @@ class OpenDataSemanticFramework:
             ss.append('{} {} : {}'.format(dataset, concept, score))
         return ss
         
-    def calculate_query_sim_to_concepts(self, query):
+    def calculate_query_sim_to_concepts(self, query, sim_threshold):
         qe = QueryExtractor()
         sscore = SemScore(qe, self.navigator)
-        scorevec = sscore.score_vector(query)        
+        scorevec = sscore.score_vector(query, sim_threshold)
         return scorevec
 
     def get_dataset_info(self, dataset):
@@ -231,18 +231,13 @@ class OpenDataSemanticFramework:
         description = next(self.dataset_graph.objects(dataset, DCT.description), None)
         return DatasetInfo(str(title), str(description), str(dataset))
 
-    def query_score_vec(self, query):
-        return self.calculate_query_sim_to_concepts(query)
-
-    def cos_sim(self, query):
-        sv = self.calculate_query_sim_to_concepts(query)
-        cds = self.cds[cds_name]
-        cs = cosine_similarity(cds.append(sv))
-        cols = ['query'] + list(cds.index)
-        res = pd.DataFrame(cs, columns=cols, index=cols)
-        return res
-
-    def search_query(self, query, cds_name="all", similarity_threshold=0.75):
+    def search_query(
+            self,
+            query,
+            cds_name="all",
+            qc_sim_threshold=0.0,
+            score_threshold=0.75
+    ):
         """
         Perform a search query.
 
@@ -250,9 +245,12 @@ class OpenDataSemanticFramework:
             query: Search query to use.
             cds_name: Name of concept-dataset tagging to use when retrieving
                 datasets.
-            similarity_threshold: Lower threshold for how similar a dataset must
+            qc_sim_threshold: Lower threshold for how similar a word in the
+                query must be to a concept label in order for that concept to
+                be considered relevant to the query.
+            score_threshold: Lower threshold for how similar a dataset must
                 be to the query to be included in the result. This effectively
-                decides how far down the results go.
+                decides how many datasets are included.
 
         Returns:
             A tuple. The first item is a list of SearchResult that matched,
@@ -260,7 +258,10 @@ class OpenDataSemanticFramework:
             list of the top five concepts that were matched with the query.
         """
         # Calculate the query's similarity to our concepts
-        query_concept_sim = self.calculate_query_sim_to_concepts(query)
+        query_concept_sim = self.calculate_query_sim_to_concepts(
+            query,
+            qc_sim_threshold
+        )
 
         # What were the most similar concepts?
         most_similar_concepts = self.sort_concept_similarities(
@@ -280,7 +281,7 @@ class OpenDataSemanticFramework:
         results = list()
         for dataset, similarity in dataset_query_sim.items():
             # Only consider the most relevant datasets
-            if similarity < float(similarity_threshold):
+            if similarity < float(score_threshold):
                 continue
             results.append(SearchResult(
                 score=similarity,

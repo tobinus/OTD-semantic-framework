@@ -20,14 +20,17 @@ class SemScore:
                         score = value
         return score
     
-    def score_vector(self, query):
+    def score_vector(self, query, sim_threshold):
         concepts = list(self.navigator.concepts())
         scoreDataFrame = pd.DataFrame(columns=concepts)
         scoreDataFrame.loc[query] = [0]*len(concepts)
         for artifact in self.extractor.search(query):
             for concept in concepts:
                 for lbl in self.navigator.pref_and_alt_labels(concept):
-                    score = self.similarity(artifact, lbl)                
+                    score = self.similarity(artifact, lbl)
+                    # Is this concept not similar enough to be included?
+                    if score < sim_threshold:
+                        score = 0.0
                     scoreDataFrame.loc[query][concept] = max(score, scoreDataFrame.loc[query][concept])
         return scoreDataFrame
     
