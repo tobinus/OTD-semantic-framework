@@ -129,7 +129,7 @@ class DbCollection(metaclass=ABCMeta):
         Returns:
             An instance of this class, filled with details from the document.
         """
-        return cls(document['_id'])
+        return cls(str(document['_id']))
 
     @classmethod
     def find_uuid(cls, uuid=None):
@@ -419,7 +419,7 @@ class Configuration(DbCollection):
     @classmethod
     def from_document(cls, document):
         return cls(
-            document['_id'],
+            str(document['_id']),
             document.get('label'),
             document['similarity'],
             document['autotag'],
@@ -598,7 +598,7 @@ class Graph(DbCollection):
     @classmethod
     def from_document(cls, document):
         return cls(
-            document['_id'],
+            str(document['_id']),
             last_modified=document['lastModified'],
             raw_graph=document['rdf'],
         )
@@ -723,7 +723,7 @@ class DatasetTagging(Graph):
     @classmethod
     def from_document(cls, document):
         return cls(
-            document['_id'],
+            str(document['_id']),
             None,
             document['lastModified'],
             document['rdf'],
