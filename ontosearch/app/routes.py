@@ -41,7 +41,10 @@ def scores():
     ontology = odsf_loader.get_default()
 
     if form.validate_on_submit():
-        query_concept_sim = ontology.calculate_query_sim_to_concepts(form.query.data)
+        query_concept_sim = ontology.calculate_query_sim_to_concepts(
+            form.query.data,
+            0.0
+        )
 
         # What were the most similar concepts?
         most_similar_concepts = ontology.sort_concept_similarities(
@@ -60,13 +63,29 @@ def scores():
 
 @app.route('/api/v1/search')
 def api_search():
+    # Ensure mandatory query parameters are present
     if 'q' not in request.args:
         abort(400)
 
+    # Collect parameters from the user
     query = request.args.get('q')
     autotag = request.args.get('a') == '1'
     configuration_uuid = request.args.get('c', ODSFLoader.DEFAULT_KEY)
+    query_concept_sim = request.args.get('qcs', '0.0')
+    query_dataset_sim = request.args.get('qds', '0.75')
 
+    # Convert to correct format
+    try:
+        query_concept_sim = float(query_concept_sim)
+    except ValueError:
+        return jsonify({'errors': ['qcs value is not a float']}), 400
+
+    try:
+        query_dataset_sim = float(query_dataset_sim)
+    except ValueError:
+        return jsonify({'errors': ['qds value is not a float']}), 400
+
+    # Load the configuration
     try:
         odsf = odsf_loader[configuration_uuid]
     except KeyError:
@@ -76,11 +95,15 @@ def api_search():
             'errors': ['Chosen configuration does not have generated matrices']
         }), 500
 
+    # Perform the query
     results, concept_similarities = odsf.search_query(
         query,
         SIMTYPE_AUTOTAG if autotag else SIMTYPE_SIMILARITY,
+        query_concept_sim,
+        query_dataset_sim,
     )
 
+    # Create a representation of the results.
     # namedtuples are treated as tuples, so we must create a comprehensible
     # structure ourself
     return jsonify({
