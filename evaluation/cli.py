@@ -64,4 +64,6 @@ format of YAML file:
 
 
 def do_evaluate(args):
-    pass
+    from evaluation.evaluate import evaluate_using_file, print_results
+    results = evaluate_using_file(args.file)
+    print_results(results, args.format)
