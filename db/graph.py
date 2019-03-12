@@ -780,12 +780,10 @@ class DatasetTagging(Graph):
 
     def get_dataframe(self, concept_similarity, **kwargs):
         identifier = self._get_df_id(concept_similarity)
-        print(identifier)
         return db.dataframe.get(identifier, **kwargs)
 
     def save_dataframe(self, df, concept_similarity, **kwargs):
         identifier = self._get_df_id(concept_similarity)
-        print(identifier)
         return db.dataframe.store(df, identifier, **kwargs)
 
     def _get_df_id(self, concept_similarity):

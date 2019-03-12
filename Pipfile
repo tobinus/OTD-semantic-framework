@@ -21,8 +21,10 @@ clint = "*"
 beautifulsoup4 = "*"
 html5lib = "*"
 tabulate = "*"
+pyyaml = "*"
 
 [dev-packages]
+rope = "*"
 
 [requires]
 python_version = "3.7"
