@@ -414,3 +414,17 @@ class GraphSubcommand:
             return self.graph_class.from_uuid(args.uuid).graph
 
         return with_rdf_output(retrieve_graph)(args)
+
+
+def float_between_0_and_1(s):
+    try:
+        value = float(s)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f'{s} is not a float')
+
+    if not 0.0 <= value <= 1.0:
+        raise argparse.ArgumentTypeError(
+            f'{s} is not between 0.0 and 1.0 inclusive'
+        )
+
+    return value

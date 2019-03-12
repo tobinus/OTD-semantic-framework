@@ -42,7 +42,6 @@ format of YAML file:
 
     parser.add_argument(
         'file',
-        type=argparse.FileType('r'),
         help='YAML file used to find the queries to use and determine the '
              'ground truth for what is relevant to each query. Specify a dash '
              '(-) to use stdin.',

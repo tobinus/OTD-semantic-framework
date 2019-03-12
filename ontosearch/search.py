@@ -6,7 +6,7 @@ from tabulate import tabulate
 
 from otd.constants import SIMTYPE_SIMILARITY, simtypes
 from otd.opendatasemanticframework import ODSFLoader
-from ontosearch.cli import float_between_0_and_1
+from utils.common_cli import float_between_0_and_1
 
 
 def do_multi_search(file):
@@ -18,11 +18,11 @@ def do_multi_search(file):
         try:
             queries = document['query']
         except KeyError as e:
-            raise ValueError(
+            raise RuntimeError(
                 "Please specify the key 'query' in the given YAML document"
             ) from e
         except TypeError as e:
-            raise ValueError(
+            raise RuntimeError(
                 "Please provide a non-empty YAML document"
             ) from e
 

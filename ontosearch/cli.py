@@ -1,7 +1,7 @@
 import argparse
 import textwrap
 from os.path import dirname
-from utils.common_cli import make_subcommand_gunicorn
+from utils.common_cli import make_subcommand_gunicorn, float_between_0_and_1
 from otd.constants import SIMTYPE_ALL, SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, simtypes
 
 
@@ -181,20 +181,6 @@ def register_search(add_parser):
     parser.set_defaults(
         func=do_search,
     )
-
-
-def float_between_0_and_1(s):
-    try:
-        value = float(s)
-    except ValueError:
-        raise argparse.ArgumentTypeError(f'{s} is not a float')
-
-    if not 0.0 <= value <= 1.0:
-        raise argparse.ArgumentTypeError(
-            f'{s} is not between 0.0 and 1.0 inclusive'
-        )
-
-    return value
 
 
 def do_search(args):
