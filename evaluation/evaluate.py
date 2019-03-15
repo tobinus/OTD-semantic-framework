@@ -48,6 +48,16 @@ def evaluate_using_file(filename):
             "and datasets"
         )
 
+    if not all(
+            map(
+                lambda q: isinstance(q, list),
+                queries.values()
+            )
+    ):
+        raise RuntimeError(
+            "Please ensure all values in the 'query' mapping are lists of "
+            "datasets and concepts related to that query"
+        )
 
     ground_truth = document.get('ground-truth', dict())
 
