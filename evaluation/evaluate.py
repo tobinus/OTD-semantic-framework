@@ -1,10 +1,10 @@
 import csv
 import collections.abc
 import io
-import itertools
 import json
 import sys
 import subprocess
+import warnings
 from tabulate import tabulate
 import yaml
 from rdflib import URIRef
@@ -192,12 +192,31 @@ def calculate_metrics(matching_datasets, relevant_datasets):
     num_relevant_fetched = num_true(result_relevance)
     num_r_relevant_fetched = num_true(result_relevance[:num_relevant_existing])
 
-    precision = num_relevant_fetched / num_fetched
-    recall = num_relevant_fetched / num_relevant_existing
-    f1_measure = (2 * precision * recall) / (precision + recall)
-    r_precision = num_r_relevant_fetched / num_relevant_existing
+    try:
+        precision = num_relevant_fetched / num_fetched
+    except ZeroDivisionError:
+        warnings.warn('For at least one query, not a single dataset was '
+                      'fetched')
+        precision = None
+
+    try:
+        recall = num_relevant_fetched / num_relevant_existing
+        r_precision = num_r_relevant_fetched / num_relevant_existing
+    except ZeroDivisionError:
+        warnings.warn('For at least one query, there are no relevant datasets '
+                      'defined')
+        recall = None
+        r_precision = None
+
+    try:
+        f1_measure = (2 * precision * recall) / (precision + recall)
+    except (ZeroDivisionError, TypeError):
+        f1_measure = None
 
     return {
+        'fetched': num_fetched,
+        'relevant': num_relevant_existing,
+        'relevant & fetched': num_relevant_fetched,
         'precision': precision,
         'recall': recall,
         'f1-measure': f1_measure,
