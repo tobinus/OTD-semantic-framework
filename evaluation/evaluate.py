@@ -95,7 +95,7 @@ def evaluate(queries, ground_simtype, ground_threshold, filename, file_contents)
         command,
         universal_newlines=True,
         input=input_text,
-        capture_output=True,
+        stdout=subprocess.PIPE,
         check=True,
     )
 
