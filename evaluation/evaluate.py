@@ -1,4 +1,5 @@
 import csv
+import collections.abc
 import io
 import itertools
 import json
@@ -19,7 +20,7 @@ def evaluate_using_file(filename):
         in_document = io.StringIO()
         in_document.write(sys.stdin.read())
         file_contents = in_document.getvalue()
-        document = yaml.load(in_document)
+        document = yaml.load(file_contents)
     else:
         with open(filename) as fp:
             file_contents = None
@@ -32,9 +33,21 @@ def evaluate_using_file(filename):
             "Please specify the key 'query' in the given YAML document"
         ) from e
     except TypeError as e:
+        if document is None:
+            raise RuntimeError(
+                'Please provide a non-empty YAML document'
+            ) from e
+        else:
+            raise RuntimeError(
+                'Please ensure the YAML document has a mapping at the top level'
+            ) from e
+
+    if not isinstance(queries, collections.abc.Mapping):
         raise RuntimeError(
-            'Please provide a non-empty YAML document'
-        ) from e
+            "'query' must be a mapping between queries and relevant concepts "
+            "and datasets"
+        )
+
 
     ground_truth = document.get('ground-truth', dict())
 
