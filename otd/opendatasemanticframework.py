@@ -149,7 +149,7 @@ class OpenDataSemanticFramework:
                 raise MissingMatrixError(
                     f'No (up-to-date) existing concept-dataset similarity '
                     f'matrix (Tc={similarity_threshold}) could be found for '
-                    f'the {dataset_tagging.get_key()} graph with UUID '
+                    f'the {dataset_tagging.get_collection_name()} graph with UUID '
                     f'{dataset_tagging.uuid}, and not set to auto-create it.'
                 )
 

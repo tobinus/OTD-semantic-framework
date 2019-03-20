@@ -150,7 +150,7 @@ class GraphSubcommand:
             description=''
     ):
         self.graph_class_name = graph_class_name
-        self.key = graph_class_name.lower()
+        self.collection_name = graph_class_name.lower()
         self.plural = plural
         self.adjust_loaded_graph = adjust_loaded_graph
         self.adjust_parsers = adjust_parsers
@@ -223,16 +223,16 @@ class GraphSubcommand:
 
     def register_subcommand(self, add_parser):
         parser = add_parser(
-            self.key,
-            help=f"Collection of helper commands for dealing with {self.key} "
+            self.collection_name,
+            help=f"Collection of helper commands for dealing with {self.collection_name} "
             f"graphs.",
-            description=f"Command for dealing with {self.key} graphs."
+            description=f"Command for dealing with {self.collection_name} graphs."
             f" {self.description}"
         )
         show_usage_when_no_action(parser)
         subcommands = parser.add_subparsers(
             title="actions",
-            description=f"These actions are available to manipulate {self.key} "
+            description=f"These actions are available to manipulate {self.collection_name} "
             f"graphs.",
             dest="action"
         )
@@ -255,7 +255,7 @@ class GraphSubcommand:
 
     def _register_generate(self, add_parser):
         help_text = (
-            f"Generate the authoritative, canonical {self.key} graph."
+            f"Generate the authoritative, canonical {self.collection_name} graph."
         )
         parser = add_parser(
             'generate',
@@ -273,8 +273,8 @@ class GraphSubcommand:
 
     def _register_create(self, add_parser):
         help_text = (
-            f"Create a new {self.key} graph in the database. The UUID of the "
-            f"new {self.key} entry is printed."
+            f"Create a new {self.collection_name} graph in the database. The UUID of the "
+            f"new {self.collection_name} entry is printed."
         )
         parser = add_parser(
             'create',
@@ -285,7 +285,7 @@ class GraphSubcommand:
             parser.add_argument(
                 '--read',
                 '-r',
-                help=f"Location and format of the {self.key} graph to load "
+                help=f"Location and format of the {self.collection_name} graph to load "
                 f"into the database. By default, the authoritative version "
                 f"will be generated and used.",
                 nargs=2,
@@ -294,7 +294,7 @@ class GraphSubcommand:
         else:
             parser.add_argument(
                 'read',
-                help=f"Location and format of the {self.key} graph to load "
+                help=f"Location and format of the {self.collection_name} graph to load "
                 f"into the database.",
                 nargs=2,
                 metavar=('LOCATION', 'FORMAT'),
@@ -302,10 +302,10 @@ class GraphSubcommand:
         parser.add_argument(
             '--uuid',
             '-i',
-            help=f"Force the UUID for the new {self.key} graph, potentially "
-            f"overwriting an existing {self.key} graph with the same UUID. If "
+            help=f"Force the UUID for the new {self.collection_name} graph, potentially "
+            f"overwriting an existing {self.collection_name} graph with the same UUID. If "
             f"you do not provide a UUID, it will be read from the"
-            f" {self.key.upper()}_UUID environment variable. When this flag is "
+            f" {self.collection_name.upper()}_UUID environment variable. When this flag is "
             f"not given, a new UUID is generated and printed.",
             nargs='?',
             const=None,
@@ -332,7 +332,7 @@ class GraphSubcommand:
 
     def _register_remove(self, add_parser):
         help_text = (
-            f"Remove the {self.key} with the specified UUID(s), no questions "
+            f"Remove the {self.collection_name} with the specified UUID(s), no questions "
             f"asked."
         )
         parser = add_parser(
@@ -342,7 +342,7 @@ class GraphSubcommand:
         )
         parser.add_argument(
             'uuid',
-            help=f"UUID of {self.key} document(s) to remove",
+            help=f"UUID of {self.collection_name} document(s) to remove",
             nargs="+"
         )
         parser.set_defaults(
@@ -386,7 +386,7 @@ class GraphSubcommand:
 
     def _register_show(self, add_parser):
         help_text = (
-            f"Display the contents of one row of {self.key} in the database."
+            f"Display the contents of one row of {self.collection_name} in the database."
         )
         parser = add_parser(
             'show',
@@ -396,8 +396,8 @@ class GraphSubcommand:
         register_arguments_for_rdf_output(parser)
         parser.add_argument(
             'uuid',
-            help=f'The UUID of the {self.key} graph to show. If not given, '
-            f'then the UUID named in the {self.key.upper()}_UUID environment '
+            help=f'The UUID of the {self.collection_name} graph to show. If not given, '
+            f'then the UUID named in the {self.collection_name.upper()}_UUID environment '
             f'variable is used. If no such variable is found, whatever MongoDB '
             f'returns first is shown.',
             nargs='?',

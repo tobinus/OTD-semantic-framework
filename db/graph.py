@@ -12,13 +12,6 @@ from utils.dotenv import ensure_loaded_dotenv
 from utils.graph import create_bound_graph, RDF, SKOS
 from utils.misc import first, second
 
-DEFAULT_UUID = 'default'
-"""
-Special value which can be given as the UUID to any get function, in order to
-not search using UUID but rather accept the first document retrieved by MongoDB
-by default.
-"""
-
 
 DataFrameId = namedtuple(
     'DataFrameId', (
@@ -67,7 +60,7 @@ class DbCollection(metaclass=ABCMeta):
 
     @staticmethod
     @abstractmethod
-    def get_key():
+    def get_collection_name():
         """
         Get the name of the collection associated with this class.
 
@@ -103,7 +96,7 @@ class DbCollection(metaclass=ABCMeta):
             ValueError: If no document with the specified UUID can be found, or
                 if no document exists when not specifying the UUID.
         """
-        key = cls.get_key()
+        collection_name = cls.get_collection_name()
         uuid = cls.find_uuid(uuid)
 
         criteria = None
@@ -112,14 +105,14 @@ class DbCollection(metaclass=ABCMeta):
 
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, key)
+            collection = getattr(db, collection_name)
 
             document = collection.find_one(criteria)
 
             if document is None:
                 raise ValueError(
                     'No {} found with the UUID "{}"'
-                        .format(key, uuid)
+                        .format(collection_name, uuid)
                 )
         return cls.from_document(document)
 
@@ -153,11 +146,11 @@ class DbCollection(metaclass=ABCMeta):
             The UUID to use, or None if the first result from MongoDB should be
             used.
         """
-        key = cls.get_key()
-        return cls._get_uuid_for(key, uuid)
+        collection_name = cls.get_collection_name()
+        return cls._get_uuid_for(collection_name, uuid)
 
     @staticmethod
-    def _get_uuid_for(key, uuid=None):
+    def _get_uuid_for(collection_name, uuid=None):
         """
         Find the UUID to look up, using the given collection.
 
@@ -165,14 +158,14 @@ class DbCollection(metaclass=ABCMeta):
         environment variable named <COLLECTION_NAME>_UUID.
 
         Args:
-            key: Name of the MongoDB collection to find a UUID for.
+            collection_name: Name of the MongoDB collection to find a UUID for.
             uuid: Potentially a UUID, in which case it will be used as-is.
 
         Returns:
             The UUID to use, or None if the first result from MongoDB should be
             used.
         """
-        envvar = '{}_UUID'.format(key.upper())
+        envvar = '{}_UUID'.format(collection_name.upper())
 
         # No UUID given? Were we given one by environment variables?
         if uuid is None:
@@ -182,7 +175,7 @@ class DbCollection(metaclass=ABCMeta):
         if uuid is None:
             warnings.warn(
                 'No UUID specified when fetching {}. Using '
-                'whatever MongoDB returns first'.format(key),
+                'whatever MongoDB returns first'.format(collection_name),
                 MissingUuidWarning,
                 2
             )
@@ -207,11 +200,10 @@ class DbCollection(metaclass=ABCMeta):
             The UUID of the document that would have been returned when calling
             from_uuid on this class.
         """
-        return cls._force_get_uuid_for(cls.get_key(), uuid, **kwargs)
-
+        return cls._force_get_uuid_for(cls.get_collection_name(), uuid, **kwargs)
 
     @classmethod
-    def _force_get_uuid_for(cls, key, uuid=None, **kwargs):
+    def _force_get_uuid_for(cls, collection_name, uuid=None, **kwargs):
         """
         Do a look-up to find the UUID which would have been found when fetching
         a document for the given collection and UUID.
@@ -221,7 +213,7 @@ class DbCollection(metaclass=ABCMeta):
         fetch one entry.
 
         Args:
-            key: Name of the MongoDB collection to find a UUID for.
+            collection_name: Name of the MongoDB collection to find a UUID for.
             uuid: Potentially a UUID, in which case it will be used as-is and
                 not checked for validity.
             **kwargs: Extra keyword arguments to give to MongoDBConnection.
@@ -230,14 +222,14 @@ class DbCollection(metaclass=ABCMeta):
             The UUID of the document that would have been returned when fetching
             one document for the given collection and UUID.
         """
-        uuid = cls._get_uuid_for(key, uuid)
+        uuid = cls._get_uuid_for(collection_name, uuid)
         if uuid is not None:
             return uuid
 
         # We're using whatever MongoDB returns first, so find that
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, key)
+            collection = getattr(db, collection_name)
             first_document = collection.find_one({})
             if first_document is None:
                 return None
@@ -284,7 +276,7 @@ class DbCollection(metaclass=ABCMeta):
         document = self._get_as_document()
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, self.get_key())
+            collection = getattr(db, self.get_collection_name())
             assigned_id = collection.insert_one(document).inserted_id
         return str(assigned_id)
 
@@ -295,7 +287,7 @@ class DbCollection(metaclass=ABCMeta):
         document = self._get_as_document()
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, self.get_key())
+            collection = getattr(db, self.get_collection_name())
             collection.replace_one(
                 {'_id': ObjectId(uuid)},
                 document,
@@ -336,7 +328,7 @@ class DbCollection(metaclass=ABCMeta):
         """
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, cls.get_key())
+            collection = getattr(db, cls.get_collection_name())
             r = collection.delete_one({'_id': ObjectId(uuid)})
             num_deleted = r.deleted_count
         return num_deleted > 0
@@ -354,7 +346,7 @@ class DbCollection(metaclass=ABCMeta):
         """
         with MongoDBConnection(**kwargs) as client:
             db = client.ontodb
-            collection = getattr(db, cls.get_key())
+            collection = getattr(db, cls.get_collection_name())
             ids = [str(i) for i in collection.distinct('_id')]
         return ids
 
@@ -435,7 +427,7 @@ class Configuration(DbCollection):
         )
 
     @staticmethod
-    def get_key():
+    def get_collection_name():
         return 'configuration'
 
     def get_similarity(self):
@@ -651,7 +643,7 @@ class Ontology(Graph):
     """
 
     @staticmethod
-    def get_key():
+    def get_collection_name():
         return 'ontology'
 
     def get_concepts(self):
@@ -674,7 +666,7 @@ class Ontology(Graph):
 
     def _get_df_id(self):
         return DataFrameId(
-            self.get_key(),
+            self.get_collection_name(),
             self.uuid,
             self.last_modified,
             tuple(),
@@ -686,7 +678,7 @@ class Dataset(Graph):
     An RDF graph detailing the datasets that can be searched for.
     """
     @staticmethod
-    def get_key():
+    def get_collection_name():
         return 'dataset'
 
 
@@ -794,7 +786,7 @@ class DatasetTagging(Graph):
 
     def _get_df_id(self, concept_similarity):
         return DataFrameId(
-            self.get_key(),
+            self.get_collection_name(),
             self.uuid,
             self.last_modified,
             (concept_similarity, )
@@ -807,7 +799,7 @@ class Similarity(DatasetTagging):
     concepts.
     """
     @staticmethod
-    def get_key():
+    def get_collection_name():
         return 'similarity'
 
 
@@ -817,5 +809,5 @@ class Autotag(DatasetTagging):
     concepts.
     """
     @staticmethod
-    def get_key():
+    def get_collection_name():
         return 'autotag'
