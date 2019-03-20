@@ -17,7 +17,7 @@ import numpy as np
 import clint.textui.progress
 
 
-DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri'))
+DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri', 'href'))
 SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
 ConceptSimilarity = namedtuple('ConceptSimilarity', ('concept', 'similarity'))
 
@@ -216,7 +216,8 @@ class OpenDataSemanticFramework:
     def get_dataset_info(self, dataset):
         title = next(self.dataset_graph.objects(dataset, DCT.title), None)
         description = next(self.dataset_graph.objects(dataset, DCT.description), None)
-        return DatasetInfo(str(title), str(description), str(dataset))
+        href = next(self.dataset_graph.objects(dataset, DCAT.landingPage), dataset)
+        return DatasetInfo(str(title), str(description), str(dataset), str(href))
 
     def search_query(
             self,
@@ -340,7 +341,10 @@ class OpenDataSemanticFramework:
                     concept,
                     similarity
                 ),
-                self.cds[cds_name].loc[dataset].index,
+                map(
+                    get_fragment,
+                    self.cds[cds_name].loc[dataset].index
+                ),
                 self.cds[cds_name].loc[dataset].values
             )
         )
