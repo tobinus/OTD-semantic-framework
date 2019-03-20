@@ -7,7 +7,7 @@ from similarity.csv_parse import get_fragment
 def prepare_csv(csv_fn, dialect):
     writer = csv.writer(csv_fn, dialect)
     concepts = get_concepts_in_dfs_order()
-    dataset = graph.get_dataset(raise_on_no_uuid=False)
+    dataset = graph.Dataset.from_uuid().graph
 
     headers = ('Dataset', 'Title', 'Description') + tuple(concepts)
     writer.writerow(headers)
@@ -24,7 +24,7 @@ def prepare_csv(csv_fn, dialect):
 
 
 def get_concepts_in_dfs_order():
-    ontology = graph.get_ontology(raise_on_no_uuid=False)
+    ontology = graph.Ontology.from_uuid().graph
 
     # Assuming only one top concept
     top_concept = next(ontology.subjects(SKOS.topConceptOf))

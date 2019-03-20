@@ -5,7 +5,7 @@ from db import graph
 
 def get_concept_list(uuid=None):
     lines = []
-    navigator = SKOSNavigate(graph.get_ontology(uuid, raise_on_no_uuid=False))
+    navigator = SKOSNavigate(graph.Ontology.from_uuid(uuid).graph)
     indent = '  '
 
     def do_node(node, visited_nodes, depth):

@@ -1,7 +1,7 @@
 import csv
 import functools
 from rdflib import URIRef
-from db.graph import get_concepts, get_dataset
+from db.graph import Ontology, Dataset
 from utils.graph import create_bound_graph, RDF, DCAT
 from similarity.generate import add_similarity_link
 
@@ -20,7 +20,7 @@ def csv2rdf(fn, dialect):
     # Initialize what we need
     graph = create_bound_graph()
     csv_reader = csv.reader(fn, dialect=dialect)
-    concept_uris = set(get_concepts(None).values())
+    concept_uris = set(Ontology.from_uuid().get_concepts().values())
     dataset_uris = get_dataset_uris()
     first_row = next(csv_reader)
 
@@ -61,7 +61,7 @@ def get_dataset_uris():
     Returns:
         Set of dataset URIs, from the dataset graph in the DB.
     """
-    dataset_graph = get_dataset(raise_on_no_uuid=False)
+    dataset_graph = Dataset.from_uuid().graph
     return set(
         map(
             str,
@@ -183,7 +183,7 @@ class CsvSingleColumnAnalyzer:
 
 def check_csv_for_unknown_concepts(fn, dialect):
     csv_reader = csv.reader(fn, dialect=dialect)
-    concept_uris = set(get_concepts(None).values())
+    concept_uris = set(Ontology.from_uuid().get_concepts().values())
     first_row = next(csv_reader)
 
     analyzer = CsvSingleColumnAnalyzer(first_row, concept_uris)
