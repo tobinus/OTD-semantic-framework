@@ -364,11 +364,12 @@ class DbCollection(metaclass=ABCMeta):
         return dict()
 
 
-# TODO: Make it predictable when Configuration is used, versus ind. env vars
-# TODO: Update README.md to reflect introduction of Configuration, etc
 class Configuration(DbCollection):
     """
     A set of associated similarity, autotag, ontology and dataset graphs.
+
+    This is generally used for public-facing parts of the application, like the
+    dataset tagger and the search.
     """
     def __init__(
             self,

@@ -86,7 +86,7 @@ In addition, there are different kinds of matrices used:
    
 Since they are all derivatives of graphs, they are automatically created when
 needed, and re-created whenever the graph they directly depend on (ontology, 
-similarity and autotag respectively) changes or is updated.
+similarity and autotag respectively) changes or is otherwise updated.
 
 
 ### Choosing graphs to use
@@ -98,12 +98,37 @@ use is done like this:
    If so, use the specified graph.
 2. Has a UUID been specified using the environment variable named 
    `<GRAPH-NAME>_UUID`, where `<GRAPH-NAME>` is the upper-cased name of the
-   graph? If so, use the specified graph.
+   graph? For example, ONTOLOGY_UUID or DATASET_UUID. If so, use the specified
+   graph.
 3. If no graph has been specified this far, then whatever graph is returned
    first by MongoDB is used. (Though note there are exceptions where an error is
    raised instead, the goal is to eliminate those exceptions.)
-   
-Suggested approaches:
+
+#### The Configuration entity
+There is one exception to the procedure above, namely the **Configuration**
+mechanism. A Configuration is simply a selection of graphs, one for each type,
+which is stored alongside a label. The purpose of a Configuration is to allow
+clients to connect to DataOntoSearch and simply specify their configuration,
+from which the system knows what graphs to load. This way, different
+organizations may connect to the same DataOntoSearch process, yet use different
+ontologies, datasets and taggings.
+
+Configurations are used by the dataset tagger (`dataset_tagger`) and the search
+itself (`serve`) along with related commands (`search`, `multisearch` and
+`evaluate`). The selection of a Configuration follows the exact same procedure
+as for graph selection above, using the `CONFIGURATION_UUID` environment
+variable when the user does not specify a Configuration themselves, or using
+whatever Configuration MongoDB returns first.
+
+The Configuration is not used for any other commands. The reason is that a
+**Configuration requires there to be one graph of each type**, since it will be
+pointing to one graph of each type. Therefore, you cannot create a Configuration
+before everything else has been set up; it will generally be the last thing you
+do before the search is ready.
+
+
+#### Suggested approaches
+
 * Keep only one version of each graph type, so it is obvious which one
   is picked by MongoDB.
   * You don't need to specify what graph to use this way.
@@ -114,6 +139,15 @@ Suggested approaches:
   * Works well when you'd like to switch between different graphs.
   * You may override the `.env` variables on the command line.
   * Though this means you must manage the UUIDs of graphs.
+  * You can use multiple files and change between them by renaming one of them
+    to `.env`, and let the others have other names when not in use.
+
+Caveat: pipenv will read the `.env` file when you create a shell (`pipenv
+shell`). Changes you make to the `.env` file will not be picked up before you
+exit and re-enter the Pipenv shell. Even though DataOntoSearch reads from `.env`
+itself, it will not override environment variables already set by your shell, so
+the potentially outdated values set by pipenv will override those read from
+`.env` at runtime.
 
 
 ### Pre-processing of ontology
@@ -132,23 +166,50 @@ There are other commands you can use to manipulate and display ontologies, run `
    where you replace `<CKAN-URL>` with the base URL to your CKAN instance. The
    instance must also expose RDF information about each dataset.
 
-You may also create your own graph, and load it into the database. Use the
-`--help` option to see your options.
+You may also create your own graph, and load it into the database, or use a
+filter when loading datasets. Use the `--help` option to see your options.
 
 
 #### Perform manual linking to concepts
 
-You may use the existing tags. Simply run:
+You may use the existing tags for the Open Transport Data project. Simply run:
 
 `python dataontosearch.py similarity create`
 
-Alternatively, you can do custom tagging, though this has not been tested at
-this point.
+Alternatively, you can do custom tagging. There are two ways:
 
-1. Run `python dataontosearch.py dataset_tagger`
-2. Visit http://localhost:8000/about in your web browser
-3. Follow the instructions for tagging datasets, using the UID you wrote down
-   when you uploaded an ontology
+* **Using a spreadsheet**: This approach is preferred for mass-tagging of many
+  datasets at once.
+  1. Ensure the newly created ontology and dataset graphs are set to be used.
+  See the instructions above on "Choosing graphs to use".
+  2. Use `python dataontosearch.py similarity csv_prepare` to generate a CSV
+     file which can be filled in.
+  3. Read the instructions found when running `python dataontosearch.py similarity csv_parse --help` for information on the two options you have for filling in the CSV file.
+  4. Fill the CSV file with your taggings, potentially using `python dataontosearch.py ontology show_hier` to see a list of available concepts.
+  5. Export a new CSV file with your manual tagging.
+  6. Use `python dataontosearch similarity csv_parse` to make the CSV file into
+     an RDF graph, which you should save to a file.
+  7. Use the `--read` option with `python dataontosearch similarity create` to
+     store the newly create graph in the database.
+     
+* **Using online application**: This approach is preferred when incrementally
+  adding datasets, for example when used with a running CKAN instance.
+
+  1. Run `python dataontosearch.py similarity create_empty` to create a new,
+     empty similarity graph.
+  2. You must set up a Configuration before running the dataset tagger. This
+     requires you to have an autotag graph already, so you may choose to
+     continue with this set-up procedure. Alternatively, you can create a new,
+     empty autotag graph by running `python dataontosearch.py autotag create
+     --read /dev/null turtle`, at least in Unix. Then you can create a new
+     Configuration using this empty autotag graph.
+  3. Run `python dataontosearch.py dataset_tagger`
+  4. Now, you can use the included interface for tagging datasets, or use the
+     API with e.g. the CKAN plugin to tag datasets. Follow these steps to use
+     the built-in interface:
+  5. Visit http://localhost:8000 in your web browser.
+  6. Fill in the UUID of the Configuration you have created (in step 2).
+  7. Follow the instructions to tag datasets.
 
 
 #### Perform automatic linking to concepts
@@ -157,23 +218,63 @@ Run the following:
 
 `python dataontosearch.py autotag create`
 
-Again, append `--help` to see available options.
+Again, append `--help` to see available options, for example options for using
+English WordNet instead of Norwegian (the default).
 
-**WARNING 1**: The autotag script requires around 2 GB of RAM(!) for the Python process, meaning
-that it may get killed on systems with not enough memory. You may choose to run
-the autotag process on a different system, instead of on the server intended for serving the search.
+**WARNING 1**: The autotag script requires around 2 GB of RAM(!) for the Python
+process when using the Norwegian OrdNet, meaning that it may get killed on
+systems with not enough memory. You may choose to run the autotag process on a
+different system, instead of on the server intended for serving the search (for
+example, use `generate` instead of `create`, then transfer the generated file).
 
 **WARNING 2**: This script can take a long time to run, like 45 minutes or even an hour.
 It is not able to continue where it left out, so you might want to run this in
 `tmux`, `screen` or something similar when running on a server over SSH (so the
-process survives a disconnect).
+process survives if your SSH connection ends).
 
 
 ### Run search
 
+First, you must create a Configuration to be used by the search engine. Ensure
+that the correct graphs will be chosen by running:
+
+`python dataontosearch.py configuration create <LABEL NAME> --preview`
+
+Replace `<LABEL NAME>` with a name for this Configuration so you can understand
+which Configuration is used for what purpose later on.
+
+This prints the UUID of the graphs that will be chosen for the new configuration.
+Use the command line arguments available or set the environment variables if the
+wrong graphs are chosen, or there is a mismatch between the graphs (the
+similarity and autotag graphs must have been made using the same dataset and
+ontology graphs).
+
+When satisfied, remove the `--preview` flag to actually create the
+Configuration.
+
+Now that you have a Configuration to use, you can start the search process:
+
 1. Run `python dataontosearch.py serve`
-2. The webserver will perform some indexing, creating necessary matrices. It will give you a signal when it's done
+2. The webserver will perform some indexing, creating necessary matrices. It
+will give you a signal when it's done
 3. You may now search by visiting http://localhost:8000
 
 Alternatively, you may search using the command line interface directly.
 Run `python dataontosearch.py search --help` for more information.
+
+The web interface only allows access to the default Configuration. The API,
+however, allows the user to specify a Configuration to use. With this setup, new
+Configurations can be added or changed without restarting the web server. You
+will need to re-generate the matrices, however, since it cannot be done inside a
+request (the request would be aborted before the calculations are done). You can
+do this by running `python dataontosearch.py matrix`, which you might want to
+run periodically so changes in the manual tagging and dataset graphs are picked
+up.
+
+Do you want to run multiple queries for machine processing, while varying
+available thresholds and such? Use the `python dataontosearch.py multisearch`
+subcommand for this. See its `--help` information for _many_ details.
+
+An evaluation subcommand is built on top of the `multisearch` command, allowing
+you to run systematic evaluations. See `python dataontosearch.py evaluate
+--help` for an introduction.
