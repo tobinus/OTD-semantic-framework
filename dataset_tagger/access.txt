@@ -1,5 +1,0 @@
-To connect using the mongo shell:
-mongo ds119969.mlab.com:19969/ontodb -u <dbuser> -p <dbpassword>
-To connect using a driver via the standard MongoDB URI (what's this?):
-
-mongodb://<dbuser>:<dbpassword>@ds119969.mlab.com:19969/ontodb

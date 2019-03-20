@@ -51,6 +51,7 @@ def edit(uuid):
         configuration=configuration,
     )
 
+# TODO: Create API documentation
 @app.route('/api/v1/<uuid>/tagging', methods=['POST'])
 def api_add_tagging(uuid):
     try:
