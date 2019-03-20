@@ -48,7 +48,7 @@ There is only one script you need to care about, namely `dataontosearch.py`. It
 has many subcommands that can be invoked, much like Django's `manage.py` command
 or the `git` utility.
 
-Documentation for the available subcommands and their arguments are not
+Documentation for the available subcommands and their arguments is not
 presented here, instead you should use the `--help` flag to access the built-in
 help. For example, to see the available subcommands, run:
 
@@ -103,8 +103,28 @@ use is done like this:
    graph? For example, ONTOLOGY_UUID or DATASET_UUID. If so, use the specified
    graph.
 3. If no graph has been specified this far, then whatever graph is returned
-   first by MongoDB is used. (Though note there are exceptions where an error is
-   raised instead, the goal is to eliminate those exceptions.)
+   first by MongoDB is used. The system will warn you about this, since there is
+   no guarantee that the same graph would be returned at a later time.
+
+
+#### Defining environment variables in `.env`
+
+As a shortcut for defining environment variables (step 2 above), the
+DataOntoSearch supports the [use of a `.env` file][env-usage] (sometimes called
+"dotenv"). There you can define environment variables which could potentially be
+tiresome to define in your shell every time. The system will print a message
+whenever it reads from a `.env` file; if you don't receive such a message then
+you can assume it wasn't read.
+
+[env-usage]: https://github.com/theskumar/python-dotenv#usages
+
+**Caveat**: Pipenv will read the `.env` file when you create a shell (`pipenv
+shell`). Changes you make to the `.env` file will not be picked up before you
+exit and re-enter the Pipenv shell. Even though DataOntoSearch reads from `.env`
+itself, it will not override environment variables already set by your shell, so
+the potentially outdated values set by Pipenv will override those read from
+`.env` at runtime.
+
 
 #### The Configuration entity
 There is one exception to the procedure above, namely the **Configuration**
@@ -143,13 +163,6 @@ do before the search is ready.
   * Though this means you must manage the UUIDs of graphs.
   * You can use multiple files and change between them by renaming one of them
     to `.env`, and let the others have other names when not in use.
-
-Caveat: pipenv will read the `.env` file when you create a shell (`pipenv
-shell`). Changes you make to the `.env` file will not be picked up before you
-exit and re-enter the Pipenv shell. Even though DataOntoSearch reads from `.env`
-itself, it will not override environment variables already set by your shell, so
-the potentially outdated values set by pipenv will override those read from
-`.env` at runtime.
 
 
 ### Setup
