@@ -4,7 +4,7 @@ Module with project-wide RDF namespaces and helper-functions for graphs.
 from rdflib import Graph, Namespace
 
 # Namespaces we use in our application
-from rdflib.namespace import RDF, XSD, SKOS, OWL, RDFS, FOAF, DC
+from rdflib.namespace import RDF, SKOS, OWL, RDFS, FOAF, DC
 
 
 # Custom namespaces for our purposes

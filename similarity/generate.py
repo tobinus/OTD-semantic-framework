@@ -1,9 +1,9 @@
-from rdflib import Namespace
-from rdflib import BNode
-from rdflib.namespace import RDF, RDFS, OWL, DC, FOAF, XSD, SKOS
-from rdflib import plugin, Graph, Literal, URIRef
-from utils.graph import create_bound_graph, QEX, OTD
 from uuid import uuid4
+
+from rdflib import Literal, URIRef
+from rdflib.namespace import RDF, XSD
+
+from utils.graph import create_bound_graph, QEX, OTD
 
 
 # Helper method to create a link between a dataset and a concept with

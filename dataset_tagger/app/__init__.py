@@ -1,5 +1,7 @@
-from os import path, environ
+from os import path
+
 from flask import Flask
+
 from dataset_tagger.config import Config
 
 # Set up app before trying to import routes that rely on it

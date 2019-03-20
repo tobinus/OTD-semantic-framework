@@ -1,6 +1,5 @@
-from rdflib import Graph, URIRef, BNode, Literal
-from utils.misc import first, second
 from utils.graph import SKOS, DCAT, RDF
+from utils.misc import first, second
 
 
 class SKOSNavigate:

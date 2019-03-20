@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired
 from wtforms import SubmitField, SelectField, BooleanField
 from wtforms.fields.html5 import SearchField
-from wtforms.widgets import ListWidget, CheckboxInput
+from wtforms.validators import DataRequired
+
 from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, SIMTYPE_ALL
 
 

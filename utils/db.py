@@ -1,7 +1,7 @@
 import urllib.parse
 import os
-from utils.dotenv import ensure_loaded_dotenv
 from pymongo import MongoClient
+from utils.dotenv import ensure_loaded_dotenv
 
 
 class MongoDBConnection:
@@ -11,6 +11,7 @@ class MongoDBConnection:
     Example:
         >>> with MongoDBConnection() as client:
         ...     db = client.ontodb
+        ...     # noinspection PyUnresolvedReferences
         ...     print([str(i) for i in db.ontologies.distinct('_id')])
         ...
         ['5bdaeb6e09b63846c5a02a7e']

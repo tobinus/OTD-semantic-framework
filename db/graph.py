@@ -1,17 +1,16 @@
+import datetime
 import os
+import warnings
 from abc import ABCMeta, abstractmethod
 from collections import namedtuple
-import datetime
-import warnings
-from bson.objectid import ObjectId
-from rdflib import URIRef, BNode, Literal, Namespace
 
-from similarity.generate import add_similarity_link
+from bson.objectid import ObjectId
+
 import db.dataframe
-from utils.misc import first, second
 from utils.db import MongoDBConnection
 from utils.dotenv import ensure_loaded_dotenv
-from utils.graph import create_bound_graph, RDF, XSD, SKOS, DCAT, QEX
+from utils.graph import create_bound_graph, RDF, SKOS
+from utils.misc import first, second
 
 DEFAULT_UUID = 'default'
 """

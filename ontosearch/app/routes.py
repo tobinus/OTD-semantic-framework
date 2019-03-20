@@ -1,13 +1,14 @@
-from flask import render_template, redirect, url_for
-from flask import request, flash, abort, json
-from flask import Response
+from datetime import datetime
+from time import time
+
+from flask import render_template, redirect
+from flask import request, flash, abort
 from flask.json import jsonify
+
+import db.log
 from ontosearch.app import app
 from ontosearch.app import odsf_loader
 from ontosearch.app.forms import SearchForm, ScoreForm
-from time import time
-from datetime import datetime
-import db.log
 from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
 from otd.opendatasemanticframework import ODSFLoader, MissingMatrixError
 

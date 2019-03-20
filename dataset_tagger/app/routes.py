@@ -1,13 +1,14 @@
-from bson.errors import InvalidId
-from flask import render_template, request, redirect, url_for, abort, jsonify
-from dataset_tagger.app import app, app_path
-from dataset_tagger.app.forms import TagForm
 from time import sleep
 
+from bson.errors import InvalidId
+from flask import render_template, request, redirect, url_for, abort, jsonify
+from rdflib import URIRef
+
 import db.graph
+from dataset_tagger.app import app
+from dataset_tagger.app.forms import TagForm
 from similarity.generate import add_similarity_link
 from utils.graph import create_bound_graph, RDF, DCAT
-from rdflib import URIRef
 
 
 @app.route('/')
