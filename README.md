@@ -42,28 +42,30 @@ the virtual environment folder is called `venv`, you run `. venv/bin/activate`.
 7. Download the different data for [nltk](https://www.nltk.org/data.html), used for word tokenizing, removing stop words and the like. You can do this by running `python dataontosearch.py nltk_data`.
 
 
-
 ## Usage
 
-Before the search engine can get up and running, there are a couple processes
-that must be run. Specifically:
+There is only one script you need to care about, namely `dataontosearch.py`. It
+has many subcommands that can be invoked, much like Django's `manage.py` command
+or the `git` utility.
 
-1. Pre-process ontology
-   1. Upload ontology
-2. Pre-process datasets
-   1. Import (new) datasets
-   2. Perform manual linking to concepts
-   3. Perform automatic linking to concepts
-3. Run search
+Documentation for the available subcommands and their arguments are not
+presented here, instead you should use the `--help` flag to access the built-in
+help. For example, to see the available subcommands, run:
 
-Below, you'll find instructions for running these processes.
-They all use the script `dataontosearch.py` to do different parts of the work;
-you can explore the options by passing `--help` as an argument.
+`python dataontosearch.py --help`
+
+Nothing is actually done when you use the `--help` flag, it simply prints the
+help information and exits. Absolutely all subcommands accept the `--help` flag,
+so please use it to your heart's content!
+
+Below, some general information is provided about how to use DataOntoSearch.
+Afterwards, the process of getting the search system into a usable state is
+described.
 
 
 ### Entities
 
-There are four types of graphs in the application:
+There are four types of RDF graphs in the application's database:
 
 1. **Ontology**: Concepts and their relation to one another
 2. **Dataset**: Available datasets in DCAT format
@@ -148,6 +150,22 @@ exit and re-enter the Pipenv shell. Even though DataOntoSearch reads from `.env`
 itself, it will not override environment variables already set by your shell, so
 the potentially outdated values set by pipenv will override those read from
 `.env` at runtime.
+
+
+### Setup
+
+Before the search engine can get up and running, there are a couple processes
+that must be run. Specifically:
+
+1. Pre-process ontology
+   1. Upload ontology
+2. Pre-process datasets
+   1. Import (new) datasets
+   2. Perform manual linking to concepts
+   3. Perform automatic linking to concepts
+3. Run search
+
+Below, you'll find instructions for running these processes.
 
 
 ### Pre-processing of ontology
