@@ -160,3 +160,18 @@ def api_get_tagging(uuid):
         return jsonify(taggings_per_dataset.get(chosen_dataset))
     else:
         return jsonify(taggings_per_dataset)
+
+
+@app.route('/api/v1/<uuid>/concept', methods=['GET'])
+def api_get_concept(uuid):
+    try:
+        configuration = db.graph.Configuration.from_uuid(uuid)
+    except (ValueError, InvalidId):
+        # Mitigate against guessing the ID by bruteforce
+        sleep(1)
+        return abort(404)
+
+    concepts_by_label = configuration.get_ontology().get_concepts()
+    labels_by_concept = {value: key for key, value in concepts_by_label.items()}
+
+    return jsonify(labels_by_concept)
