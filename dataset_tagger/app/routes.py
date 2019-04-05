@@ -8,7 +8,7 @@ import db.graph
 from dataset_tagger.app import app
 from dataset_tagger.app.forms import TagForm
 from similarity.generate import add_similarity_link
-from utils.graph import create_bound_graph, RDF, DCAT
+from utils.graph import create_bound_graph, RDF, DCAT, OTD, DCT
 
 
 @app.route('/')
@@ -95,7 +95,7 @@ def add_tagging(configuration, linked_dataset_url, concept_label):
         dataset.save()
 
     # Create the link
-    if concept_label in concepts.items():
+    if concept_label in concepts.keys():
         # We have a complete URI already
         concept_uri = concept_label
     else:
@@ -113,3 +113,50 @@ def add_tagging(configuration, linked_dataset_url, concept_label):
     similarity.save()
     return link_id
 
+
+@app.route('/api/v1/<uuid>/tagging', methods=['GET'])
+def api_get_tagging(uuid):
+    try:
+        configuration = db.graph.Configuration.from_uuid(uuid)
+    except (ValueError, InvalidId):
+        # Mitigate against guessing the ID by bruteforce
+        sleep(1)
+        return abort(404)
+
+    chosen_dataset = request.args.get('dataset')
+
+    concepts_by_label = configuration.get_ontology().get_concepts()
+    labels_by_concept = {value: key for key, value in concepts_by_label.items()}
+
+    tag_graph = configuration.get_similarity().graph
+    dataset_graph = configuration.get_dataset().graph
+
+    taggings_per_dataset = dict()
+    for tagging in tag_graph.subjects(RDF.type, OTD.Similarity):
+        dataset = tag_graph.value(tagging, OTD.dataset)
+        dataset_str = str(dataset)
+
+        if chosen_dataset is not None and chosen_dataset != dataset_str:
+            continue
+
+        concept = str(tag_graph.value(tagging, OTD.concept))
+        concept_label = labels_by_concept[concept]
+
+        concept_info = {
+            'uri': concept,
+            'label': concept_label,
+        }
+
+        if dataset_str not in taggings_per_dataset:
+            title = dataset_graph.value(dataset, DCT.title)
+            taggings_per_dataset[dataset_str] = {
+                'title': title,
+                'concepts': [concept_info],
+            }
+        else:
+            taggings_per_dataset[dataset_str]['concepts'].append(concept_info)
+
+    if chosen_dataset is not None:
+        return jsonify(taggings_per_dataset.get(chosen_dataset))
+    else:
+        return jsonify(taggings_per_dataset)

@@ -653,7 +653,7 @@ class Ontology(Graph):
             label = str(second(first(
                 self.graph.preferredLabel(concept_uri, lang='en')
             )))
-            concepts[label] = concept_uri
+            concepts[label] = str(concept_uri)
         return concepts
 
     def get_dataframe(self, **kwargs):
