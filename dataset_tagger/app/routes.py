@@ -63,20 +63,26 @@ def api_add_tagging(uuid):
         return abort(404)
     
     if not request.is_json:
-        return abort(401)
+        return abort(400)
+
+    # TODO: Authorization
 
     data = request.json
+    # TODO: Display error when fields are missing
     linked_dataset_url = data['dataset']
     concept_url = data['concept']
 
     try:
         new_id = add_tagging(configuration, linked_dataset_url, concept_url)
+        # TODO: Handle case where dataset/concept is not recognized
         result = {'success': True, 'id': new_id}
     except Exception as e:
+        # TODO: Print stacktrace of some kind, maybe don't leak exceptions
         result = {'success': False, 'message': str(e)}
 
     return jsonify(result)
-    
+
+
 def add_tagging(configuration, linked_dataset_url, concept_label):
     similarity = configuration.get_similarity()
     ontology = similarity.get_ontology()
@@ -95,7 +101,7 @@ def add_tagging(configuration, linked_dataset_url, concept_label):
         dataset.save()
 
     # Create the link
-    if concept_label in concepts.keys():
+    if concept_label in concepts.values():
         # We have a complete URI already
         concept_uri = concept_label
     else:
@@ -160,6 +166,88 @@ def api_get_tagging(uuid):
         return jsonify(taggings_per_dataset.get(chosen_dataset))
     else:
         return jsonify(taggings_per_dataset)
+
+
+@app.route('/api/v1/<uuid>/tagging', methods=['DELETE'])
+def api_delete_tagging(uuid):
+    try:
+        configuration = db.graph.Configuration.from_uuid(uuid)
+    except (ValueError, InvalidId):
+        # Mitigate against guessing the ID by bruteforce
+        sleep(1)
+        return abort(404)
+
+    if not request.is_json:
+        return abort(400)
+
+    # TODO: Authorization
+
+    data = request.json
+    # TODO: Handle missing data better
+    linked_dataset_url = data['dataset']
+    concept_url = data['concept']
+
+    # TODO: Handle case where dataset/concept is not recognized
+    remove_tagging(configuration, linked_dataset_url, concept_url)
+    return jsonify({'success': True})
+
+
+def remove_tagging(configuration, linked_dataset_url, concept_label):
+    similarity = configuration.get_similarity()
+    ontology = similarity.get_ontology()
+    concepts = ontology.get_concepts()
+    print(concepts)
+    dataset = similarity.get_dataset()
+
+    # Fetch information about this dataset
+    linked_dataset_graph = create_bound_graph()
+    linked_dataset_graph.parse(linked_dataset_url, format='xml')
+    dataset_uri = next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset))
+
+    # Create the link
+    if concept_label in concepts.values():
+        # We have a complete URI already
+        concept_uri = concept_label
+    else:
+        # We might have a label?
+        concept_uri = concepts[concept_label]
+
+    # So, what is the URI for the tagging we're removing?
+    r = similarity.graph.query(
+        """
+        SELECT DISTINCT ?uri
+        WHERE {
+            ?uri a otd:Similarity .
+            ?uri otd:dataset ?dataset .
+            ?uri otd:concept ?concept .
+        }
+        """,
+        initBindings={
+            'dataset': URIRef(dataset_uri),
+            'concept': URIRef(concept_uri)
+        }
+    )
+    # Get first row of results, and extract the only variable assigned there
+    # (?uri)
+    try:
+        tagging = next(iter(r))['uri']
+    except StopIteration as e:
+        # No binding found
+        # TODO: Report this nicely to the user
+        raise RuntimeError('No tagging found for the specified dataset and '
+                           'concept') from e
+
+    # Remove all triples pertaining to this tagging
+    similarity.graph.remove((tagging, None, None))
+
+    # Are there any taggings left for this dataset?
+    if (None, OTD.dataset, dataset_uri) not in similarity.graph:
+        # Nope, remove the dataset itself
+        dataset.graph.remove((dataset_uri, None, None))
+        dataset.save()
+
+    similarity.save()
+    return True
 
 
 @app.route('/api/v1/<uuid>/concept', methods=['GET'])
