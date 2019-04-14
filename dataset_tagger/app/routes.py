@@ -52,7 +52,7 @@ def edit(uuid):
         configuration=configuration,
     )
 
-# TODO: Create API documentation
+
 @app.route('/api/v1/<uuid>/tagging', methods=['POST'])
 def api_add_tagging(uuid):
     try:
@@ -69,7 +69,7 @@ def api_add_tagging(uuid):
 
     data = request.json
     # TODO: Display error when fields are missing
-    linked_dataset_url = data['dataset']
+    linked_dataset_url = data['dataset_url']
     concept_url = data['concept']
 
     try:
@@ -89,10 +89,7 @@ def add_tagging(configuration, linked_dataset_url, concept_label):
     concepts = ontology.get_concepts()
     dataset = similarity.get_dataset()
 
-    # Fetch information about this dataset
-    linked_dataset_graph = create_bound_graph()
-    linked_dataset_graph.parse(linked_dataset_url, format='xml')
-    dataset_uri = next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset))
+    dataset_uri = URIRef(get_dataset_id_from_url(linked_dataset_url))
 
     # Do we already have this in our dataset graph?
     if (dataset_uri, RDF.type, DCAT.Dataset) not in dataset.graph:
@@ -129,7 +126,7 @@ def api_get_tagging(uuid):
         sleep(1)
         return abort(404)
 
-    chosen_dataset = request.args.get('dataset')
+    chosen_dataset = get_dataset_id_from_request(is_get=True)
 
     concepts_by_label = configuration.get_ontology().get_concepts()
     labels_by_concept = {value: key for key, value in concepts_by_label.items()}
@@ -182,13 +179,14 @@ def api_delete_tagging(uuid):
 
     # TODO: Authorization
 
-    data = request.json
+    linked_dataset = get_dataset_id_from_request(required=True)
+
     # TODO: Handle missing data better
-    linked_dataset_url = data['dataset']
+    data = request.json
     concept_url = data['concept']
 
     # TODO: Handle case where dataset/concept is not recognized
-    remove_tagging(configuration, linked_dataset_url, concept_url)
+    remove_tagging(configuration, linked_dataset, concept_url)
     return jsonify({'success': True})
 
 
@@ -206,15 +204,10 @@ def api_delete_dataset(uuid):
 
     # TODO: Authorization
 
-    data = request.json
-
     # TODO: Handle missing data better
-    linked_dataset_url = data['dataset']
+    linked_dataset = get_dataset_id_from_request(required=True)
     # Fetch information about this dataset
     # TODO: Refactor some of the duplication
-    linked_dataset_graph = create_bound_graph()
-    linked_dataset_graph.parse(linked_dataset_url, format='xml')
-    dataset_uri = next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset))
 
     # What taggings do we need to remove?
     query = """
@@ -228,7 +221,7 @@ def api_delete_dataset(uuid):
     r = configuration.get_similarity().graph.query(
         query,
         initBindings={
-            'dataset': URIRef(dataset_uri)
+            'dataset': URIRef(linked_dataset)
         }
     )
     removed_something = False
@@ -236,7 +229,7 @@ def api_delete_dataset(uuid):
         removed_something = True
         concept = result['concept']
         # TODO: Only do the common work once, instead of for each tagging
-        remove_tagging(configuration, linked_dataset_url, str(concept))
+        remove_tagging(configuration, linked_dataset, str(concept))
 
     if removed_something:
         return jsonify({'success': True})
@@ -244,16 +237,11 @@ def api_delete_dataset(uuid):
         return jsonify({'success': False, 'error': 'Dataset not found in DB'})
 
 
-def remove_tagging(configuration, linked_dataset_url, concept_label):
+def remove_tagging(configuration, linked_dataset, concept_label):
     similarity = configuration.get_similarity()
     ontology = similarity.get_ontology()
     concepts = ontology.get_concepts()
     dataset = similarity.get_dataset()
-
-    # Fetch information about this dataset
-    linked_dataset_graph = create_bound_graph()
-    linked_dataset_graph.parse(linked_dataset_url, format='xml')
-    dataset_uri = next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset))
 
     # Create the link
     if concept_label in concepts.values():
@@ -274,7 +262,7 @@ def remove_tagging(configuration, linked_dataset_url, concept_label):
         }
         """,
         initBindings={
-            'dataset': URIRef(dataset_uri),
+            'dataset': URIRef(linked_dataset),
             'concept': URIRef(concept_uri)
         }
     )
@@ -292,9 +280,9 @@ def remove_tagging(configuration, linked_dataset_url, concept_label):
     similarity.graph.remove((tagging, None, None))
 
     # Are there any taggings left for this dataset?
-    if (None, OTD.dataset, dataset_uri) not in similarity.graph:
+    if (None, OTD.dataset, URIRef(linked_dataset)) not in similarity.graph:
         # Nope, remove the dataset itself
-        dataset.graph.remove((dataset_uri, None, None))
+        dataset.graph.remove((URIRef(linked_dataset), None, None))
         dataset.save()
 
     similarity.save()
@@ -314,3 +302,40 @@ def api_get_concept(uuid):
     labels_by_concept = {value: key for key, value in concepts_by_label.items()}
 
     return jsonify(labels_by_concept)
+
+
+def get_dataset_id_from_request(is_get=False, required=False):
+    if not is_get:
+        data = request.json
+
+        dataset_id = data.get('dataset_id')
+        dataset_url = data.get('dataset_url')
+    else:
+        dataset_id = request.args.get('dataset_id')
+        dataset_url = request.args.get('dataset_url')
+
+    if dataset_id:
+        # The user provided the RDF IRI directly
+        return dataset_id
+    elif not dataset_url:
+        # The user provided no dataset information. Is this an error?
+        if required:
+            raise RuntimeError(
+                'No dataset was specified. Please specify either dataset_id or '
+                'dataset_url.'
+            )
+        else:
+            return None
+
+    # Fetch information about this dataset using the URL
+    return get_dataset_id_from_url(dataset_url)
+
+
+def get_dataset_id_from_url(dataset_url):
+    linked_dataset_graph = create_bound_graph()
+    linked_dataset_graph.parse(dataset_url, format='xml')
+    try:
+        return str(next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset)))
+    except StopIteration:
+        raise ValueError(f'No dataset information was found at the specified '
+                         f'URL ({dataset_url})')

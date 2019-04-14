@@ -10,6 +10,13 @@ Similarly, **JSON payload** describes the format of the JSON you must send as th
 
 Finally, **Response JSON** describes the JSON returned by the dataset_tagger in response to your query.
 
+**Note**: Usually, there are two ways of specifying a dataset.
+
+* You can use the RDF IRI, which identifies the dataset in the RDF. This is called `dataset_id`, but should not be confused with the ID associated with the dataset in e.g. CKAN.
+* Or you can use a URL at which the system can download RDF information about the dataset. This is called `dataset_url`, but should not be confused with the RDF IRI, URI or URL. The RDF IRI is extracted by finding the first dataset described in the downloaded graph.
+
+"RDF URI" and "RDF IRI" are used interchangeably, though the latter is more correct (see the [RDF spec](https://www.w3.org/TR/rdf11-concepts/#resources-and-statements)).
+
 ## Overview
 
 | Method | Endpoint | Purpose |
@@ -57,11 +64,11 @@ Retrieve the existing taggings between datasets and concepts.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| **dataset** | string | Optional. RDF URI of the dataset to retrieve tagged concepts for. If not provided, taggings for all datasets are retrieved |
+| **dataset_id** or **dataset_url** | string | Optional. If not provided, taggings for all datasets are retrieved. Use `dataset_id` if you have the RDF IRI of the dataset to retrieve tagged concepts for, or use `dataset_url` if you have the URL from which DCAT RDF about the dataset can be downloaded
 
 ### Response JSON
 
-**If `dataset` was provided:**
+**If `dataset_id` or `dataset_url` was provided:**
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
@@ -71,7 +78,7 @@ Retrieve the existing taggings between datasets and concepts.
 | **concepts[].uri** | string | RDF URI of this concept |
 | **concepts[].label** | string | Human readable label for this concept |
 
-**If `dataset` was NOT provided:**
+**If neither `dataset_id` nor `dataset_url` were provided:**
 
 
 | Parameter | Type | Description |
@@ -99,8 +106,8 @@ Create a new tagging between a dataset and a concept. If the dataset has not bee
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | 
-| **dataset** | string | URL at which RDF DCAT information about the dataset can be found. Used to identify which dataset `concept` shall be associated with, and to download metadata if this dataset has not been seen before |
-| **concept** | string | Either RDF URI or the label of the concept to associate with `dataset` |
+| **dataset_url** | string | URL at which RDF DCAT information about the dataset can be found. Used to identify which dataset `concept` shall be associated with, and to download metadata if this dataset has not been seen before. Because of this last usage, it is not possible to specify the `dataset_id` directly |
+| **concept** | string | Either RDF URI or the label of the concept to associate with `dataset_url` |
 
 ### Response JSON
 
@@ -127,8 +134,8 @@ Remove an existing tagging between a dataset and a concept.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | 
-| **dataset** | string | URL at which RDF DCAT information about the dataset can be found. The content at the URL is used to identify which dataset to disassociate with `concept` |
-| **concept** | string | Either RDF URI or the label of the concept to disassociate with `dataset` |
+| **dataset_id** or **dataset_url** | string | The dataset to disassociate with `concept`. Use `dataset_id` if you have the RDF IRI of the dataset in question, or use `dataset_url` if you have the URL from which DCAT RDF about the dataset can be downloaded
+| **concept** | string | Either RDF URI or the label of the concept to disassociate with `dataset_id`/`dataset_url` |
 
 ### Response JSON
 
@@ -155,7 +162,7 @@ Remove all taggings associated with the specified dataset, and remove it from th
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | 
-| **dataset** | string | URL at which RDF DCAT information about the dataset can be found. The content at the URL is used to identify which dataset to remove all traces of |
+| **dataset_id** or **dataset_url** | string | The dataset to remove all traces of. Use `dataset_id` if you have the RDF IRI of the dataset in question, or use `dataset_url` if you have the URL from which DCAT RDF about the dataset can be downloaded
 
 ### Response JSON
 
