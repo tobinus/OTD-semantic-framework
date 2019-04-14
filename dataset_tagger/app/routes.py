@@ -192,11 +192,62 @@ def api_delete_tagging(uuid):
     return jsonify({'success': True})
 
 
+@app.route('/api/v1/<uuid>/dataset', methods=['DELETE'])
+def api_delete_dataset(uuid):
+    try:
+        configuration = db.graph.Configuration.from_uuid(uuid)
+    except (ValueError, InvalidId):
+        # Mitigate against guessing the ID by bruteforce
+        sleep(1)
+        return abort(404)
+
+    if not request.is_json:
+        return abort(400)
+
+    # TODO: Authorization
+
+    data = request.json
+
+    # TODO: Handle missing data better
+    linked_dataset_url = data['dataset']
+    # Fetch information about this dataset
+    # TODO: Refactor some of the duplication
+    linked_dataset_graph = create_bound_graph()
+    linked_dataset_graph.parse(linked_dataset_url, format='xml')
+    dataset_uri = next(linked_dataset_graph.subjects(RDF.type, DCAT.Dataset))
+
+    # What taggings do we need to remove?
+    query = """
+        SELECT DISTINCT ?concept 
+        WHERE {
+            ?tagging a           otd:Similarity ;
+                     otd:dataset ?dataset ;
+                     otd:concept ?concept .
+        }
+    """
+    r = configuration.get_similarity().graph.query(
+        query,
+        initBindings={
+            'dataset': URIRef(dataset_uri)
+        }
+    )
+    removed_something = False
+    for result in r:
+        removed_something = True
+        concept = result['concept']
+        # TODO: Only do the common work once, instead of for each tagging
+        remove_tagging(configuration, linked_dataset_url, str(concept))
+
+    if removed_something:
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'error': 'Dataset not found in DB'})
+
+
 def remove_tagging(configuration, linked_dataset_url, concept_label):
     similarity = configuration.get_similarity()
     ontology = similarity.get_ontology()
     concepts = ontology.get_concepts()
-    print(concepts)
     dataset = similarity.get_dataset()
 
     # Fetch information about this dataset
