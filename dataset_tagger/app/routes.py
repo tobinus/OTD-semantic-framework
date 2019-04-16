@@ -208,43 +208,18 @@ def api_delete_dataset(uuid):
     # TODO: Authorization
 
     # TODO: Handle missing data better
-    linked_dataset = get_dataset_id_from_request(required=True)
+    linked_dataset = URIRef(get_dataset_id_from_request(required=True))
     # Fetch information about this dataset
-    # TODO: Refactor some of the duplication
 
-    # What taggings do we need to remove?
-    query = """
-        SELECT DISTINCT ?concept 
-        WHERE {
-            ?tagging a           otd:Similarity ;
-                     otd:dataset ?dataset ;
-                     otd:concept ?concept .
-        }
-    """
-    r = configuration.get_similarity().graph.query(
-        query,
-        initBindings={
-            'dataset': URIRef(linked_dataset)
-        }
-    )
-    removed_something = False
-    for result in r:
-        removed_something = True
-        concept = result['concept']
-        # TODO: Only do the common work once, instead of for each tagging
-        remove_tagging(configuration, linked_dataset, str(concept))
+    remove_all_taggings(configuration, linked_dataset)
 
-    if removed_something:
-        return jsonify({'success': True})
-    else:
-        return jsonify({'success': False, 'error': 'Dataset not found in DB'})
+    return jsonify({'success': True})
 
 
 def remove_tagging(configuration, linked_dataset, concept_label):
     similarity = configuration.get_similarity()
     ontology = similarity.get_ontology()
     concepts = ontology.get_concepts()
-    dataset = similarity.get_dataset()
 
     # Create the link
     if concept_label in concepts.values():
@@ -254,42 +229,72 @@ def remove_tagging(configuration, linked_dataset, concept_label):
         # We might have a label?
         concept_uri = concepts[concept_label]
 
-    # So, what is the URI for the tagging we're removing?
-    r = similarity.graph.query(
+    # Remove the triples associated with similarity links for this dataset and
+    # concept
+    similarity.graph.update(
         """
-        SELECT DISTINCT ?uri
-        WHERE {
-            ?uri a otd:Similarity .
-            ?uri otd:dataset ?dataset .
-            ?uri otd:concept ?concept .
+        DELETE WHERE {
+            ?uri a           otd:Similarity ;
+                 otd:dataset ?dataset       ;
+                 otd:concept ?concept       ;
+                 ?predicate  ?value         .
         }
         """,
         initBindings={
-            'dataset': URIRef(linked_dataset),
+            'dataset': linked_dataset,
             'concept': URIRef(concept_uri)
         }
     )
-    # Get first row of results, and extract the only variable assigned there
-    # (?uri)
-    try:
-        tagging = next(iter(r))['uri']
-    except StopIteration as e:
-        # No binding found
-        # TODO: Report this nicely to the user
-        raise RuntimeError('No tagging found for the specified dataset and '
-                           'concept') from e
-
-    # Remove all triples pertaining to this tagging
-    similarity.graph.remove((tagging, None, None))
 
     # Are there any taggings left for this dataset?
-    if (None, OTD.dataset, URIRef(linked_dataset)) not in similarity.graph:
+    if (None, OTD.dataset, linked_dataset) not in similarity.graph:
         # Nope, remove the dataset itself
-        dataset.graph.remove((URIRef(linked_dataset), None, None))
-        dataset.save()
+        remove_dataset(configuration, linked_dataset)
 
     similarity.save()
-    return True
+
+
+def remove_all_taggings(configuration, linked_dataset):
+    similarity = configuration.get_similarity()
+
+    similarity.graph.update(
+        """
+        DELETE WHERE {
+            ?uri a           otd:Similarity ;
+                 otd:dataset ?dataset       ;
+                 ?predicate  ?value         .
+        }
+        """,
+        initBindings={
+            'dataset': linked_dataset,
+        }
+    )
+
+    remove_dataset(configuration, linked_dataset)
+
+    similarity.save()
+
+
+def remove_dataset(configuration, linked_dataset):
+    dataset = configuration.get_dataset()
+    dataset.graph.update(
+        """
+        DELETE WHERE {
+            ?dataset a                 dcat:Dataset      ;
+                     ?predicate1       ?value1           ;
+                     dcat:distribution ?dist             .
+            ?dist    a                 dcat:Distribution ;
+                     ?predicate2       ?value2           .
+        }
+        """,
+        initNs={
+            'dcat': DCAT,
+        },
+        initBindings={
+            'dataset': linked_dataset,
+        }
+    )
+    dataset.save()
 
 
 @app.route('/api/v1/<uuid>/concept', methods=['GET'])
