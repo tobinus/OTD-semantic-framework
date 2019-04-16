@@ -1,4 +1,5 @@
 from time import sleep
+import logging
 
 from bson.errors import InvalidId
 from flask import render_template, request, redirect, url_for, abort, jsonify
@@ -9,6 +10,8 @@ from dataset_tagger.app import app
 from dataset_tagger.app.forms import TagForm
 from similarity.generate import add_similarity_link
 from utils.graph import create_bound_graph, RDF, DCAT, OTD, DCT
+
+log = logging.getLogger(__name__)
 
 
 @app.route('/')
@@ -77,7 +80,7 @@ def api_add_tagging(uuid):
         # TODO: Handle case where dataset/concept is not recognized
         result = {'success': True, 'id': new_id}
     except Exception as e:
-        # TODO: Print stacktrace of some kind, maybe don't leak exceptions
+        log.exception('Error occurred while adding tagging')
         result = {'success': False, 'message': str(e)}
 
     return jsonify(result)
