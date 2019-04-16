@@ -138,6 +138,7 @@ def compute_score(word, concept_labels, comparator):
 
 # Helper method to create a link between a dataset and a concept with
 # a given similarity-score
+# TODO: De-duplicate
 def add_similarity_link(graph, dataset, concept, score):
     uuid = uuid4().hex
     simlink = URIRef(QEX[uuid])

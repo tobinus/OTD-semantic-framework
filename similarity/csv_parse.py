@@ -50,6 +50,7 @@ def csv2rdf(fn, dialect):
                 graph,
                 URIRef(dataset),
                 concept,
+                check_for_duplicates=False,
             )
     return graph
 

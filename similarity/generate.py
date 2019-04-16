@@ -8,13 +8,56 @@ from utils.graph import create_bound_graph, QEX, OTD
 
 # Helper method to create a link between a dataset and a concept with
 # a given similarity-score
-def add_similarity_link(graph, dataset, concept, score=1.0):
+# TODO: Write full doc
+# TODO: Refactor into central place (db.graph?)
+def add_similarity_link(graph, dataset, concept, score=1.0, check_for_duplicates=True):
+    bindings = {
+        'dataset': dataset,
+        'concept': concept,
+    }
+    namespaces = {
+        'OTD': OTD,
+    }
+
+    if check_for_duplicates:
+        # Try removing any similarity link that matches this dataset and concept
+        # -- if they don't exist, then this still executes just fine (we are
+        # just combining searching for existing triples and deleting them)
+        graph.update(
+            """
+            DELETE WHERE {
+                ?simlink a           OTD:Similarity ;
+                         OTD:dataset ?dataset       ;
+                         OTD:concept ?concept       ;
+                         # Here we match against any other triples involving the
+                         # matched ?simlink:
+                         ?property   ?value         .
+            }
+            """,
+            initNs=namespaces,
+            initBindings=bindings,
+        )
+
     uuid = uuid4().hex
     simlink = URIRef(QEX[uuid])
-    graph.add((simlink, RDF.type, OTD.Similarity))
-    graph.add((simlink, OTD.dataset, dataset))
-    graph.add((simlink, OTD.concept, concept))
-    graph.add((simlink, OTD.score, Literal(score, datatype=XSD.double)))
+
+    score_literal = Literal(score, datatype=XSD.double)
+    bindings['score'] = score_literal
+    bindings['simlink'] = simlink
+
+    graph.update(
+        """
+        # We use INSERT instead of INSERT DATA so variables can be used
+        INSERT {
+            ?simlink a           OTD:Similarity ;
+                     OTD:dataset ?dataset       ;
+                     OTD:concept ?concept       ;
+                     OTD:score   ?score         .
+        } WHERE {}
+        """,
+        initNs=namespaces,
+        initBindings=bindings,
+    )
     return simlink
 
 
@@ -241,7 +284,8 @@ def create_manual_tag_graph():
         add_similarity_link(
             graph,
             URIRef('http://78.91.98.234/dataset/{}'.format(uuid)),
-            concept
+            concept,
+            check_for_duplicates=False
         )
 
     return graph
