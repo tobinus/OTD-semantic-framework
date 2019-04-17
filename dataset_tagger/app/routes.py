@@ -182,7 +182,7 @@ def api_delete_tagging(uuid):
 
     # TODO: Authorization
 
-    linked_dataset = get_dataset_id_from_request(required=True)
+    linked_dataset = URIRef(get_dataset_id_from_request(required=True))
 
     # TODO: Handle missing data better
     data = request.json
@@ -240,6 +240,9 @@ def remove_tagging(configuration, linked_dataset, concept_label):
                  ?predicate  ?value         .
         }
         """,
+        initNs={
+            'otd': OTD,
+        },
         initBindings={
             'dataset': linked_dataset,
             'concept': URIRef(concept_uri)
@@ -265,6 +268,9 @@ def remove_all_taggings(configuration, linked_dataset):
                  ?predicate  ?value         .
         }
         """,
+        initNs={
+            'otd': OTD,
+        },
         initBindings={
             'dataset': linked_dataset,
         }
