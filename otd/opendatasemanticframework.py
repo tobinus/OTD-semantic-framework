@@ -97,7 +97,6 @@ class OpenDataSemanticFramework:
         else:
             self.cds['all'] = self.cds[name]
 
-            
     def get_cds(self, name):
         return self.cds[name]
 
