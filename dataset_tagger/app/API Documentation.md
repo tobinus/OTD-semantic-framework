@@ -22,10 +22,10 @@ Finally, **Response JSON** describes the JSON returned by the dataset_tagger in 
 | Method | Endpoint | Purpose |
 | ------ | -------- | ------- |
 | `GET`  | `/api/v1/<uuid>/concept` | Retrieve concepts available to you |
-| `GET`  | `/api/v1/<uuid>/tagging` | Retrieve existing taggings between dataset and concepts |
-| `POST` | `/api/v1/<uuid>/tagging` | Create a new tagging between a dataset and a concept |
-| `DELETE` | `/api/v1/<uuid>/tagging` | Remove a tagging between a dataset and a concept |
-| `DELETE` | `/api/v1/<uuid>/dataset` | Remove a dataset and all associated taggings |
+| `GET`  | `/api/v1/<uuid>/tag` | Retrieve existing tags connecting dataset and concepts |
+| `POST` | `/api/v1/<uuid>/tag` | Tag a dataset with a concept |
+| `DELETE` | `/api/v1/<uuid>/tag` | Remove a tag connecting a concept to a dataset |
+| `DELETE` | `/api/v1/<uuid>/dataset` | Remove a dataset and all associated tags |
 
 
 ## `GET /api/v1/<uuid>/concept`
@@ -50,9 +50,9 @@ No parameters are accepted.
 | **`<URI>`** | string | URI is the RDF URI of a concept in the ontology. The value is a human-readable label for this concept |
 
 
-## `GET /api/v1/<uuid>/tagging`
+## `GET /api/v1/<uuid>/tag`
 
-Retrieve the existing taggings between datasets and concepts.
+Retrieve what concepts the datasets have been tagged with.
 
 ### URL Variables
 
@@ -64,7 +64,7 @@ Retrieve the existing taggings between datasets and concepts.
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| **dataset_id** or **dataset_url** | string | Optional. If not provided, taggings for all datasets are retrieved. Use `dataset_id` if you have the RDF IRI of the dataset to retrieve tagged concepts for, or use `dataset_url` if you have the URL from which DCAT RDF about the dataset can be downloaded
+| **dataset_id** or **dataset_url** | string | Optional. If not provided, tags for all datasets are retrieved. Use `dataset_id` if you have the RDF IRI of the dataset to retrieve tagged concepts for, or use `dataset_url` if you have the URL from which DCAT RDF about the dataset can be downloaded
 
 ### Response JSON
 
@@ -84,16 +84,16 @@ Retrieve the existing taggings between datasets and concepts.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | Each member of this object represents a dataset |
-| **`<URI>`** | object | URI is the RDF URI of a dataset for which a tagging exists |
+| **`<URI>`** | object | URI is the RDF URI of a dataset for which a tag exists |
 | **`<URI>`.title** | string | Title of this dataset |
 | **`<URI>`.concepts** | array of object | List of concepts associated with this dataset |
 | **`<URI>`.concepts[].uri** | string | RDF URI of this concept |
 | **`<URI>`.concepts[].label** | string | Human readable label for this concept |
 
 
-## `POST /api/v1/<uuid>/tagging`
+## `POST /api/v1/<uuid>/tag`
 
-Create a new tagging between a dataset and a concept. If the dataset has not been encountered yet, it will be added to the data store.
+Tag a dataset with a related concept. If the dataset has not been encountered yet, it will be added to the data store.
 
 ### URL Variables
 
@@ -114,14 +114,14 @@ Create a new tagging between a dataset and a concept. If the dataset has not bee
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | 
-| **success** | bool | `true` if the tagging was added successfully, `false` if an error occurred |
-| **id** | string | ID of the newly added tagging. Only present if `success` is `true` |
+| **success** | bool | `true` if the dataset was tagged successfully, `false` if an error occurred |
+| **id** | string | ID of the newly added tag. Only present if `success` is `true` |
 | **message** | string | Error message. Only present if `success` is `false` |
 
 
-## `DELETE /api/v1/<uuid>/tagging`
+## `DELETE /api/v1/<uuid>/tag`
 
-Remove an existing tagging between a dataset and a concept.
+Disassociate the dataset with the concept, removing any tags connecting the two.
 
 ### URL Variables
 
@@ -142,14 +142,14 @@ Remove an existing tagging between a dataset and a concept.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | 
-| **success** | bool | `true` if the tagging was removed successfully |
+| **success** | bool | `true` if no error occurred. Note that it is not checked whether any such tag actually existed; not removing any tags is still considered a success |
 
 Note: On error, this endpoint currently raises an exception and fails with a 500 Internal error status message.
 
 
 ## `DELETE /api/v1/<uuid>/dataset`
 
-Remove all taggings associated with the specified dataset, and remove it from the data store.
+Remove all tags associated with the specified dataset, and remove it from the data store.
 
 ### URL Variables
 
@@ -169,7 +169,6 @@ Remove all taggings associated with the specified dataset, and remove it from th
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | 
-| **success** | bool | `true` if the dataset and its taggings were removed successfully, `false` if the dataset could not be found in the data store |
-| **error** | string | Error message. Only present if `success` if `false` |
+| **success** | bool | `true` if no error occurred. Note that it is not checked whether any such dataset or tags existed; not removing any dataset or tags is still considered a success |
 
-Note: On any error other than not finding the dataset, this endpoint currently raises an exception and fails with a 500 Internal error status message.
+Note: On error, this endpoint currently raises an exception and fails with a 500 Internal error status message.

@@ -42,7 +42,7 @@ def edit(uuid):
         try:
             linked_dataset_url = request.form.get('dcatDataset')
             concept_label = request.form.get('tag')
-            result = add_tagging(configuration, linked_dataset_url, concept_label)
+            result = add_tag(configuration, linked_dataset_url, concept_label)
         except Exception as e:
             result = str(e)
             pass
@@ -56,8 +56,8 @@ def edit(uuid):
     )
 
 
-@app.route('/api/v1/<uuid>/tagging', methods=['POST'])
-def api_add_tagging(uuid):
+@app.route('/api/v1/<uuid>/tag', methods=['POST'])
+def api_add_tag(uuid):
     try:
         configuration = db.graph.Configuration.from_uuid(uuid)
     except (ValueError, InvalidId):
@@ -76,17 +76,17 @@ def api_add_tagging(uuid):
     concept_url = data['concept']
 
     try:
-        new_id = add_tagging(configuration, linked_dataset_url, concept_url)
+        new_id = add_tag(configuration, linked_dataset_url, concept_url)
         # TODO: Handle case where dataset/concept is not recognized
         result = {'success': True, 'id': new_id}
     except Exception as e:
-        log.exception('Error occurred while adding tagging')
+        log.exception('Error occurred while tagging')
         result = {'success': False, 'message': str(e)}
 
     return jsonify(result)
 
 
-def add_tagging(configuration, linked_dataset_url, concept_label):
+def add_tag(configuration, linked_dataset_url, concept_label):
     similarity = configuration.get_similarity()
     ontology = similarity.get_ontology()
     concepts = ontology.get_concepts()
@@ -120,8 +120,8 @@ def add_tagging(configuration, linked_dataset_url, concept_label):
     return link_id
 
 
-@app.route('/api/v1/<uuid>/tagging', methods=['GET'])
-def api_get_tagging(uuid):
+@app.route('/api/v1/<uuid>/tag', methods=['GET'])
+def api_get_tags(uuid):
     try:
         configuration = db.graph.Configuration.from_uuid(uuid)
     except (ValueError, InvalidId):
@@ -137,15 +137,15 @@ def api_get_tagging(uuid):
     tag_graph = configuration.get_similarity().graph
     dataset_graph = configuration.get_dataset().graph
 
-    taggings_per_dataset = dict()
-    for tagging in tag_graph.subjects(RDF.type, OTD.Similarity):
-        dataset = tag_graph.value(tagging, OTD.dataset)
+    tags_per_dataset = dict()
+    for tag in tag_graph.subjects(RDF.type, OTD.Similarity):
+        dataset = tag_graph.value(tag, OTD.dataset)
         dataset_str = str(dataset)
 
         if chosen_dataset is not None and chosen_dataset != dataset_str:
             continue
 
-        concept = str(tag_graph.value(tagging, OTD.concept))
+        concept = str(tag_graph.value(tag, OTD.concept))
         concept_label = labels_by_concept[concept]
 
         concept_info = {
@@ -153,23 +153,23 @@ def api_get_tagging(uuid):
             'label': concept_label,
         }
 
-        if dataset_str not in taggings_per_dataset:
+        if dataset_str not in tags_per_dataset:
             title = dataset_graph.value(dataset, DCT.title)
-            taggings_per_dataset[dataset_str] = {
+            tags_per_dataset[dataset_str] = {
                 'title': title,
                 'concepts': [concept_info],
             }
         else:
-            taggings_per_dataset[dataset_str]['concepts'].append(concept_info)
+            tags_per_dataset[dataset_str]['concepts'].append(concept_info)
 
     if chosen_dataset is not None:
-        return jsonify(taggings_per_dataset.get(chosen_dataset))
+        return jsonify(tags_per_dataset.get(chosen_dataset))
     else:
-        return jsonify(taggings_per_dataset)
+        return jsonify(tags_per_dataset)
 
 
-@app.route('/api/v1/<uuid>/tagging', methods=['DELETE'])
-def api_delete_tagging(uuid):
+@app.route('/api/v1/<uuid>/tag', methods=['DELETE'])
+def api_delete_tag(uuid):
     try:
         configuration = db.graph.Configuration.from_uuid(uuid)
     except (ValueError, InvalidId):
@@ -189,7 +189,7 @@ def api_delete_tagging(uuid):
     concept_url = data['concept']
 
     # TODO: Handle case where dataset/concept is not recognized
-    remove_tagging(configuration, linked_dataset, concept_url)
+    remove_tag(configuration, linked_dataset, concept_url)
     return jsonify({'success': True})
 
 
@@ -211,12 +211,12 @@ def api_delete_dataset(uuid):
     linked_dataset = URIRef(get_dataset_id_from_request(required=True))
     # Fetch information about this dataset
 
-    remove_all_taggings(configuration, linked_dataset)
+    remove_all_tags(configuration, linked_dataset)
 
     return jsonify({'success': True})
 
 
-def remove_tagging(configuration, linked_dataset, concept_label):
+def remove_tag(configuration, linked_dataset, concept_label):
     similarity = configuration.get_similarity()
     ontology = similarity.get_ontology()
     concepts = ontology.get_concepts()
@@ -249,7 +249,7 @@ def remove_tagging(configuration, linked_dataset, concept_label):
         }
     )
 
-    # Are there any taggings left for this dataset?
+    # Are there any tags left for this dataset?
     if (None, OTD.dataset, linked_dataset) not in similarity.graph:
         # Nope, remove the dataset itself
         remove_dataset(configuration, linked_dataset)
@@ -257,7 +257,7 @@ def remove_tagging(configuration, linked_dataset, concept_label):
     similarity.save()
 
 
-def remove_all_taggings(configuration, linked_dataset):
+def remove_all_tags(configuration, linked_dataset):
     similarity = configuration.get_similarity()
 
     similarity.graph.update(
