@@ -32,17 +32,17 @@ Perform a semantic search using DataOntoSearch.
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
 | _root_    | object | |
-| **`concepts`** | list | The concepts regarded as the most similar to the query, sorted with the most relevant first |
+| **`concepts`** | array | The concepts regarded as the most similar to the query, sorted with the most relevant first |
 | **`concepts[]`** | object | One matching concept |
 | **`concepts[].concept`** | string | The RDF IRI of this concept |
 | **`concepts[].similarity`** | number | The similarity score between the query and this concept |
-| **`results`** | list | The datasets regarded as the most similar to the query, sorted with the most relevant first |
+| **`results`** | array | The datasets regarded as the most similar to the query, sorted with the most relevant first |
 | **`results[]`** | object | One matching dataset |
 | **`results[].score`** | number | The similarity score between the query and this dataset |
 | **`results[].title`** | string | This dataset's title |
 | **`results[].description`** | string | This dataset's description |
 | **`results[].uri`** | string | This dataset's RDF IRI |
-| **`results[].concepts`** | list | The concepts regarded as the most similar to this dataset (independently of the query) |
+| **`results[].concepts`** | array | The concepts regarded as the most similar to this dataset (independently of the query) |
 | **`results[].concepts[]`** | object | One related concept |
 | **`results[].concepts[].concept`** | string | The RDF IRI of this concept |
 | **`results[].concepts[].similarity`** | number | The similarity score between this dataset and this concept |
