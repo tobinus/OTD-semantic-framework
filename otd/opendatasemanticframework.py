@@ -56,7 +56,7 @@ class OpenDataSemanticFramework:
         self.load_new_graph(ontology_uuid)
 
         # Other properties
-        self.dataset_graph = db.graph.Dataset.from_uuid(dataset_uuid)
+        self.dataset_graph = db.graph.Dataset.from_uuid(dataset_uuid).graph
 
     @property
     def graph(self):
