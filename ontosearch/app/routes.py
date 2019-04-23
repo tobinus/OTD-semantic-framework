@@ -107,6 +107,7 @@ def api_search():
     # Create a representation of the results.
     # namedtuples are treated as tuples, so we must create a comprehensible
     # structure ourself
+    # TODO: Send concept URIs in addition to label
     return jsonify({
         'concepts': [
             {
