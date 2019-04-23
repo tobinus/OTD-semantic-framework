@@ -23,6 +23,8 @@ Perform a semantic search using DataOntoSearch.
 | **`q`** | string | Query to perform |
 | **`c`** | string | Optional. The Configuration to use. When not provided, the default configuration is used (the same as for the web interface) |
 | **`a`** | number | Optional. Set to 1 in order to use the automatically tagged data, instead of the manual tags (the default) |
+| **`d`** | number | Optional. Set to 0 to avoid retrieving metadata about the matched datasets. The title and description fields will be `null` in that case |
+| **`ic`** | number | Optional. Set to 0 to avoid retrieving concepts related to the query and datasets |
 | **`qcs`** | float | Optional. The query-concept similarity threshold, default: 0.0 |
 | **`qds`** | float | Optional. The query-dataset similarity threshold, default: 0.75 |
 
@@ -34,7 +36,8 @@ Perform a semantic search using DataOntoSearch.
 | _root_    | object | |
 | **`concepts`** | array | The concepts regarded as the most similar to the query, sorted with the most relevant first |
 | **`concepts[]`** | object | One matching concept |
-| **`concepts[].concept`** | string | The RDF IRI of this concept |
+| **`concepts[].uri`** | string | The RDF IRI of this concept |
+| **`concepts[].label`** | string | The preferred label for this concept |
 | **`concepts[].similarity`** | number | The similarity score between the query and this concept |
 | **`results`** | array | The datasets regarded as the most similar to the query, sorted with the most relevant first |
 | **`results[]`** | object | One matching dataset |
@@ -44,6 +47,7 @@ Perform a semantic search using DataOntoSearch.
 | **`results[].uri`** | string | This dataset's RDF IRI |
 | **`results[].concepts`** | array | The concepts regarded as the most similar to this dataset (independently of the query) |
 | **`results[].concepts[]`** | object | One related concept |
-| **`results[].concepts[].concept`** | string | The RDF IRI of this concept |
+| **`results[].concepts[].uri`** | string | The RDF IRI of this concept |
+| **`results[].concepts[].label`** | string | The preferred label for this concept |
 | **`results[].concepts[].similarity`** | number | The similarity score between this dataset and this concept |
 

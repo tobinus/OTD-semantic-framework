@@ -113,12 +113,17 @@ def do_single_multi_search(
 
 
 def do_search(args):
+    include_dataset_info = not args.simple
+    include_concepts = args.details
+
     results, query_concept_similarities = make_search(
         args.query,
         args.simtype,
         args.t_s,
         args.t_c,
         args.t_q,
+        include_dataset_info=include_dataset_info,
+        include_concepts=include_concepts,
     )
 
     if args.simple:
@@ -136,7 +141,7 @@ def do_matrix(_):
     odsf_loader.ensure_all_loaded()
 
 
-def make_search(query, simtype, t_s, t_c, t_q, configuration=None):
+def make_search(query, simtype, t_s, t_c, t_q, configuration=None, **kwargs):
     print('Loading indices and matrices…', file=stderr)
     odsf_loader = ODSFLoader(True, t_c)
     if configuration is None:
@@ -150,21 +155,22 @@ def make_search(query, simtype, t_s, t_c, t_q, configuration=None):
         cds_name=simtype,
         qc_sim_threshold=t_q,
         score_threshold=t_s,
+        **kwargs
     )
 
 
 def print_results_simple(results, _1, _2):
     # Simply print URIs (for processing by other script)
     for result in results:
-        print(result.info.uri)
+        print(result.info)
 
 
 def print_results_detailed(results, query_concept_similarities, query):
     # Print all the information we have
     print(f'Your query for "{query}" matched the following concepts:')
     print(tabulate(
-        query_concept_similarities,
-        headers=('Concept', 'Similarity score'),
+        _only_include_label_similarity(query_concept_similarities),
+        headers=('Label', 'Similarity score'),
         tablefmt='psql'
     ))
     print()
@@ -178,7 +184,7 @@ def print_results_detailed(results, query_concept_similarities, query):
         matched_concepts = result.concepts
 
         formatted_concepts = tabulate(
-            matched_concepts,
+            _only_include_label_similarity(matched_concepts),
             tablefmt='plain',
         )
         formatted_results.append((
@@ -199,6 +205,13 @@ def print_results_detailed(results, query_concept_similarities, query):
         ),
         tablefmt='grid',
     ))
+
+
+def _only_include_label_similarity(similarities):
+    return map(
+        lambda similarity: (similarity.label, similarity.similarity),
+        similarities
+    )
 
 
 def print_results_normally(results, _, query):

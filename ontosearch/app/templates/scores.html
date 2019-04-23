@@ -47,7 +47,7 @@
         <table class="scorevec">
             {% for score in scorevec %}
                 <tr>
-                    <td> {{ score.concept }} </td>
+                    <td> {{ score.label }} </td>
                     <td> {{ score.similarity|round(precision) }} </td>
                 </tr>
             {% endfor %}

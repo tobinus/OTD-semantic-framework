@@ -2,7 +2,7 @@ from collections.abc import Mapping
 from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
 from bson.errors import InvalidId
 import warnings
-from similarity.csv_parse import get_fragment
+from rdflib import URIRef
 from utils.graph import RDF, OTD, DCAT, DCT
 from otd.skosnavigate import SKOSNavigate
 from otd.queryextractor import QueryExtractor
@@ -13,13 +13,16 @@ from sklearn.metrics.pairwise import cosine_similarity
 from collections import namedtuple
 
 import pandas as pd
-import numpy as np 
+import numpy as np
 import clint.textui.progress
-
 
 DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri', 'href'))
 SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
-ConceptSimilarity = namedtuple('ConceptSimilarity', ('concept', 'similarity'))
+# Note: 'info' is just dataset RDF IRI when dataset_info is disabled
+ConceptSimilarity = namedtuple(
+    'ConceptSimilarity',
+    ('uri', 'label', 'similarity')
+)
 
 
 class MissingMatrixError(RuntimeError):
@@ -79,15 +82,19 @@ class OpenDataSemanticFramework:
     def compute_ccs(self):
         data = []
         for c1 in clint.textui.progress.bar(
-            self.concepts,
-            'Calculating concept-concept similarity… ',
+                self.concepts,
+                'Calculating concept-concept similarity… ',
         ):
             v = []
             for c2 in self.concepts:
                 score = self.navigator.sim_wup(c1, c2)
                 v.append(score)
             data.append(v)
-        ccs = pd.DataFrame(columns=self.concepts, index=self.concepts, data=data)
+        ccs = pd.DataFrame(
+            columns=self.concepts,
+            index=self.concepts,
+            data=data
+        )
         return ccs
 
     def add_similarity_graph(self, name, graph):
@@ -172,21 +179,24 @@ class OpenDataSemanticFramework:
         # Set similarity values in the cds
         similarities = tuple(sgraph.subjects(RDF.type, OTD.Similarity))
         for similarity in clint.textui.progress.bar(
-            similarities,
-            f'Constructing concept-dataset similarity matrix for "{name}"… ',
-            every=1,
+                similarities,
+                f'Constructing concept-dataset similarity matrix for '
+                f'"{name}"… ',
+                every=1,
         ):
             dataset = next(sgraph.objects(similarity, OTD.dataset), None)
             concept = next(sgraph.objects(similarity, OTD.concept), None)
             score = (float)(next(sgraph.objects(similarity, OTD.score), np.nan))
-            for cs in self.concepts:                
-                simscore = (float)(self.ccs[cs][concept])*score
+            for cs in self.concepts:
+                simscore = (float)(self.ccs[cs][concept]) * score
 
                 # Only associate dataset with concepts above Tc (concept-dataset
                 # similarity threshold)
                 if simscore < similarity_threshold:
                     simscore = 0.0
-                cds.loc[dataset][cs] = np.nanmax([simscore, cds.loc[dataset][cs]])
+                cds.loc[dataset][cs] = np.nanmax(
+                    [simscore, cds.loc[dataset][cs]]
+                )
         return cds.dropna(thresh=1)
 
     def datasets(self):
@@ -199,13 +209,27 @@ class OpenDataSemanticFramework:
 
     def similarities(self):
         ss = []
-        for similarity in self.similarity_graph.subjects(RDF.type, OTD.Similarity):
-            dataset = next(self.similarity_graph.objects(similarity, OTD.dataset), None)
-            concept = next(self.similarity_graph.objects(similarity, OTD.concept), None)
-            score = (float)(next(self.similarity_graph.objects(similarity, OTD.score), "0.0"))
+        for similarity in self.similarity_graph.subjects(
+                RDF.type,
+                OTD.Similarity
+        ):
+            dataset = next(
+                self.similarity_graph.objects(similarity, OTD.dataset),
+                None
+            )
+            concept = next(
+                self.similarity_graph.objects(similarity, OTD.concept),
+                None
+            )
+            score = (float)(
+                next(
+                    self.similarity_graph.objects(similarity, OTD.score),
+                    "0.0"
+                )
+            )
             ss.append('{} {} : {}'.format(dataset, concept, score))
         return ss
-        
+
     def calculate_query_sim_to_concepts(self, query, sim_threshold):
         qe = QueryExtractor()
         sscore = SemScore(qe, self.navigator)
@@ -214,16 +238,29 @@ class OpenDataSemanticFramework:
 
     def get_dataset_info(self, dataset):
         title = next(self.dataset_graph.objects(dataset, DCT.title), None)
-        description = next(self.dataset_graph.objects(dataset, DCT.description), None)
-        href = next(self.dataset_graph.objects(dataset, DCAT.landingPage), dataset)
-        return DatasetInfo(str(title), str(description), str(dataset), str(href))
+        description = next(
+            self.dataset_graph.objects(dataset, DCT.description),
+            None
+        )
+        href = next(
+            self.dataset_graph.objects(dataset, DCAT.landingPage),
+            dataset
+        )
+        return DatasetInfo(
+            str(title),
+            str(description),
+            str(dataset),
+            str(href)
+        )
 
     def search_query(
             self,
             query,
             cds_name="all",
             qc_sim_threshold=0.0,
-            score_threshold=0.75
+            score_threshold=0.75,
+            include_dataset_info=True,
+            include_concepts=True,
     ):
         """
         Perform a search query.
@@ -238,6 +275,12 @@ class OpenDataSemanticFramework:
             score_threshold: Lower threshold for how similar a dataset must
                 be to the query to be included in the result. This effectively
                 decides how many datasets are included.
+            include_dataset_info: Set to False to disable collection of dataset
+                information. Should save some time in situations where that
+                information is not needed.
+            include_concepts: Set to False to disable collection of concepts
+                related to the query and to each returned dataset. Should save
+                some time in situations where that information is not needed.
 
         Returns:
             A tuple. The first item is a list of SearchResult that matched,
@@ -251,11 +294,14 @@ class OpenDataSemanticFramework:
         )
 
         # What were the most similar concepts?
-        most_similar_concepts = self.sort_concept_similarities(
-            self.get_concept_similarities_for_query(
-                query_concept_sim
-            )
-        )[:5]
+        if include_concepts:
+            most_similar_concepts = self.sort_concept_similarities(
+                self.get_concept_similarities_for_query(
+                    query_concept_sim
+                )
+            )[:5]
+        else:
+            most_similar_concepts = []
 
         # How similar are the datasets' similarity to the query's similarity?
         dataset_query_sim = self.calculate_dataset_query_sim(
@@ -272,31 +318,38 @@ class OpenDataSemanticFramework:
                 continue
             results.append(SearchResult(
                 score=similarity,
-                info=self.get_dataset_info(dataset),
+                info=self.get_dataset_info(dataset)
+                if include_dataset_info else dataset,
                 concepts=self.get_most_similar_concepts_for_dataset(
                     cds_name,
                     dataset
-                ),
+                ) if include_concepts else [],
             ))
         return results, most_similar_concepts
 
-    @staticmethod
-    def get_concept_similarities_for_query(query_concept_similarity):
-        return list(
-            map(
-                lambda concept, similarity: ConceptSimilarity(
-                    concept,
-                    similarity
-                ),
-                list(
-                    map(
-                        get_fragment,
-                        query_concept_similarity.columns
-                    )
-                ),
-                query_concept_similarity.values[0]
-            )
+    def get_concept_similarities_for_query(self, query_concept_similarity):
+        return self._create_concept_similarities(
+            query_concept_similarity.columns,
+            query_concept_similarity.values[0]
         )
+
+    def _create_concept_similarities(self, concepts, similarity_scores):
+        processed_similarities = []
+
+        concept_similarities = zip(
+            concepts,
+            similarity_scores,
+        )
+
+        for concept, similarity in concept_similarities:
+            labels = self.navigator.pref_and_alt_labels(URIRef(concept))
+            label = labels[0]
+
+            processed_similarities.append(ConceptSimilarity(
+                concept, label, similarity
+            ))
+
+        return processed_similarities
 
     def calculate_dataset_query_sim(self, query_concept_sim, cds_name, query):
         # Add in the datasets' similarity to the concepts
@@ -334,18 +387,10 @@ class OpenDataSemanticFramework:
         return closest_concepts_for_dataset
 
     def get_concepts_for_dataset(self, cds_name, dataset):
-        return list(
-            map(
-                lambda concept, similarity: ConceptSimilarity(
-                    concept,
-                    similarity
-                ),
-                map(
-                    get_fragment,
-                    self.cds[cds_name].loc[dataset].index
-                ),
-                self.cds[cds_name].loc[dataset].values
-            )
+        location = self.cds[cds_name].loc[dataset]
+        return self._create_concept_similarities(
+            location.index,
+            location.values
         )
 
     @staticmethod

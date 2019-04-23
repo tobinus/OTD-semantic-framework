@@ -16,7 +16,9 @@ from otd.opendatasemanticframework import ODSFLoader, MissingMatrixError
 @app.route('/')
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    form = SearchForm()
+    # Disabling CSRF because it does not play nice with multiple workers, plus
+    # users are not authenticated so CSRF does not protect against anything
+    form = SearchForm(meta={'csrf': False})
     xs = []
     sv = []
     if form.validate_on_submit():
@@ -35,21 +37,23 @@ def index():
 
 @app.route('/scores', methods=['GET', 'POST'])
 def scores():
-    form = ScoreForm()
+    # Disabling CSRF because it does not play nice with multiple workers, plus
+    # users are not authenticated so CSRF does not protect against anything
+    form = ScoreForm(meta={'csrf': False})
 
     most_similar_concepts = []
 
-    ontology = odsf_loader.get_default()
+    odsf = odsf_loader.get_default()
 
     if form.validate_on_submit():
-        query_concept_sim = ontology.calculate_query_sim_to_concepts(
+        query_concept_sim = odsf.calculate_query_sim_to_concepts(
             form.query.data,
             0.0
         )
 
         # What were the most similar concepts?
-        most_similar_concepts = ontology.sort_concept_similarities(
-            ontology.get_concept_similarities_for_query(
+        most_similar_concepts = odsf.sort_concept_similarities(
+            odsf.get_concept_similarities_for_query(
                 query_concept_sim
             )
         )
@@ -71,6 +75,8 @@ def api_search():
     # Collect parameters from the user
     query = request.args.get('q')
     autotag = request.args.get('a') == '1'
+    include_dataset_info = request.args.get('d') != '0'
+    include_concepts = request.args.get('ic') != '0'
     configuration_uuid = request.args.get('c', ODSFLoader.DEFAULT_KEY)
     query_concept_sim = request.args.get('qcs', '0.0')
     query_dataset_sim = request.args.get('qds', '0.75')
@@ -102,16 +108,18 @@ def api_search():
         SIMTYPE_AUTOTAG if autotag else SIMTYPE_SIMILARITY,
         query_concept_sim,
         query_dataset_sim,
+        include_dataset_info=include_dataset_info,
+        include_concepts=include_concepts,
     )
 
     # Create a representation of the results.
     # namedtuples are treated as tuples, so we must create a comprehensible
     # structure ourself
-    # TODO: Send concept URIs in addition to label
     return jsonify({
         'concepts': [
             {
-                'concept': c.concept,
+                'uri': c.uri,
+                'label': c.label,
                 'similarity': c.similarity
             }
             for c in concept_similarities
@@ -119,12 +127,14 @@ def api_search():
         'results': [
             {
                 'score': d.score,
-                'title': d.info.title,
-                'description': d.info.description,
-                'uri': d.info.uri,
+                'title': d.info.title if include_dataset_info else None,
+                'description': d.info.description if include_dataset_info else
+                None,
+                'uri': d.info.uri if include_dataset_info else d.info,
                 'concepts': [
                     {
-                        'concept': c.concept,
+                        'uri': c.uri,
+                        'label': c.label,
                         'similarity': c.similarity,
                     }
                     for c in d.concepts

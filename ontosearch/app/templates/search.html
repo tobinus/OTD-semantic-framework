@@ -80,7 +80,7 @@
         <table class="scorevec details">
             {% for score in scorevec %}
                 <tr>
-                    <td> {{ score.concept }} </td>
+                    <td> {{ score.label }} </td>
                     <td> {{ score.similarity|round(precision) }} </td>
                 </tr>
             {% endfor %}
@@ -98,7 +98,7 @@
             <table class="vecres details">
                 {% for similarity in result.concepts %}
                     <tr>
-                        <td>{{ similarity.concept }}</td>
+                        <td>{{ similarity.label }}</td>
                         <td>{{ similarity.similarity|round(precision) }}</td>
                     </tr>
                 {% endfor %}
