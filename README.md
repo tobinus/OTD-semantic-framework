@@ -302,6 +302,7 @@ will give you a signal when it's done
 Alternatively, you may search using the command line interface directly.
 Run `python dataontosearch.py search --help` for more information.
 
+**Note:**
 The web interface only allows access to the default Configuration. The API,
 however, allows the user to specify a Configuration to use. With this setup, new
 Configurations can be added or changed without restarting the web server. You

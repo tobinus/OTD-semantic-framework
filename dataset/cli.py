@@ -14,7 +14,7 @@ def adjust_parsers(subparsers):
         '--ckan',
         help='URL of CKAN instance to import datasets from, or URL to API call '
              'using package_search, for limiting datasets to import. Mandatory '
-             'if not importing from file.',
+             'if not importing from file or creating empty graph.',
         dest='ckan',
     )
 
