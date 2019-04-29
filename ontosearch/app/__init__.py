@@ -10,7 +10,7 @@ app_path = path.dirname(__file__)
 
 
 odsf_loader = ODSFLoader()
-odsf_loader.ensure_default_is_loaded()
+odsf_loader.ensure_all_loaded()
 
 
 print ("ready")

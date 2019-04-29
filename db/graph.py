@@ -777,14 +777,14 @@ class DatasetTagging(Graph):
         return document
 
     def get_dataframe(self, concept_similarity, **kwargs):
-        identifier = self._get_df_id(concept_similarity)
+        identifier = self.get_df_id(concept_similarity)
         return db.dataframe.get(identifier, **kwargs)
 
     def save_dataframe(self, df, concept_similarity, **kwargs):
-        identifier = self._get_df_id(concept_similarity)
+        identifier = self.get_df_id(concept_similarity)
         return db.dataframe.store(df, identifier, **kwargs)
 
-    def _get_df_id(self, concept_similarity):
+    def get_df_id(self, concept_similarity):
         return DataFrameId(
             self.get_collection_name(),
             self.uuid,

@@ -1,7 +1,7 @@
 from collections.abc import Mapping
 from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
 from bson.errors import InvalidId
-import warnings
+import logging
 from rdflib import URIRef
 from utils.graph import RDF, OTD, DCAT, DCT
 from otd.skosnavigate import SKOSNavigate
@@ -15,6 +15,8 @@ from collections import namedtuple
 import pandas as pd
 import numpy as np
 import clint.textui.progress
+
+log = logging.getLogger(__name__)
 
 DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri', 'href'))
 SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
@@ -46,6 +48,7 @@ class OpenDataSemanticFramework:
         """
         self.auto_compute = auto_compute
         self.cds = dict()
+        self.cds_df_id = dict()
         self.ccs = None
 
         # Set up variables needed for graph property setter
@@ -96,13 +99,6 @@ class OpenDataSemanticFramework:
             data=data
         )
         return ccs
-
-    def add_similarity_graph(self, name, graph):
-        self.cds[name] = self.compute_cds(graph, name)
-        if 'all' in self.cds:
-            self.cds['all'] = self.cds['all'].append(self.cds[name], sort=True)
-        else:
-            self.cds['all'] = self.cds[name]
 
     def get_cds(self, name):
         return self.cds[name]
@@ -160,6 +156,9 @@ class OpenDataSemanticFramework:
                 )
 
         self.cds[name] = result
+        self.cds_df_id[name] = dataset_tagging.get_df_id(
+            similarity_threshold
+        )
 
         self.add_to_all_cdsm(result)
 
@@ -443,15 +442,17 @@ class ODSFLoader(Mapping):
         if k == self.DEFAULT_KEY:
             k = db.graph.Configuration.force_find_uuid(None)
 
-        if k in self.__configurations:
+        odsf_exists = k in self.__configurations
+
+        if odsf_exists:
             # Are we up to date?
             our_c = self.__configurations[k]
             newest_c = self._get_config_for(k)
-            update_available = our_c == newest_c
+            update_available = our_c != newest_c
         else:
             update_available = False
 
-        if k not in self.__instances or update_available:
+        if (not odsf_exists) or update_available:
             try:
                 configuration = self._get_config_for(k)
                 self.__instances[k] = self._create_from_configuration(
@@ -461,15 +462,34 @@ class ODSFLoader(Mapping):
             except (db.graph.NoSuchGraph, InvalidId):
                 raise KeyError(k)
             except MissingMatrixError:
-                if update_available:
+                if odsf_exists:
                     # De-escalate to warning, since we have the old version
-                    warnings.warn(
+                    log.warning(
                         'New Configuration instance for {} is missing one or '
                         'more matrices. Falling back to previously loaded '
                         'version.'.format(k)
                     )
                 else:
                     raise
+        else:
+            # The ODSF instance exists, and the configuration is unchanged.
+            # Ensure the dataset tagging graphs are up-to-date
+            configuration = self._get_config_for(k)
+            try:
+                self._ensure_updated_dataset_taggings(
+                    self.__instances[k],
+                    configuration
+                )
+            except MissingMatrixError:
+                # De-escalate to warning, since we have the existing dataset tag
+                log.warning(
+                    'There have been made changes to one of the dataset '
+                    'taggings (similarity or autotag) after the Configuration '
+                    'for {} was loaded, but the matrices have not been updated '
+                    'yet. The changes can only be taken into effect once the '
+                    'matrices are updated through the matrix subcommand.'
+                    .format(k)
+                )
 
         return self.__instances[k]
 
@@ -538,3 +558,35 @@ class ODSFLoader(Mapping):
         for uuid, odsf in self.items():
             # We just wanted to load the odsf instance, so do nothing
             pass
+
+    def _ensure_updated_dataset_taggings(
+            self,
+            odsf: OpenDataSemanticFramework,
+            configuration,
+    ):
+        """
+        Ensure the ODSF instance has up-to-date dataset taggings (sim graphs).
+
+        Args:
+            odsf: ODSF instance to ensure has up-to-date dataset tags.
+            configuration: Up-to-date Configuration instance which can be used
+                to find the relevant dataset taggings.
+
+        Returns:
+            Nothing.
+        """
+
+        for dataset_tagging, name in (
+                (configuration.get_similarity(), SIMTYPE_SIMILARITY),
+                (configuration.get_autotag(), SIMTYPE_AUTOTAG)
+        ):
+            existing_df_id = odsf.cds_df_id.get(name)
+            current_df_id = dataset_tagging.get_df_id(self._concept_similarity)
+
+            if existing_df_id != current_df_id:
+                # Update is required! Simply try loading the new graph
+                odsf.load_similarity_graph(
+                    name,
+                    dataset_tagging,
+                    self._concept_similarity,
+                )
