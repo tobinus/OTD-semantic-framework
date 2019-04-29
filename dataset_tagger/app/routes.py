@@ -249,11 +249,6 @@ def remove_tag(configuration, linked_dataset, concept_label):
         }
     )
 
-    # Are there any tags left for this dataset?
-    if (None, OTD.dataset, linked_dataset) not in similarity.graph:
-        # Nope, remove the dataset itself
-        remove_dataset(configuration, linked_dataset)
-
     similarity.save()
 
 
