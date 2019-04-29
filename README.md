@@ -193,17 +193,22 @@ There are other commands you can use to manipulate and display ontologies, run `
 
 #### Import (new) datasets
 
+You may decide to import a set of dataset, or all datasets available to a CKAN instance or another compatible system. You will typically do this if you want to use the automatic tagger or the spreadsheet approach below:
+
 1. Run `python dataontosearch.py dataset create --ckan <CKAN-URL>`
    where you replace `<CKAN-URL>` with the base URL to your CKAN instance. The
-   instance must also expose RDF information about each dataset.
+   instance must also expose RDF information about each dataset, using the ckanext-dcat plugin.
 
-You may also create your own graph, and load it into the database, or use a
-filter when loading datasets. Use the `--help` option to see your options.
+If you use another system which exposes the datasets using the DCAT vocabulary, you can import its data by downloading the RDF and using the `--read` flag with `python dataontosearch.py dataset create`.
+
+Alternatively, you may start with an empty graph. This is useful when you intend to add datasets gradually through the dataset_tagger, which automatically downloads dataset metadata for unknown datasets. Simply use the `--empty` flag.
+
+As always, run `python dataontosearch.py dataset create --help` to see your options.
 
 
 #### Perform manual linking to concepts
 
-You may use the existing tags for the Open Transport Data project. Simply run:
+You may use the existing tags for the Open Transport Data project, if you use the very same datasets. Simply run:
 
 `python dataontosearch.py similarity create`
 
@@ -226,21 +231,23 @@ Alternatively, you can do custom tagging. There are two ways:
 * **Using online application**: This approach is preferred when incrementally
   adding datasets, for example when used with a running CKAN instance.
 
-  1. Run `python dataontosearch.py similarity create_empty` to create a new,
+  1. Run `python dataontosearch.py similarity create --empty` to create a new,
      empty similarity graph.
   2. You must set up a Configuration before running the dataset tagger. This
      requires you to have an autotag graph already, so you may choose to
      continue with this set-up procedure. Alternatively, you can create a new,
      empty autotag graph by running `python dataontosearch.py autotag create
-     --read /dev/null turtle`, at least in Unix. Then you can create a new
+     --empty`. Then you can create a new
      Configuration using this empty autotag graph.
   3. Run `python dataontosearch.py dataset_tagger`
   4. Now, you can use the included interface for tagging datasets, or use the
-     API with e.g. the CKAN plugin to tag datasets. Follow these steps to use
+     API with e.g. [the CKAN DataOntoSearch plugin][ckanext-dataontosearch] to tag datasets. Follow these steps to use
      the built-in interface:
   5. Visit http://localhost:8000 in your web browser.
   6. Fill in the UUID of the Configuration you have created (in step 2).
   7. Follow the instructions to tag datasets.
+
+[ckanext-dataontosearch]: https://pypi.org/project/ckanext-dataontosearch/
 
 
 #### Perform automatic linking to concepts
@@ -264,9 +271,9 @@ It is not able to continue where it left out, so you might want to run this in
 process survives if your SSH connection ends).
 
 
-### Run search
+### Create Configuration
 
-First, you must create a Configuration to be used by the search engine. Ensure
+Before you can search, you must create a Configuration to be used by the search engine. Ensure
 that the correct graphs will be chosen by running:
 
 `python dataontosearch.py configuration create <LABEL NAME> --preview`
@@ -282,6 +289,8 @@ ontology graphs).
 
 When satisfied, remove the `--preview` flag to actually create the
 Configuration.
+
+### Run search
 
 Now that you have a Configuration to use, you can start the search process:
 
@@ -300,7 +309,7 @@ will need to re-generate the matrices, however, since it cannot be done inside a
 request (the request would be aborted before the calculations are done). You can
 do this by running `python dataontosearch.py matrix`, which you might want to
 run periodically so changes in the manual tagging and dataset graphs are picked
-up.
+up. You can add it as a recurring task in a crontab, though you'll need to point to the `python` executable located in your virtualenv, not just the system-wide `python`.
 
 Do you want to run multiple queries for machine processing, while varying
 available thresholds and such? Use the `python dataontosearch.py multisearch`

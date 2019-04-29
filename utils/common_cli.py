@@ -281,8 +281,9 @@ class GraphSubcommand:
             help=help_text,
             description=help_text,
         )
+        input_option = parser.add_mutually_exclusive_group()
         if self.graph_generate_func:
-            parser.add_argument(
+            input_option.add_argument(
                 '--read',
                 '-r',
                 help=f"Location and format of the {self.collection_name} graph to load "
@@ -291,8 +292,18 @@ class GraphSubcommand:
                 nargs=2,
                 metavar=('LOCATION', 'FORMAT'),
             )
+            input_option.add_argument(
+                '--empty',
+                help="Insert an empty graph.",
+                action="store_true",
+            )
         else:
-            parser.add_argument(
+            input_option.add_argument(
+                '--empty',
+                help="Insert an empty graph.",
+                action="store_true",
+            )
+            input_option.add_argument(
                 'read',
                 help=f"Location and format of the {self.collection_name} graph to load "
                 f"into the database.",
@@ -319,6 +330,9 @@ class GraphSubcommand:
     def _do_create(self, args):
         if args.read:
             location, rdf_format = args.read
+        elif args.empty:
+            # devnull gives 0-byte long file, which is valid, empty turtle graph
+            location, rdf_format = os.devnull, "turtle"
         else:
             location, rdf_format = None, None
 
