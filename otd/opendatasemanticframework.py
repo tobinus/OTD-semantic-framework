@@ -17,6 +17,11 @@ import numpy as np
 import clint.textui.progress
 
 log = logging.getLogger(__name__)
+log.setLevel(logging.INFO)
+sh = logging.StreamHandler()
+log.addHandler(sh)
+sh.setFormatter(logging.Formatter('[%(asctime)s] %(message)s'))
+
 
 DatasetInfo = namedtuple('DatasetInfo', ('title', 'description', 'uri', 'href'))
 SearchResult = namedtuple('SearchResult', ('score', 'info', 'concepts'))
@@ -256,7 +261,7 @@ class OpenDataSemanticFramework:
             self,
             query,
             cds_name="all",
-            qc_sim_threshold=0.0,
+            qc_sim_threshold=0.5,
             score_threshold=0.75,
             include_dataset_info=True,
             include_concepts=True,
@@ -286,12 +291,14 @@ class OpenDataSemanticFramework:
             sorted with the most similar results first. The second item is a
             list of the top five concepts that were matched with the query.
         """
+        log.info('Binding query to concepts…')
         # Calculate the query's similarity to our concepts
         query_concept_sim = self.calculate_query_sim_to_concepts(
             query,
             qc_sim_threshold
         )
 
+        log.info('Extracting most similar concepts…')
         # What were the most similar concepts?
         if include_concepts:
             most_similar_concepts = self.sort_concept_similarities(
@@ -302,6 +309,7 @@ class OpenDataSemanticFramework:
         else:
             most_similar_concepts = []
 
+        log.info('Comparing datasets to the concepts extracted from the query…')
         # How similar are the datasets' similarity to the query's similarity?
         dataset_query_sim = self.calculate_dataset_query_sim(
             query_concept_sim,
@@ -309,6 +317,7 @@ class OpenDataSemanticFramework:
             query,
         )
 
+        log.info('Putting together information for the result…')
         # Put together information for the search results page
         results = list()
         for dataset, similarity in dataset_query_sim.items():
@@ -324,6 +333,7 @@ class OpenDataSemanticFramework:
                     dataset
                 ) if include_concepts else [],
             ))
+        log.info('Done with query processing!')
         return results, most_similar_concepts
 
     def get_concept_similarities_for_query(self, query_concept_similarity):
