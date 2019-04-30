@@ -18,18 +18,27 @@ class QueryExtractor:
                 {<COMBN>}
                 {<FW|VB.*|JJ.*>}  # Experiment, trying to match more
         """
-        self.lemmatizer = nltk.WordNetLemmatizer()        
-        self.chunk_parser = nltk.RegexpParser(chunk_gram) 
+        self.chunk_parser = nltk.RegexpParser(chunk_gram)
         self.stopwords = stopwords.words('english')
         
     def acceptable(self, word):        
         return word.lower() not in self.stopwords
     
-    def normalize(self, word):                
-        return self.lemmatizer.lemmatize(word.lower())
-    
+    def normalize(self, word):
+        return word.lower()
+
     def extract_terms(self, sentence):
         tokenized_sentence = nltk.word_tokenize(sentence)
+
+        num_tokens = len(tokenized_sentence)
+        if num_tokens == 0:
+            # Short circuit
+            return tuple()
+        elif num_tokens == 1:
+            # Let WordNet use any part of speech
+            token = tokenized_sentence[0]
+            return [(self.normalize(token), '')]
+
         pos_tag_tokens = nltk.tag.pos_tag(tokenized_sentence)
         tree = self.chunk_parser.parse(pos_tag_tokens)
         np_trees = tree.subtrees(filter=lambda t: t.label() == 'NP')
