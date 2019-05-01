@@ -54,16 +54,60 @@ class SemScore:
         return label_synsets
 
     def synsets_from_str(self, s):
-        synsets = []
-        for word, pos in self.extractor.search(s):
-            synsets.extend(self.synsets(word, pos))
-        return synsets
+        synset_sets = self.synset_sets_from_str(s)
+        return tuple(itertools.chain.from_iterable(synset_sets))
 
     def synset_sets_from_str(self, s):
+        words = tuple(self.extractor.search(s))
+        return self.synset_sets_from_words(words)
+
+    def synset_sets_from_words(self, words):
+        words = list(words)
         synset_sets = []
-        for word, pos in self.extractor.search(s):
-            synset_sets.append(self.synsets(word, pos))
+
+        def handle_grams(i):
+            for gram_contents in SemScore.ngrams(words, i):
+                # Don't construct connected words that didn't exist in the
+                # original text. We do this by using placeholders where used
+                # words used to be. Skip if we have one of those.
+                if (None, None) in gram_contents:
+                    continue
+                gram_words = tuple(word for word, pos in gram_contents)
+                combined = '_'.join(gram_words)
+                synsets = self.synsets(combined, '')
+                if synsets:
+                    # These words have been matched, don't look up afterwards
+                    for tagged_word in gram_contents:
+                        try:
+                            index = words.index(tagged_word)
+                            words[index] = (None, None)
+                        except ValueError:
+                            # The word was probably removed by an earlier ngram
+                            # with the same n, so we don't need to remove it
+                            # again
+                            pass
+
+                    # Add the result
+                    synset_sets.append(synsets)
+
+        handle_grams(3)
+        handle_grams(2)
+
+        # Lookup any remaining single-words
+        for word, pos in words:
+            if word is not None:
+                synset_sets.append(self.synsets(word, pos))
+
         return synset_sets
+
+    @staticmethod
+    def ngrams(iterator, n):
+        iterator = tuple(iterator)
+
+        def get_ngram_at(offset):
+            return tuple(iterator[offset + i] for i in range(n))
+
+        return tuple(get_ngram_at(i) for i in range(0, (len(iterator) - n) + 1))
 
     def synsets(self, word, pos):
         return wn.synsets(word, pos=self.convert_to_wn_pos(pos))
