@@ -1,29 +1,20 @@
 import itertools
 import nltk
-from nltk.corpus import stopwords
 
 
 class QueryExtractor:
     def __init__(self):
         chunk_gram = r"""
-            COMBN: 
-                {<VB.*>+<NN.*>}     # Verbs and Nouns
-
             NBAR:
-                {<NN.*|JJ>*<NN.*>}  # Nouns and Adjectives, terminated with Nouns
+                {<NN.*|JJ.*>*<NN.*>}  # Nouns and Adjectives, terminated with Nouns
 
             NP:
-                {<NBAR>}
                 {<NBAR><IN><NBAR>}  # Above, connected with in/of/etc...
-                {<COMBN>}
+                {<NBAR>}
                 {<FW|VB.*|JJ.*>}  # Experiment, trying to match more
         """
         self.chunk_parser = nltk.RegexpParser(chunk_gram)
-        self.stopwords = stopwords.words('english')
-        
-    def acceptable(self, word):        
-        return word.lower() not in self.stopwords
-    
+
     def normalize(self, word):
         return word.lower()
 
@@ -45,7 +36,7 @@ class QueryExtractor:
         leaves_per_tree = (t.leaves() for t in np_trees)
         leaves = itertools.chain.from_iterable(leaves_per_tree)
         words_per_leaf = ((self.normalize(w), pos)
-                          for w, pos in leaves if self.acceptable(w))
+                          for w, pos in leaves)
         return words_per_leaf
 
     def search(self, sentence):
