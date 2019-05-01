@@ -16,6 +16,7 @@ class SemScore:
         query_synsets = self.synsets_from_query(query)
 
         for concept in concepts:
+            # TODO: Use caching to avoid processing concepts for each query
             labels = self.synset_sets_from_concept(concept)
 
             label_scores = [SemScore.calculate_score_for_label(l, query_synsets)
@@ -80,8 +81,10 @@ class SemScore:
                     for tagged_word in gram_contents:
                         try:
                             index = words.index(tagged_word)
+                            # TODO: Pass indices instead of contents from ngrams, so array updates here are reflected in the next iteration while still inside of handle_grams()
                             words[index] = (None, None)
                         except ValueError:
+                            # ValueError triggered by words.index; not found.
                             # The word was probably removed by an earlier ngram
                             # with the same n, so we don't need to remove it
                             # again

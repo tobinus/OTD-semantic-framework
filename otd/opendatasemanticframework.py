@@ -235,6 +235,7 @@ class OpenDataSemanticFramework:
         return ss
 
     def calculate_query_sim_to_concepts(self, query, sim_threshold):
+        # TODO: Keep QueryExtractor and SemScore between each search
         qe = QueryExtractor()
         sscore = SemScore(qe, self.navigator)
         scorevec = sscore.score_vector(query, sim_threshold)

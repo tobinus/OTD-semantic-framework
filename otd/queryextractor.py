@@ -49,4 +49,5 @@ class QueryExtractor:
         return words_per_leaf
 
     def search(self, sentence):
+        # TODO: Use extract_terms() directly instead of through this
         return self.extract_terms(sentence)
