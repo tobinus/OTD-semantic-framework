@@ -3,6 +3,7 @@ import statistics
 import pandas as pd
 from nltk.corpus import wordnet as wn
 
+
 class SemScore:
     def __init__(self, extractor, navigator):
         self.extractor = extractor
