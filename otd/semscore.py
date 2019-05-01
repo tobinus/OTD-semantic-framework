@@ -15,22 +15,11 @@ class SemScore:
 
         query_synsets = self.synsets_from_query(query)
 
-        def calculate_score_for_label(label_words):
-            scores = [calculate_score_for_label_word(w) for w in label_words]
-            try:
-                return statistics.harmonic_mean(filter(None, scores))
-            except statistics.StatisticsError:
-                return 0.0
-
-        def calculate_score_for_label_word(label_synsets):
-            synset_pairs = itertools.product(query_synsets, label_synsets)
-            scores = [q.wup_similarity(c) for q, c in synset_pairs]
-            return max(filter(None, scores), default=0.0)
-
         for concept in concepts:
             labels = self.synset_sets_from_concept(concept)
 
-            label_scores = [calculate_score_for_label(l) for l in labels]
+            label_scores = [SemScore.calculate_score_for_label(l, query_synsets)
+                            for l in labels]
 
             concept_score = max(filter(None, label_scores), default=0.0)
             if concept_score < sim_threshold:
@@ -39,6 +28,21 @@ class SemScore:
             scoreDataFrame.loc[query][concept] = concept_score
 
         return scoreDataFrame
+
+    @staticmethod
+    def calculate_score_for_label(label_words, query_synsets):
+        scores = [SemScore.calculate_score_for_label_word(w, query_synsets)
+                  for w in label_words]
+        try:
+            return statistics.harmonic_mean(filter(None, scores))
+        except statistics.StatisticsError:
+            return 0.0
+
+    @staticmethod
+    def calculate_score_for_label_word(label_synsets, query_synsets):
+        synset_pairs = itertools.product(query_synsets, label_synsets)
+        scores = [q.wup_similarity(c) for q, c in synset_pairs]
+        return max(filter(None, scores), default=0.0)
 
     def synsets_from_query(self, q):
         return self.synsets_from_str(q)
