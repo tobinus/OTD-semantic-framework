@@ -15,18 +15,8 @@ def do_multi_search(file):
         document = load(file)
 
         # Load the variables we recognize, using defaults
-        try:
-            queries = document['query']
-        except KeyError as e:
-            raise RuntimeError(
-                "Please specify the key 'query' in the given YAML document"
-            ) from e
-        except TypeError as e:
-            raise RuntimeError(
-                "Please provide a non-empty YAML document"
-            ) from e
-
-        configurations = document.get('configuration', [None])
+        queries = get_queries_from_doc(document)
+        configurations = get_configurations_from_doc(document)
         t_s = document.get('search-result-threshold', [0.75])
         t_c = document.get('concept-relevance-threshold', [0.0])
         t_q = document.get('query-concept-threshold', [0.0])
@@ -37,12 +27,6 @@ def do_multi_search(file):
 
         # Implement shortcut so you don't need to use lists for single values.
         # Also validate/transform values.
-        if isinstance(queries, str):
-            queries = [queries]
-
-        if isinstance(configurations, str) or configurations is None:
-            configurations = [configurations]
-
         if isinstance(t_s, float):
             t_s = [t_s]
         t_s = map(float_between_0_and_1, t_s)
@@ -84,6 +68,33 @@ def do_multi_search(file):
 
     finally:
         file.close()
+
+
+def get_queries_from_doc(document):
+    try:
+        queries = document['query']
+    except KeyError as e:
+        raise RuntimeError(
+            "Please specify the key 'query' in the given YAML document"
+        ) from e
+    except TypeError as e:
+        raise RuntimeError(
+            "Please provide a non-empty YAML document"
+        ) from e
+
+    if isinstance(queries, str):
+        queries = [queries]
+
+    return queries
+
+
+def get_configurations_from_doc(document):
+    configurations = document.get('configuration', [None])
+
+    if isinstance(configurations, str) or configurations is None:
+        configurations = [configurations]
+    return configurations
+
 
 
 def do_single_multi_search(

@@ -24,6 +24,7 @@ subcommands by naming it in CLI_MODULES.
 # Packages (directories) containing a module named cli
 PACKAGES_WITH_CLI = (
     'ontosearch',
+    'ontosearch.ext_search',
     'evaluation',
     'dataset_tagger',
     'ontology',

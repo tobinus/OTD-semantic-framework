@@ -2,6 +2,7 @@
 Module with project-wide RDF namespaces and helper-functions for graphs.
 """
 from rdflib import Graph, Namespace
+from rdflib.plugins.sparql import prepareQuery, sparql
 
 # Namespaces we use in our application
 from rdflib.namespace import RDF, SKOS, OWL, RDFS, FOAF, DC
@@ -76,3 +77,54 @@ def bind_graph(g: Graph, bindings_to_apply: set =None):
 
     for prefix, namespace in relevant_bindings.items():
         g.bind(prefix, namespace)
+
+
+def prepare_query(query):
+    """
+    Prepare a SparQL query for later use, adding the needed namespaces.
+
+    Args:
+        query: The query to prepare.
+
+    Returns:
+        The prepared query, with namespaces already bound.
+    """
+    return prepareQuery(query, initNs=bindings)
+
+
+def query(g: Graph, query, **kwargs):
+    """
+    Perform a SparQL query against the given graph.
+
+    When given a string as query, namespaces will automatically be bound.
+
+    Args:
+        g: Graph to perform the query on.
+        query: The query to perform. Can be a prepared query.
+        **kwargs: Initial bindings for variables in the query.
+
+    Returns:
+        QueryResult from rdflib (same as g.query).
+    """
+    if isinstance(query, sparql.Query):
+        # Prepared query, don't add namespaces
+        return g.query(query, initBindings=kwargs)
+    else:
+        return g.query(query, initNs=bindings, initBindings=kwargs)
+
+
+def update(g: Graph, query, **kwargs):
+    """
+    Perform a SparQL data update query against the given graph.
+
+    Namespaces will be automatically bound.
+
+    Args:
+        g: Graph to perform the query on.
+        query: The query to perform, as a string.
+        **kwargs: Initial bindings for variables in the query.
+
+    Returns:
+        Whatever g.update returns, which I think is nothing.
+    """
+    return g.update(query, initNs=bindings, initBindings=kwargs)
