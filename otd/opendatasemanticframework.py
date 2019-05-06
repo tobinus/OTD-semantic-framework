@@ -1,3 +1,4 @@
+import itertools
 from collections.abc import Mapping
 from otd.constants import SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY
 from bson.errors import InvalidId
@@ -43,7 +44,8 @@ class MissingMatrixError(RuntimeError):
 
 
 class OpenDataSemanticFramework:
-    def __init__(self, ontology_uuid, dataset_uuid, auto_compute=True):
+    def __init__(self, ontology_uuid, dataset_uuid, auto_compute=True,
+                 concept_similarity=0.0):
         """
         The RDF library allows a set of rdf-files to be parsed into
         a graph representing RDF triples. The SKOSNavigate class is
@@ -55,6 +57,7 @@ class OpenDataSemanticFramework:
         self.cds = dict()
         self.cds_df_id = dict()
         self.ccs = None
+        self.concept_similarity = concept_similarity
 
         # Set up variables needed for graph property setter
         self.__graph = None
@@ -62,6 +65,8 @@ class OpenDataSemanticFramework:
         self.concepts = []
         self.ontology = None
         self.dataset = None
+        self._qe = QueryExtractor()
+        self._semscore = None
 
         # Then set graph
         self.load_new_graph(ontology_uuid)
@@ -80,6 +85,7 @@ class OpenDataSemanticFramework:
         # Update dependent properties
         self.navigator = SKOSNavigate(new_graph)
         self.concepts = list(self.navigator.concepts())
+        self._semscore = SemScore(self._qe, self.navigator)
 
     def load_new_graph(self, uuid):
         self.ontology = db.graph.Ontology.from_uuid(uuid)
@@ -132,10 +138,9 @@ class OpenDataSemanticFramework:
             self,
             name,
             dataset_tagging: db.graph.DatasetTagging,
-            similarity_threshold,
             **kwargs
     ):
-        similarity_threshold = float(similarity_threshold)
+        similarity_threshold = float(self.concept_similarity)
         result = dataset_tagging.get_dataframe(
             similarity_threshold,
             **kwargs
@@ -203,6 +208,24 @@ class OpenDataSemanticFramework:
                 )
         return cds.dropna(thresh=1)
 
+    def enrich_query_with_ccs(self, score_vec, query, similarity_threshold):
+        new_score_vec = score_vec.copy()
+        print('Index for score_vec:', new_score_vec.index)
+        query_row = score_vec.loc[query]
+        new_query_row = new_score_vec.loc[query]
+
+        for c1, c2 in itertools.permutations(self.concepts, 2):
+            simscore = (float)(self.ccs[c1][c2]) * query_row[c1]
+
+            if simscore < similarity_threshold:
+                simscore = 0.0
+
+            new_query_row[c2] = np.nanmax(
+                [simscore, new_query_row[c2]]
+            )
+        return new_score_vec
+
+
     def datasets(self):
         ds = []
         for dataset in self.dataset_graph.subjects(RDF.type, DCAT.Dataset):
@@ -212,10 +235,8 @@ class OpenDataSemanticFramework:
         return ds
 
     def calculate_query_sim_to_concepts(self, query, sim_threshold):
-        # TODO: Keep QueryExtractor and SemScore between each search
-        qe = QueryExtractor()
-        sscore = SemScore(qe, self.navigator)
-        scorevec = sscore.score_vector(query, sim_threshold)
+        scorevec = self._semscore.score_vector(query, sim_threshold)
+        scorevec = self.enrich_query_with_ccs(scorevec, query, self.concept_similarity)
         return scorevec
 
     def get_dataset_info(self, dataset):
@@ -529,19 +550,18 @@ class ODSFLoader(Mapping):
         odsf = OpenDataSemanticFramework(
             c.ontology_uuid,
             c.dataset_uuid,
-            self.compute_matrices
+            self.compute_matrices,
+            self._concept_similarity,
         )
         if SIMTYPE_SIMILARITY in self.simtypes:
             odsf.load_similarity_graph(
                 SIMTYPE_SIMILARITY,
                 c.get_similarity(),
-                self._concept_similarity,
             )
         if SIMTYPE_AUTOTAG in self.simtypes:
             odsf.load_similarity_graph(
                 SIMTYPE_AUTOTAG,
                 c.get_autotag(),
-                self._concept_similarity,
             )
         return odsf
 
@@ -613,5 +633,4 @@ class ODSFLoader(Mapping):
                 odsf.load_similarity_graph(
                     name,
                     dataset_tagging,
-                    self._concept_similarity,
                 )

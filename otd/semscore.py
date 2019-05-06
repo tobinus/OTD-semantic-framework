@@ -8,6 +8,7 @@ class SemScore:
     def __init__(self, extractor, navigator):
         self.extractor = extractor
         self.navigator = navigator
+        self._synsets_by_concept = dict()
 
     def score_vector(self, query, sim_threshold):
         concepts = list(self.navigator.concepts())
@@ -17,7 +18,6 @@ class SemScore:
         query_synsets = self.synsets_from_query(query)
 
         for concept in concepts:
-            # TODO: Use caching to avoid processing concepts for each query
             labels = self.synset_sets_from_concept(concept)
 
             label_scores = [SemScore.calculate_score_for_label(l, query_synsets)
@@ -50,10 +50,14 @@ class SemScore:
         return self.synsets_from_str(q)
 
     def synset_sets_from_concept(self, c):
-        label_synsets = []
-        for label in self.navigator.pref_and_alt_labels(c):
-            label_synsets.append(self.synset_sets_from_str(label))
-        return label_synsets
+        try:
+            return self._synsets_by_concept[c]
+        except KeyError:
+            label_synsets = []
+            for label in self.navigator.pref_and_alt_labels(c):
+                label_synsets.append(self.synset_sets_from_str(label))
+            self._synsets_by_concept[c] = label_synsets
+            return label_synsets
 
     def synsets_from_str(self, s):
         synset_sets = self.synset_sets_from_str(s)
