@@ -211,29 +211,6 @@ class OpenDataSemanticFramework:
                 ds.append(title)
         return ds
 
-    def similarities(self):
-        ss = []
-        for similarity in self.similarity_graph.subjects(
-                RDF.type,
-                OTD.Similarity
-        ):
-            dataset = next(
-                self.similarity_graph.objects(similarity, OTD.dataset),
-                None
-            )
-            concept = next(
-                self.similarity_graph.objects(similarity, OTD.concept),
-                None
-            )
-            score = (float)(
-                next(
-                    self.similarity_graph.objects(similarity, OTD.score),
-                    "0.0"
-                )
-            )
-            ss.append('{} {} : {}'.format(dataset, concept, score))
-        return ss
-
     def calculate_query_sim_to_concepts(self, query, sim_threshold):
         # TODO: Keep QueryExtractor and SemScore between each search
         qe = QueryExtractor()
