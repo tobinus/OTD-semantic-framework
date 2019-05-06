@@ -4,7 +4,7 @@ from yaml import load
 from sys import stderr
 from tabulate import tabulate
 
-from otd.constants import SIMTYPE_SIMILARITY, simtypes
+from otd.constants import SIMTYPE_SIMILARITY, simtypes, DATAONTOSEARCH_ENGINE
 from otd.opendatasemanticframework import ODSFLoader
 from utils.common_cli import float_between_0_and_1
 
@@ -17,54 +17,15 @@ def do_multi_search(file):
         # Load the variables we recognize, using defaults
         queries = get_queries_from_doc(document)
         configurations = get_configurations_from_doc(document)
-        t_s = document.get('search-result-threshold', [0.75])
-        t_c = document.get('concept-relevance-threshold', [0.0])
-        t_q = document.get('query-concept-threshold', [0.0])
-        chosen_simtypes = document.get(
-            'simtype',
-            [SIMTYPE_SIMILARITY]
-        )
+        engine = document.get('engine', DATAONTOSEARCH_ENGINE).lower()
 
-        # Implement shortcut so you don't need to use lists for single values.
-        # Also validate/transform values.
-        if isinstance(t_s, float):
-            t_s = [t_s]
-        t_s = map(float_between_0_and_1, t_s)
-
-        if isinstance(t_c, float):
-            t_c = [t_c]
-        t_c = map(float_between_0_and_1, t_c)
-
-        if isinstance(t_q, float):
-            t_q = [t_q]
-        t_q = map(float_between_0_and_1, t_q)
-
-        if isinstance(chosen_simtypes, str):
-            chosen_simtypes = [chosen_simtypes]
-        unrecognized_simtypes = set(chosen_simtypes) - set(simtypes)
-        if unrecognized_simtypes:
-            raise ValueError(
-                f'Did not recognize the simtypes {unrecognized_simtypes}'
-            )
-
-        # Iterate through the instantiated queries
-        is_first_result = True
-        for arguments in itertools.product(
-                configurations,
-                t_s,
-                t_c,
-                t_q,
-                chosen_simtypes,
-                queries
-        ):
-            # Use empty lines between results, but not before first or after
-            # last
-            if not is_first_result:
-                print()
-            else:
-                is_first_result = False
-
-            do_single_multi_search(*arguments)
+        if engine == DATAONTOSEARCH_ENGINE:
+            do_dataontosearch_multi_search(document, queries, configurations)
+        else:
+            # Defer importing until now, because import may attempt to import
+            # optional dependencies, so don't fail during regular search
+            from ontosearch.ext_search import do_ext_multi_search
+            do_ext_multi_search(engine, document, queries, configurations)
 
     finally:
         file.close()
@@ -94,6 +55,58 @@ def get_configurations_from_doc(document):
     if isinstance(configurations, str) or configurations is None:
         configurations = [configurations]
     return configurations
+
+
+def do_dataontosearch_multi_search(document, queries, configurations):
+    # Load variables specific to DataOntoSearch
+    t_s = document.get('search-result-threshold', [0.75])
+    t_c = document.get('concept-relevance-threshold', [0.0])
+    t_q = document.get('query-concept-threshold', [0.0])
+    chosen_simtypes = document.get(
+        'simtype',
+        [SIMTYPE_SIMILARITY]
+    )
+
+    # Implement shortcut so you don't need to use lists for single values.
+    # Also validate/transform values.
+    if isinstance(t_s, float):
+        t_s = [t_s]
+    t_s = map(float_between_0_and_1, t_s)
+
+    if isinstance(t_c, float):
+        t_c = [t_c]
+    t_c = map(float_between_0_and_1, t_c)
+
+    if isinstance(t_q, float):
+        t_q = [t_q]
+    t_q = map(float_between_0_and_1, t_q)
+
+    if isinstance(chosen_simtypes, str):
+        chosen_simtypes = [chosen_simtypes]
+    unrecognized_simtypes = set(chosen_simtypes) - set(simtypes)
+    if unrecognized_simtypes:
+        raise ValueError(
+            f'Did not recognize the simtypes {unrecognized_simtypes}'
+        )
+
+    # Iterate through the instantiated queries
+    is_first_result = True
+    for arguments in itertools.product(
+            configurations,
+            t_s,
+            t_c,
+            t_q,
+            chosen_simtypes,
+            queries
+    ):
+        # Use empty lines between results, but not before first or after
+        # last
+        if not is_first_result:
+            print()
+        else:
+            is_first_result = False
+
+        do_single_multi_search(*arguments)
 
 
 def do_single_multi_search(

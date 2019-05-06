@@ -6,7 +6,7 @@ import rdflib
 logger = logging.getLogger(__name__)
 
 
-class GoogleDatasetSearchExtractor:
+class GoogleDatasetSearch:
     """
     Tool for performing automated queries against Google Dataset Search.
     """

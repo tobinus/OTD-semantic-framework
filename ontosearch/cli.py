@@ -2,7 +2,7 @@ import argparse
 import textwrap
 from os.path import dirname
 from utils.common_cli import make_subcommand_gunicorn, float_between_0_and_1
-from otd.constants import SIMTYPE_ALL, SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, simtypes
+from otd.constants import SIMTYPE_ALL, SIMTYPE_AUTOTAG, SIMTYPE_SIMILARITY, simtypes, DATAONTOSEARCH_ENGINE, GOOGLE_ENGINE, engines
 
 
 def register_subcommand(add_parser):
@@ -38,8 +38,8 @@ def ensure_server_ready(args):
 
 def register_multi_search(add_parser):
     help_text = (
-        'Perform multiple searches using DataOntoSearch, potentially varying '
-        'variables.'
+        'Perform multiple searches using DataOntoSearch among others, '
+        'potentially varying variables.'
     )
 
     description = textwrap.fill(
@@ -52,28 +52,49 @@ def register_multi_search(add_parser):
 format of YAML file:
   configuration:               List of UUID of the configurations to use when
                                running the queries.
+  query:                       Either list of queries, or a mapping where the
+                               queries are used as keys. The values of the
+                               mapping are ignored by this script.
+  engine:                      Name of search engine to use. Note: Only one
+                               engine can be chosen. Defaults to
+                               {DATAONTOSEARCH_ENGINE}. Available options:
+                               {engines}.
+
+  For the '{DATAONTOSEARCH_ENGINE}' engine, available options are described
+  below. For all other engines, their options are put into a key with the same
+  name as the engine.
+
+  All items, except for query, have a default value and can be left out. For all
+  items, you can also specify a single value directly instead of a list, which
+  will be interpreted as a list with just that one value. This also applies to
+  the additional options for '{DATAONTOSEARCH_ENGINE}' below.
+
+additional options for '{DATAONTOSEARCH_ENGINE}':
   search-result-threshold:     List of search result thresholds to apply.
   concept-relevance-threshold: List of concept relevance thresholds to apply.
   query-concept-threshold:     List of query concept similarity thresholds to
                                apply.
   simtype:                     List of dataset taggings to use. Possible values
                                are {simtypes}.
-  query:                       Either list of queries, or a mapping where the
-                               queries are used as keys. The values of the
-                               mapping are ignored by this script.
   See the help documentation for the 'search' subcommand for more information on
   these variables.
-  All items, except for query, have a default value and can be left out. For all
-  items, you can also specify a single value directly instead of a list, which
-  will be interpreted as a list with just that one value.
+
+additional options for '{GOOGLE_ENGINE}':
+  {GOOGLE_ENGINE}:
+    site:                      Restrict returned datasets to this provider.
+                               Analog to the site: operator in regular Google
+                               search. Examples include data.ny.gov and
+                               data.gov. No restriction is applied by default.
 
 output format:
-  A streamable format is used, so that the processing can be pipelined. Queries
-  are created using the cartesian product of all variables and their defined
-  values, so if there are two values for search-result-threshold,
-  concept-relevance-threshold, query-concept-threshold and simtype, and there
-  are four queries defined, then the number of queries will be 2*2*2*2*4=64. The
-  results of each query is reported separately.
+  A streamable format is used, so that the processing can be pipelined. For 
+  the '{DATAONTOSEARCH_ENGINE}' engine, queries are created using the cartesian
+  product of all variables and their defined values, so if there are two values
+  for search-result-threshold, concept-relevance-threshold,
+  query-concept-threshold and simtype, and there are four queries defined, then
+  the number of queries will be 2*2*2*2*4=64. The results of each query is
+  reported separately. For other engines, only the cartesian product of the
+  configurations and queries is used.
   
   The first line of a query's results is a single-line JSON listing the chosen
   values for all variables. The next lines simply list the RDF URI of the

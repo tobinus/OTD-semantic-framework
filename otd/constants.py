@@ -7,3 +7,11 @@ simtypes = (
     SIMTYPE_AUTOTAG,
     SIMTYPE_ALL
 )
+
+DATAONTOSEARCH_ENGINE = 'dataontosearch'
+GOOGLE_ENGINE = 'google'
+
+engines = (
+    DATAONTOSEARCH_ENGINE,
+    GOOGLE_ENGINE,
+)

@@ -1,46 +1,36 @@
 import json
-from yaml import load
-from ontosearch.search import get_queries_from_doc, get_configurations_from_doc
 import db.graph
+from otd.constants import GOOGLE_ENGINE
 
 
-def do_ext_multi_search(engine, file):
-    if engine == 'google':
-        from ontosearch.ext_search.google import GoogleDatasetSearchExtractor as engine_cls
+def do_ext_multi_search(engine, document, queries, configurations):
+    if engine == GOOGLE_ENGINE:
+        from ontosearch.ext_search.google import GoogleDatasetSearch as engine_cls
     else:
         raise ValueError('Unrecognized search engine')
 
-    try:
-        document = load(file)
+    engine_config = document.get(engine, {})
 
-        queries = get_queries_from_doc(document)
-        configurations = get_configurations_from_doc(document)
+    is_first_result = True
 
-        engine_config = document.get(engine, {})
+    for configuration in configurations:
+        c = db.graph.Configuration.from_uuid(configuration)
+        d = c.get_dataset()
+        engine_instance = engine_cls(d)
 
-        is_first_result = True
+        for query in queries:
+            if not is_first_result:
+                print()
+            else:
+                is_first_result = False
 
-        for configuration in configurations:
-            c = db.graph.Configuration.from_uuid(configuration)
-            d = c.get_dataset()
-            engine_instance = engine_cls(d)
-
-            for query in queries:
-                if not is_first_result:
-                    print()
-                else:
-                    is_first_result = False
-
-                do_single_ext_multi_search(
-                    engine,
-                    engine_instance,
-                    engine_config,
-                    configuration,
-                    query,
-                )
-
-    finally:
-        file.close()
+            do_single_ext_multi_search(
+                engine,
+                engine_instance,
+                engine_config,
+                configuration,
+                query,
+            )
 
 
 def do_single_ext_multi_search(
@@ -54,7 +44,7 @@ def do_single_ext_multi_search(
         'configuration': configuration,
         'query': query,
         'engine': engine,
-        'engine-config': engine_config,
+        **engine_config,
     }
     print(json.dumps(this_search))
 
