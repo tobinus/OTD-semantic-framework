@@ -78,20 +78,26 @@ def api_search():
     include_dataset_info = request.args.get('d') != '0'
     include_concepts = request.args.get('ic') != '0'
     configuration_uuid = request.args.get('c', ODSFLoader.DEFAULT_KEY)
-    # TODO: Define defaults only in one place (ODSF)
-    query_concept_sim = request.args.get('qcs', '0.0')
-    query_dataset_sim = request.args.get('qds', '0.75')
 
-    # Convert to correct format
-    try:
-        query_concept_sim = float(query_concept_sim)
-    except ValueError:
-        return jsonify({'errors': ['qcs value is not a float']}), 400
+    # Collect parameters which should use the ODSF default when not present
+    extra_options = {}
+    if 'qcs' in request.args:
+        value = request.args['qcs']
+        # Convert to correct format
+        try:
+            value = float(value)
+        except ValueError:
+            return jsonify({'errors': ['qcs value is not a float']}), 400
+        extra_options['query_concept_sim'] = value
 
-    try:
-        query_dataset_sim = float(query_dataset_sim)
-    except ValueError:
-        return jsonify({'errors': ['qds value is not a float']}), 400
+    if 'qds' in request.args:
+        value = request.args['qds']
+        # Convert to correct format
+        try:
+            value = float(value)
+        except ValueError:
+            return jsonify({'errors': ['qds value is not a float']}), 400
+        extra_options['query_dataset_sim'] = value
 
     # Load the configuration
     try:
@@ -107,10 +113,9 @@ def api_search():
     results, concept_similarities = odsf.search_query(
         query,
         SIMTYPE_AUTOTAG if autotag else SIMTYPE_SIMILARITY,
-        query_concept_sim,
-        query_dataset_sim,
         include_dataset_info=include_dataset_info,
         include_concepts=include_concepts,
+        **extra_options
     )
 
     # Create a representation of the results.
