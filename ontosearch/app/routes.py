@@ -151,11 +151,5 @@ def api_search():
     })
 
 
-@app.route('/message')
-def message():
-    flash('This is an example message.')
-    return redirect('/')
-
-
 def get_concept_labels():
     return list(odsf_loader.get_default().navigator.all_concept_labels())
