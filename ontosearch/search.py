@@ -153,7 +153,7 @@ def do_matrix(_):
 
 def make_search(query, simtype, t_s, t_c, t_q, configuration=None, **kwargs):
     print('Loading indices and matrices…', file=stderr)
-    odsf_loader = ODSFLoader(True, t_c)
+    odsf_loader = ODSFLoader(True, t_c, simtype)
     if configuration is None:
         odsf = odsf_loader.get_default()
     else:

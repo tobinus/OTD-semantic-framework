@@ -399,16 +399,19 @@ class ODSFLoader(Mapping):
     loaded the first time you access them. Subsequent accesses will re-use the
     existing instance.
 
-    Updates to Configuration will also be picked up, since they will be loaded
-    again when their last-modified field changes. This process means you may
-    need to run the matrix command periodically to re-generate the matrices.
-
-    Note that updates to the similarity and autotag sets are not currently
-    picked up automatically.
+    Updates to Configuration and autotag and similarity graphs will be picked
+    up, since they will be loaded again when their last-modified field changes.
+    This process means you may need to run the matrix command periodically to
+    re-generate the matrices.
     """
     DEFAULT_KEY = 'default'
 
-    def __init__(self, compute_matrices=False, concept_similarity=0.0):
+    def __init__(
+            self,
+            compute_matrices=False,
+            concept_similarity=0.0,
+            simtypes=None,
+    ):
         """
         Create new ODSF loader.
 
@@ -417,11 +420,43 @@ class ODSFLoader(Mapping):
                 should be generated when missing.
             concept_similarity: A lower threshold for how similar a concept must
                 be to a dataset in order to be associated with it.
+            simtypes: List of simtypes to load. Can also be just the name of one
+                simtype. By default, all available simtypes are loaded.
         """
         self.compute_matrices = compute_matrices
         self._concept_similarity = concept_similarity
+
+        self.__simtypes = None
+        if simtypes is None:
+            simtypes = (SIMTYPE_SIMILARITY, SIMTYPE_AUTOTAG)
+        self.simtypes = simtypes
+
         self.__instances = dict()
         self.__configurations = dict()
+
+    @property
+    def simtypes(self):
+        return self.__simtypes
+
+    @simtypes.setter
+    def simtypes(self, value):
+        # Normalize so it's always an iterable
+        if isinstance(value, str):
+            value = [value]
+
+        # Are there any unrecognized simtypes? Report them now, to avoid subtle
+        # bugs later on
+        available_simtypes = {SIMTYPE_SIMILARITY, SIMTYPE_AUTOTAG}
+        chosen_simtypes = set(value)
+        unrecognized_simtypes = chosen_simtypes - available_simtypes
+        if unrecognized_simtypes:
+            raise ValueError(
+                f'Unrecognized simtypes {unrecognized_simtypes} detected, '
+                f'please only use simtypes among these: {available_simtypes}'
+            )
+
+        # All fine
+        self.__simtypes = value
 
     def __getitem__(self, k):
         if k is None:
@@ -496,16 +531,18 @@ class ODSFLoader(Mapping):
             c.dataset_uuid,
             self.compute_matrices
         )
-        odsf.load_similarity_graph(
-            SIMTYPE_SIMILARITY,
-            c.get_similarity(),
-            self._concept_similarity,
-        )
-        odsf.load_similarity_graph(
-            SIMTYPE_AUTOTAG,
-            c.get_autotag(),
-            self._concept_similarity,
-        )
+        if SIMTYPE_SIMILARITY in self.simtypes:
+            odsf.load_similarity_graph(
+                SIMTYPE_SIMILARITY,
+                c.get_similarity(),
+                self._concept_similarity,
+            )
+        if SIMTYPE_AUTOTAG in self.simtypes:
+            odsf.load_similarity_graph(
+                SIMTYPE_AUTOTAG,
+                c.get_autotag(),
+                self._concept_similarity,
+            )
         return odsf
 
     def get_default(self) -> OpenDataSemanticFramework:
