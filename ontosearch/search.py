@@ -129,7 +129,16 @@ def do_single_multi_search(
     print(json.dumps(document))
 
     # Perform query
-    results, _ = make_search(query, simtype, t_s, t_c, t_q, configuration)
+    results, _ = make_search(
+        query,
+        simtype,
+        t_s,
+        t_c,
+        t_q,
+        configuration,
+        include_dataset_info=False,
+        include_concepts=False,
+    )
 
     # Print the datasets we found
     print_results_simple(results, None, None)
