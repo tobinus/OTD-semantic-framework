@@ -78,6 +78,7 @@ def api_search():
     include_dataset_info = request.args.get('d') != '0'
     include_concepts = request.args.get('ic') != '0'
     configuration_uuid = request.args.get('c', ODSFLoader.DEFAULT_KEY)
+    # TODO: Define defaults only in one place (ODSF)
     query_concept_sim = request.args.get('qcs', '0.0')
     query_dataset_sim = request.args.get('qds', '0.75')
 

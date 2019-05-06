@@ -262,7 +262,7 @@ class OpenDataSemanticFramework:
             self,
             query,
             cds_name="all",
-            qc_sim_threshold=0.5,
+            qc_sim_threshold=0.0,
             score_threshold=0.75,
             include_dataset_info=True,
             include_concepts=True,

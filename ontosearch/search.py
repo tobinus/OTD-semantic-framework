@@ -96,7 +96,6 @@ def get_configurations_from_doc(document):
     return configurations
 
 
-
 def do_single_multi_search(
         configuration,
         t_s,
