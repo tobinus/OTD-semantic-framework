@@ -235,7 +235,7 @@ class OpenDataSemanticFramework:
 
     def calculate_query_sim_to_concepts(self, query, sim_threshold):
         scorevec = self._semscore.score_vector(query, sim_threshold)
-        scorevec = self.enrich_query_with_ccs(scorevec, query, self.concept_similarity)
+        #scorevec = self.enrich_query_with_ccs(scorevec, query, self.concept_similarity)
         return scorevec
 
     def get_dataset_info(self, dataset):
