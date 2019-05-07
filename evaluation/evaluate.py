@@ -197,7 +197,7 @@ def calculate_metrics(matching_datasets, relevant_datasets):
     except ZeroDivisionError:
         warnings.warn('For at least one query, not a single dataset was '
                       'fetched')
-        precision = None
+        precision = 0.0
 
     try:
         recall = num_relevant_fetched / num_relevant_existing
@@ -205,13 +205,13 @@ def calculate_metrics(matching_datasets, relevant_datasets):
     except ZeroDivisionError:
         warnings.warn('For at least one query, there are no relevant datasets '
                       'defined')
-        recall = None
-        r_precision = None
+        recall = 0.0
+        r_precision = 0.0
 
     try:
         f1_measure = (2 * precision * recall) / (precision + recall)
     except (ZeroDivisionError, TypeError):
-        f1_measure = None
+        f1_measure = 0.0
 
     return {
         'fetched': num_fetched,
