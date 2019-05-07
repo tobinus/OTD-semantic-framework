@@ -210,7 +210,6 @@ class OpenDataSemanticFramework:
 
     def enrich_query_with_ccs(self, score_vec, query, similarity_threshold):
         new_score_vec = score_vec.copy()
-        print('Index for score_vec:', new_score_vec.index)
         query_row = score_vec.loc[query]
         new_query_row = new_score_vec.loc[query]
 
@@ -321,6 +320,7 @@ class OpenDataSemanticFramework:
         results = list()
         for dataset, similarity in dataset_query_sim.items():
             # Only consider the most relevant datasets
+            # TODO: Return a minimum amount of datasets
             if similarity < float(score_threshold):
                 continue
             results.append(SearchResult(
