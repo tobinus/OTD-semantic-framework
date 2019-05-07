@@ -1,0 +1,64 @@
+configuration,search-result-threshold,concept-relevance-threshold,query-concept-threshold,simtype,query,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,underground railway position,203,1,1,0.0049261083743842365,1.0,0.00980392156862745,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,site:data.cityofnewyork.us subway stations,32,1,0,0.0,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,new york state rest stop,14,1,0,0.0,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,underground railway position,5,1,0,0.0,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,site:data.cityofnewyork.us subway stations,13,1,0,0.0,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,rest area,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,underground railway position,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,site:data.cityofnewyork.us subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,nyc subway,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,subway stations,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,highway new york rural,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,new york state rest stop,0,1,0,,0.0,,0.0
+5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,rest area,1,1,0,0.0,0.0,,0.0

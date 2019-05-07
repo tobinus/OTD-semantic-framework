@@ -1,0 +1,36 @@
+configuration: 5c7ea259c556bb42803fa17e
+query:
+    # Commented out queries have no relevant datasets
+    #    electric car charging station:
+    #        - http://www.quaat.com/ontologies#ChargingStation
+    #    information on air quality:
+    #        - http://www.quaat.com/ontologies#AirQuality
+    location:
+        - http://www.quaat.com/ontologies#Location
+    statistics:
+        - http://www.quaat.com/ontologies#Statistics
+    #    trail:
+    #        - http://www.quaat.com/ontologies#Trail
+    bike:
+        - http://www.quaat.com/ontologies#Bicycle
+    map:
+        - http://www.quaat.com/ontologies#Map
+
+engine: dataontosearch
+
+# Options for DataOntoSearch
+concept-relevance-threshold:
+    - 0.25
+    - 0.5
+    - 0.75
+
+query-concept-threshold:
+    - 0.5
+    - 0.75
+    - 1.0
+
+simtype: tagged
+
+# Options for Google
+google:
+    site: data.ny.gov
