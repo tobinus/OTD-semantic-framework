@@ -1,0 +1,43 @@
+usage: dataontosearch.py evaluate [-h]
+                                  [--multisearch-result MULTISEARCH_RESULT]
+                                  [--format FORMAT]
+                                  file
+
+Compare the search engine's performance against a ground truth and report the
+achieved precision and recall.
+
+positional arguments:
+  file                  YAML file used to find the queries to use and
+                        determine the ground truth for what is relevant to
+                        each query. Specify a dash (-) to use stdin.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --multisearch-result MULTISEARCH_RESULT, -m MULTISEARCH_RESULT
+                        Use this in order to not run any queries, but instead
+                        just read the provided file, as if it was the output
+                        from the multisearch subcommand. The YAML document is
+                        still needed, in order to determine what datasets are
+                        relevant to each query encountered in the results.
+  --format FORMAT, -f FORMAT
+                        Choose a format to use when pretty-printing the
+                        results. See the documentation of python-tabulate for
+                        available options. Additionally, you may use the "csv"
+                        format to output a CSV file. (Default: psql)
+
+format of YAML file:
+  query:        A mapping. The key is the query to run. The value is a list
+                consisting of RDF URIs that indicate relevant datasets. They can
+                either refer to concepts, in which case the ground-truth
+                parameter below is used, or to datasets, in which case they are
+                regarded as relevant datasets. You may combine the two however
+                you like.
+  ground-truth: A mapping with the following keys, influencing how the ground
+                truth is derived from the concepts mentioned.
+    threshold:  When looking at datasets that are tagged with a mentioned
+                concept, this parameter decides how high the tagging score must
+                be for this dataset to be considered relevant. Defaults to 0.8.
+    simtype:    The dataset tagging used to find connections from concepts to
+                datasets. Defaults to tagged.
+  See the help text for the 'multisearch' subcommand for the other parameters 
+  available.
