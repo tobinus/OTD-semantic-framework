@@ -15,7 +15,7 @@ from otd.constants import SIMTYPE_SIMILARITY, SIMTYPE_AUTOTAG, simtypes
 from utils.common_cli import float_between_0_and_1
 
 
-def evaluate_using_file(filename):
+def parse_file(filename):
     if filename == '-':
         in_document = io.StringIO()
         in_document.write(sys.stdin.read())
@@ -70,13 +70,13 @@ def evaluate_using_file(filename):
     ground_threshold = ground_truth.get('threshold', 0.8)
     ground_threshold = float_between_0_and_1(ground_threshold)
 
-    return evaluate(
-        queries,
-        ground_simtype,
-        ground_threshold,
-        filename,
-        file_contents
-    )
+    return {
+        'queries': queries,
+        'ground_simtype': ground_simtype,
+        'ground_threshold': ground_threshold,
+        'filename': filename,
+        'file_contents': file_contents
+    }
 
 
 def evaluate(queries, ground_simtype, ground_threshold, filename, file_contents):
@@ -98,8 +98,16 @@ def evaluate(queries, ground_simtype, ground_threshold, filename, file_contents)
         stdout=subprocess.PIPE,
         check=True,
     )
+    return evaluate_output(
+        process_info.stdout,
+        queries,
+        ground_simtype,
+        ground_threshold,
+    )
 
-    results = process_info.stdout.split('\n\n')
+
+def evaluate_output(output, queries, ground_simtype, ground_threshold, **kwargs):
+    results = output.split('\n\n')
     results = map(lambda s: s.split('\n'), results)
     results = map(
         lambda lines: process_results(
@@ -210,7 +218,7 @@ def calculate_metrics(matching_datasets, relevant_datasets):
 
     try:
         f1_measure = (2 * precision * recall) / (precision + recall)
-    except (ZeroDivisionError, TypeError):
+    except ZeroDivisionError:
         f1_measure = 0.0
 
     return {

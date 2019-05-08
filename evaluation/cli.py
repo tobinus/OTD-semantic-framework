@@ -48,6 +48,16 @@ format of YAML file:
     )
 
     parser.add_argument(
+        '--multisearch-result',
+        '-m',
+        help='Use this in order to not run any queries, but instead just read '
+             'the provided file, as if it was the output from the multisearch '
+             'subcommand. The YAML document is still needed, in order to '
+             'determine what datasets are relevant to each query encountered '
+             'in the results.'
+    )
+
+    parser.add_argument(
         '--format',
         '-f',
         help='Choose a format to use when pretty-printing the results. See the '
@@ -63,6 +73,15 @@ format of YAML file:
 
 
 def do_evaluate(args):
-    from evaluation.evaluate import evaluate_using_file, print_results
-    results = evaluate_using_file(args.file)
+    from evaluation.evaluate import parse_file, evaluate, evaluate_output, print_results
+    variables = parse_file(args.file)
+
+    if args.multisearch_result:
+        # Skip the query-running step
+        with open(args.multisearch_result) as fp:
+            output = fp.read()
+        results = evaluate_output(output, **variables)
+    else:
+        # Run the queries
+        results = evaluate(**variables)
     print_results(results, args.format)
