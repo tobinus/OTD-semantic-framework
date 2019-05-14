@@ -3,6 +3,7 @@ import collections.abc
 import io
 import json
 import sys
+import statistics
 import subprocess
 import warnings
 from tabulate import tabulate
@@ -210,11 +211,16 @@ def calculate_metrics(matching_datasets, relevant_datasets):
     try:
         recall = num_relevant_fetched / num_relevant_existing
         r_precision = num_r_relevant_fetched / num_relevant_existing
+        avg_precision = calculate_avg_precision(
+            result_relevance,
+            num_relevant_existing
+        )
     except ZeroDivisionError:
         warnings.warn('For at least one query, there are no relevant datasets '
                       'defined')
         recall = 0.0
         r_precision = 0.0
+        avg_precision = 0.0
 
     try:
         f1_measure = (2 * precision * recall) / (precision + recall)
@@ -229,6 +235,7 @@ def calculate_metrics(matching_datasets, relevant_datasets):
         'recall': recall,
         'f1-measure': f1_measure,
         'r-precision': r_precision,
+        'avg precision': avg_precision,
     }
 
 
@@ -241,6 +248,27 @@ def num_true(iterable):
             )
         )
     )
+
+
+def calculate_avg_precision(result_relevance, num_relevant_existing):
+    precision_scores = []
+    for position, is_relevant in enumerate(result_relevance):
+        if not is_relevant:
+            continue
+
+        # What is the precision at this point?
+        num_so_far = position + 1
+        sub_result = result_relevance[:num_so_far]
+        num_relevant_so_far = num_true(sub_result)
+        precision = num_relevant_so_far / num_so_far
+        precision_scores.append(precision)
+
+    # Any relevant dataset not retrieved counts as precision = 0.0
+    num_relevant_not_fetched = num_relevant_existing - len(precision_scores)
+    not_fetched_scores = [0.0] * num_relevant_not_fetched
+    precision_scores.extend(not_fetched_scores)
+
+    return statistics.mean(precision_scores)
 
 
 def print_results(results, table_format='psql', destination=None):
