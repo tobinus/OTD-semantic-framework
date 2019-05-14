@@ -1,0 +1,5 @@
+configuration,query,engine,site,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+5c7ea259c556bb42803fa17e,location,google,data.ny.gov,11,20,4,0.36363636363636365,0.2,0.25806451612903225,0.2,0.17083333333333334
+5c7ea259c556bb42803fa17e,statistics,google,data.ny.gov,4,110,4,1.0,0.03636363636363636,0.07017543859649122,0.03636363636363636,0.03636363636363636
+5c7ea259c556bb42803fa17e,bike,google,data.ny.gov,0,13,0,0.0,0.0,0.0,0.0,0.0
+5c7ea259c556bb42803fa17e,map,google,data.ny.gov,7,13,0,0.0,0.0,0.0,0.0,0.0

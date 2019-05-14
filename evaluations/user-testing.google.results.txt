@@ -1,0 +1,25 @@
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "underground railway position", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "site:data.cityofnewyork.us subway stations", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "nyc subway", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+http://192.168.56.101:8000/dataset/3803c6fd-9c0d-4174-9b2c-2742bab2d694
+http://192.168.56.101:8000/dataset/bc3a58c2-b86e-48bf-95f3-312cc9d90215
+http://192.168.56.101:8000/dataset/c33d3977-3a0b-450c-bdf2-1545c072951e
+http://192.168.56.101:8000/dataset/17225b37-bae8-49c8-ba85-810a4316f510
+http://192.168.56.101:8000/dataset/8abdc377-659f-4a83-b030-623e805578f6
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "subway stations", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "highway new york rural", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "new york state rest stop", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "rest area", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd

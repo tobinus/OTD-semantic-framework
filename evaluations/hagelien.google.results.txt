@@ -1,0 +1,28 @@
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "location", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd
+http://192.168.56.101:8000/dataset/d37c1c4c-b0bc-4bbb-bc41-aade78de4bf2
+http://192.168.56.101:8000/dataset/b945690c-ea8b-4369-9ebe-64ba5f397fdd
+http://192.168.56.101:8000/dataset/80ede245-5e9d-4b19-94a9-18b12e290483
+http://192.168.56.101:8000/dataset/728cf656-8e4a-40e1-89d8-7e5e03ce12d6
+http://192.168.56.101:8000/dataset/6dfab919-371f-44ef-ba96-0a8234659db2
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/a81de2eb-0171-41f2-a4d7-492f5686b251
+http://192.168.56.101:8000/dataset/6574ea88-85ec-4183-ac1b-55581ba77806
+http://192.168.56.101:8000/dataset/55cce2c8-de1a-4e91-a349-df12e691cf16
+http://192.168.56.101:8000/dataset/89c617a0-09ab-48bf-a6cb-46a44167cb2c
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "statistics", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/39995fa1-e76e-4f10-9a32-8713230b671e
+http://192.168.56.101:8000/dataset/71e7dda8-ac63-4271-8946-1c5683c6152c
+http://192.168.56.101:8000/dataset/9d1651a9-2c8b-4214-9567-0e4016402b27
+http://192.168.56.101:8000/dataset/4395d31f-996e-4bfc-bc4c-1ae546c3793f
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "bike", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "map", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/1441b9a1-11b2-45c0-acb0-598b74579572
+http://192.168.56.101:8000/dataset/e20660b8-527d-4e57-be58-70d1733fa6b3
+http://192.168.56.101:8000/dataset/a3e2171e-fb45-4d75-b6c8-dc56b0f91c40
+http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/b945690c-ea8b-4369-9ebe-64ba5f397fdd
