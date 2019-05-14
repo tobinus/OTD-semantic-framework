@@ -35,6 +35,7 @@ class GoogleDatasetSearch:
         if not query:
             return []
 
+        logger.info(f'Performing query "{query}"')
         r = self._get_request(query, site)
         titles = self._extract_titles(r)
         datasets = self._find_dataset_for_titles(titles)

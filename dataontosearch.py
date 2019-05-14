@@ -3,6 +3,7 @@ This is the entry point for the whole DataOntoSearch project. It gives you
 access to the entirety of the project's functionality, through the command line.
 """
 import argparse
+import logging
 import itertools
 import importlib
 import sys
@@ -40,6 +41,9 @@ CLI_MODULES = (
 
 
 def main():
+    # Set up so we log most things
+    logging.basicConfig(level=logging.INFO)
+
     # Create argument parser, complete with subcommand parsers
     parser = create_parser()
 
