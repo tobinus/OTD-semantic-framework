@@ -49,5 +49,6 @@ def do_single_ext_multi_search(
     print(json.dumps(this_search))
 
     results = engine_instance.search(query, **engine_config)
-    print('\n'.join(results), end='')
+    if results:
+        print('\n'.join(results))
 
