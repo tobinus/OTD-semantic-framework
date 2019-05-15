@@ -5,9 +5,9 @@ query:
     #        - http://www.quaat.com/ontologies#ChargingStation
     #    information on air quality:
     #        - http://www.quaat.com/ontologies#AirQuality
-    location:
+    location transportation:
         - http://www.quaat.com/ontologies#Location
-    statistics:
+    statistics transportation:
         - http://www.quaat.com/ontologies#Statistics
     #    trail:
     #        - http://www.quaat.com/ontologies#Trail
@@ -20,14 +20,10 @@ engine: dataontosearch
 
 # Options for DataOntoSearch
 concept-relevance-threshold:
-    - 0.25
-    - 0.5
-    - 0.75
+  - 0.0
 
 query-concept-threshold:
-    - 0.5
-    - 0.75
-    - 1.0
+  - 0.95
 
 simtype: tagged
 

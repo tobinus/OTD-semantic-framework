@@ -1,5 +1,21 @@
 configuration: 5c7ea259c556bb42803fa17e
 query:
+    # Commented out queries have no relevant datasets
+    #    electric car charging station:
+    #        - http://www.quaat.com/ontologies#ChargingStation
+    #    information on air quality:
+    #        - http://www.quaat.com/ontologies#AirQuality
+    location transportation:
+        - http://www.quaat.com/ontologies#Location
+    statistics transportation:
+        - http://www.quaat.com/ontologies#Statistics
+    #    trail:
+    #        - http://www.quaat.com/ontologies#Trail
+    bike:
+        - http://www.quaat.com/ontologies#Bicycle
+    map:
+        - http://www.quaat.com/ontologies#Map
+
     # Task 55
     underground railway position:
         # NYC Transit Subway Entrance and Exit Data
@@ -24,10 +40,10 @@ engine: dataontosearch
 
 # Options for DataOntoSearch
 concept-relevance-threshold:
-    - 0.0
+  - 0.0
 
 query-concept-threshold:
-    - 0.95
+  - 0.95
 
 simtype: tagged
 
