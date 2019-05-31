@@ -93,10 +93,10 @@ format of YAML file:
         '--format',
         '-f',
         help='Choose a format to use when pretty-printing the results. See the '
-             'documentation of python-tabulate for available options. '
-             'Additionally, you may use the "csv" format to output a CSV file. '
-             '(Default: %(default)s)',
-        default='psql',
+             'documentation of python-tabulate for available options, like '
+             '"psql". Additionally, you may use the "csv" format to output a '
+             'CSV file. (Default: %(default)s)',
+        default='csv',
     )
 
     parser.set_defaults(
