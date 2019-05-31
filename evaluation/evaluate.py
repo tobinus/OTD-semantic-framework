@@ -14,6 +14,7 @@ from db.graph import Configuration
 from utils.graph import RDF, OTD, DCAT, SKOS
 from otd.constants import SIMTYPE_SIMILARITY, SIMTYPE_AUTOTAG, simtypes
 from utils.common_cli import float_between_0_and_1
+from ontosearch.search import get_configurations_from_doc
 
 
 def parse_file(filename):
@@ -71,16 +72,28 @@ def parse_file(filename):
     ground_threshold = ground_truth.get('threshold', 0.8)
     ground_threshold = float_between_0_and_1(ground_threshold)
 
+    # Normally we get configuration from metadata, but fetch it for
+    # --print-relevant
+    configurations = get_configurations_from_doc(document)
+
     return {
         'queries': queries,
         'ground_simtype': ground_simtype,
         'ground_threshold': ground_threshold,
         'filename': filename,
-        'file_contents': file_contents
+        'file_contents': file_contents,
+        'configurations': configurations,
     }
 
 
-def evaluate(queries, ground_simtype, ground_threshold, filename, file_contents):
+def evaluate(
+        queries,
+        ground_simtype,
+        ground_threshold,
+        filename,
+        file_contents,
+        **_
+):
     command = [
         sys.executable or 'python',
         sys.argv[0],
@@ -107,7 +120,7 @@ def evaluate(queries, ground_simtype, ground_threshold, filename, file_contents)
     )
 
 
-def evaluate_output(output, queries, ground_simtype, ground_threshold, **kwargs):
+def evaluate_output(output, queries, ground_simtype, ground_threshold, **_):
     results = output.split('\n\n')
     results = map(lambda s: s.split('\n'), results)
     results = map(
@@ -143,6 +156,35 @@ def process_results(lines, queries, ground_simtype, ground_threshold):
     return metadata
 
 
+def print_relevant(
+        queries,
+        ground_simtype,
+        ground_threshold,
+        configurations,
+        **_
+):
+    multiple_configs = len(configurations) > 1
+
+    for query, relevant_spec in queries.items():
+        for config in configurations:
+            if multiple_configs:
+                print(f'Query: "{query}". Configuration: "{config}"')
+            else:
+                print(f'Query: "{query}"')
+            relevant_datasets = find_relevant_datasets(
+                relevant_spec,
+                config,
+                ground_simtype,
+                ground_threshold,
+            )
+            for dataset in relevant_datasets:
+                print(dataset)
+            if not relevant_datasets:
+                print('No datasets were found.')
+            # Separate queries/configs with blank line
+            print()
+
+
 def find_relevant_datasets(relevant_spec, configuration, simtype, threshold):
     # Load necessary graphs
     config = Configuration.from_uuid(configuration)
@@ -156,35 +198,96 @@ def find_relevant_datasets(relevant_spec, configuration, simtype, threshold):
         raise ValueError(f'Simtype {simtype} not supported')
 
     # We will be creating a list of relevant datasets
-    relevant_datasets = list()
+    relevant_datasets = set()
 
     # Go through all relevant datasets/concepts named in the YAML file
     for spec in relevant_spec:
+        # Check for concepts joined with AND
+        if isinstance(spec, collections.Mapping):
+            raw_concepts = spec.get('and', spec.get('AND'))
+            if not raw_concepts:
+                raise ValueError(
+                    f'Did not understand {spec}, expected mapping to have key '
+                    f'named "and" or "AND" with list of concepts.'
+                )
+
+            # This is an intersection of concepts!
+            # We keep a list of datasets that matched so far
+            matching_datasets = None
+
+            for concept in raw_concepts:
+                # This is a concept, right?
+                concept = URIRef(concept)
+                if (concept, RDF.type, SKOS.Concept) not in ontology_graph:
+                    raise ValueError(
+                        f'Did not recognize {concept} as a concept for '
+                        f'configuration {configuration}'
+                    )
+
+                # What datasets are associated with this concept?
+                datasets = find_datasets_from_concept(
+                    concept,
+                    similarity_graph,
+                    threshold
+                )
+                datasets = set(datasets)
+
+                # Update our list of matching datasets
+                if matching_datasets is None:
+                    # First iteration, keep all datasets
+                    matching_datasets = datasets
+                else:
+                    # Not first iteration, filter out any datasets not tagged
+                    # with this concept
+                    matching_datasets.intersection_update(datasets)
+
+            # Warn if we didn't actually match with any concepts (likely a
+            # mistake)
+            if not matching_datasets:
+                warnings.warn(f'No dataset matched with all of the concepts '
+                              f'{raw_concepts}')
+            # Now that we have the result of the intersection, we can add it to
+            # the list
+            relevant_datasets.update(matching_datasets)
+            # Skip the processing below
+            continue
+
         # We are assuming concepts or datasets are RDF URIs
         spec = URIRef(spec)
         # Are we dealing with a dataset or concept?
         if (spec, RDF.type, DCAT.Dataset) in dataset_graph:
             # We are naming a relevant dataset, simply add it
-            relevant_datasets.append(str(spec))
+            relevant_datasets.add(str(spec))
         elif (spec, RDF.type, SKOS.Concept) in ontology_graph:
             # We are naming a relevant concept, add all datasets connected to it
-            # Start with navigating dataset taggings related to this concept
-            similarities = similarity_graph.subjects(OTD.concept, spec)
-            for sim in similarities:
-                # What is the similarity score for this dataset-concept tag?
-                score = similarity_graph.value(sim, OTD.score, None)
-                # Is it above our threshold?
-                if float(score) < threshold:
-                    # Nope, skip
-                    continue
-                # Add this dataset
-                dataset = similarity_graph.value(sim, OTD.dataset, None)
-                relevant_datasets.append(str(dataset))
+            relevant_datasets.update(
+                find_datasets_from_concept(spec, similarity_graph, threshold)
+            )
         else:
             raise ValueError(
                 f'Did not recognize {spec} as a concept or dataset for '
                 f'configuration {configuration}'
             )
+    return relevant_datasets
+
+
+def find_datasets_from_concept(concept, similarity_graph, threshold):
+    relevant_datasets = []
+    # Start with navigating dataset taggings related to this concept
+    similarities = similarity_graph.subjects(OTD.concept, concept)
+
+    for sim in similarities:
+        # What is the similarity score for this dataset-concept tag?
+        score = similarity_graph.value(sim, OTD.score, None)
+
+        # Is it above our threshold?
+        if float(score) < threshold:
+            # Nope, skip
+            continue
+
+        # Add this dataset
+        dataset = similarity_graph.value(sim, OTD.dataset, None)
+        relevant_datasets.append(str(dataset))
     return relevant_datasets
 
 

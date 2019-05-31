@@ -20,7 +20,27 @@ format of YAML file:
                 either refer to concepts, in which case the ground-truth
                 parameter below is used, or to datasets, in which case they are
                 regarded as relevant datasets. You may combine the two however
-                you like.
+                you like. OR is used to join the datasets and concepts.
+
+                In addition, you can provide elements which are a mapping,
+                with a key named "and" or "AND" with a list of concepts. Only
+                datasets associated with all the concepts will be selected,
+                using the intersection rather than the union.
+                
+                An example:
+
+                electric car parking:
+                  - http://example.com/datasets#ParkingPlacesInNY
+                  - AND:
+                      - http://example.com/concepts#Parking
+                      - http://example.com/concepts#Car
+                      - http://example.com/concepts#Electric
+                  - http://example.com/concepts#ChargingStation
+
+                Here, "electric car parking" is the query. The relevant datasets
+                are (1) the named dataset, (2) any dataset tagged with the
+                Parking, Car AND Electric concepts, and (3) any dataset tagged
+                with the ChargingStation concept.
   ground-truth: A mapping with the following keys, influencing how the ground
                 truth is derived from the concepts mentioned.
     threshold:  When looking at datasets that are tagged with a mentioned
@@ -45,6 +65,12 @@ format of YAML file:
         help='YAML file used to find the queries to use and determine the '
              'ground truth for what is relevant to each query. Specify a dash '
              '(-) to use stdin.',
+    )
+
+    parser.add_argument(
+        '--print-relevant',
+        help='Print the relevant datasets found for each query, then exit.',
+        action='store_true',
     )
 
     parser.add_argument(
@@ -73,15 +99,19 @@ format of YAML file:
 
 
 def do_evaluate(args):
-    from evaluation.evaluate import parse_file, evaluate, evaluate_output, print_results
+    from evaluation.evaluate import parse_file, evaluate, evaluate_output, print_results, print_relevant
     variables = parse_file(args.file)
 
-    if args.multisearch_result:
-        # Skip the query-running step
-        with open(args.multisearch_result) as fp:
-            output = fp.read()
-        results = evaluate_output(output, **variables)
+    if args.print_relevant:
+        print_relevant(**variables)
     else:
-        # Run the queries
-        results = evaluate(**variables)
-    print_results(results, args.format)
+        if args.multisearch_result:
+            # Skip the query-running step
+            with open(args.multisearch_result) as fp:
+                output = fp.read()
+            results = evaluate_output(output, **variables)
+
+        else:
+            # Run the queries
+            results = evaluate(**variables)
+        print_results(results, args.format)
