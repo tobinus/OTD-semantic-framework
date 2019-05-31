@@ -137,7 +137,7 @@ def evaluate_output(
 ):
     results = output.split('\n\n')
     results = map(lambda s: s.split('\n'), results)
-    results = map(
+    results = filter(None, map(
         lambda lines: process_results(
             lines,
             base_metadata,
@@ -146,7 +146,7 @@ def evaluate_output(
             ground_threshold
         ),
         results
-    )
+    ))
     return tuple(results)
 
 
@@ -167,6 +167,12 @@ def process_results(
 
     query = metadata['query']
     configuration = metadata['configuration']
+    if query not in queries:
+        warnings.warn(
+            f'The query "{query}" was not found in the YAML file, skipping…'
+        )
+        return None
+
     raw_relevant_datasets = queries[query]
     relevant_datasets = find_relevant_datasets(
         raw_relevant_datasets,
