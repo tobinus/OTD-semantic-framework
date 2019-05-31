@@ -119,6 +119,7 @@ def do_single_multi_search(
 ):
     # Print the first line, with information about chosen variables
     document = {
+        'engine': 'dataontosearch',
         'configuration': configuration,
         'search-result-threshold': t_s,
         'concept-relevance-threshold': t_c,
