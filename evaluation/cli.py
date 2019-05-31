@@ -48,6 +48,12 @@ format of YAML file:
                 be for this dataset to be considered relevant. Defaults to 0.8.
     simtype:    The dataset tagging used to find connections from concepts to
                 datasets. Defaults to {SIMTYPE_SIMILARITY}.
+  metadata:     A mapping. What you place here is put verbatim in the final
+                results, unless it is overridden by metadata from multisearch
+                or metrics. Use this to give an extra categorisation to the end
+                results, or to give default values to metadata that may be
+                missing when using another engine.
+                
   See the help text for the 'multisearch' subcommand for the other parameters 
   available.
 """)

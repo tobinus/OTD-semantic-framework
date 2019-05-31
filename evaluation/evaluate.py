@@ -72,6 +72,10 @@ def parse_file(filename):
     ground_threshold = ground_truth.get('threshold', 0.8)
     ground_threshold = float_between_0_and_1(ground_threshold)
 
+    metadata = document.get('metadata', {})
+    if not isinstance(metadata, collections.abc.Mapping):
+        raise RuntimeError(f"'metadata' must be a mapping, but got {metadata}")
+
     # Normally we get configuration from metadata, but fetch it for
     # --print-relevant
     configurations = get_configurations_from_doc(document)
@@ -83,6 +87,7 @@ def parse_file(filename):
         'filename': filename,
         'file_contents': file_contents,
         'configurations': configurations,
+        'metadata': metadata,
     }
 
 
@@ -92,6 +97,7 @@ def evaluate(
         ground_threshold,
         filename,
         file_contents,
+        metadata,
         **_
 ):
     command = [
@@ -114,18 +120,27 @@ def evaluate(
     )
     return evaluate_output(
         process_info.stdout,
+        metadata,
         queries,
         ground_simtype,
         ground_threshold,
     )
 
 
-def evaluate_output(output, queries, ground_simtype, ground_threshold, **_):
+def evaluate_output(
+        output,
+        base_metadata,
+        queries,
+        ground_simtype,
+        ground_threshold,
+        **_
+):
     results = output.split('\n\n')
     results = map(lambda s: s.split('\n'), results)
     results = map(
         lambda lines: process_results(
             lines,
+            base_metadata,
             queries,
             ground_simtype,
             ground_threshold
@@ -135,8 +150,19 @@ def evaluate_output(output, queries, ground_simtype, ground_threshold, **_):
     return tuple(results)
 
 
-def process_results(lines, queries, ground_simtype, ground_threshold):
-    metadata = json.loads(lines[0])
+def process_results(
+        lines,
+        base_metadata,
+        queries,
+        ground_simtype,
+        ground_threshold,
+):
+    # We base our metadata on the base_metadata
+    metadata = base_metadata.copy()
+    # Then we override with data from multisearch
+    ext_metadata = json.loads(lines[0])
+    metadata.update(ext_metadata)
+
     matching_datasets = lines[1:]
 
     query = metadata['query']
@@ -203,7 +229,7 @@ def find_relevant_datasets(relevant_spec, configuration, simtype, threshold):
     # Go through all relevant datasets/concepts named in the YAML file
     for spec in relevant_spec:
         # Check for concepts joined with AND
-        if isinstance(spec, collections.Mapping):
+        if isinstance(spec, collections.abc.Mapping):
             raw_concepts = spec.get('and', spec.get('AND'))
             if not raw_concepts:
                 raise ValueError(
