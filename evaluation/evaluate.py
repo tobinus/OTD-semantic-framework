@@ -129,7 +129,7 @@ def evaluate(
 
 def evaluate_output(
         output,
-        base_metadata,
+        metadata,
         queries,
         ground_simtype,
         ground_threshold,
@@ -140,7 +140,7 @@ def evaluate_output(
     results = filter(None, map(
         lambda lines: process_results(
             lines,
-            base_metadata,
+            metadata,
             queries,
             ground_simtype,
             ground_threshold

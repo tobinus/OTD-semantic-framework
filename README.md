@@ -9,23 +9,15 @@ in their search queries as those used by the dataset publishers.
 
 ## Preparing
 
-This guide assumes you use Pipenv, but you may also use virtualenv/pip directly
-using the requirements.txt files (though support for this may be dropped at a
-future point).
-
 **Reading this guide**: Any Python commands in the instructions assume you
-already have the virtual environment loaded. With _Pipenv_, you do this by
-running `pipenv shell`, or you can prepend `pipenv run` to whatever you want to
-run inside the virtual environment. With Pip and Virtualenv, you do this by
+already have the virtual environment loaded. Using Pip and Virtualenv, you do this by
 sourcing the `activate` inside the virtual environment folder. For example, if
 the virtual environment folder is called `venv`, you run `. venv/bin/activate`.
 
 1. (Fork and) clone this repository, so you have a copy locally
-1. Install Pipenv (if so desired)
-2. While in this directory, run `pipenv install`. Pip+Virtualenv users should
-   set up the virtual environment and install from `requirements.txt` now
+2. While in this directory, set up the Python virtual environment and install from `requirements.txt`. See the guide at https://docs.python-guide.org/dev/virtualenvs/#lower-level-virtualenv for how to use Virtualenv and Pip.
 4. Follow the link in `ordvev/README.md` and extract the files into the `ordvev/` directory
-5. Configure (and install if you haven't) MongoDB so you have a user (with password) which can access it. You will also need to enable authentication. See for example the [official guide from MongoDB](https://docs.mongodb.com/manual/tutorial/enable-authentication/).
+5. Install and configure MongoDB so you have a user (with password) which can access it. You will also need to enable authentication. See for example the [official guide from MongoDB](https://docs.mongodb.com/manual/tutorial/enable-authentication/).
 6. Create a file called `.env` in this directory, where you define the variables:
    * `DB_USERNAME`: Username to use when logging in to MongoDB
    * `DB_PASSWD`: Password to use when logging in to MongoDB
@@ -117,13 +109,6 @@ whenever it reads from a `.env` file; if you don't receive such a message then
 you can assume it wasn't read.
 
 [env-usage]: https://github.com/theskumar/python-dotenv#usages
-
-**Caveat**: Pipenv will read the `.env` file when you create a shell (`pipenv
-shell`). Changes you make to the `.env` file will not be picked up before you
-exit and re-enter the Pipenv shell. Even though DataOntoSearch reads from `.env`
-itself, it will not override environment variables already set by your shell, so
-the potentially outdated values set by Pipenv will override those read from
-`.env` at runtime.
 
 
 #### The Configuration entity
