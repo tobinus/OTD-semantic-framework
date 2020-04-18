@@ -1,0 +1,19 @@
+category,engine,configuration,query,site,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+concept-based query,google,5c7ea259c556bb42803fa17e,new york state rest stop,data.ny.gov,2,2,1,0.5,0.5,0.5,0.5,0.5
+concept-based query,google,5c7ea259c556bb42803fa17e,nyc subway,data.ny.gov,7,3,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,rest area,data.ny.gov,3,2,2,0.6666666666666666,1.0,0.8,1.0,1.0
+concept-based query,google,5c7ea259c556bb42803fa17e,rest stops,data.ny.gov,3,2,2,0.6666666666666666,1.0,0.8,1.0,1.0
+concept-based query,google,5c7ea259c556bb42803fa17e,site:data.cityofnewyork.us subway stations,data.ny.gov,0,2,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,subway stations,data.ny.gov,1,2,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,highway new york rural,data.ny.gov,0,0,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,underground railway position,data.ny.gov,0,0,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,location transportation,data.ny.gov,10,20,4,0.4,0.2,0.26666666666666666,0.2,0.18333333333333332
+concept-based query,google,5c7ea259c556bb42803fa17e,statistics transportation,data.ny.gov,6,110,6,1.0,0.05454545454545454,0.10344827586206896,0.05454545454545454,0.05454545454545454
+concept-based query,google,5c7ea259c556bb42803fa17e,bike,data.ny.gov,2,13,2,1.0,0.15384615384615385,0.2666666666666667,0.15384615384615385,0.15384615384615385
+concept-based query,google,5c7ea259c556bb42803fa17e,map,data.ny.gov,4,13,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,messaging,data.ny.gov,0,8,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,stopping place,data.ny.gov,0,3,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,walking,data.ny.gov,0,8,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,driving permit,data.ny.gov,0,3,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,tallying,data.ny.gov,0,60,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,5c7ea259c556bb42803fa17e,road traffic management,data.ny.gov,1,10,0,0.0,0.0,0.0,0.0,0.0

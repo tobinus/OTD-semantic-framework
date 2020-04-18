@@ -1,0 +1,100 @@
+Loading environment variables from "/home/thorben/git/OTD-semantic-framework/.env"
+INFO:ontosearch.ext_search.google:Performing query "new york state rest stop"
+[I:pyppeteer.launcher] Browser listening on: ws://127.0.0.1:54905/devtools/browser/95466c2e-24f8-4368-8adb-6daf8af44406
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "State of New York Mortgage Agency (SONYMA) Target Areas by Census Tract"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Bird Conservation Areas"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Public Fishing Rights Parking Areas"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "START-UP NY Tax-Free Area Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Fire Department Directory for New York State"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Local Area Unemployment Statistics: Beginning 1976"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Campgrounds by County Within Adirondack & Catskill Forest Preserve"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "NYC Wi-Fi Hotspot Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Census Demographics at the Neighborhood Tabulation Area (NTA) level"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Neighborhood Development Area Breakdowns"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2006-07 Class Size - By Borough"
+INFO:ontosearch.ext_search.google:Performing query "nyc subway"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Turnstile Usage Data: 2019"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "NYC Wi-Fi Hotspot Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Turnstile Usage Data: 2020"
+INFO:ontosearch.ext_search.google:Performing query "rest area"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Public Fishing Rights Parking Areas"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "START-UP NY Tax-Free Area Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "State of New York Mortgage Agency (SONYMA) Target Areas by Census Tract"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Bird Conservation Areas"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Citizen Statewide Lake Monitoring Assessment Program (CSLAP) Lakes"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Directory of Aging and Disability Community Resources"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "DYCD after-school programs: Neighborhood Development Area (NDA) Family"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Fire Department Directory for New York State"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Local Area Unemployment Statistics: Beginning 1976"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Artificial Reefs Managed by New York State Department of Environmental"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Census Demographics at the Neighborhood Tabulation Area (NTA) level"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Neighborhood Development Area Breakdowns"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Meals Served by the Office for the Aging: Beginning 1974"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "NYC Wi-Fi Hotspot Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Campgrounds by County Within Adirondack & Catskill Forest Preserve"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2010-2011 Class Size - District-level Summary"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Local Social Services District (SSD) Staff Counts by Function: Beginning"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2010-2011 Class Size - School-level detail"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2007-08 Class Size - School-level Detail"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2006-07 Class Size - By Borough"
+INFO:ontosearch.ext_search.google:Performing query "rest stops"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "START-UP NY Tax-Free Area Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Public Fishing Rights Parking Areas"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Bird Conservation Areas"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "State of New York Mortgage Agency (SONYMA) Target Areas by Census Tract"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Local Area Unemployment Statistics: Beginning 1976"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "DYCD after-school programs: Neighborhood Development Area (NDA) Family"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Census Demographics at the Neighborhood Tabulation Area (NTA) level"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Citizen Statewide Lake Monitoring Assessment Program (CSLAP) Lakes"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Neighborhood Development Area Breakdowns"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Directory of Aging and Disability Community Resources"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Campgrounds by County Within Adirondack & Catskill Forest Preserve"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Artificial Reefs Managed by New York State Department of Environmental"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "NYC Wi-Fi Hotspot Locations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2006-07 Class Size - By Borough"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Meals Served by the Office for the Aging: Beginning 1974"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "Local Social Services District (SSD) Staff Counts by Function: Beginning"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2010-2011 Class Size - District-level Summary"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2010-2011 Class Size - School-level detail"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "2007-08 Class Size - School-level Detail"
+INFO:ontosearch.ext_search.google:Performing query "site:data.cityofnewyork.us subway stations"
+INFO:ontosearch.ext_search.google:Performing query "subway stations"
+WARNING:ontosearch.ext_search.google:Unable to find dataset with title "NYC Wi-Fi Hotspot Locations"
+INFO:ontosearch.ext_search.google:Performing query "highway new york rural"
+[I:pyppeteer.connection] connection closed
+Traceback (most recent call last):
+  File "/home/thorben/git/OTD-semantic-framework/venv/lib/python3.7/site-packages/requests_html.py", line 512, in _async_render
+    await page.goto(url, options={'timeout': int(timeout * 1000)})
+  File "/home/thorben/git/OTD-semantic-framework/venv/lib/python3.7/site-packages/pyppeteer/page.py", line 862, in goto
+    raise error
+pyppeteer.errors.TimeoutError: Navigation Timeout Exceeded: 8000 ms exceeded.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "dataontosearch.py", line 151, in <module>
+    main()
+  File "dataontosearch.py", line 69, in main
+    result = args.func(args)
+  File "/home/thorben/git/OTD-semantic-framework/ontosearch/cli.py", line 126, in do_multi_search
+    return do_multi_search(args.file)
+  File "/home/thorben/git/OTD-semantic-framework/ontosearch/search.py", line 28, in do_multi_search
+    do_ext_multi_search(engine, document, queries, configurations)
+  File "/home/thorben/git/OTD-semantic-framework/ontosearch/ext_search/ext_search.py", line 32, in do_ext_multi_search
+    query,
+  File "/home/thorben/git/OTD-semantic-framework/ontosearch/ext_search/ext_search.py", line 51, in do_single_ext_multi_search
+    results = engine_instance.search(query, **engine_config)
+  File "/home/thorben/git/OTD-semantic-framework/ontosearch/ext_search/google.py", line 47, in search
+    titles = self._extract_titles(r)
+  File "/home/thorben/git/OTD-semantic-framework/ontosearch/ext_search/google.py", line 62, in _extract_titles
+    r.html.render()
+  File "/home/thorben/git/OTD-semantic-framework/venv/lib/python3.7/site-packages/requests_html.py", line 598, in render
+    content, result, page = self.session.loop.run_until_complete(self._async_render(url=self.url, script=script, sleep=sleep, wait=wait, content=self.html, reload=reload, scrolldown=scrolldown, timeout=timeout, keep_page=keep_page))
+  File "/usr/lib64/python3.7/asyncio/base_events.py", line 583, in run_until_complete
+    return future.result()
+  File "/home/thorben/git/OTD-semantic-framework/venv/lib/python3.7/site-packages/requests_html.py", line 537, in _async_render
+    await page.close()
+  File "/home/thorben/git/OTD-semantic-framework/venv/lib/python3.7/site-packages/pyppeteer/page.py", line 1458, in close
+    raise PageError('Protocol Error: Connectoin Closed. '
+pyppeteer.errors.PageError: Protocol Error: Connectoin Closed. Most likely the page has been closed.
+[I:pyppeteer.launcher] terminate chrome process...

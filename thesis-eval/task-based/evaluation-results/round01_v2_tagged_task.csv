@@ -1,0 +1,752 @@
+category,engine,configuration,search-result-threshold,concept-relevance-threshold,query-concept-threshold,simtype,query,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.03333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.029411764705882353
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,1.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.04
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02040816326530612
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.024390243902439025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,1.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.08333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.012987012987012988
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.012195121951219513
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00625
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.008264462809917356
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.09090909090909091
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,1.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006666666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00411522633744856
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00411522633744856
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.034482758620689655
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0038910505836575876
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05263157894736842
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,1.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.007042253521126761
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0038461538461538464
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.1
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.008
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.125
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.008
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.1111111111111111
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.011627906976744186
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.005681818181818182
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.058823529411764705
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,1.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004310344827586207
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.009615384615384616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.03333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.029411764705882353
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02040816326530612
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.75,tagged,nyc subway station,112,1,1,0.008928571428571428,1.0,0.017699115044247787,0.0,0.024390243902439025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,1.0,tagged,new york public facilities,279,1,1,0.0035842293906810036,1.0,0.0071428571428571435,0.0,0.08333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.0,tagged,nyc subway station,268,1,1,0.0037313432835820895,1.0,0.007434944237918215,0.0,0.012987012987012988
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.25,tagged,nyc subway station,264,1,1,0.003787878787878788,1.0,0.007547169811320754,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.5,tagged,nyc subway station,241,1,1,0.004149377593360996,1.0,0.008264462809917356,0.0,0.012195121951219513
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00625
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.75,tagged,nyc subway station,91,1,1,0.01098901098901099,1.0,0.02173913043478261,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.75,tagged,new york public facilities,272,1,1,0.003676470588235294,1.0,0.007326007326007326,0.0,0.008264462809917356
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,1.0,tagged,underground railway position,265,1,1,0.0037735849056603774,1.0,0.0075187969924812035,0.0,0.09090909090909091
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,1.0,tagged,new york public facilities,86,1,1,0.011627906976744186,1.0,0.022988505747126436,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.0,tagged,underground railway position,205,1,1,0.004878048780487805,1.0,0.009708737864077669,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.0,tagged,nyc subway station,163,1,1,0.006134969325153374,1.0,0.012195121951219513,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.0,tagged,new york public facilities,211,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.25,tagged,underground railway position,205,1,1,0.004878048780487805,1.0,0.009708737864077669,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.25,tagged,nyc subway station,119,1,1,0.008403361344537815,1.0,0.016666666666666666,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.25,tagged,new york public facilities,211,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.5,tagged,underground railway position,196,1,1,0.00510204081632653,1.0,0.01015228426395939,0.0,0.025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.5,tagged,nyc subway station,66,1,1,0.015151515151515152,1.0,0.02985074626865672,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.5,tagged,new york public facilities,199,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.75,tagged,underground railway position,142,1,1,0.007042253521126761,1.0,0.013986013986013986,0.0,0.034482758620689655
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.75,tagged,nyc subway station,9,1,1,0.1111111111111111,1.0,0.19999999999999998,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.75,tagged,new york public facilities,63,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,1.0,tagged,underground railway position,114,1,1,0.008771929824561403,1.0,0.017391304347826087,0.0,0.05263157894736842
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,1.0,tagged,new york public facilities,31,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.75,tagged,underground railway position,8,1,1,0.125,1.0,0.2222222222222222,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.75,tagged,nyc subway station,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.75,tagged,new york public facilities,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,1.0,tagged,underground railway position,23,1,1,0.043478260869565216,1.0,0.08333333333333333,0.0,0.058823529411764705
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,1.0,tagged,new york public facilities,8,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.03333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.75,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.029411764705882353
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,1.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,1.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.0,tagged,underground railway position,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.0,tagged,nyc subway station,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.0,tagged,new york public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.25,tagged,underground railway position,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.25,tagged,nyc subway station,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.25,tagged,new york public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.5,tagged,underground railway position,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.5,tagged,nyc subway station,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.05
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.5,tagged,new york public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.75,tagged,underground railway position,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.02040816326530612
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.75,tagged,nyc subway station,98,1,1,0.01020408163265306,1.0,0.020202020202020204,0.0,0.024390243902439025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.75,tagged,new york public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,1.0,tagged,underground railway position,278,1,1,0.0035971223021582736,1.0,0.007168458781362008,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,1.0,tagged,new york public facilities,146,1,1,0.00684931506849315,1.0,0.013605442176870748,0.0,0.08333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.0,tagged,underground railway position,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.0,tagged,nyc subway station,120,1,1,0.008333333333333333,1.0,0.01652892561983471,0.0,0.012987012987012988
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.0,tagged,new york public facilities,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.25,tagged,underground railway position,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.25,tagged,nyc subway station,89,1,1,0.011235955056179775,1.0,0.02222222222222222,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.25,tagged,new york public facilities,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.5,tagged,underground railway position,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.006060606060606061
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.5,tagged,nyc subway station,86,1,1,0.011627906976744186,1.0,0.022988505747126436,0.0,0.012195121951219513
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.5,tagged,new york public facilities,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.004273504273504274
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.75,tagged,underground railway position,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.00625
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.75,tagged,nyc subway station,46,1,1,0.021739130434782608,1.0,0.042553191489361694,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.75,tagged,new york public facilities,186,1,1,0.005376344086021506,1.0,0.010695187165775402,0.0,0.008264462809917356
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,1.0,tagged,underground railway position,106,1,1,0.009433962264150943,1.0,0.018691588785046728,0.0,0.09090909090909091
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,1.0,tagged,new york public facilities,74,1,1,0.013513513513513514,1.0,0.026666666666666665,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.0,tagged,underground railway position,6,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.0,tagged,nyc subway station,8,1,1,0.125,1.0,0.2222222222222222,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.0,tagged,new york public facilities,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.25,tagged,underground railway position,6,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.25,tagged,nyc subway station,7,1,1,0.14285714285714285,1.0,0.25,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.25,tagged,new york public facilities,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.5,tagged,underground railway position,5,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.5,tagged,nyc subway station,7,1,1,0.14285714285714285,1.0,0.25,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.5,tagged,new york public facilities,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.75,tagged,underground railway position,30,1,1,0.03333333333333333,1.0,0.06451612903225806,0.0,0.034482758620689655
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.75,tagged,nyc subway station,8,1,1,0.125,1.0,0.2222222222222222,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.75,tagged,new york public facilities,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,1.0,tagged,underground railway position,47,1,1,0.02127659574468085,1.0,0.04166666666666667,0.0,0.05263157894736842
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,1.0,tagged,new york public facilities,19,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,1.0,tagged,underground railway position,7,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,1.0,tagged,new york public facilities,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.0,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.0,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.0,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.25,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.25,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.25,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.5,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02857142857142857
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.5,tagged,nyc subway station,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.05555555555555555
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.5,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.019230769230769232
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.75,tagged,underground railway position,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.03333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.75,tagged,nyc subway station,98,1,1,0.01020408163265306,1.0,0.020202020202020204,0.0,0.029411764705882353
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.75,tagged,new york public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.025
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,1.0,tagged,underground railway position,278,1,1,0.0035971223021582736,1.0,0.007168458781362008,0.0,0.25
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,1.0,tagged,new york public facilities,99,1,1,0.010101010101010102,1.0,0.02,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.0,tagged,underground railway position,244,1,1,0.004098360655737705,1.0,0.00816326530612245,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.0,tagged,nyc subway station,195,1,1,0.005128205128205128,1.0,0.010204081632653062,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.0,tagged,new york public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.25,tagged,underground railway position,244,1,1,0.004098360655737705,1.0,0.00816326530612245,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.25,tagged,nyc subway station,195,1,1,0.005128205128205128,1.0,0.010204081632653062,0.0,0.047619047619047616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.25,tagged,new york public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,underground railway position,244,1,1,0.004098360655737705,1.0,0.00816326530612245,0.0,0.02
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,nyc subway station,195,1,1,0.005128205128205128,1.0,0.010204081632653062,0.0,0.05
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,new york public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,underground railway position,232,1,1,0.004310344827586207,1.0,0.008583690987124462,0.0,0.02040816326530612
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,nyc subway station,26,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,new york public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,underground railway position,201,1,1,0.004975124378109453,1.0,0.0099009900990099,0.0,0.2
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,new york public facilities,82,1,1,0.012195121951219513,1.0,0.024096385542168676,0.0,0.08333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.0,tagged,underground railway position,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.0,tagged,nyc subway station,8,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.0,tagged,new york public facilities,36,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.25,tagged,underground railway position,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.25,tagged,nyc subway station,6,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.25,tagged,new york public facilities,36,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,underground railway position,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,nyc subway station,4,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,new york public facilities,36,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,underground railway position,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,nyc subway station,19,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,new york public facilities,10,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,underground railway position,37,1,1,0.02702702702702703,1.0,0.052631578947368425,0.0,0.09090909090909091
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,new york public facilities,19,1,1,0.05263157894736842,1.0,0.1,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,nyc subway station,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,underground railway position,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,new york public facilities,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,1.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,1.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,1.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,1.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,1.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,1.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,1.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,1.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,1.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,1.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.0,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.25,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.25,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.25,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.5,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.5,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.5,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.75,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.75,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.75,tagged,new york public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,1.0,tagged,underground railway position,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,1.0,tagged,nyc subway station,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,1.0,tagged,new york public facilities,1,1,0,0.0,0.0,0.0,0.0,0.0
+category,engine,configuration,search-result-threshold,concept-relevance-threshold,query-concept-threshold,simtype,query,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.038461538461538464
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.043478260869565216
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014492753623188406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,1.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02040816326530612
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.0,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.04
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,1.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0036231884057971015
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.25,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.012987012987012988
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.020833333333333332
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.03125
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.03225806451612903
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.005405405405405406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0041841004184100415
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,1.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0036363636363636364
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.5,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004048582995951417
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0045662100456621
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00411522633744856
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00411522633744856
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0048543689320388345
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00411522633744856
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00411522633744856
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.02127659574468085
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004132231404958678
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.005405405405405406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00390625
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0035460992907801418
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,1.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0037174721189591076
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0038461538461538464
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,0.75,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0058823529411764705
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.008130081300813009
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.007633587786259542
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.007936507936507936
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.011235955056179775
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.007633587786259542
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.007936507936507936
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.006578947368421052
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.01020408163265306
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.012048192771084338
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00980392156862745
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0058823529411764705
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.008333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,1.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.010526315789473684
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.009615384615384616
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.0,1.0,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.011235955056179775
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.038461538461538464
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.043478260869565216
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014492753623188406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.0,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.75,tagged,highway new york rural,117,1,1,0.008547008547008548,1.0,0.016949152542372885,0.0,0.04
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,1.0,tagged,new york state highway public facilities,278,1,1,0.0035971223021582736,1.0,0.007168458781362008,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.25,1.0,tagged,new york road,277,1,1,0.0036101083032490976,1.0,0.007194244604316546,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.0,tagged,highway new york rural,266,1,1,0.0037593984962406013,1.0,0.00749063670411985,0.0,0.012987012987012988
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.25,tagged,highway new york rural,251,1,1,0.00398406374501992,1.0,0.007936507936507936,0.0,0.020833333333333332
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.5,tagged,highway new york rural,99,1,1,0.010101010101010102,1.0,0.02,0.0,0.03125
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.75,tagged,highway new york rural,79,1,1,0.012658227848101266,1.0,0.024999999999999998,0.0,0.03225806451612903
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.75,tagged,new york state highway public facilities,272,1,1,0.003676470588235294,1.0,0.007326007326007326,0.0,0.005405405405405406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,0.75,tagged,new york road,263,1,1,0.0038022813688212928,1.0,0.007575757575757576,0.0,0.0041841004184100415
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,1.0,tagged,new york state highway public facilities,86,1,1,0.011627906976744186,1.0,0.022988505747126436,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.5,1.0,tagged,new york road,233,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.0,tagged,highway new york rural,179,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.0,tagged,new york state highway public facilities,208,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.0,tagged,new york road,206,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.25,tagged,highway new york rural,89,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.25,tagged,new york state highway public facilities,208,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.25,tagged,new york road,206,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.5,tagged,highway new york rural,35,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.5,tagged,new york state highway public facilities,196,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.5,tagged,new york road,196,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.75,tagged,highway new york rural,22,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.75,tagged,new york state highway public facilities,70,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,0.75,tagged,new york road,122,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,1.0,tagged,new york state highway public facilities,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,0.75,1.0,tagged,new york road,112,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.0,tagged,new york road,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.25,tagged,new york road,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.5,tagged,highway new york rural,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.75,tagged,highway new york rural,5,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.75,tagged,new york state highway public facilities,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,0.75,tagged,new york road,13,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,1.0,tagged,new york state highway public facilities,8,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.25,1.0,1.0,tagged,new york road,68,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.5,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.038461538461538464
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.75,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.043478260869565216
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014492753623188406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,1.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.0,1.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.0,tagged,highway new york rural,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.0,tagged,new york state highway public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.0,tagged,new york road,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.25,tagged,highway new york rural,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.25,tagged,new york state highway public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.25,tagged,new york road,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.5,tagged,highway new york rural,273,1,1,0.003663003663003663,1.0,0.0072992700729927005,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.5,tagged,new york state highway public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.5,tagged,new york road,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.75,tagged,highway new york rural,98,1,1,0.01020408163265306,1.0,0.020202020202020204,0.0,0.04
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.75,tagged,new york state highway public facilities,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,0.75,tagged,new york road,281,1,1,0.0035587188612099642,1.0,0.007092198581560283,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,1.0,tagged,new york state highway public facilities,139,1,1,0.007194244604316547,1.0,0.014285714285714287,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.25,1.0,tagged,new york road,240,1,1,0.004166666666666667,1.0,0.008298755186721992,0.0,0.004166666666666667
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.0,tagged,highway new york rural,87,1,1,0.011494252873563218,1.0,0.022727272727272724,0.0,0.012987012987012988
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.0,tagged,new york state highway public facilities,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.0,tagged,new york road,236,1,1,0.00423728813559322,1.0,0.008438818565400843,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.25,tagged,highway new york rural,83,1,1,0.012048192771084338,1.0,0.02380952380952381,0.0,0.020833333333333332
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.25,tagged,new york state highway public facilities,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.25,tagged,new york road,236,1,1,0.00423728813559322,1.0,0.008438818565400843,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.5,tagged,highway new york rural,33,1,1,0.030303030303030304,1.0,0.05882352941176471,0.0,0.03125
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.5,tagged,new york state highway public facilities,237,1,1,0.004219409282700422,1.0,0.008403361344537815,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.5,tagged,new york road,236,1,1,0.00423728813559322,1.0,0.008438818565400843,0.0,0.00423728813559322
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.75,tagged,highway new york rural,30,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.75,tagged,new york state highway public facilities,189,1,1,0.005291005291005291,1.0,0.010526315789473682,0.0,0.005405405405405406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,0.75,tagged,new york road,234,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,1.0,tagged,new york state highway public facilities,76,1,1,0.013157894736842105,1.0,0.025974025974025976,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.5,1.0,tagged,new york road,198,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.0,tagged,highway new york rural,4,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.0,tagged,new york state highway public facilities,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.0,tagged,new york road,5,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.25,tagged,highway new york rural,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.25,tagged,new york state highway public facilities,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.25,tagged,new york road,5,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.5,tagged,highway new york rural,8,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.5,tagged,new york state highway public facilities,3,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.5,tagged,new york road,7,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.75,tagged,new york state highway public facilities,5,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,0.75,tagged,new york road,15,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,1.0,tagged,new york state highway public facilities,11,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,0.75,1.0,tagged,new york road,22,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,1.0,tagged,new york state highway public facilities,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.5,1.0,1.0,tagged,new york road,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.0,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.0,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.0,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.25,tagged,highway new york rural,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.037037037037037035
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.25,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.25,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.5,tagged,highway new york rural,279,1,1,0.0035842293906810036,1.0,0.0071428571428571435,0.0,0.038461538461538464
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.5,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.5,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.015151515151515152
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.75,tagged,highway new york rural,99,1,1,0.010101010101010102,1.0,0.02,0.0,0.043478260869565216
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.75,tagged,new york state highway public facilities,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.014492753623188406
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,0.75,tagged,new york road,282,1,1,0.0035460992907801418,1.0,0.007067137809187279,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,1.0,tagged,new york state highway public facilities,99,1,1,0.010101010101010102,1.0,0.02,0.0,0.14285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.0,1.0,tagged,new york road,239,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.0,tagged,highway new york rural,195,1,1,0.005128205128205128,1.0,0.010204081632653062,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.0,tagged,new york state highway public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.0,tagged,new york road,245,1,1,0.004081632653061225,1.0,0.008130081300813009,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.25,tagged,highway new york rural,195,1,1,0.005128205128205128,1.0,0.010204081632653062,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.25,tagged,new york state highway public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.25,tagged,new york road,245,1,1,0.004081632653061225,1.0,0.008130081300813009,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,highway new york rural,181,1,1,0.0055248618784530384,1.0,0.010989010989010988,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,new york state highway public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.016129032258064516
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.5,tagged,new york road,245,1,1,0.004081632653061225,1.0,0.008130081300813009,0.0,0.015873015873015872
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,highway new york rural,26,1,1,0.038461538461538464,1.0,0.07407407407407407,0.0,0.04
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,new york state highway public facilities,230,1,1,0.004347826086956522,1.0,0.008658008658008658,0.0,0.014285714285714285
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,0.75,tagged,new york road,232,1,1,0.004310344827586207,1.0,0.008583690987124462,0.0,0.0136986301369863
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,new york state highway public facilities,73,1,1,0.0136986301369863,1.0,0.027027027027027025,0.0,0.07692307692307693
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.25,1.0,tagged,new york road,218,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.0,tagged,highway new york rural,22,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.0,tagged,new york state highway public facilities,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.0,tagged,new york road,41,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.25,tagged,highway new york rural,20,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.25,tagged,new york state highway public facilities,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.25,tagged,new york road,41,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,highway new york rural,15,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,new york state highway public facilities,37,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.5,tagged,new york road,41,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,highway new york rural,17,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,new york state highway public facilities,26,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,0.75,tagged,new york road,39,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,new york state highway public facilities,15,1,1,0.06666666666666667,1.0,0.125,0.0,0.3333333333333333
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.5,1.0,tagged,new york road,116,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,new york state highway public facilities,6,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,0.75,1.0,tagged,new york road,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,1.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,0.75,1.0,1.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,1.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.0,1.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,1.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.25,1.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,1.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.5,1.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,1.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,0.75,1.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.0,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.25,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.25,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.25,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.5,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.5,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.5,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.75,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.75,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,0.75,tagged,new york road,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,1.0,tagged,highway new york rural,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,1.0,tagged,new york state highway public facilities,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,dataontosearch,5c7ea259c556bb42803fa17e,1.0,1.0,1.0,tagged,new york road,1,1,0,0.0,0.0,0.0,0.0,0.0

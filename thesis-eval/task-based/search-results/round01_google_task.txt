@@ -1,0 +1,24 @@
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "nyc subway station", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/f6feb96c-5294-445a-a0c0-7a4d61448b8f
+http://192.168.56.101:8000/dataset/3803c6fd-9c0d-4174-9b2c-2742bab2d694
+http://192.168.56.101:8000/dataset/3e3084c9-625b-42ca-8a15-b50468048394
+http://192.168.56.101:8000/dataset/8abdc377-659f-4a83-b030-623e805578f6
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "new york state highway public facilities", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "new york public facilities", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/cd67796a-a447-41c2-98e4-040eece33711
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "new york road", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/ee5911ac-8e75-45a1-95db-b3375e6da0bd
+http://192.168.56.101:8000/dataset/e14a7ed9-ac4e-4c24-9f97-59672af266df
+http://192.168.56.101:8000/dataset/226643f4-86fe-4fbc-90bb-a38d811ff10f
+http://192.168.56.101:8000/dataset/be9f3d82-6853-461f-9bad-9960fb24b560
+http://192.168.56.101:8000/dataset/0a890a26-8a45-4af7-83b9-d013d052043f
+http://192.168.56.101:8000/dataset/e549164e-4d67-4ae6-b797-26127e31a858
+http://192.168.56.101:8000/dataset/1baf2b4e-87dc-4b0d-80ad-f3d0ce7f28fa
+http://192.168.56.101:8000/dataset/1baf2b4e-87dc-4b0d-80ad-f3d0ce7f28fa
+http://192.168.56.101:8000/dataset/79d6815d-fd43-4fce-ae0f-a71b395006e9
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/b945690c-ea8b-4369-9ebe-64ba5f397fdd
+http://192.168.56.101:8000/dataset/17225b37-bae8-49c8-ba85-810a4316f510

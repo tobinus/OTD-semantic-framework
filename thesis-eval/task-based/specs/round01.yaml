@@ -1,0 +1,76 @@
+configuration: 5c7ea259c556bb42803fa17e
+query:
+  # DataOntoSearch
+  # Task 55
+  underground railway position:
+    # NYC Transit Subway Entrance and Exit Data
+    - http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+  "site:data.cityofnewyork.us subway stations":
+    - http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+  nyc subway:
+    - http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+  subway stations:
+    - http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+
+  # Task 47
+  highway new york rural:
+    # Rest Areas Across NY
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+  new york state rest stop:
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+  rest area:
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+
+  # Google Dataset Search
+  # Task 55
+  nyc subway station:
+    - http://192.168.56.101:8000/dataset/03cde402-3e04-47b2-a4c4-9ea6b4fc2af7
+
+  # Task 47
+  rest stops:
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+
+  new york state highway public facilities:
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+
+  new york public facilities:
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+
+  new york road:
+    - http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+
+engine: dataontosearch
+
+# Options for DataOntoSearch
+concept-relevance-threshold:
+  - 0.00
+  - 0.25
+  - 0.50
+  - 0.75
+  - 1.00
+
+query-concept-threshold:
+  - 0.00
+  - 0.25
+  - 0.50
+  - 0.75
+  - 1.00
+
+search-result-threshold:
+  - 0.00
+  - 0.25
+  - 0.50
+  - 0.75
+  - 1.00
+
+simtype:
+  - tagged
+  - auto
+
+metadata:
+  category: task-based query
+  engine: old
+
+# Options for Google
+google:
+  site: data.ny.gov

@@ -1,0 +1,73 @@
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "new york state rest stop", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "nyc subway", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/f6feb96c-5294-445a-a0c0-7a4d61448b8f
+http://192.168.56.101:8000/dataset/3803c6fd-9c0d-4174-9b2c-2742bab2d694
+http://192.168.56.101:8000/dataset/3e3084c9-625b-42ca-8a15-b50468048394
+http://192.168.56.101:8000/dataset/bc3a58c2-b86e-48bf-95f3-312cc9d90215
+http://192.168.56.101:8000/dataset/8abdc377-659f-4a83-b030-623e805578f6
+http://192.168.56.101:8000/dataset/c33d3977-3a0b-450c-bdf2-1545c072951e
+http://192.168.56.101:8000/dataset/17225b37-bae8-49c8-ba85-810a4316f510
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "rest area", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "rest stops", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+http://192.168.56.101:8000/dataset/6bb972fe-4ee0-433d-bdb9-1698c0d4ff80
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "site:data.cityofnewyork.us subway stations", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "subway stations", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/f6feb96c-5294-445a-a0c0-7a4d61448b8f
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "highway new york rural", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "underground railway position", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "location transportation", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/f6feb96c-5294-445a-a0c0-7a4d61448b8f
+http://192.168.56.101:8000/dataset/8e3a3554-6c10-46fd-be82-692e6d0ea1dd
+http://192.168.56.101:8000/dataset/d37c1c4c-b0bc-4bbb-bc41-aade78de4bf2
+http://192.168.56.101:8000/dataset/b945690c-ea8b-4369-9ebe-64ba5f397fdd
+http://192.168.56.101:8000/dataset/6574ea88-85ec-4183-ac1b-55581ba77806
+http://192.168.56.101:8000/dataset/79d6815d-fd43-4fce-ae0f-a71b395006e9
+http://192.168.56.101:8000/dataset/a81de2eb-0171-41f2-a4d7-492f5686b251
+http://192.168.56.101:8000/dataset/ee5911ac-8e75-45a1-95db-b3375e6da0bd
+http://192.168.56.101:8000/dataset/560dfa73-c9ad-490f-96ec-cefa68a5fac7
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "statistics transportation", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/39995fa1-e76e-4f10-9a32-8713230b671e
+http://192.168.56.101:8000/dataset/226643f4-86fe-4fbc-90bb-a38d811ff10f
+http://192.168.56.101:8000/dataset/3a9560ba-8d44-4ac7-b457-81c196077efa
+http://192.168.56.101:8000/dataset/71e7dda8-ac63-4271-8946-1c5683c6152c
+http://192.168.56.101:8000/dataset/4395d31f-996e-4bfc-bc4c-1ae546c3793f
+http://192.168.56.101:8000/dataset/a97fdbe5-d630-4374-92d1-159b32550660
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "bike", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/e14a7ed9-ac4e-4c24-9f97-59672af266df
+http://192.168.56.101:8000/dataset/fd6a5c63-cceb-4072-8375-42fe000f3467
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "map", "engine": "google", "site": "data.ny.gov"}
+http://192.168.56.101:8000/dataset/e20660b8-527d-4e57-be58-70d1733fa6b3
+http://192.168.56.101:8000/dataset/f6feb96c-5294-445a-a0c0-7a4d61448b8f
+http://192.168.56.101:8000/dataset/b945690c-ea8b-4369-9ebe-64ba5f397fdd
+http://192.168.56.101:8000/dataset/0892c0e3-f386-4055-a718-fe5bef6f4c62
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "messaging", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "stopping place", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "walking", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "driving permit", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "tallying", "engine": "google", "site": "data.ny.gov"}
+
+{"configuration": "5c7ea259c556bb42803fa17e", "query": "road traffic management", "engine": "google", "site": "data.ny.gov"}

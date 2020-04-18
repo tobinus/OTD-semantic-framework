@@ -1,0 +1,13 @@
+category,engine,configuration,query,site,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+task-based query,google,5c7ea259c556bb42803fa17e,new york state rest stop,data.ny.gov,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,nyc subway,data.ny.gov,7,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,rest area,data.ny.gov,3,1,1,0.3333333333333333,1.0,0.5,0.0,0.5
+task-based query,google,5c7ea259c556bb42803fa17e,rest stops,data.ny.gov,3,1,1,0.3333333333333333,1.0,0.5,0.0,0.5
+task-based query,google,5c7ea259c556bb42803fa17e,site:data.cityofnewyork.us subway stations,data.ny.gov,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,subway stations,data.ny.gov,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,highway new york rural,data.ny.gov,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,underground railway position,data.ny.gov,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,nyc subway station,data.ny.gov,4,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,new york state highway public facilities,data.ny.gov,0,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,new york public facilities,data.ny.gov,1,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,5c7ea259c556bb42803fa17e,new york road,data.ny.gov,13,1,0,0.0,0.0,0.0,0.0,0.0

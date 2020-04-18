@@ -1,0 +1,8 @@
+category,engine,date,configuration,query,site,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,new york state rest stop,data.ny.gov,11,2,2,0.18181818181818182,1.0,0.3076923076923077,1.0,1.0
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,nyc subway,data.ny.gov,14,3,1,0.07142857142857142,0.3333333333333333,0.11764705882352941,0.3333333333333333,0.3333333333333333
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,rest area,data.ny.gov,11,2,2,0.18181818181818182,1.0,0.3076923076923077,1.0,1.0
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,rest stops,data.ny.gov,11,2,2,0.18181818181818182,1.0,0.3076923076923077,1.0,1.0
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,site:data.cityofnewyork.us subway stations,data.ny.gov,0,2,0,0.0,0.0,0.0,0.0,0.0
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,subway stations,data.ny.gov,6,2,1,0.16666666666666666,0.5,0.25,0.5,0.5
+concept-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,highway new york rural,data.ny.gov,1,0,0,0.0,0.0,0.0,0.0,0.0

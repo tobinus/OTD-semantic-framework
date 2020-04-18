@@ -1,0 +1,2 @@
+usage: dataontosearch.py multisearch [-h] file
+dataontosearch.py multisearch: error: argument file: can't open 'thesis-eval/task-based/specs/round20200418_search_google.yaml.yaml': [Errno 2] No such file or directory: 'thesis-eval/task-based/specs/round20200418_search_google.yaml.yaml'

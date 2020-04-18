@@ -1,0 +1,5 @@
+category,engine,date,configuration,query,site,fetched,relevant,relevant & fetched,precision,recall,f1-measure,r-precision,avg precision
+task-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,nyc subway station,data.ny.gov,7,1,1,0.14285714285714285,1.0,0.25,1.0,1.0
+task-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,new york state highway public facilities,data.ny.gov,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,new york public facilities,data.ny.gov,2,1,0,0.0,0.0,0.0,0.0,0.0
+task-based query,google,2020-04-18,5c7ea259c556bb42803fa17e,new york road,data.ny.gov,46,1,0,0.0,0.0,0.0,0.0,0.0
